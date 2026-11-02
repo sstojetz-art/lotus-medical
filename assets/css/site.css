@@ -340,11 +340,9 @@ body.moving .cursor{opacity:1}
 }
 
 /* contacts with portraits */
-.avatar{--d:112px;width:var(--d);height:var(--d);flex:none;border-radius:50%;background:#111 center/cover no-repeat;box-shadow:0 0 0 2px #000,0 0 0 3px var(--gold),0 0 34px rgba(213,184,99,.45);position:relative}
-.avatar:after{content:"";position:absolute;inset:-9px;border-radius:50%;padding:1px;background:conic-gradient(from var(--a,0deg),transparent 0 60%,var(--gold) 72%,#FFF6D8 75%,var(--gold) 78%,transparent 90%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 6s linear infinite}
-.avatar.lg{--d:132px;margin-bottom:22px}
-/* John: circular crop from the Lotus business card on lotusmedcompany.com (232px circle at 706,92 in a 1050x600 image) */
-.avatar.john{background-image:url(https://static.wixstatic.com/media/b82652_350aeabd8d3b45d091e875c65d05a7ac~mv2.png);background-size:calc(var(--d)*1050/232) calc(var(--d)*600/232);background-position:calc(var(--d)*-706/232) calc(var(--d)*-92/232)}
+.avatar{--d:118px;width:var(--d);height:var(--d);flex:none;border-radius:50%;background:transparent center/contain no-repeat}
+.avatar.lg{--d:150px;margin-bottom:22px}
+.avatar.john{background-image:url(../img/john-callahan.png)}
 .contacts{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;margin-top:40px}
 .contact{display:flex;align-items:center;gap:22px;text-align:left;border:1px solid var(--line);border-radius:999px;padding:12px 30px 12px 12px;background:rgba(0,0,0,.45);transition:border-color .3s,transform .3s}
 .contact:hover{border-color:var(--gold);transform:translateY(-3px)}
@@ -353,3 +351,11 @@ body.moving .cursor{opacity:1}
 .contact a{display:block;font-size:14px;color:#d8d1bf;line-height:1.55}
 .contact a:hover{color:var(--gold)}
 @media (max-width:600px){.contact{border-radius:24px;padding:16px;width:100%}.avatar{--d:88px}.contact b{font-size:19px}}
+/* leadership, as laid out in the corporate dossier */
+.people{grid-template-columns:1fr}
+.person{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:start;padding:40px}
+.person .avatar.lg{--d:210px;margin:0}
+.pname{font:700 24px/1.2 var(--sans);letter-spacing:.04em;color:var(--gold);margin:0 0 4px}
+.ptitle{font-style:italic;color:#fff;font-size:17px;margin-bottom:16px}
+@media (max-width:700px){.person{grid-template-columns:1fr;gap:20px;padding:28px}.person .avatar.lg{--d:170px}}
+.person{border:0;background:none;padding:30px 0}
