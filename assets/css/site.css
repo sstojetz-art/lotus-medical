@@ -89,7 +89,7 @@ h3{font-size:clamp(22px,2.1vw,28px);line-height:1.2;letter-spacing:.04em}
 .hero .lede{margin-bottom:34px}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
 .hero-tags{display:flex;gap:26px;margin-top:46px;flex-wrap:wrap;font:700 12px/1.4 var(--sans);letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
-.hero-tags b{display:block;color:var(--gold);font:400 30px/1 var(--serif);letter-spacing:.04em;margin-bottom:6px}
+.hero-tags b{display:block;color:var(--gold);font:400 22px/1 var(--serif);letter-spacing:.04em;margin-bottom:6px}
 .anat-wrap{position:relative;margin-right:-40px}
 .list.cols2{columns:2;column-gap:50px}.list.cols2 li{break-inside:avoid}
 @media (max-width:860px){.list.cols2{columns:1}.anat-wrap{margin-right:0}}
