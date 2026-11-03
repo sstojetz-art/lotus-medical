@@ -182,8 +182,18 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
 .cmp thead .hi small{color:#3a3016}
 .cmp td{color:#cfc8ba}
 .in .cmp tbody tr{animation:rise .7s cubic-bezier(.2,.9,.25,1.1) both}
-.in .cmp tbody tr:nth-child(2){animation-delay:.1s}.in .cmp tbody tr:nth-child(3){animation-delay:.2s}.in .cmp tbody tr:nth-child(4){animation-delay:.3s}.in .cmp tbody tr:nth-child(5){animation-delay:.4s}.in .cmp tbody tr:nth-child(6){animation-delay:.5s}
+.in .cmp tbody tr:nth-child(2){animation-delay:.1s}.in .cmp tbody tr:nth-child(3){animation-delay:.2s}.in .cmp tbody tr:nth-child(4){animation-delay:.3s}.in .cmp tbody tr:nth-child(5){animation-delay:.4s}.in .cmp tbody tr:nth-child(6){animation-delay:.5s}.in .cmp tbody tr:nth-child(7){animation-delay:.6s}
 
+.cmp2{margin-top:16px;font-size:clamp(14px,1.35vw,16.5px)}
+.cmp2 th,.cmp2 td{padding:9px 12px}
+.cmp2 thead th{font-size:clamp(17px,1.7vw,22px)}
+.cmp2 tbody th{font-size:14px;width:15%}
+.cmp2 td.y,.cmp2 td.n{font-family:var(--display);font-weight:800;font-size:clamp(18px,1.7vw,22px)}
+.cmp2 td.y::before{content:"✓ ";color:var(--gold)}
+.cmp2 td.n::before{content:"✕ ";color:#8a8478}
+.cmp2 td.y.hi::before{color:var(--gold-hi)}
+.cmp2 td small{display:block;font-family:var(--body);font-weight:400;font-size:14px;color:#b9b2a4;letter-spacing:0;margin-top:2px}
+.cmp2 td.hi small{color:#efe6d2}
 /* quote */
 .qt{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,4vw,60px);align-items:center}
 blockquote{font-family:var(--display);font-weight:700;font-size:clamp(28px,3.6vw,48px);line-height:1.1;text-transform:none;position:relative;padding-left:28px;border-left:4px solid var(--gold)}
@@ -372,6 +382,26 @@ blockquote .q{color:var(--gold);font-size:1.6em;line-height:0;vertical-align:-.3
       </ol>
     </div>
     <p class="note rise d6">Post-op: 3 weeks non-weight bearing, then 3 weeks protected weight bearing in a boot; PT at week 3 to 4. Anika Integrity Peroneal Tendon Repair Surgical Technique Guide, AML-900-690.</p>
+  </div>
+</section>
+
+<!-- COMPETITIVE -->
+<section class="panel" data-name="Competitive chart">
+  <div class="wrap">
+    <div class="eyebrow rise">Tendon augmentation · Head to head</div>
+    <h2 class="rise d1" style="font-size:clamp(30px,3.8vw,52px)">Four scaffolds. <span class="gold">One built on hyaluronic acid.</span></h2>
+    <table class="cmp cmp2">
+      <thead><tr><th></th><th class="hi">Integrity<small>Anika</small></th><th>REGENETEN<small>Smith+Nephew</small></th><th>BioBrace<small>CONMED</small></th><th>Artelon<small>Stryker</small></th></tr></thead>
+      <tbody>
+        <tr><th>Material</th><td class="hi">Hyaff hyaluronic acid knit, PET reinforced</td><td>Bovine Achilles type I collagen</td><td>Bovine type I collagen sponge with PLLA microfilaments</td><td>Synthetic polyurethane urea (PUUR) knit</td></tr>
+        <tr><th>No animal-derived material</th><td class="hi y">Yes</td><td class="n">Bovine</td><td class="n">Bovine</td><td class="y">Yes</td></tr>
+        <tr><th>Hyaluronic acid biology</th><td class="hi y">Yes</td><td class="n">No</td><td class="n">No</td><td class="n">No</td></tr>
+        <tr><th>Built-in reinforcement</th><td class="hi y">PET knit</td><td class="n">None<small>Low tensile modulus by design</small></td><td class="y">PLLA filaments</td><td class="y">Synthetic polymer</td></tr>
+        <tr><th>What happens over time</th><td class="hi">Hyaff resorbs as tissue remodels; PET remains</td><td>Resorbed and replaced by tendon-like tissue within 6 months</td><td>Supports tissue about 2 years, then resorbs</td><td>Degrades by hydrolysis; integrated over 4 to 6 years</td></tr>
+        <tr><th>Foot &amp; ankle uses</th><td class="hi">Achilles, peroneal, posterior tibialis</td><td>Insertional and midsubstance Achilles</td><td>Achilles, lateral and medial stabilization, plantar plate</td><td>Achilles; ankle ligament reinforcement</td></tr>
+      </tbody>
+    </table>
+    <p class="note rise d6" style="font-size:13px;margin-top:8px">All four are FDA 510(k) cleared. Sources: Anika Integrity Foot &amp; Ankle Information Sheet AML-900-669; REGENETEN 510(k) K222501 and Smith+Nephew trial listing NCT07869121; BioBrace 510(k) K203267 and CONMED product page; Artelon 510(k) K230316 and Stryker Artelon fast facts. In bench testing, Integrity showed higher tensile strength, suture retention and tear resistance than REGENETEN (Anika data on file).</p>
   </div>
 </section>
 
