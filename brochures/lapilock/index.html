@@ -251,16 +251,23 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
 <text x="250" y="300" fill="#f1ead8" opacity=".6" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="18" letter-spacing="3">2ND MET &middot; PROTECTED</text>
 <path id="arc" d="" stroke="#3b82f6" stroke-width="4" fill="none" stroke-dasharray="6 6"/>
 <g id="m1"><rect x="198" y="132" width="420" height="54" rx="22" fill="url(#bn)"/><circle cx="628" cy="159" r="36" fill="url(#bn)"/>
-<text x="260" y="166" fill="#000" opacity=".55" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="20" letter-spacing="4">1ST METATARSAL</text></g>
-<g id="up" opacity="0"><path d="M150 214 L150 128 Q150 112 166 112 L232 112 Q248 112 248 128 L248 214" stroke="#1a1a1a" stroke-width="18" fill="none" stroke-linecap="round"/><path d="M150 214 L150 128 Q150 112 166 112 L232 112 Q248 112 248 128 L248 214" stroke="#aeb4bd" stroke-width="11" fill="none" stroke-linecap="round"/>
-<g fill="#8b5cf6"><circle cx="150" cy="140" r="7"/><circle cx="150" cy="190" r="7"/><circle cx="248" cy="140" r="7"/><circle cx="248" cy="190" r="7"/></g></g>
+<text x="300" y="166" fill="#000" opacity=".55" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="20" letter-spacing="4">1ST METATARSAL</text></g>
+<g id="up" opacity="0"><g transform="rotate(-3 198 186)">
+<path d="M252 146 L174 146 A14 14 0 0 0 174 174 L252 174" stroke="#111" stroke-width="15" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M252 146 L174 146 A14 14 0 0 0 174 174 L252 174" stroke="#b9bfc8" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#8b5cf6" stroke="#111" stroke-width="1.5"><circle cx="166" cy="160" r="5.5"/><circle cx="182" cy="146" r="5"/><circle cx="182" cy="174" r="5"/><circle cx="236" cy="146" r="5"/><circle cx="236" cy="174" r="5"/></g></g>
+</g>
 <g id="cmp" opacity="0" stroke="#d5b863" stroke-width="4" fill="none"><path d="M262 90 l-34 0 m8 -7 l-8 7 8 7"/><path d="M262 90 l0 0"/></g>
 <g font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="20" letter-spacing="4">
-<g id="fr"><circle cx="830" cy="120" r="72" fill="none" stroke="#333" stroke-width="2"/><g id="frb"><ellipse cx="830" cy="118" rx="46" ry="40" fill="url(#bn)"/><circle cx="812" cy="168" r="10" fill="#8b5cf6"/><circle cx="848" cy="168" r="10" fill="#8b5cf6"/></g>
-<path id="fra" d="M760 70 A86 86 0 0 1 830 34" stroke="#8b5cf6" stroke-width="5" fill="none"/><text x="830" y="222" text-anchor="middle" fill="#8b5cf6">FRONTAL</text></g>
-<g id="sg"><line x1="720" y1="360" x2="960" y2="360" stroke="#444" stroke-width="2"/><line id="sgm" x1="730" y1="330" x2="950" y2="330" stroke="#f1ead8" stroke-width="16" stroke-linecap="round"/>
-<text x="840" y="396" text-anchor="middle" fill="#22c55e">SAGITTAL</text></g></g>
+<g transform="translate(230 226) scale(.62)"><g id="fr"><circle cx="830" cy="120" r="72" fill="none" stroke="#333" stroke-width="2"/><g id="frb"><ellipse cx="830" cy="118" rx="46" ry="40" fill="url(#bn)"/><circle cx="812" cy="168" r="10" fill="#8b5cf6"/><circle cx="848" cy="168" r="10" fill="#8b5cf6"/></g>
+<path id="fra" d="M760 70 A86 86 0 0 1 830 34" stroke="#8b5cf6" stroke-width="5" fill="none"/><text x="830" y="222" text-anchor="middle" fill="#8b5cf6" font-size="30">FRONTAL</text></g></g>
+<g transform="translate(398 134) scale(.6)"><g id="sg"><line x1="720" y1="360" x2="960" y2="360" stroke="#444" stroke-width="2"/><line id="sgm" x1="730" y1="330" x2="950" y2="330" stroke="#f1ead8" stroke-width="16" stroke-linecap="round"/>
+<text x="840" y="396" text-anchor="middle" fill="#22c55e" font-size="30">SAGITTAL</text></g></g></g>
 <text x="420" y="380" text-anchor="middle" fill="#3b82f6" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="20" letter-spacing="4" id="tvl">TRANSVERSE</text>
+<image href="img/jig.webp" x="676" y="4" width="314" height="216" style="mix-blend-mode:lighten"/>
+<g id="jh" fill="none" stroke-width="4">
+<circle cx="910" cy="88" r="20" stroke="#8b5cf6"/><circle cx="711" cy="189" r="26" stroke="#3b82f6"/><circle cx="850" cy="77" r="15" stroke="#22c55e"/><circle cx="961" cy="186" r="24" stroke="#d5b863"/></g>
+<text id="jt" x="850" y="240" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="16" letter-spacing="1" fill="#8b5cf6"></text>
 </svg><div class="prog"><i id="progBar"></i></div></div>
       <div class="hud">
         <div><div class="k">What is happening</div><div class="cap" id="cap">Derotate.</div></div>
@@ -329,7 +336,7 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
 window.SIM=(function(){
  var T=[0,2.6,5.2,7.8,10.2,13.2],$=function(i){return document.getElementById(i)};
  var m1=$('m1'),arc=$('arc'),frb=$('frb'),fra=$('fra'),sgm=$('sgm'),up=$('up'),cmp=$('cmp'),fr=$('fr'),sg=$('sg'),tvl=$('tvl');
- var vals=['Frontal','Transverse','Sagittal','Axial','Fixed'];
+ var vals=['Frontal','Transverse','Sagittal','Axial','Fixed'],jh=$('jh').children,jt=$('jt'),JC=['#8b5cf6','#3b82f6','#22c55e','#d5b863'],JN=['PURPLE · FRONTAL DEROTATION','BLUE DIAL · INTERMETATARSAL ANGLE','GREEN · PLANTAR / DORSAL FLEXION','GOLD DIAL · COMPRESS / DISTRACT'];
  function st(t){var s=0;for(var k=0;k<T.length-1;k++)if(t>=T[k])s=k;return Math.min(s,4)}
  return {T:T,rest:12.5,
   caps:['Purple: the proprietary arch derotates the first metatarsal in the frontal plane.',
@@ -348,6 +355,9 @@ window.SIM=(function(){
    fr.style.opacity=t<2.6?1:.45;sg.style.opacity=t>5.2&&t<7.8?1:.45;
    cmp.style.opacity=t>7.8&&t<10.2?1:0;
    var u=ease(cl((t-10.4)/1));up.setAttribute('opacity',u);up.setAttribute('transform','translate(0 '+((1-u)*-30)+')');
+   var sj=st(t),pu=(Math.sin(t*6)+1)/2;
+   for(var q=0;q<4;q++){var on=q===sj;jh[q].style.opacity=on?.55+.45*pu:0;jh[q].setAttribute('stroke-width',on?3+3*pu:3);jh[q].style.filter=on?'drop-shadow(0 0 8px '+JC[q]+')':'none'}
+   jt.textContent=sj<4?JN[sj]:'ONE JIG · ALL FOUR PLANES';jt.setAttribute('fill',sj<4?JC[sj]:'#d5b863');
   }};
 })();
 
