@@ -124,6 +124,8 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
 .hud .cap{font-size:clamp(17px,1.8vw,22px);color:#eee;margin-top:6px;line-height:1.35;min-height:2.7em}
 .prog{height:4px;background:rgba(213,184,99,.15);position:relative}
 .prog i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.zl{position:absolute;left:3%;bottom:7%;transform-origin:left bottom;background:rgba(0,0,0,.72);padding:10px 22px 12px;border:1px solid var(--gold);transform:scale(.85);opacity:0;transition:opacity .45s,transform .6s cubic-bezier(.3,1.6,.4,1);text-align:center;pointer-events:none;font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--gold-hi);font-size:clamp(24px,3.4vw,44px);line-height:.95;text-shadow:0 0 24px rgba(213,184,99,.55),0 2px 6px #000}
+.zl span{font-size:.55em;color:#fff;letter-spacing:.14em}
 /* features */
 .feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:28px}
 .ft{border:1px solid rgba(255,255,255,.1);background:linear-gradient(160deg,rgba(213,184,99,.10),rgba(18,17,16,.9) 60%);padding:20px;position:relative;overflow:hidden}
