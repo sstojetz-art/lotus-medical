@@ -147,20 +147,16 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
 @keyframes fillx{from{transform:scaleX(0)}}
 .cite{font-size:16px;color:var(--gray);margin-top:18px;line-height:1.5}
 
-/* applications */
-.apps{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(20px,3vw,48px);align-items:center;margin-top:22px}
-.legsvg{width:100%;height:auto;max-height:58vh;display:block}
-.tdn{fill:none;stroke-linecap:round;stroke-width:9;stroke:#6b4c40;transition:stroke .4s}
-.tdn.on{stroke:var(--gold);filter:url(#tglow)}
-.appbtns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.ab{flex:1;min-width:140px;background:transparent;border:2px solid var(--line);color:#fff;padding:12px;font-family:var(--display);font-weight:800;font-size:clamp(19px,2vw,24px);letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:all .25s}
-.ab.on{background:var(--gold);color:#000;border-color:var(--gold)}
-.appcard{border:1px solid var(--gold);background:rgba(213,184,99,.07);padding:20px 22px;min-height:220px}
-.appcard h3{color:var(--gold);margin-bottom:10px}
-.appcard p{font-size:18px;line-height:1.5;color:#eee}
-.appcard p+p{margin-top:10px}
-.appcard .src{font-size:15px;color:var(--gray)}
-
+.appgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+.app{margin:0;border:2px solid rgba(255,255,255,.12);background:#0c0b0a;display:flex;flex-direction:column;cursor:pointer;transition:border-color .4s,box-shadow .4s,transform .4s}
+.app .ph{aspect-ratio:1/1;overflow:hidden;max-height:42vh}
+.app img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 4s ease-out}
+.app figcaption{padding:14px 16px 16px}
+.app b{display:block;font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(24px,2.6vw,32px);color:#fff}
+.app span{display:block;font-size:17px;line-height:1.42;color:#d8d1c3;margin-top:6px}
+.app.on{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 18px 40px rgba(213,184,99,.25);transform:translateY(-6px)}
+.app.on b{color:var(--gold)}
+.app.on img{transform:scale(1.12)}
 /* technique */
 .tech{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(20px,3vw,44px);align-items:center;margin-top:24px}
 .figstage{position:relative;aspect-ratio:1.45;background:radial-gradient(circle at 50% 50%,#262019,#060606 70%);border:1px solid var(--line)}
@@ -213,7 +209,7 @@ blockquote .q{color:var(--gold);font-size:1.6em;line-height:0;vertical-align:-.3
 .fine{margin-top:24px;font-size:14px;color:#8a8478;line-height:1.6;max-width:84ch}
 #home{position:fixed;top:10px;right:clamp(14px,2.4vw,30px);z-index:60;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.14em;font-size:14px;text-transform:uppercase;color:#D5B863;text-decoration:none;border:1px solid rgba(213,184,99,.5);padding:6px 12px;background:rgba(0,0,0,.6)}
 @media (max-width:900px){
-  .hero,.str,.apps,.tech,.qt{grid-template-columns:1fr}
+  .hero,.str,.tech,.qt,.appgrid{grid-template-columns:1fr}
   .hud{grid-template-columns:1fr 1fr}.hud>div:first-child{grid-column:1/-1;border-right:0;border-bottom:1px solid var(--line)}
   #dots{display:none}
   .cmp{font-size:14px}.cmp th,.cmp td{padding:8px}
@@ -336,33 +332,21 @@ blockquote .q{color:var(--gold);font-size:1.6em;line-height:0;vertical-align:-.3
   <div class="wrap">
     <div class="eyebrow rise">Foot &amp; ankle applications</div>
     <h2 class="rise d1">Every tendon repair <span class="gold">that needs protection.</span></h2>
-    <div class="apps">
-      <div class="rise d2">
-        <svg class="legsvg" viewBox="0 0 640 440" role="img" aria-label="Lower leg and foot with the Achilles, peroneal and posterior tibial tendons">
-          <defs><filter id="tglow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-          <path d="M190 10 C186 120 176 210 168 270 C160 320 150 352 150 372 C150 400 176 414 220 416 L560 416 C600 416 626 404 622 386 C616 366 584 356 548 350 C480 336 410 312 360 282 C338 268 326 240 326 200 C326 130 330 60 334 10 Z" fill="#17130f" stroke="#D5B863" stroke-opacity=".55" stroke-width="2"/>
-          <ellipse cx="300" cy="300" rx="22" ry="26" fill="none" stroke="#D5B863" stroke-opacity=".4" stroke-width="1.5"/>
-          <text x="300" y="306" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" fill="#a39b8b">LAT. MALLEOLUS</text>
-          <path id="t-ach" class="tdn" d="M200 40 C196 140 190 230 186 300 C184 340 180 362 176 380"/>
-          <path id="t-per" class="tdn" d="M268 60 C274 160 286 250 300 282 C310 312 330 330 372 350 C420 372 460 384 500 392"/>
-          <path id="t-pt" class="tdn" d="M244 70 C250 170 262 260 286 316 C306 352 330 368 362 378" stroke-dasharray="2 14"/>
-          <g font-family="Barlow Condensed,sans-serif" font-weight="700" font-size="20" letter-spacing="2">
-            <text id="l-ach" x="166" y="230" text-anchor="end" fill="#a39b8b">ACHILLES</text>
-            <text id="l-per" x="420" y="330" fill="#a39b8b">PERONEALS</text>
-            <text id="l-pt" x="372" y="232" fill="#a39b8b">POSTERIOR TIBIALIS</text>
-            <text x="372" y="254" font-size="14" font-weight="600" fill="#6f685c">(MEDIAL SIDE)</text>
-          </g>
-        </svg>
-      </div>
-      <div>
-        <div class="appbtns rise d2" role="group" aria-label="Application">
-          <button class="ab on" data-a="ach">Achilles</button>
-          <button class="ab" data-a="per">Peroneal</button>
-          <button class="ab" data-a="pt">Posterior tibialis</button>
-        </div>
-        <div class="appcard rise d3" id="appcard"></div>
-      </div>
+    <div class="appgrid" id="appgrid">
+      <figure class="app pop d2 on">
+        <div class="ph"><img src="img/app-ach.webp" alt="Integrity implant augmenting an Achilles tendon repair"></div>
+        <figcaption><b>Achilles</b><span>Onlay over the central split, sutured medially and laterally at least 2mm from the implant edge.</span></figcaption>
+      </figure>
+      <figure class="app pop d3">
+        <div class="ph"><img src="img/app-per.webp" alt="Integrity implant wrapped around a repaired peroneal tendon"></div>
+        <figcaption><b>Peroneal</b><span>Repair and tubularize, then wrap Integrity around the tendon with a running 4-0 absorbable suture.</span></figcaption>
+      </figure>
+      <figure class="app pop d4">
+        <div class="ph"><img src="img/fig3.webp" alt="Integrity implant hydrated with bone marrow aspirate concentrate" style="object-fit:contain;background:radial-gradient(circle,#2a221a,#070707 70%)"></div>
+        <figcaption><b>Posterior tibialis</b><span>Placed over the repaired tendon and fixed at least 2mm from the outer edge of the implant.</span></figcaption>
+      </figure>
     </div>
+    <p class="note rise d5">Achilles, peroneal and posterior tibialis tendon applications per Anika Integrity Foot &amp; Ankle Information Sheet (AML-900-669). Surgical photos: Anika Integrity Tendon Repair Applications sheet (AML-900-775). Posterior tibialis shown with the implant hydrated in BMAC.</p>
   </div>
 </section>
 
@@ -524,18 +508,11 @@ blockquote .q{color:var(--gold);font-size:1.6em;line-height:0;vertical-align:-.3
   })();
 
   /* ---------- applications ---------- */
-  var appData={
-    ach:{h:'Achilles',p:['Prone. Split the tendon centrally and address the insertion as indicated.','Onlay Integrity over the central split and suture it medially and laterally, at least 2mm from the implant edge.'],s:'Anika Integrity Achilles Tendon Repair Surgical Technique Guide, AML-900-687.'},
-    per:{h:'Peroneal',p:['Repair and tubularize the peroneus brevis, then wrap Integrity around the tendon over the affected zone.','Secure with a running 4-0 absorbable suture to minimize knot irritation.'],s:'Anika Integrity Peroneal Tendon Repair Surgical Technique Guide, AML-900-690.'},
-    pt:{h:'Posterior tibialis',p:['Listed by Anika among Integrity\'s foot and ankle applications.','Place over the repaired tendon and fix at least 2mm from the outer edge of the implant.'],s:'Anika Integrity Foot & Ankle Information Sheet, AML-900-669; Integrity IFU.'}};
-  var abs=[].slice.call(document.querySelectorAll('.ab')),card=document.getElementById('appcard'),appT=null,appK=0,keys=['ach','per','pt'];
-  function showApp(k){appK=keys.indexOf(k);var d=appData[k];card.innerHTML='<h3>'+d.h+'</h3>'+d.p.map(function(x){return '<p>'+x+'</p>'}).join('')+'<p class="src">'+d.s+'</p>';
-    abs.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-a')===k)});
-    keys.forEach(function(x){document.getElementById('t-'+x).classList.toggle('on',x===k);document.getElementById('l-'+x).setAttribute('fill',x===k?'#F1DC9C':'#a39b8b')})}
-  abs.forEach(function(b){b.addEventListener('click',function(){clearInterval(appT);appT=null;showApp(b.getAttribute('data-a'))})});
-  function appStart(){clearInterval(appT);showApp('ach');if(!reduce)appT=setInterval(function(){showApp(keys[(appK+1)%3])},4200)}
+  var apps=[].slice.call(document.querySelectorAll('#appgrid .app')),appT=null,appK=0;
+  function showApp(i){appK=i;apps.forEach(function(a,k){a.classList.toggle('on',k===i)})}
+  apps.forEach(function(a,k){a.addEventListener('click',function(){clearInterval(appT);appT=null;showApp(k)})});
+  function appStart(){clearInterval(appT);showApp(0);if(!reduce)appT=setInterval(function(){showApp((appK+1)%3)},3600)}
   function appStop(){clearInterval(appT);appT=null}
-  showApp('ach');
 
   /* ---------- technique ---------- */
   var figs=document.getElementById('figs'),fimgs=[].slice.call(figs.querySelectorAll('img')),tli=[].slice.call(document.querySelectorAll('#tsteps li')),ft=null,fk=0;
@@ -552,8 +529,8 @@ blockquote .q{color:var(--gold);font-size:1.6em;line-height:0;vertical-align:-.3
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)enter(panels.indexOf(e.target))})},{threshold:[.5]});
     panels.forEach(function(p){io.observe(p)});
     var vis=new IntersectionObserver(function(es){es.forEach(function(e){var on=e.isIntersecting,id=e.target.id;
-      if(id==='sim'){on?sim.start():sim.stop()} if(id==='figs'){on?fStart():fStop()} if(id==='appcard'){on?appStart():appStop()}})},{threshold:[.2]});
-    ['sim','figs','appcard'].forEach(function(id){vis.observe(document.getElementById(id))});
+      if(id==='sim'){on?sim.start():sim.stop()} if(id==='figs'){on?fStart():fStop()} if(id==='appgrid'){on?appStart():appStop()}})},{threshold:[.2]});
+    ['sim','figs','appgrid'].forEach(function(id){vis.observe(document.getElementById(id))});
   } else { sim.start(); fStart(); appStart(); }
   enter(0);
 })();
