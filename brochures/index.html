@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lotus Brochures</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lotus">
+<meta name="theme-color" content="#000000">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-512.png">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500&family=Marcellus&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Lotus black and gold. One screen: the lockup, then a tile per brochure. */
+  --black:#000000;
+  --gold:#D5B863;
+  --gold-hi:#F1DC9C;
+  --ink:#FFFFFF;
+  --mute:#a39b8b;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow","Helvetica Neue",Arial,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:var(--black);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased}
+body{padding:calc(env(safe-area-inset-top,0px) + 48px) max(20px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 40px) max(20px,env(safe-area-inset-left,0px));background:radial-gradient(ellipse at 50% 0%,rgba(213,184,99,.16),transparent 60%),var(--black)}
+.top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
+.top svg{width:96px;height:auto;filter:drop-shadow(0 0 24px rgba(213,184,99,.35))}
+.wm{font-family:"Marcellus",Georgia,serif;font-size:clamp(32px,5vw,52px);letter-spacing:.2em;padding-left:.2em}
+.tl{font-family:var(--display);font-weight:600;letter-spacing:.24em;color:var(--gold);font-size:15px;text-transform:uppercase}
+h1{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:20px;color:var(--mute);margin:44px auto 16px;max-width:980px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;max-width:980px;margin:0 auto}
+a.tile{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--ink);border:2px solid rgba(213,184,99,.4);padding:26px 24px;background:linear-gradient(160deg,rgba(213,184,99,.12),rgba(18,17,16,.95) 60%);transition:transform .2s,border-color .2s;min-height:200px}
+a.tile:active,a.tile:hover{transform:translateY(-3px);border-color:var(--gold)}
+a.tile:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+.tile .k{font-family:var(--display);font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-size:14px}
+.tile .n{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(34px,4vw,44px);line-height:.95}
+.tile .d{font-size:17px;color:#ddd6c8;line-height:1.4}
+.tile .go{margin-top:auto;font-family:var(--display);font-weight:800;letter-spacing:.16em;color:var(--gold);font-size:16px}
+.foot{text-align:center;margin-top:44px;font-family:var(--display);font-weight:700;letter-spacing:.28em;color:var(--gold);font-size:14px;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="top">
+  <svg viewBox="24 40 208 172" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3DE9C"/><stop offset=".55" stop-color="#D5B863"/><stop offset="1" stop-color="#9C8236"/></linearGradient></defs><g fill="url(#g)"><path d="M128 176 C 70 176, 38 150, 34 116 C 70 112, 104 132, 128 176Z"/><path d="M128 176 C 186 176, 218 150, 222 116 C 186 112, 152 132, 128 176Z"/><path d="M128 176 C 84 160, 66 120, 74 80 C 108 96, 126 134, 128 176Z"/><path d="M128 176 C 172 160, 190 120, 182 80 C 148 96, 130 134, 128 176Z"/><path d="M128 176 C 102 144, 102 90, 128 52 C 154 90, 154 144, 128 176Z"/></g><path d="M64 198 H192" stroke="#D5B863" stroke-width="5" stroke-linecap="round"/></svg>
+  <div class="wm">LOTUS MEDICAL</div>
+  <div class="tl">Regenerative Biologics · Lower Extremity Fixation</div>
+</div>
+<h1>Surgeon brochures</h1>
+<div class="grid">
+  <a class="tile" href="shark-screw/index.html">
+    <span class="k">Surgebright</span>
+    <span class="n">Shark Screw<span style="font-size:.4em;vertical-align:super;color:var(--gold)">®</span></span>
+    <span class="d">1st MTP fusion, nonunion and the Diver. Metal holds. Bone heals. Use both.</span>
+    <span class="go">Open ›</span>
+  </a>
+  <a class="tile" href="osteorod.html">
+    <span class="k">Bone Solutions</span>
+    <span class="n">Mg OsteoRod™</span>
+    <span class="d">Spacer mold for the intramedullary canal. One mold, three lengths.</span>
+    <span class="go">Open ›</span>
+  </a>
+</div>
+<div class="foot">Integrity First. Patient First. Always.</div>
+</body>
+</html>

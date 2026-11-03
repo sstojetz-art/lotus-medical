@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shark Screw Sizzler</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Lotus">
+<meta name="theme-color" content="#000000">
+<link rel="manifest" href="../manifest.json">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&family=Marcellus&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Lotus black and gold, ivory bone. Full-screen panels that snap, one idea per panel. */
+  --black:#000000;
+  --panel:#121110;
+  --gold:#D5B863;
+  --gold-hi:#F1DC9C;
+  --bone:#EFE6D2;
+  --gray:#a39b8b;
+  --blood:#c4473d;
+  --line:rgba(213,184,99,.28);
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow","Helvetica Neue",Arial,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--black);color:#fff;font-family:var(--body);-webkit-font-smoothing:antialiased}
+body{overflow:hidden}
+#deck{height:100%;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+.panel{position:relative;min-height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:70px clamp(18px,5vw,72px) 64px;overflow:hidden}
+.wrap{width:100%;max-width:1180px;position:relative;z-index:2;margin-block:auto}
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:.01em;line-height:.95;text-wrap:balance;text-transform:uppercase}
+h1{font-size:clamp(46px,6.4vw,92px)}
+h2{font-size:clamp(34px,5vw,68px)}
+h3{font-size:clamp(20px,2.1vw,27px);font-weight:700;letter-spacing:.03em}
+.gold{color:var(--gold)}
+.ivory{color:var(--bone)}
+.eyebrow{font-family:var(--display);font-weight:600;font-size:clamp(15px,1.5vw,18px);letter-spacing:.32em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.eyebrow::before{content:"";width:42px;height:2px;background:var(--gold)}
+.lede{font-size:clamp(17px,1.7vw,21px);line-height:1.5;color:#e6e1d6;max-width:60ch;margin-top:20px}
+.note{font-size:16px;color:var(--gray);line-height:1.5;margin-top:14px}
+.reg{font-size:.42em;vertical-align:super;color:var(--gold)}
+
+.bg{position:absolute;inset:-6%;background:url(img/bonebg.webp) center/cover no-repeat;opacity:.22;animation:drift 30s ease-in-out infinite alternate;z-index:0}
+@keyframes drift{from{transform:scale(1.04)}to{transform:scale(1.16) translate(-2%,-2%)}}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse at 65% 45%,rgba(0,0,0,.25) 10%,rgba(0,0,0,.92) 75%);z-index:1}
+
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-hi));z-index:50;box-shadow:0 0 12px var(--gold);transition:width .4s}
+#brand{position:fixed;top:12px;left:clamp(18px,3vw,36px);z-index:40;display:flex;align-items:center;gap:10px;font-family:"Marcellus",Georgia,serif;font-size:16px;letter-spacing:.32em;color:#fff}
+#brand .lmark{width:30px;height:auto}
+.lockup{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:26px}
+.lockup .lmark{width:clamp(90px,10vw,130px);height:auto;filter:drop-shadow(0 0 24px rgba(213,184,99,.35))}
+.lockup .wm{font-family:"Marcellus",Georgia,serif;font-size:clamp(34px,4.6vw,60px);letter-spacing:.2em;line-height:1;color:#fff;padding-left:.2em}
+.lockup .tl{font-family:var(--display);font-weight:600;letter-spacing:.24em;color:var(--gold);font-size:clamp(13px,1.4vw,17px)}
+#dots{position:fixed;right:clamp(10px,2vw,26px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:40}
+#dots button{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--gold);background:transparent;cursor:pointer;transition:all .3s;padding:0}
+#dots button.on{background:var(--gold);transform:scale(1.35);box-shadow:0 0 10px var(--gold)}
+button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+#next{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:40;background:none;border:0;color:var(--gold);cursor:pointer;animation:bob 1.8s ease-in-out infinite}
+#next svg{width:28px;height:28px}
+@keyframes bob{50%{transform:translate(-50%,7px)}}
+
+/* entrances: visible at rest; .in replays */
+.in .rise{animation:rise .9s cubic-bezier(.2,.9,.25,1.15) both}
+.in .pop{animation:pop .75s cubic-bezier(.3,1.6,.4,1) both}
+.in .slideL{animation:slideL 1s cubic-bezier(.2,.9,.2,1) both}
+.in .slideR{animation:slideR 1s cubic-bezier(.2,.9,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(46px)}}
+@keyframes pop{0%{opacity:0;transform:scale(.4)}}
+@keyframes slideL{from{opacity:0;transform:translateX(-90px)}}
+@keyframes slideR{from{opacity:0;transform:translateX(110px) rotate(3deg)}}
+.d1{animation-delay:.12s!important}.d2{animation-delay:.24s!important}.d3{animation-delay:.36s!important}.d4{animation-delay:.48s!important}.d5{animation-delay:.6s!important}.d6{animation-delay:.72s!important}.d7{animation-delay:.84s!important}
+
+/* 1 hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(20px,4vw,56px);align-items:center}
+.hero h1 .l2{display:block;color:var(--bone)}
+.hero h1 .l3{display:block;color:var(--gold)}
+.sub{font-family:var(--display);font-weight:600;letter-spacing:.2em;text-transform:uppercase;font-size:clamp(15px,1.6vw,20px);color:var(--bone);margin-bottom:18px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.chip{border:1px solid var(--gold);color:var(--black);background:var(--gold);padding:9px 16px;font-family:var(--display);font-weight:800;letter-spacing:.12em;font-size:17px;text-transform:uppercase}
+.chip.o{background:transparent;color:var(--gold-hi);border-color:var(--line)}
+.herovid{position:relative;display:grid;place-items:center}
+.herovid img{width:min(100%,400px);max-height:80vh;aspect-ratio:360/620;object-fit:contain;filter:drop-shadow(0 0 30px rgba(213,184,99,.22))}
+.ring{position:absolute;width:78%;aspect-ratio:1;border-radius:50%;border:1px solid var(--line);animation:spin 26s linear infinite}
+.ring::before{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--gold)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* 2 watch it work */
+.work{display:grid;grid-template-columns:1fr;gap:18px}
+.workhead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.stagebtns{display:flex;gap:8px;flex-wrap:wrap}
+.sb{background:transparent;border:2px solid var(--line);color:#fff;padding:12px 18px;font-family:var(--display);font-weight:800;font-size:clamp(20px,2.2vw,27px);letter-spacing:.08em;cursor:pointer;transition:all .25s;text-transform:uppercase;min-width:140px;text-align:left}
+.sb small{display:block;font-size:16px;letter-spacing:.2em;color:var(--gray);font-weight:600}
+.sb.on{background:var(--gold);border-color:var(--gold);color:#000;box-shadow:0 10px 28px rgba(213,184,99,.35);transform:translateY(-3px)}
+.sb.on small{color:#3a3016}
+.sim{position:relative;background:radial-gradient(ellipse at 50% 40%,#1a1712,#050505 75%);border:1px solid var(--line)}
+.sim svg{display:block;width:100%;height:auto;max-height:46vh}
+.hud{display:grid;grid-template-columns:1.6fr 1fr 1fr;border:1px solid var(--line);border-top:0}
+.hud>div{padding:14px 18px;border-right:1px solid var(--line)}
+.hud>div:last-child{border-right:0}
+.hud .k{font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.26em;text-transform:uppercase;color:var(--gray)}
+.hud .v{font-family:var(--display);font-weight:800;font-size:clamp(32px,3.8vw,50px);color:var(--gold);margin-top:4px;font-variant-numeric:tabular-nums;line-height:1}
+.hud .cap{font-size:clamp(18px,1.9vw,23px);color:#eee;margin-top:6px;line-height:1.35;min-height:2.7em}
+.prog{height:4px;background:rgba(213,184,99,.15);position:relative}
+.prog i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+
+/* 3 six reasons */
+.reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+.rs{border:1px solid rgba(255,255,255,.1);background:linear-gradient(160deg,rgba(213,184,99,.10),rgba(18,17,16,.9) 60%);padding:22px 20px;position:relative;overflow:hidden}
+.rs .n{font-family:var(--display);font-weight:800;color:var(--gold);font-size:15px;letter-spacing:.2em}
+.rs h3{margin:10px 0 8px;color:#fff}
+.rs p{font-size:17.5px;color:#d7d1c4;line-height:1.45}
+.rs.hl{border-color:var(--gold)}
+.rs::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,240,200,.16),transparent);transform:skewX(-18deg)}
+.in .rs::after{animation:shine 1.5s 1s ease-out}
+@keyframes shine{to{left:130%}}
+
+/* 4 first MTP */
+.mtpgrid{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(20px,3vw,44px);align-items:center;margin-top:28px}
+.xray{position:relative;border:1px solid var(--line);background:#000}
+.xray img{display:block;width:100%}
+.xray .tagL,.xray .tagR{position:absolute;bottom:10px;font-family:var(--display);font-weight:700;letter-spacing:.12em;font-size:clamp(14px,1.4vw,18px);padding:5px 9px;text-transform:uppercase}
+.xray .tagL{left:10px;background:var(--gold);color:#000}
+.xray .tagR{right:10px;background:rgba(0,0,0,.75);color:#fff;border:1px solid #888}
+.xray .throb{position:absolute;height:auto;pointer-events:none;transform-origin:center;animation:throb 1.6s ease-in-out infinite;filter:drop-shadow(0 0 6px #46c8ff) drop-shadow(0 0 14px rgba(70,200,255,.7))}
+@keyframes throb{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.12);opacity:.75;filter:drop-shadow(0 0 12px #46c8ff) drop-shadow(0 0 26px rgba(70,200,255,.9))}}
+.mtpside h3{color:var(--gold)}
+.duo{display:grid;gap:12px;margin-top:16px}
+.duo div{padding:14px 16px;border-left:4px solid #8f98a3;background:rgba(255,255,255,.04);font-size:18px;line-height:1.4}
+.duo div.s{border-left-color:var(--gold);background:rgba(213,184,99,.09)}
+.duo b{font-family:var(--display);letter-spacing:.06em;text-transform:uppercase;font-size:19px;display:block}
+.cut{margin-top:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.cut img{width:min(300px,60%);filter:drop-shadow(0 0 16px rgba(239,230,210,.25))}
+.in .cut img{animation:screwIn 1.4s .5s cubic-bezier(.2,.9,.2,1) both}
+@keyframes screwIn{from{transform:translateX(-140px) rotate(-6deg);opacity:0}}
+.sizes{display:flex;gap:8px}
+.sizes span{border:1px solid var(--gold);color:var(--gold-hi);font-family:var(--display);font-weight:800;font-size:20px;padding:6px 10px}
+
+/* 5 nonunion stat */
+.nu{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,60px);align-items:center;margin-top:24px}
+.big{font-family:var(--display);font-weight:800;font-size:clamp(110px,17vw,230px);line-height:.8;color:var(--gold);font-variant-numeric:tabular-nums;text-shadow:0 0 50px rgba(213,184,99,.35)}
+.big small{font-size:.4em}
+.bars{display:grid;gap:22px;margin-top:8px}
+.barrow .lbl{display:flex;justify-content:space-between;font-family:var(--display);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:clamp(17px,1.8vw,22px);margin-bottom:8px}
+.track{height:34px;background:rgba(255,255,255,.06);position:relative;overflow:hidden}
+.track i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#8a7330,var(--gold),var(--gold-hi));transform-origin:left}
+.track i.m{background:linear-gradient(90deg,#4b5157,#8f98a3)}
+.in .track i{animation:fillx 1.8s .5s cubic-bezier(.6,0,.2,1) both}
+.in .track i.m{animation-delay:.8s}
+@keyframes fillx{from{transform:scaleX(0)}}
+.cite{font-size:16px;color:var(--gray);margin-top:18px;line-height:1.5}
+
+/* 6 heals */
+.heal{display:grid;grid-template-columns:1.7fr 1fr;gap:clamp(20px,3vw,44px);align-items:center;margin-top:26px}
+.vframe{border:1px solid var(--gold);background:#000;position:relative}
+.vframe img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#000}
+.vframe figcaption{padding:12px 16px;font-family:var(--display);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-size:21px}
+.pillars{display:grid;gap:14px}
+.pl{padding:18px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
+.pl h3{color:var(--gold);margin-bottom:6px}
+.pl p{font-size:18px;color:#ddd6c8;line-height:1.45}
+
+/* 7 proof */
+.proof{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(20px,3vw,40px);align-items:start;margin-top:22px}
+.ctwrap{position:relative;border:1px solid var(--line);background:#000;aspect-ratio:1937/700}
+.ctwrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .8s}
+.ctwrap img.on{opacity:1}
+.ctwrap img:first-child{opacity:1}
+.ctwrap.live img:first-child:not(.on){opacity:0}
+.cttabs{display:flex;margin-top:0;border:1px solid var(--line);border-top:0}
+.cttabs button{flex:1;background:transparent;border:0;border-right:1px solid var(--line);color:#bbb;padding:12px 8px;font-family:var(--display);font-weight:800;font-size:clamp(15px,1.6vw,20px);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;position:relative}
+.cttabs button:last-child{border-right:0}
+.cttabs button.on{color:#000;background:var(--gold)}
+.ctcap{margin-top:12px;font-size:19px;color:#d8d2c4}
+
+/* 8 cases */
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.case{border:1px solid rgba(255,255,255,.1);background:#000;display:flex;flex-direction:column}
+.case .im{aspect-ratio:1.45;overflow:hidden;background:#000}
+.case img{width:100%;height:100%;object-fit:contain;transition:transform .7s}
+.case:hover img{transform:scale(1.06)}
+.case p{padding:12px 14px;font-size:17px;line-height:1.4;color:#ddd}
+.case p b{font-family:var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-size:17px;display:block}
+.where{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.where span{border:1px solid var(--line);padding:6px 11px;font-family:var(--display);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:16px;color:#e8dfc8}
+.where span.k{border-color:var(--gold);color:#000;background:var(--gold)}
+
+/* 9 close */
+.close{text-align:center;display:flex;flex-direction:column;align-items:center}
+.close .logo{width:min(380px,70%);margin-bottom:10px;mix-blend-mode:lighten}
+.contacts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px;width:100%;max-width:820px}
+.ct{border:1px solid var(--gold);padding:18px;text-align:left;background:rgba(213,184,99,.06)}
+.ct b{font-family:var(--display);font-size:24px;letter-spacing:.04em;display:block}
+.ct i{font-style:normal;color:var(--gold);font-family:var(--display);letter-spacing:.14em;text-transform:uppercase;font-size:13px}
+.ct a,.ct span{display:block;color:#eee;text-decoration:none;font-size:16px;margin-top:6px}
+.tag{font-family:var(--display);font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-size:clamp(14px,1.6vw,20px);margin-top:26px}
+.fine{margin-top:26px;font-size:14px;color:#8a8478;line-height:1.6;max-width:80ch}
+
+
+/* diver */
+.diver{display:grid;grid-template-columns:.36fr 1.25fr 1fr;gap:clamp(16px,2.6vw,36px);align-items:center;margin-top:18px}
+.dvprod{display:flex;justify-content:center;position:relative;height:min(50vh,430px)}
+.dvprod img{height:100%;width:auto;filter:drop-shadow(0 0 22px rgba(239,230,210,.25))}
+.in .dvprod img{animation:dive 1.8s .4s cubic-bezier(.3,.9,.2,1) both}
+@keyframes dive{from{transform:translateY(-70%) rotate(0deg);opacity:0}60%{opacity:1}}
+.dvseq{position:relative;background:#fff;border:1px solid var(--gold);aspect-ratio:2.1}
+.dvseq img{position:absolute;inset:0;margin:auto;max-width:94%;max-height:94%;opacity:0;transition:opacity .7s}
+.dvseq img.on{opacity:1}.dvseq img:first-child{opacity:1}.dvseq.live img:first-child:not(.on){opacity:0}
+.dvsteps{display:flex;border:1px solid var(--line);border-top:0}
+.dvsteps button{flex:1;background:transparent;border:0;border-right:1px solid var(--line);color:#cfc7b6;padding:12px 8px;font-family:var(--display);font-weight:800;font-size:clamp(15px,1.6vw,20px);letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.dvsteps button:last-child{border-right:0}
+.dvsteps button.on{background:var(--gold);color:#000}
+.ipx{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.ipx figure{margin:0;background:#000;border:1px solid rgba(255,255,255,.12)}
+.ipx img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+.ipx figcaption{font-family:var(--display);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:clamp(14px,1.4vw,17px);padding:8px;text-align:center;color:#ddd}
+.ipx figure.k figcaption{color:#000;background:var(--gold)}
+.dvspec{display:grid;gap:10px}
+.dvspec div{padding:12px 16px;border-left:4px solid var(--gold);background:rgba(213,184,99,.08);font-size:18px;line-height:1.4;color:#eee}
+.dvspec b{display:block;font-family:var(--display);font-size:clamp(22px,2.4vw,30px);letter-spacing:.04em;color:var(--gold);text-transform:uppercase;line-height:1}
+@media (max-width:900px){
+  .hero,.mtpgrid,.nu,.heal,.proof,.diver{grid-template-columns:1fr}
+  .dvprod{height:300px}
+  .reasons,.cases{grid-template-columns:1fr 1fr}
+  .hud{grid-template-columns:1fr 1fr}.hud>div:first-child{grid-column:1/-1;border-right:0;border-bottom:1px solid var(--line)}
+  #dots{display:none}
+  .herovid img{width:min(70%,300px)}
+}
+@media (max-width:520px){.reasons,.cases,.contacts{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}#deck{scroll-behavior:auto}}
+#home{position:fixed;top:10px;right:clamp(14px,2.4vw,30px);z-index:60;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.14em;font-size:14px;text-transform:uppercase;color:#D5B863;text-decoration:none;border:1px solid rgba(213,184,99,.5);padding:6px 12px;background:rgba(0,0,0,.6)}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="brand" aria-label="Lotus Medical"><svg class="lmark" viewBox="24 40 208 172" aria-hidden="true"><defs><linearGradient id="LG1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3DE9C"/><stop offset=".55" stop-color="#D5B863"/><stop offset="1" stop-color="#9C8236"/></linearGradient></defs><g fill="url(#LG1)"><path d="M128 176 C 70 176, 38 150, 34 116 C 70 112, 104 132, 128 176Z"/><path d="M128 176 C 186 176, 218 150, 222 116 C 186 112, 152 132, 128 176Z"/><path d="M128 176 C 84 160, 66 120, 74 80 C 108 96, 126 134, 128 176Z"/><path d="M128 176 C 172 160, 190 120, 182 80 C 148 96, 130 134, 128 176Z"/><path d="M128 176 C 102 144, 102 90, 128 52 C 154 90, 154 144, 128 176Z"/></g><path d="M64 198 H192" stroke="#D5B863" stroke-width="5" stroke-linecap="round"/></svg><span>LOTUS MEDICAL</span></div>
+<nav id="dots" aria-label="Sections"></nav>
+<button id="next" aria-label="Next section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+
+<a id="home" href="../index.html">‹ Brochures</a>
+<main id="deck">
+
+<!-- 1 HERO -->
+<section class="panel" data-name="Shark Screw">
+  <div class="bg"></div><div class="vig"></div>
+  <div class="wrap hero">
+    <div>
+      <div class="sub rise">Shark Screw<span class="reg">®</span> · 100% Cortical Bone Allograft Screw</div>
+      <h1 class="rise d1">Metal holds.<span class="l2">Bone heals.</span><span class="l3">Use both.</span></h1>
+      <p class="lede rise d2">A fixation screw machined from human cortical bone. It holds like a screw, swells into a press-fit, then remodels into the patient's own living bone.</p>
+      <div class="chips">
+        <span class="chip pop d3">1st MTP Fusion</span>
+        <span class="chip pop d4">Nonunion</span>
+        <span class="chip o pop d5">Foot &amp; Ankle</span>
+      </div>
+    </div>
+    <div class="herovid slideR d2"><div class="ring"></div><img class="anim" src="v/hero.webp" alt="Animation: a Shark Screw drives into bone and is replaced by living bone"></div>
+  </div>
+</section>
+
+<!-- 2 WATCH IT WORK -->
+<section class="panel" data-name="Watch it work">
+  <div class="wrap work">
+    <div class="workhead">
+      <div><div class="eyebrow rise">Insert · Swell · Become bone</div><h2 class="rise d1">Watch it <span class="gold">work.</span></h2></div>
+      <div class="stagebtns rise d2" role="group" aria-label="Animation stage">
+        <button class="sb on" data-s="0"><small>Day 1</small>Drive</button>
+        <button class="sb" data-s="1"><small>On hydration</small>Swell ~2%</button>
+        <button class="sb" data-s="2"><small>6 to 12+ months</small>Becomes bone</button>
+      </div>
+    </div>
+    <div class="rise d2">
+      <div class="sim">
+        <svg id="sim" viewBox="0 0 1000 400" role="img" aria-label="Animation: a Shark Screw is driven across a fracture, fluid and cells flow into it and it swells about two percent to a press-fit, then it remodels into living bone as the fracture heals">
+          <defs>
+            <linearGradient id="cort" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3ead6"/><stop offset=".5" stop-color="#e2d4b4"/><stop offset="1" stop-color="#bfae88"/></linearGradient>
+            <linearGradient id="scrG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#efe7d6"/><stop offset="1" stop-color="#b9ab8c"/></linearGradient>
+            <pattern id="thr" width="16" height="44" patternUnits="userSpaceOnUse"><path d="M3 0 L13 44" stroke="#a89978" stroke-width="3.2"/></pattern>
+            <clipPath id="marrowClip"><rect x="40" y="118" width="920" height="164" rx="40"/></clipPath>
+            <clipPath id="scrClip"><path d="M0 -22 H524 L560 0 L524 22 H0 Z"/></clipPath>
+            <radialGradient id="flash"><stop offset="0" stop-color="#fff6d8" stop-opacity=".95"/><stop offset="1" stop-color="#D5B863" stop-opacity="0"/></radialGradient>
+          </defs>
+          <!-- bone -->
+          <rect x="40" y="78" width="920" height="244" rx="70" fill="url(#cort)"/>
+          <rect x="40" y="118" width="920" height="164" rx="40" fill="#2b2117"/>
+          <g id="lattice" clip-path="url(#marrowClip)" stroke="#d6c39a" stroke-opacity=".6" stroke-width="3" stroke-linecap="round" fill="none"></g>
+          <filter id="cglow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <!-- fracture -->
+          <g id="gap">
+            <path d="M478 72 L498 110 L476 150 L500 196 L474 238 L498 282 L480 328 L534 328 L520 282 L544 238 L518 196 L542 150 L520 110 L536 72 Z" fill="#070605"/>
+            <path d="M488 110 L512 150 M484 196 L520 238 M492 282 L522 300" stroke="#5a4a36" stroke-width="2" opacity=".7"/>
+          </g>
+          <g id="bridge" opacity="0" stroke="#efe2c2" stroke-width="5" stroke-linecap="round" fill="none">
+            <path d="M470 80 C495 95 510 85 540 100"/><path d="M470 318 C495 300 515 312 540 300"/>
+            <path d="M474 130 L500 148 L540 132"/><path d="M472 250 L506 268 L542 252"/><path d="M476 160 L506 172 L534 162"/>
+            <rect x="470" y="78" width="74" height="40" fill="#e6d9bb" stroke="none"/><rect x="470" y="282" width="74" height="40" fill="#e6d9bb" stroke="none"/>
+          </g>
+          <!-- screw -->
+          <g id="scrMove">
+            <g id="scrScale">
+              <g transform="translate(220 200)">
+                <g id="rings" fill="none" stroke="#D5B863" stroke-width="3" opacity="0">
+                  <rect id="r1" x="-6" y="-28" width="572" height="56" rx="28"/>
+                  <rect id="r2" x="-6" y="-28" width="572" height="56" rx="28"/>
+                </g>
+                <g id="scrSolid">
+                  <path d="M0 -22 H524 L560 0 L524 22 H0 Z" fill="url(#scrG)"/>
+                  <rect id="thread" x="36" y="-22" width="488" height="44" fill="url(#thr)" opacity=".85"/>
+                  <path id="soak" d="M0 -22 H524 L560 0 L524 22 H0 Z" fill="#F1DC9C" opacity="0"/>
+                  <rect x="-30" y="-28" width="34" height="56" rx="5" fill="#f6efe0" stroke="#b5a580" stroke-width="2"/>
+                  <rect x="-22" y="-6" width="18" height="12" fill="#9c8d6c"/>
+                </g>
+                <g id="scrBone" clip-path="url(#scrClip)" opacity="0">
+                  <rect x="0" y="-22" width="560" height="44" fill="#2b2117"/>
+                  <g id="scrLattice" stroke="#d6c39a" stroke-width="3" stroke-linecap="round" fill="none" stroke-opacity=".75"></g>
+                </g>
+                <g id="vessels" fill="none" stroke="#c4473d" stroke-width="2.6" stroke-linecap="round" opacity=".95">
+                  <path class="ves" d="M-10 -8 C80 -18 140 6 230 -6 S380 -14 470 0 S540 8 560 2" pathLength="1"/>
+                  <path class="ves" d="M-10 10 C100 16 170 -2 260 10 S420 18 520 6" pathLength="1"/>
+                </g>
+              </g>
+            </g>
+          </g>
+          <g id="cells" filter="url(#cglow)"></g>
+          <circle id="spark" cx="40" cy="200" r="0" fill="url(#flash)"/>
+          <text id="nts" x="960" y="380" text-anchor="end" font-family="Barlow,Arial,sans-serif" font-size="24" fill="#a39b8b">Schematic. Swelling exaggerated for visibility.</text>
+        </svg>
+        <div class="prog"><i id="progBar"></i></div>
+      </div>
+      <div class="hud">
+        <div><div class="k">What is happening</div><div class="cap" id="cap">The Shark Screw drives across the fracture with a standard ORIF technique.</div></div>
+        <div><div class="k">Expansion</div><div class="v" id="hudSwell">0.0%</div></div>
+        <div><div class="k">Timeline</div><div class="v" id="hudTime">Day 1</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 SIX REASONS -->
+<section class="panel" data-name="Why Shark Screw">
+  <div class="bg" style="opacity:.12"></div><div class="vig"></div>
+  <div class="wrap">
+    <div class="eyebrow rise">Why Shark Screw</div>
+    <h2 class="rise d1">Six reasons it <span class="gold">belongs in the case.</span></h2>
+    <div class="reasons">
+      <div class="rs pop d1"><div class="n">01</div><h3>100% cortical bone</h3><p>Precision-milled human allograft. No metal, no synthetic.</p></div>
+      <div class="rs hl pop d2"><div class="n">02</div><h3>~2% hydration swell</h3><p>Swells on implantation for an immediate press-fit.</p></div>
+      <div class="rs hl pop d3"><div class="n">03</div><h3>Remodels into bone</h3><p>Becomes the patient's own living bone over 6 to 12 months and beyond.</p></div>
+      <div class="rs pop d4"><div class="n">04</div><h3>Nothing to remove</h3><p>One definitive operation. No removal surgery.</p></div>
+      <div class="rs pop d5"><div class="n">05</div><h3>No metal sensitivity</h3><p>An all-bone construct at the healing interface.</p></div>
+      <div class="rs pop d6"><div class="n">06</div><h3>No imaging artifact</h3><p>Clean X-ray, CT and MRI at follow-up.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 FIRST MTP -->
+<section class="panel" data-name="1st MTP fusion">
+  <div class="wrap">
+    <div class="eyebrow rise">Hybrid fixation in practice</div>
+    <h2 class="rise d1">1st MTP fusion. <span class="gold">Plate holds. Bone heals.</span></h2>
+    <div class="mtpgrid">
+      <div class="xray slideL d2">
+        <img src="img/mtp.webp" alt="1st MTP fusion X-rays, AP and lateral, with a dorsal plate and a Shark Screw across the joint, Shark Screw circled in blue">
+        <img class="throb" src="img/ringL.png" alt="" style="left:4.44%;top:20.15%;width:12.19%">
+        <img class="throb" src="img/ringR.png" alt="" style="left:72.11%;top:31.03%;width:14.41%;animation-delay:.9s">
+        <span class="tagL">Shark Screw circled</span><span class="tagR">AP · Lateral</span>
+      </div>
+      <div class="mtpside">
+        <div class="duo">
+          <div class="rise d3"><b>Metal plate</b>Traditional MTP plate for rigid fixation.</div>
+          <div class="s rise d4"><b class="gold">Shark Screw<span class="reg">®</span></b>Biologic fixation across the fusion, remodeling into the patient's bone.</div>
+        </div>
+        <div class="cut rise d5">
+          <img src="img/screw.webp" alt="Shark Screw Cut, a trimmable allograft fixation screw">
+          <div><h3>Shark Screw Cut</h3><p class="note" style="margin-top:4px">Trimmable. Cut flush to bone.</p></div>
+        </div>
+        <div class="sizes rise d6" style="margin-top:14px"><span>3.5mm</span><span>4.0mm</span><span>4.5mm</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVER -->
+<section class="panel" data-name="Shark Screw Diver">
+  <div class="bg" style="opacity:.12"></div><div class="vig"></div>
+  <div class="wrap">
+    <div class="eyebrow rise">Shark Screw<span class="reg">®</span> Diver · Intramedullary</div>
+    <h2 class="rise d1" style="font-size:clamp(32px,4.2vw,56px)">Sink it below the bone. <span class="gold">It becomes the bridge.</span></h2>
+    <div class="diver">
+      <div class="dvprod"><img src="img/diver.webp" alt="Shark Screw Diver, a fully threaded allograft bone screw"></div>
+      <div class="rise d2">
+        <div class="dvseq" id="dvseq">
+          <img src="img/dv1.webp" alt="Canal drilled and tapped across the joint">
+          <img src="img/dv2.webp" alt="Shark Screw Diver driven into the canal on the screwdriver">
+          <img src="img/dv3.webp" alt="Shark Screw Diver seated below the bone surface across the joint">
+        </div>
+        <div class="dvsteps" id="dvsteps"><button class="on">Prepare canal</button><button>Drive</button><button>Seated below bone</button></div>
+        <div class="ipx">
+          <figure><img src="img/ip1.webp" alt="Forefoot X-ray before arthrodesis, arthrosis at the big toe IP joint"><figcaption>Pre-op</figcaption></figure>
+          <figure><img src="img/ip2.webp" alt="Forefoot X-ray after big toe IP arthrodesis with Shark Screw Diver bridging the joint"><figcaption>Post-op</figcaption></figure>
+          <figure class="k"><img src="img/ip3.webp" alt="Big toe IP arthrodesis one year after surgery, Diver almost completely remodeled"><figcaption>1 year</figcaption></figure>
+        </div>
+      </div>
+      <div class="dvspec">
+        <div class="rise d3"><b>Continuous thread</b>The head sinks deep below the bone surface. Nothing to cut off, nothing prominent.</div>
+        <div class="rise d4"><b>An extra bone bridge</b>Seated intramedullary, the Diver splints the fusion and guides colonizing cells across it.</div>
+        <div class="rise d5"><b>5.0mm · 35 &amp; 45mm</b>For arthrodesis, fractures, osteotomies, nonunion and revision.</div>
+      </div>
+    </div>
+    <p class="note rise d6" style="margin-top:10px">Big toe IP arthrodesis with Shark Screw<span class="reg">®</span> Diver: good bridging after surgery, almost complete remodeling at 1 year. Surgebright clinical case documentation.</p>
+  </div>
+</section>
+
+<!-- 5 NONUNION STAT -->
+<section class="panel" data-name="Nonunion results">
+  <div class="bg" style="opacity:.14"></div><div class="vig"></div>
+  <div class="wrap">
+    <div class="eyebrow rise">Nonunion · Foot, ankle and lower leg</div>
+    <h2 class="rise d1">Where metal alone stalls, <span class="gold">bone heals bone.</span></h2>
+    <div class="nu">
+      <div class="pop d2"><div class="big"><span data-count="96.4">96.4</span><small>%</small></div><p class="lede" style="margin-top:10px">Union with Shark Screw<span class="reg">®</span> in foot, ankle and lower-leg nonunions.</p></div>
+      <div>
+        <div class="bars">
+          <div class="barrow rise d3"><div class="lbl"><span>Shark Screw<span class="reg">®</span></span><span class="gold">96.4%</span></div><div class="track"><i style="width:96.4%"></i></div></div>
+          <div class="barrow rise d4"><div class="lbl"><span>Conventional fixation</span><span>82.3%</span></div><div class="track"><i class="m" style="width:82.3%"></i></div></div>
+        </div>
+        <p class="cite rise d5">Multicenter study of nonunion treatment in the foot, ankle and lower leg, Shark Screw<span class="reg">®</span> vs conventional. J Pers Med. 2024;14(4):352. doi:10.3390/jpm14040352.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 THE NONUNION HEALS -->
+<section class="panel" data-name="The nonunion heals">
+  <div class="wrap">
+    <div class="eyebrow rise">How it heals a nonunion</div>
+    <h2 class="rise d1">Stability first. <span class="gold">Then biology.</span></h2>
+    <div class="heal">
+      <figure class="vframe slideL d2"><img class="anim" src="v/nonunion.webp" alt="Animation: a nonunion bridged and healed along the Shark Screw"><figcaption>The nonunion heals</figcaption></figure>
+      <div class="pillars">
+        <div class="pl rise d3"><h3>Mechanical stability</h3><p>Cortical bone screw purchase, locked in by the ~2% hydration swell.</p></div>
+        <div class="pl rise d4"><h3>Cellular healing scaffold</h3><p>Osteoconductive bone at the gap. Cells migrate along the screw and bridging bone fills the defect.</p></div>
+        <div class="pl rise d5"><h3>Remodels as one</h3><p>Screw and host bone remodel together. Nothing left behind to loosen or remove.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 PROOF OVER TIME -->
+<section class="panel" data-name="Proof over time">
+  <div class="wrap">
+    <div class="eyebrow rise">Proof over time · Talus fracture on CT</div>
+    <h2 class="rise d1">It becomes <span class="gold">bone.</span></h2>
+    <div class="proof">
+      <div class="rise d2">
+        <div class="ctwrap" id="ct">
+          <img src="img/ct1.webp" alt="Pre-op CT of the talus fracture">
+          <img src="img/ct2.webp" alt="CT at 12 weeks post-op with the Shark Screw in place">
+          <img src="img/ct3.webp" alt="CT at 14 months post-op showing the screw incorporated into bone">
+        </div>
+        <div class="cttabs" id="cttabs"><button class="on">Pre-op</button><button>12 weeks</button><button>14 months</button></div>
+        <p class="ctcap" id="ctcap">Pre-op. The talus fracture before fixation.</p>
+      </div>
+      <figure class="vframe slideR d3"><img class="anim" src="v/becomes-bone.webp" alt="Animation: the Shark Screw resorbed and replaced by living bone"><figcaption>The screw becomes bone</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 8 CASES -->
+<section class="panel" data-name="Across the foot and ankle">
+  <div class="wrap">
+    <div class="eyebrow rise">Hybrid fixation, toe to hindfoot</div>
+    <h2 class="rise d1">Rigid where it must be. <span class="gold">Regenerative where it counts.</span></h2>
+    <div class="cases">
+      <div class="case pop d2"><div class="im"><img src="img/hindfoot.webp" alt="Lateral X-ray of the foot with three Shark Screws in the calcaneus"></div><p><b>Hindfoot fixation</b>Three Shark Screws, clearly seen on the lateral X-ray.</p></div>
+      <div class="case pop d3"><div class="im"><img src="img/calc.webp" alt="Calcaneal fixation with Shark Screws"></div><p><b>Calcaneal fixation</b>Biologic fixation that remodels into native bone.</p></div>
+      <div class="case pop d4"><div class="im"><img src="img/calcost.webp" alt="Calcaneus osteotomy with a Shark Screw across the correction"></div><p><b>Calcaneus osteotomy</b>Shark Screw delivered across the correction.</p></div>
+    </div>
+    <div class="where rise d5">
+      <span class="k">1st MTP fusions</span><span class="k">Nonunions</span><span>Lapidus fusions</span><span>TN fusions</span><span>Subtalar fusions</span><span>Bunion &amp; chevron osteotomies</span><span>Weil osteotomies</span><span>Medial malleolus</span><span>Calcaneal osteotomies</span><span>Lisfranc fusions</span><span>Jones fractures</span><span>IP fusions</span>
+    </div>
+  </div>
+</section>
+
+<!-- 9 CLOSE -->
+<section class="panel" data-name="Lotus Medical">
+  <div class="bg" style="opacity:.1"></div><div class="vig"></div>
+  <div class="wrap close">
+    <div class="lockup pop" role="img" aria-label="Lotus Medical"><svg class="lmark" viewBox="24 40 208 172" aria-hidden="true"><defs><linearGradient id="LG2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3DE9C"/><stop offset=".55" stop-color="#D5B863"/><stop offset="1" stop-color="#9C8236"/></linearGradient></defs><g fill="url(#LG2)"><path d="M128 176 C 70 176, 38 150, 34 116 C 70 112, 104 132, 128 176Z"/><path d="M128 176 C 186 176, 218 150, 222 116 C 186 112, 152 132, 128 176Z"/><path d="M128 176 C 84 160, 66 120, 74 80 C 108 96, 126 134, 128 176Z"/><path d="M128 176 C 172 160, 190 120, 182 80 C 148 96, 130 134, 128 176Z"/><path d="M128 176 C 102 144, 102 90, 128 52 C 154 90, 154 144, 128 176Z"/></g><path d="M64 198 H192" stroke="#D5B863" stroke-width="5" stroke-linecap="round"/></svg><div class="wm">LOTUS MEDICAL</div><div class="tl">REGENERATIVE BIOLOGICS · LOWER EXTREMITY FIXATION</div></div>
+    <h2 class="rise d1">Bring hybrid fixation <span class="gold">to your next case.</span></h2>
+    <div class="contacts">
+      <div class="ct rise d2"><b>Scott Stojetz</b><i>Owner / Principal</i><span>513-317-6971</span><a href="mailto:scott@lotusmedcompany.com">scott@lotusmedcompany.com</a></div>
+      <div class="ct rise d3"><b>John Callahan</b><i>Vice President, Sales</i><span>330-858-6718</span><a href="mailto:john@lotusmedcompany.com">john@lotusmedcompany.com</a></div>
+    </div>
+    <div class="tag rise d4">Integrity First. Patient First. Always.</div>
+    <p class="fine rise d5">Shark Screw<span class="reg">®</span> is precision-milled 100% human cortical bone allograft manufactured by Surgebright GmbH and distributed by Lotus Medical. Clinical images courtesy of the credited surgeons. For licensed clinicians; refer to the IFU. Union data: J Pers Med. 2024;14(4):352.</p>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function(){
+  var deck=document.getElementById('deck');
+  var panels=[].slice.call(document.querySelectorAll('.panel'));
+  var dots=document.getElementById('dots'),bar=document.getElementById('bar'),nextBtn=document.getElementById('next');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var current=0;
+  panels.forEach(function(p,i){var b=document.createElement('button');b.setAttribute('aria-label',p.getAttribute('data-name'));b.addEventListener('click',function(){go(i)});dots.appendChild(b)});
+  function go(i){i=Math.max(0,Math.min(panels.length-1,i));deck.scrollTo({top:panels[i].offsetTop,behavior:reduce?'auto':'smooth'})}
+  nextBtn.addEventListener('click',function(){go(current+1>=panels.length?0:current+1)});
+  document.addEventListener('keydown',function(e){if(['ArrowDown','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(current+1)}if(['ArrowUp','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(current-1)}});
+
+  function enter(i){
+    current=i;
+    [].forEach.call(dots.children,function(d,k){d.classList.toggle('on',k===i)});
+    bar.style.width=((i+1)/panels.length*100)+'%';
+    nextBtn.style.opacity=i===panels.length-1?'.35':'1';
+    var p=panels[i];p.classList.remove('in');void p.offsetWidth;p.classList.add('in');
+    [].forEach.call(p.querySelectorAll('[data-count]'),countUp);
+    [].forEach.call(p.querySelectorAll('video'),function(v){try{var pr=v.play();if(pr&&pr.catch)pr.catch(function(){})}catch(e){}});
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)enter(panels.indexOf(e.target))})},{threshold:[.5]});
+    panels.forEach(function(p){io.observe(p)});
+    /* each animation runs whenever it is on screen, however the page is shown */
+    var vis=new IntersectionObserver(function(es){es.forEach(function(e){
+      var on=e.isIntersecting;
+      if(e.target.id==='sim'){on?sim.start():sim.stop()}
+      if(e.target.id==='ct'){on?ctStart():ctStop()}
+      if(e.target.id==='dvseq'){on?dvStart():dvStop()}
+    })},{threshold:[.2]});
+    vis.observe(document.getElementById('sim'));vis.observe(document.getElementById('ct'));vis.observe(document.getElementById('dvseq'));
+  } else { setTimeout(function(){sim.start();ctStart();dvStart()},0); }
+
+  function countUp(el){
+    if(reduce)return;var end=parseFloat(el.getAttribute('data-count')),t0=null,dur=1600;
+    function st(t){if(!t0)t0=t;var x=Math.min(1,(t-t0-300)/dur);if(x<0){requestAnimationFrame(st);return}var e=1-Math.pow(1-x,3);el.textContent=(end*e).toFixed(1);if(x<1)requestAnimationFrame(st)}
+    el.textContent='0.0';requestAnimationFrame(st);
+  }
+
+  /* ---------- lattice generator ---------- */
+  var NS='http://www.w3.org/2000/svg';
+  function rnd(s){return function(){s=(s*9301+49297)%233280;return s/233280}}
+  function lattice(g,x0,y0,w,h,n,seed){
+    var r=rnd(seed),pts=[];
+    for(var i=0;i<n;i++)pts.push([x0+r()*w,y0+r()*h]);
+    pts.forEach(function(p,i){
+      var d=pts.map(function(q,j){return[(q[0]-p[0])*(q[0]-p[0])+(q[1]-p[1])*(q[1]-p[1]),j]}).sort(function(a,b){return a[0]-b[0]});
+      for(var k=1;k<=2;k++){var q=pts[d[k][1]];if(d[k][1]<i)continue;
+        var l=document.createElementNS(NS,'path'),mx=(p[0]+q[0])/2+(r()-.5)*14,my=(p[1]+q[1])/2+(r()-.5)*14;
+        l.setAttribute('d','M'+p[0].toFixed(1)+' '+p[1].toFixed(1)+' Q'+mx.toFixed(1)+' '+my.toFixed(1)+' '+q[0].toFixed(1)+' '+q[1].toFixed(1));g.appendChild(l)}
+    });
+  }
+  lattice(document.getElementById('lattice'),40,118,920,164,150,7);
+  lattice(document.getElementById('scrLattice'),0,-22,560,44,46,11);
+
+  /* ---------- the simulation ---------- */
+  var sim=(function(){
+    var el=function(id){return document.getElementById(id)};
+    var move=el('scrMove'),scale=el('scrScale'),thread=el('thread'),rings=el('rings'),r1=el('r1'),r2=el('r2'),solid=el('scrSolid'),boneS=el('scrBone'),spark=el('spark'),prog=el('progBar'),cellG=el('cells'),gap=el('gap'),bridge=el('bridge');
+    var cells=[],cr=rnd(23);
+    for(var ci=0;ci<64;ci++){var c=document.createElementNS(NS,'circle'),top=ci%2===0,x=250+cr()*520;
+      var r0=3+cr()*3.5;c.setAttribute('r',r0.toFixed(1));c.setAttribute('fill',cr()<.7?'#F6E3A6':'#9fd3ff');c.setAttribute('opacity','0');cellG.appendChild(c);
+      cells.push({el:c,r0:r0,x0:x,y0:top?(124+cr()*40):(276-cr()*40),x1:x+(cr()-.5)*40,y1:200+(top?-1:1)*(2+cr()*10),off:cr(),sp:.55+cr()*.5,w:cr()*6.28});}
+    var soak=el('soak');
+    var ves=[].slice.call(document.querySelectorAll('.ves'));
+    var cap=el('cap'),hs=el('hudSwell'),ht=el('hudTime'),btns=[].slice.call(document.querySelectorAll('.sb'));
+    var T=[0,3.6,8.2,15,16.8]; /* drive, swell, remodel, hold, end */
+    var caps=['The Shark Screw drives across the fracture with a standard ORIF technique.','Fluid and cells from the surrounding bone are absorbed into the screw. It hydrates and swells about 2%, locking in a press-fit.','Over 6 to 12 months it remodels: vessels grow in, the fracture bridges and the screw becomes the patient\'s own living bone.'];
+    var t=0,last=null,raf=null,stage=-1;
+    function cl(x){return Math.max(0,Math.min(1,x))}
+    function ease(x){return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2}
+    function render(){
+      var d=ease(cl(t/3.0));
+      move.setAttribute('transform','translate('+(-760+760*d).toFixed(1)+' 0)');
+      thread.setAttribute('x',(36-(t<3.0?t*90%16:0)).toFixed(1));
+      var sp=t<3.1?Math.sin(t*14)*.5+.5:0; spark.setAttribute('r',(t>.4&&t<3.1?18+sp*16:0).toFixed(1));
+      var sw=cl((t-T[1]-.8)/3.2), swE=ease(sw), swPeak=Math.sin(Math.PI*cl((t-T[1]-.8)/3.2));
+      var flow=t>=T[1]&&t<T[2]?1:(t>=T[2]&&t<T[3]-.6?.35:0), fade=t<T[1]+.4?cl((t-T[1])/.4):1;
+      cells.forEach(function(c){ if(!flow){c.el.setAttribute('opacity','0');return}
+        var p=((t-T[1])*c.sp*.6+c.off)%1, e=1-Math.pow(1-p,2), wob=Math.sin(c.w+t*5)*4*(1-p);
+        c.el.setAttribute('cx',(c.x0+(c.x1-c.x0)*e+wob).toFixed(1)); c.el.setAttribute('cy',(c.y0+(c.y1-c.y0)*e).toFixed(1));
+        var inS=cl((p-.62)/.38); c.el.setAttribute('r',(c.r0*(1-inS*.85)).toFixed(2));
+        c.el.setAttribute('opacity',(flow*fade*Math.min(1,p*5)*(1-inS*inS)).toFixed(2)); });
+      soak.setAttribute('opacity',(t>=T[1]&&t<T[2]?(.10+.22*swE)*(.85+.15*Math.sin(t*9)):(t>=T[2]?.32*(1-ease(cl((t-T[2])/2))):0)).toFixed(3));
+      var s=1+.07*swE+.04*swPeak*(t<T[2]?1:0);
+      scale.setAttribute('transform','translate(0 200) scale(1 '+s.toFixed(4)+') translate(0 -200)');
+      var rp=cl((t-T[1]-1.4)/2.6);
+      rings.setAttribute('opacity',(t>T[1]+1.4&&t<T[2]+.2?(1-rp)*.9:0).toFixed(2));
+      r1.setAttribute('transform','translate(280 0) scale('+(1+rp*.08).toFixed(3)+' '+(1+rp*1.6).toFixed(3)+') translate(-280 0)');
+      r2.setAttribute('transform','translate(280 0) scale('+(1+cl(rp-.3)*.08).toFixed(3)+' '+(1+cl(rp-.3)*2.4).toFixed(3)+') translate(-280 0)');
+      hs.textContent=(t<T[1]?0:2*swE).toFixed(1)+'%';
+      var rm=ease(cl((t-T[2])/(T[3]-T[2]-.6)));
+      solid.setAttribute('opacity',(1-.92*rm).toFixed(3));
+      gap.setAttribute('opacity',(1-cl(rm*1.3-.2)).toFixed(3));
+      bridge.setAttribute('opacity',cl(rm*1.4-.3).toFixed(3));
+      boneS.setAttribute('opacity',(rm*.95).toFixed(3));
+      ves.forEach(function(v,i){v.setAttribute('stroke-dasharray','1');v.setAttribute('stroke-dashoffset',(1-cl(rm*1.6-i*.3)).toFixed(3))});
+      var months=t<T[2]?0:Math.round(rm*12);
+      ht.textContent=t<T[1]?'Day 1':(t<T[2]?'Day 1':(months>=12?'12+ months':(months<1?'Weeks':'Month '+months)));
+      prog.style.width=(t/T[4]*100).toFixed(2)+'%';
+      var st=t<T[1]?0:(t<T[2]?1:2);
+      if(st!==stage){stage=st;cap.textContent=caps[st];btns.forEach(function(b,k){b.classList.toggle('on',k===st)})}
+    }
+    function frame(ts){if(last==null)last=ts;t+=Math.min(.05,(ts-last)/1000);last=ts;if(t>=T[4])t=0;render();raf=requestAnimationFrame(frame)}
+    btns.forEach(function(b,k){b.addEventListener('click',function(){t=T[k]+(k===2?0:0);render();if(!raf&&!reduce)start()})});
+    function start(){if(reduce){t=T[3];render();return}if(raf)return;last=null;t=0;raf=requestAnimationFrame(frame)}
+    function stop(){if(raf)cancelAnimationFrame(raf);raf=null}
+    t=T[2]+2;render(); /* resting frame: mid-remodel, everything visible */
+    return{start:start,stop:stop};
+  })();
+
+
+  /* diver sequence */
+  var dvs=document.getElementById('dvseq'),dvi=[].slice.call(dvs.querySelectorAll('img')),dvb=[].slice.call(document.querySelectorAll('#dvsteps button')),dvt=null,dvk=0;
+  function dvShow(i){dvk=i;dvs.classList.add('live');dvi.forEach(function(m,k){m.classList.toggle('on',k===i)});dvb.forEach(function(b,k){b.classList.toggle('on',k===i)})}
+  dvb.forEach(function(b,k){b.addEventListener('click',function(){clearInterval(dvt);dvt=null;dvShow(k)})});
+  function dvStart(){clearInterval(dvt);dvShow(0);if(!reduce)dvt=setInterval(function(){dvShow((dvk+1)%3)},2400)}
+  function dvStop(){clearInterval(dvt);dvt=null}
+  /* CT sequence */
+  var ct=document.getElementById('ct'),cimgs=[].slice.call(ct.querySelectorAll('img')),ctb=[].slice.call(document.querySelectorAll('#cttabs button')),ctcap=document.getElementById('ctcap');
+  var ctc=['Pre-op. The talus fracture before fixation.','12 weeks post-op. Shark Screw fixation in place, fracture stable.','14 months post-op. The screw is incorporating and remodeling into the patient\'s own bone.'];
+  var cti=null,ci=0;
+  function ctShow(i){ci=i;ct.classList.add('live');cimgs.forEach(function(im,k){im.classList.toggle('on',k===i)});ctb.forEach(function(b,k){b.classList.toggle('on',k===i)});ctcap.textContent=ctc[i]}
+  ctb.forEach(function(b,k){b.addEventListener('click',function(){ctStop();ctShow(k)})});
+  function ctStart(){ctStop();ctShow(0);if(reduce)return;cti=setInterval(function(){ctShow((ci+1)%3)},3200)}
+  function ctStop(){clearInterval(cti);cti=null}
+
+  enter(0);
+})();
+</script>
+</body>
+</html>
