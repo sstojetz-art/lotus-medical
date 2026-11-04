@@ -235,11 +235,11 @@ footer img{width:150px;margin:0 auto 14px;display:block}
 
 /* spinning FibFix on the cover */
 .spin{position:absolute;z-index:2;right:clamp(40px,9vw,170px);top:150px;height:min(70vh,640px);perspective:1100px;pointer-events:none;display:flex;flex-direction:column;align-items:center}
-.spin .halo{position:absolute;left:50%;top:48%;width:min(46vh,420px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(243,222,156,.45),rgba(213,184,99,.16) 40%,transparent 68%);filter:blur(10px);animation:halo 3.2s ease-in-out infinite}
+.spin .halo{position:absolute;left:50%;top:48%;width:min(46vh,420px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(243,222,156,.22),rgba(213,184,99,.08) 40%,transparent 68%);filter:blur(10px);animation:halo 3.2s ease-in-out infinite}
 @keyframes halo{50%{transform:translate(-50%,-50%) scale(1.18);opacity:.7}}
 .spin .ring{position:absolute;left:50%;top:48%;width:min(40vh,340px);aspect-ratio:1;transform:translate(-50%,-50%) rotateX(72deg);border:2px solid rgba(213,184,99,.55);border-radius:50%;box-shadow:0 0 24px rgba(213,184,99,.6),inset 0 0 24px rgba(213,184,99,.35);animation:ringp 3.2s ease-in-out infinite}
 @keyframes ringp{50%{border-color:rgba(243,222,156,.9)}}
-.spin img{position:relative;height:100%;width:auto;transform-style:preserve-3d;animation:spinY 7s linear infinite,pop 1.2s cubic-bezier(.3,1.6,.4,1) .4s both;filter:drop-shadow(0 0 10px rgba(243,222,156,.95)) drop-shadow(0 0 28px rgba(213,184,99,.8)) drop-shadow(0 0 60px rgba(213,184,99,.45))}
+.spin img{position:relative;height:100%;width:auto;transform-style:preserve-3d;animation:spinY 7s linear infinite,pop 1.2s cubic-bezier(.3,1.6,.4,1) .4s both;filter:drop-shadow(0 0 5px rgba(243,222,156,.55)) drop-shadow(0 0 16px rgba(213,184,99,.35))}
 @keyframes spinY{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
 @keyframes pop{0%{opacity:0;scale:.3}70%{scale:1.08}100%{opacity:1;scale:1}}
 .spin .lbl{position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);font-family:var(--display);font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-hi);font-size:14px;white-space:nowrap;text-shadow:0 0 12px rgba(213,184,99,.8)}
