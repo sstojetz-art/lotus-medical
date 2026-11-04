@@ -263,6 +263,18 @@ footer img{width:150px;margin:0 auto 14px;display:block}
 @keyframes nudge{50%{transform:translateX(5px)}}
 .ft.in .more{animation:mpop .9s cubic-bezier(.3,1.6,.4,1) .9s both,mshine 3.5s linear infinite,mpulse 2.4s ease-in-out infinite}
 @keyframes mpop{0%{opacity:0;transform:scale(.4)}100%{opacity:1;transform:scale(1)}}
+
+.shx{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.72);display:grid;place-items:center;padding:16px}
+.shp{background:#0d0c0a;border:1px solid var(--gold);padding:24px;width:min(420px,100%);position:relative}
+.shp h3{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:24px;margin-bottom:14px}
+.shp label{display:block;font-family:var(--display);font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-size:12px;margin:12px 0 6px}
+.shp input{width:100%;background:#000;border:1px solid rgba(213,184,99,.4);color:#fff;font:inherit;font-size:16px;padding:11px 12px}
+.shf{display:flex;gap:8px}.shf button{flex:1;padding:10px;background:#000;border:1px solid rgba(213,184,99,.4);color:#fff;font-family:var(--display);font-weight:800;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.shf button.on{background:var(--gold);color:#000}
+.shp .shgo{width:100%;justify-content:center;margin-top:18px}
+.sho{display:flex;gap:8px;margin-top:10px}.sho button{flex:1;padding:10px;background:transparent;border:1px solid rgba(255,255,255,.2);color:#ddd;font-family:var(--display);font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.shc{position:absolute;top:8px;right:12px;background:none;border:0;color:#aaa;font-size:28px;cursor:pointer}
+.shok{color:var(--gold-hi);font-size:14px;margin-top:10px;min-height:1.2em}
 @media (max-width:900px){.ft{grid-template-columns:1fr}.ft.flip .fim{order:0}.also{flex-direction:column;align-items:flex-start}}
 @media (max-width:900px){
   .stations{grid-template-columns:1fr}
@@ -532,11 +544,42 @@ footer img{width:150px;margin:0 auto 14px;display:block}
     setTimeout(function(){f.classList.add('sent');f.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'})},400);
   });
 
-  /* share */
+  /* share: from Scott's or John's Lotus Gmail */
+  var REPS={scott:{name:'Scott Stojetz',title:'Owner / Principal, Lotus Medical',phone:'513-317-6971',email:'scott@lotusmedcompany.com'},
+            john:{name:'John Callahan',title:'Vice President, Sales, Lotus Medical',phone:'330-858-6718',email:'john@lotusmedcompany.com'}};
+  function inviteMail(r){var rep=REPS[r]||REPS.scott;
+    var su='You are invited: Cadaveric Skills Lab, Thursday, December 3 · The Grand Resort';
+    var body=['Good afternoon,','',
+      'Lotus Medical and Fusion Orthopedics would be honored to host the residents and attending physician staff of the East Liverpool City Hospital Podiatric Medicine and Surgery Residency for an evening cadaveric skills lab.','',
+      'Thursday, December 3','Small plates at 5:00 PM in the Vista Room','Lab from 6:00 to 9:00 PM','The Grand Resort, 9519 East Market Street, Warren, Ohio 44484','',
+      'Featuring Fusion Orthopedics MiniLock, LapiLock and FibFix, along with additional Fusion Orthopedics fixation systems.','',
+      'The full invitation and RSVP:',URL_,'',
+      'Warmly,',rep.name,rep.title,rep.phone,rep.email,'Integrity First. Patient First. Always.'].join('\n');
+    return {rep:rep,su:su,body:body};}
+  function gmailFrom(r,to){var m=inviteMail(r);return 'https://mail.google.com/mail/?authuser='+encodeURIComponent(m.rep.email)+'&view=cm&fs=1&to='+encodeURIComponent(to||'')+'&su='+encodeURIComponent(m.su)+'&body='+encodeURIComponent(m.body)}
+  var mob=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  function sendFrom(r){var m=inviteMail(r);
+    if(mob){location.href='mailto:?subject='+encodeURIComponent(m.su)+'&body='+encodeURIComponent(m.body)}
+    else{location.href=gmailFrom(r)}}
+  /* one-click from the Control Center: ?send=scott or ?send=john opens the ready-to-send Gmail */
+  var sp=(location.search.match(/[?&]send=(scott|john)/)||[])[1];
+  if(sp){sendFrom(sp)}
   document.getElementById('share').addEventListener('click',function(){
-    var data={title:'Toe to Tibia · Cadaveric Skills Lab',text:'You are invited: Toe to Tibia cadaveric skills lab, Thu Dec 3, Vista Room at The Grand Resort, Warren, Ohio. Small plates at 5:00, lab 6–9 PM. RSVP here:',url:URL_};
-    if(navigator.share){navigator.share(data).catch(function(){})}
-    else{try{navigator.clipboard.writeText(URL_);this.textContent='Link copied'}catch(e){window.prompt('Copy this link',URL_)}}
+    var x=document.createElement('div');x.className='shx';
+    x.innerHTML='<div class="shp" role="dialog" aria-label="Share this invitation"><button class="shc" aria-label="Close">&times;</button><h3>Share this invitation</h3>'+
+      '<label>Send from</label><div class="shf"><button data-r="scott" class="on">Scott</button><button data-r="john">John</button></div>'+
+      '<label>To (optional)</label><input id="shto" type="email" placeholder="name@elch.org">'+
+      '<button class="btn solid shgo">Email from Lotus Gmail</button>'+
+      '<div class="sho"><button data-a="copy">Copy link</button><button data-a="text">Text message</button></div><div class="shok"></div></div>';
+    document.body.appendChild(x);var r='scott',ok=x.querySelector('.shok');
+    x.querySelector('.shf').addEventListener('click',function(e){var v=e.target.getAttribute('data-r');if(!v)return;r=v;[].forEach.call(x.querySelectorAll('.shf button'),function(b){b.classList.toggle('on',b===e.target)})});
+    x.addEventListener('click',function(e){if(e.target===x||e.target.classList.contains('shc'))x.remove()});
+    x.querySelector('.shgo').addEventListener('click',function(){var t=x.querySelector('#shto').value.trim();
+      if(mob){var m=inviteMail(r);location.href='mailto:'+encodeURIComponent(t)+'?subject='+encodeURIComponent(m.su)+'&body='+encodeURIComponent(m.body)}
+      else{window.open(gmailFrom(r,t),'lotusmail');ok.textContent='Gmail opened from '+REPS[r].email+'.'}});
+    x.querySelector('.sho').addEventListener('click',function(e){var a=e.target.getAttribute('data-a');
+      if(a==='copy'){try{navigator.clipboard.writeText(URL_).then(function(){ok.textContent='Link copied.'})}catch(_){prompt('Copy this link',URL_)}}
+      if(a==='text'){location.href='sms:'+(/iPhone|iPad/.test(navigator.userAgent)?'&':'?')+'body='+encodeURIComponent('You are invited: cadaveric skills lab with Lotus Medical and Fusion Orthopedics, Thu Dec 3, Vista Room at The Grand Resort, Warren. Small plates 5:00, lab 6–9 PM. Invitation and RSVP: '+URL_)}});
   });
 
   /* reveals */
