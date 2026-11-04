@@ -53,8 +53,9 @@ h2{font-family:var(--display);font-weight:800;text-transform:uppercase;line-heig
 #dust{position:absolute;inset:0;z-index:1;pointer-events:none}
 .top{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:calc(env(safe-area-inset-top,0px) + 22px) clamp(18px,4vw,48px) 0}
 .hosts{display:flex;align-items:center;gap:clamp(12px,2vw,22px)}
-.hosts img{width:clamp(96px,10vw,132px);height:auto;display:block}
-.hosts .x{font-family:var(--serif);color:var(--gold);font-size:clamp(20px,2vw,28px);opacity:.9}
+.hosts img{width:clamp(130px,15vw,220px);height:auto;display:block}
+.hosts img.fus{width:clamp(150px,16vw,240px)}
+.hosts .x{font-family:var(--serif);color:var(--gold);font-size:clamp(24px,2.6vw,38px);opacity:.9}
 .fusion{font-family:var(--display);font-weight:800;letter-spacing:.24em;font-size:clamp(14px,1.5vw,19px);line-height:1.05;color:#fff}
 .fusion small{display:block;font-weight:600;letter-spacing:.42em;font-size:.68em;color:var(--gold)}
 .topcta{font-family:var(--display);font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:14px;color:#000;background:var(--gold);padding:11px 18px;text-decoration:none;white-space:nowrap;box-shadow:0 8px 26px rgba(213,184,99,.35)}
@@ -195,6 +196,7 @@ footer img{width:150px;margin:0 auto 14px;display:block}
 }
 @media (max-width:640px){
   .topcta{display:none}
+  .hosts img{width:118px}.hosts img.fus{width:150px}.hosts{gap:12px}
   .when>div{flex:1 1 50%;border-bottom:1px solid var(--line)}
   .when>div:nth-child(2){border-right:0}
   .when>div:last-child{flex-basis:100%;border-bottom:0}
@@ -221,7 +223,7 @@ footer img{width:150px;margin:0 auto 14px;display:block}
     <div class="hosts">
       <img src="../../brochures/lotus-logo.webp?v=13" alt="Lotus Medical. Healing Sooner. Wellness Longer.">
       <span class="x">&times;</span>
-      <div class="fusion">FUSION<small>ORTHOPEDICS</small></div>
+      <img class="fus" src="img/fusion-logo-white.svg" alt="Fusion Orthopedics">
     </div>
     <a class="topcta" href="#rsvp">RSVP</a>
   </div>
@@ -365,7 +367,7 @@ footer img{width:150px;margin:0 auto 14px;display:block}
 
 <footer>
   <div class="wrap">
-    <img src="../../brochures/lotus-logo.webp?v=13" alt="Lotus Medical">
+    <div style="display:flex;justify-content:center;align-items:center;gap:28px;margin-bottom:18px"><img src="../../brochures/lotus-logo.webp?v=13" alt="Lotus Medical" style="margin:0;width:170px"><img src="img/fusion-logo-white.svg" alt="Fusion Orthopedics" style="margin:0;width:180px"></div>
     <div class="tag">Integrity First. Patient First. Always.</div>
     <button class="btn ghost sharebtn" id="share" type="button">Share this invitation</button>
     <p class="fine">An educational skills lab for residents and faculty of the East Liverpool City Hospital Podiatric Medicine and Surgery Residency. Attendance is subject to your program’s and institution’s policies on industry-hosted education. MiniLock, LapiLock and FibFix are manufactured by Fusion Orthopedics, Mesa, Arizona, and distributed by Lotus Medical. Refer to the instructions for use for indications, contraindications, warnings and precautions. Product images courtesy of Fusion Orthopedics. Venue photo: The Grand Resort.</p>
