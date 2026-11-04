@@ -248,6 +248,21 @@ footer img{width:150px;margin:0 auto 14px;display:block}
 .spin .halo,.spin .ring{top:46%}
 @media (max-width:700px){.spin{height:260px;top:330px;right:-4px;opacity:.55}.spin .lbl{display:none}.spin .ring{width:200px}.spin .halo{width:170px}}
 @media (prefers-reduced-motion:reduce){.spin img{animation:none}}
+
+/* workflow buttons */
+.more{display:inline-flex;align-items:center;gap:12px;margin-top:22px;padding:14px 22px 14px 14px;background:linear-gradient(100deg,#9C8236,#D5B863 40%,#F3DE9C 55%,#D5B863 70%,#9C8236);background-size:250% 100%;color:#000;border:0;font-family:var(--display);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:clamp(14px,1.3vw,16px);text-decoration:none;position:relative;overflow:visible;box-shadow:0 10px 30px rgba(213,184,99,.35);animation:mshine 3.5s linear infinite,mpulse 2.4s ease-in-out infinite;transition:transform .25s}
+.more:hover{transform:translateY(-3px) scale(1.04)}
+.more .pl{width:38px;height:38px;border-radius:50%;background:#000;display:grid;place-items:center;position:relative;flex:none}
+.more .pl svg{width:18px;height:18px;fill:var(--gold-hi);margin-left:3px}
+.more .pl::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid #000;animation:ripple 1.8s ease-out infinite}
+.more .tx2{white-space:nowrap}
+.more .ar{font-size:1.4em;line-height:1;animation:nudge 1.2s ease-in-out infinite}
+@keyframes mshine{from{background-position:150% 0}to{background-position:-100% 0}}
+@keyframes mpulse{0%,100%{box-shadow:0 10px 30px rgba(213,184,99,.35),0 0 0 0 rgba(213,184,99,.55)}50%{box-shadow:0 10px 30px rgba(213,184,99,.5),0 0 0 12px rgba(213,184,99,0)}}
+@keyframes ripple{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.7);opacity:0}}
+@keyframes nudge{50%{transform:translateX(5px)}}
+.ft.in .more{animation:mpop .9s cubic-bezier(.3,1.6,.4,1) .9s both,mshine 3.5s linear infinite,mpulse 2.4s ease-in-out infinite}
+@keyframes mpop{0%{opacity:0;transform:scale(.4)}100%{opacity:1;transform:scale(1)}}
 @media (max-width:900px){.ft{grid-template-columns:1fr}.ft.flip .fim{order:0}.also{flex-direction:column;align-items:flex-start}}
 @media (max-width:900px){
   .stations{grid-template-columns:1fr}
@@ -352,7 +367,7 @@ footer img{width:150px;margin:0 auto 14px;display:block}
           <h3>MiniLock<sup>™</sup></h3>
           <p>Minimally invasive bunion plating. Shift the capital fragment, lock it and compress across the osteotomy through a 1–2 cm incision.</p>
           <div class="chips"><span>Intramedullary plate</span><span>Locked capital fragment</span><span>1–2 cm incision</span></div>
-          <a class="more" href="../../brochures/minilock/index.html" target="_blank" rel="noopener">See the MiniLock workflow ›</a>
+          <a class="more" href="../../brochures/minilock/index.html" target="_blank" rel="noopener"><span class="pl"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="tx2">Watch the MiniLock workflow</span><span class="ar">›</span></a>
         </div>
       </article>
       <article class="ft flip">
@@ -360,9 +375,9 @@ footer img{width:150px;margin:0 auto 14px;display:block}
         <div class="ftx">
           <div class="by"><img src="img/fusion-logo-white.svg" alt="Fusion Orthopedics"></div>
           <h3>LapiLock<sup>™</sup></h3>
-          <p>4D Lapidus correction. Frontal, transverse and sagittal correction from a jig that sits on the first ray only, before a single cut.</p>
-          <div class="chips"><span>4D correction</span><span>Jig on the first ray only</span><span>13+ fixation options</span></div>
-          <a class="more" href="../../brochures/lapilock/index.html" target="_blank" rel="noopener">See the LapiLock workflow ›</a>
+          <p>4D Lapidus correction. Frontal, transverse and sagittal correction from a jig isolated to the first ray, before a single cut.</p>
+          <div class="chips"><span>4D correction</span><span>Jig isolated to the first ray</span><span>13+ fixation options</span></div>
+          <a class="more" href="../../brochures/lapilock/index.html" target="_blank" rel="noopener"><span class="pl"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="tx2">Watch the LapiLock workflow</span><span class="ar">›</span></a>
         </div>
       </article>
       <article class="ft">
@@ -372,7 +387,7 @@ footer img{width:150px;margin:0 auto 14px;display:block}
           <h3>FibFix<sup>™</sup></h3>
           <p>The low-profile intramedullary fibula nail. Rigid at both ends, flexible in the middle, with three syndesmotic fixation holes. Minimal soft-tissue disruption.</p>
           <div class="chips"><span>Rigid · flexible · rigid</span><span>3 syndesmotic fixation holes</span><span>9 sizes</span></div>
-          <a class="more" href="../../brochures/fibfix/index.html" target="_blank" rel="noopener">See the FibFix workflow ›</a>
+          <a class="more" href="../../brochures/fibfix/index.html" target="_blank" rel="noopener"><span class="pl"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="tx2">Watch the FibFix workflow</span><span class="ar">›</span></a>
         </div>
       </article>
       <div class="also">
