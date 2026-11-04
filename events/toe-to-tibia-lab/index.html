@@ -98,6 +98,9 @@ h1 .shine{background:linear-gradient(100deg,var(--gold-lo) 0%,var(--gold) 30%,#f
 .count i{font-style:normal;font-family:var(--display);font-weight:600;letter-spacing:.2em;font-size:11px;color:var(--gold)}
 .scrollcue{position:relative;z-index:3;align-self:center;margin-bottom:calc(env(safe-area-inset-bottom,0px) + 16px);color:var(--gold);animation:bob 1.8s ease-in-out infinite;background:none;border:0;cursor:pointer}
 .scrollcue svg{width:30px;height:30px}
+.scrollcue{display:flex;flex-direction:column;align-items:center;gap:6px;animation:none}
+.scrollcue .sc-l{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:#000;background:var(--gold);padding:11px 20px 11px 22px;border-radius:999px;box-shadow:0 8px 26px rgba(213,184,99,.35)}
+.scrollcue svg{animation:bob 1.8s ease-in-out infinite}
 @keyframes bob{50%{transform:translateY(8px)}}
 .hin .hx{animation:hx 1.1s cubic-bezier(.2,.9,.25,1.1) both}
 @keyframes hx{from{opacity:0;transform:translateY(50px);filter:blur(6px)}}
@@ -342,7 +345,7 @@ footer img{width:150px;margin:0 auto 14px;display:block}
       </div>
     </div>
   </div>
-  <button class="scrollcue" aria-label="Scroll to the featured systems" onclick="document.getElementById('line').scrollIntoView({behavior:'smooth'})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+  <button class="scrollcue" aria-label="Scroll down to the RSVP" onclick="document.getElementById('line').scrollIntoView({behavior:'smooth'})"><span class="sc-l">Scroll down to RSVP</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
 </header>
 
 <!-- TOE TO TIBIA LINE -->
