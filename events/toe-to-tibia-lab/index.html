@@ -232,6 +232,22 @@ footer img{width:150px;margin:0 auto 14px;display:block}
 .also>img{width:clamp(130px,14vw,200px);height:auto;flex:none}
 .also b{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(22px,2.4vw,30px);letter-spacing:.02em}
 .also p{color:#ddd6c8;font-size:clamp(16px,1.5vw,19px);line-height:1.5;margin-top:6px}
+
+/* spinning FibFix on the cover */
+.spin{position:absolute;z-index:2;right:clamp(40px,9vw,170px);top:150px;height:min(70vh,640px);perspective:1100px;pointer-events:none;display:flex;flex-direction:column;align-items:center}
+.spin .halo{position:absolute;left:50%;top:48%;width:min(46vh,420px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(243,222,156,.45),rgba(213,184,99,.16) 40%,transparent 68%);filter:blur(10px);animation:halo 3.2s ease-in-out infinite}
+@keyframes halo{50%{transform:translate(-50%,-50%) scale(1.18);opacity:.7}}
+.spin .ring{position:absolute;left:50%;top:48%;width:min(40vh,340px);aspect-ratio:1;transform:translate(-50%,-50%) rotateX(72deg);border:2px solid rgba(213,184,99,.55);border-radius:50%;box-shadow:0 0 24px rgba(213,184,99,.6),inset 0 0 24px rgba(213,184,99,.35);animation:ringp 3.2s ease-in-out infinite}
+@keyframes ringp{50%{border-color:rgba(243,222,156,.9)}}
+.spin img{position:relative;height:100%;width:auto;transform-style:preserve-3d;animation:spinY 7s linear infinite,pop 1.2s cubic-bezier(.3,1.6,.4,1) .4s both;filter:drop-shadow(0 0 10px rgba(243,222,156,.95)) drop-shadow(0 0 28px rgba(213,184,99,.8)) drop-shadow(0 0 60px rgba(213,184,99,.45))}
+@keyframes spinY{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
+@keyframes pop{0%{opacity:0;scale:.3}70%{scale:1.08}100%{opacity:1;scale:1}}
+.spin .lbl{position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);font-family:var(--display);font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-hi);font-size:14px;white-space:nowrap;text-shadow:0 0 12px rgba(213,184,99,.8)}
+.spin .lbl small{display:block;text-align:center;letter-spacing:.24em;color:#fff;font-size:11px;margin-top:4px;opacity:.85}
+@media (max-width:1100px){.spin{height:min(56vh,520px);right:10px;opacity:.9}}
+.spin .halo,.spin .ring{top:46%}
+@media (max-width:700px){.spin{height:260px;top:330px;right:-4px;opacity:.55}.spin .lbl{display:none}.spin .ring{width:200px}.spin .halo{width:170px}}
+@media (prefers-reduced-motion:reduce){.spin img{animation:none}}
 @media (max-width:900px){.ft{grid-template-columns:1fr}.ft.flip .fim{order:0}.also{flex-direction:column;align-items:flex-start}}
 @media (max-width:900px){
   .stations{grid-template-columns:1fr}
@@ -265,6 +281,7 @@ footer img{width:150px;margin:0 auto 14px;display:block}
   <div class="bgimg" role="img" aria-label="The Grand Resort, Warren, Ohio"></div>
   <div class="shade"></div><div class="tint"></div>
   <canvas id="dust" aria-hidden="true"></canvas>
+  <div class="spin" aria-hidden="true"><div class="halo"></div><div class="ring"></div><img src="img/fibfix-nail.webp" alt=""><div class="lbl">FibFix™<small>Fusion Orthopedics</small></div></div>
   <div class="top">
     <div class="hosts">
       <img src="../../brochures/lotus-logo.webp?v=13" alt="Lotus Medical. Healing Sooner. Wellness Longer.">
