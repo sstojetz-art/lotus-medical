@@ -60,6 +60,10 @@ h2{font-family:var(--display);font-weight:800;text-transform:uppercase;line-heig
 .fusion small{display:block;font-weight:600;letter-spacing:.42em;font-size:.68em;color:var(--gold)}
 .topcta{font-family:var(--display);font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:14px;color:#000;background:var(--gold);padding:11px 18px;text-decoration:none;white-space:nowrap;box-shadow:0 8px 26px rgba(213,184,99,.35)}
 .herobody{position:relative;z-index:3;flex:1;display:flex;align-items:center;padding:40px 0 30px}
+.guest{display:inline-flex;flex-direction:column;gap:10px;padding:16px 22px 16px 20px;border-left:3px solid var(--gold);background:linear-gradient(90deg,rgba(0,0,0,.6),rgba(0,0,0,0));margin-bottom:6px}
+.guest .gl{font-family:var(--display);font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-size:clamp(12px,1.2vw,15px)}
+.guest img{width:clamp(280px,40vw,560px);height:auto;display:block}
+.guest .gp{font-family:var(--display);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;font-size:clamp(15px,1.7vw,22px)}
 .invite{font-family:var(--serif);font-size:clamp(18px,2vw,26px);letter-spacing:.34em;text-transform:uppercase;color:var(--bone);margin:18px 0 6px}
 h1{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:.86;font-size:clamp(64px,11.5vw,168px);letter-spacing:-.005em}
 h1 .shine{background:linear-gradient(100deg,var(--gold-lo) 0%,var(--gold) 30%,#fff6d6 45%,var(--gold) 60%,var(--gold-lo) 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
@@ -196,6 +200,7 @@ footer img{width:150px;margin:0 auto 14px;display:block}
 }
 @media (max-width:640px){
   .topcta{display:none}
+  .guest{padding:12px 14px;width:100%}.guest img{width:100%}
   .hosts img{width:118px}.hosts img.fus{width:150px}.hosts{gap:12px}
   .when>div{flex:1 1 50%;border-bottom:1px solid var(--line)}
   .when>div:nth-child(2){border-right:0}
@@ -229,7 +234,11 @@ footer img{width:150px;margin:0 auto 14px;display:block}
   </div>
   <div class="herobody">
     <div class="wrap hin" id="heroin">
-      <div class="eyebrow hx">East Liverpool City Hospital · Podiatric Medicine and Surgery Residency</div>
+      <div class="guest hx">
+        <div class="gl">Our honored guests</div>
+        <img src="img/elch-logo-white.png" alt="East Liverpool City Hospital">
+        <div class="gp">Podiatric Medicine and Surgery Residency</div>
+      </div>
       <div class="invite hx">You are invited</div>
       <h1 class="hx">Toe to<br><span class="shine">Tibia.</span></h1>
       <div class="sub hx">An evening cadaveric skills lab</div>
@@ -367,6 +376,7 @@ footer img{width:150px;margin:0 auto 14px;display:block}
 
 <footer>
   <div class="wrap">
+    <div class="guest" style="align-items:center;border-left:0;background:none;margin:0 auto 26px"><div class="gl">In honor of our guests</div><img src="img/elch-logo-white.png" alt="East Liverpool City Hospital" style="width:clamp(260px,36vw,460px)"><div class="gp">Podiatric Medicine and Surgery Residency</div></div>
     <div style="display:flex;justify-content:center;align-items:center;gap:28px;margin-bottom:18px"><img src="../../brochures/lotus-logo.webp?v=13" alt="Lotus Medical" style="margin:0;width:170px"><img src="img/fusion-logo-white.svg" alt="Fusion Orthopedics" style="margin:0;width:180px"></div>
     <div class="tag">Integrity First. Patient First. Always.</div>
     <button class="btn ghost sharebtn" id="share" type="button">Share this invitation</button>
