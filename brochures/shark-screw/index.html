@@ -685,7 +685,6 @@ intro:'Watch a first MTP fusion come together: preparation, position, compressio
 svg:`<rect width="640" height="360" fill="#050504"/>
 <text class="lbls" x="20" y="28">LATERAL VIEW · DORSAL UP</text>
 <line id="floor" class="an-h" x1="40" y1="300" x2="610" y2="300" stroke="#7FB5C9" stroke-width="2" stroke-dasharray="1 1" pathLength="1"/>
-<text id="floorlbl" class="lbls an-h" x="430" y="322">Flat tray lid stands in for the floor</text>
 <path class="bone" d="M40 160 L290 158 C300 150 330 148 342 165 C352 180 352 195 342 208 C330 224 300 222 290 214 L40 212 Z"/>
 <path id="c1" class="cart" d="M338 158 C354 172 356 200 340 216"/>
 <path id="sp1" class="bone" d="M316 153 L327 136 L336 156 Z"/>
@@ -706,13 +705,12 @@ svg:`<rect width="640" height="360" fill="#050504"/>
 steps:[
 {c:'<b>End-stage arthritis.</b> The cartilage is gone and dorsal spurs jam the joint. Every push-off hurts.',s:'pop',a:[['#c1,#c2','color',{p:'stroke',to:'#E0624F',t:600}],['#sp1,#sp2','glow',{c:'#E0624F',n:3,r:10}]]},
 {c:'<b>Joint preparation.</b> Cup-and-cone reamers shape matching surfaces, then the surgeon fenestrates the subchondral bone so it bleeds.',s:'drill',a:[['#c1,#c2,#sp1,#sp2','hide',{d:300,t:900}],['#fen','show',{d:1000,t:400,s:'pop'}]]},
-{c:'<b>Position.</b> Slight valgus, modest dorsiflexion so the toe clears the floor, neutral rotation.',a:[['#floor','draw',{t:900,s:'swish'}],['#floorlbl','show',{d:500}],['#ph','rot',{deg:-6,cx:348,cy:185,d:600,t:1000}],['#ph','glow',{d:1600,n:1}]]},
+{c:'<b>Position.</b> Slight valgus, modest dorsiflexion so the toe clears the floor, neutral rotation.',a:[['#floor','draw',{t:900,s:'swish'}],['#ph','rot',{deg:-6,cx:348,cy:185,d:600,t:1000}],['#ph','glow',{d:1600,n:1}]]},
 {c:'<b>Provisional K-wire</b> holds that position while AP and lateral fluoroscopy confirm it.',a:[['#kw','draw',{t:700,s:'snap'}]]},
 {c:'<b>Compression.</b> A crossing Shark Screw, 100% human allograft, is driven across the joint and pulls the surfaces together.',a:[['#ss,#drv','show',{t:300,s:'whoosh'}],['#ss,#drv','move',{x:125,d:300,t:1500,e:'linear',s:'ratchet'}],['#ph','move',{x:-5,d:1750,t:180,s:'thud'}],['#drv','hide',{d:2000,t:400}]]},
 {c:'<b>Dorsal plate</b> neutralizes bending and rotation. The allograft screw stays underneath as the compression element.',a:[['#kw','hide',{t:300}],['#pl','show',{t:200}],['#pl','move',{y:80,t:700,s:'whoosh'}],['#pls .p1','draw',{d:800,t:350,s:'click'}],['#pls .p2','draw',{d:1150,t:350,s:'click'}],['#pls .p3','draw',{d:1500,t:350,s:'click'}],['#pls .p4','draw',{d:1850,t:350,s:'click'}]]},
 {c:'<b>Fusion.</b> Bone bridges the joint, and the allograft screw remodels into the patient\'s own bone. Less permanent metal.',s:'level',a:[['#fuse','show',{to:.4,t:900}],['#fuse','glow',{n:2,d:400}],['#ss','fade',{to:.4,d:600,t:1600}],['#tag','show',{d:900}]]}
-],
-q:{q:'Why put an allograft Shark Screw under the plate?',o:[['It compresses the joint, then remodels into bone, leaving less permanent metal',true,'The plate holds; the allograft compresses and becomes bone.'],['It removes the need for joint preparation',false,'Preparation and position still decide whether the fusion heals.'],['It lets the joint keep some motion',false,'A fusion removes motion by design.']]}
+]
 };
 
 var host=document.getElementById('mtpAnim');if(host){host.innerHTML=anHtml('m2_mtp');anWire(host)}
