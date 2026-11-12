@@ -85,13 +85,18 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
 .wordmark b.mgbox{background:var(--white);color:var(--black);padding:0 .14em;margin-right:.22em;font-weight:800}
 .wordmark strong{font-weight:800}
 .herokit{position:relative}
-.heroanim #tibSizzle{--orx-max:calc(100vh - 230px)}
-.heroanim .orx-badge,.heroanim .orx-n,.heroanim .orx-cap,.heroanim .orx-ctl,.heroanim .orx-fine,.heroanim .orx-big,.heroanim svg text{display:none!important}
-.heroanim .orx-title{font-family:var(--display);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:clamp(15px,1.5vw,19px);text-align:center;color:var(--gold-hi)}
+.heroanim #tibSizzle{--orx-max:calc(100vh - 480px)}
+.heroanim .orx-cap{font-size:14px;min-height:0;padding:9px 14px}
+.heroanim .orx-fine{font-size:10.5px;padding:5px 14px 8px}
+.heroanim .orx-title{font-size:15px}
+.heroanim .orx-ctl{padding:7px 10px}
+.heroanim .orx-ctl button{padding:5px 10px}
+.heroanim .orx-dots button{width:23px;height:23px}
+.heroanim .orx-big{display:none}
 .kitsmall{margin-top:18px;max-width:420px}
 .herokit.kitsmall img{max-height:19vh;width:auto;max-width:100%}
 @media (min-width:901px){.hero h1{font-size:clamp(30px,3.1vw,52px)}.hero .chip{font-size:12px;padding:6px 10px}.hero .lede{font-size:clamp(15px,1.4vw,20px)}.hero .wordmark{margin-bottom:14px}.hero .chips{margin-top:18px}.hero .lede{margin-top:14px}}
-@media (max-width:900px){.heroanim #tibSizzle{--orx-max:34vh}.herokit.kitsmall{max-width:none;margin:12px 0 0;text-align:center}.herokit.kitsmall img{max-height:13vh}.hero{gap:18px}.hero .chips{margin-top:16px}}
+@media (max-width:900px){.heroanim #tibSizzle{--orx-max:23vh}.herokit.kitsmall{max-width:none;margin:12px 0 0;text-align:center}.herokit.kitsmall img{max-height:13vh}.hero{gap:18px}.hero .chips{margin-top:16px}}
 .heroanim{position:relative;min-width:0}
 .herokit img{width:100%;filter:drop-shadow(0 0 1.2px rgba(255,255,255,.75)) drop-shadow(0 30px 40px rgba(0,0,0,.8));animation:float 6s ease-in-out infinite}
 @keyframes float{50%{transform:translateY(-14px) rotate(-1deg)}}
@@ -1085,7 +1090,8 @@ window.TibAnim=function(host,opts){
 })();
 </script>
 <script>
-TibAnim(document.getElementById("tibSizzle"),{autoplay:true,loop:true,title:"From tibial nail to bone with Mg OSTEOROD"});
+window.tibHero=TibAnim(document.getElementById("tibSizzle"),{loop:true,title:"From tibial nail to bone with Mg OSTEOROD"});
+setTimeout(function(){window.tibHero.play()},700);
 </script>
 <script src="share.js?v=2" defer></script>
 </body>
