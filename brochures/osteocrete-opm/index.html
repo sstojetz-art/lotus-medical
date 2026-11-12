@@ -187,6 +187,58 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
 @media (max-width:700px){#brand img{width:110px}.panel{padding-top:120px}}
 @media (max-width:520px){.props,.contents{grid-template-columns:1fr}.sku{grid-template-columns:1fr}.sku div+div{border-left:0;border-top:1px solid var(--line)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}#deck{scroll-behavior:auto}}
+/* v2: science deck */
+.hero2{display:grid;grid-template-columns:.92fr 1.25fr;gap:clamp(20px,3.4vw,50px);align-items:center}
+.hero2 h1{font-size:clamp(36px,4.6vw,68px)}
+.pm{display:grid;grid-template-columns:1.25fr .9fr;gap:clamp(24px,4vw,56px);align-items:center;margin-top:24px}
+.bmx{display:grid;gap:12px;margin-top:22px}
+.bm{display:flex;gap:16px;padding:14px 18px;border-left:3px solid var(--gold);background:rgba(255,255,255,.035)}
+.bm .k{font-family:var(--display);font-weight:800;color:var(--gold);font-size:24px;min-width:32px}
+.bm h3{font-size:clamp(18px,1.7vw,22px);margin-bottom:4px}
+.bm p{font-size:15.5px;line-height:1.45;color:#dcdcdc}
+sup{font-size:.62em;color:var(--gold);margin-left:1px}
+.pmfig img{width:100%;border-radius:50%;box-shadow:0 0 0 2px rgba(213,184,99,.5),0 30px 60px rgba(0,0,0,.8);display:block}
+.pmfig figcaption{text-align:center;margin-top:14px;font-size:14px;color:var(--gray)}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+.tric{border:1px solid var(--line);background:linear-gradient(180deg,rgba(213,184,99,.09),rgba(213,184,99,0) 70%);padding:24px 22px;display:flex;flex-direction:column;gap:10px;border-top:3px solid var(--gold)}
+.trk{font-family:var(--display);font-weight:800;font-size:clamp(34px,3.6vw,50px);color:var(--gold);text-transform:uppercase;line-height:.9}
+.tric h3{color:#fff}.tric p{font-size:15.5px;line-height:1.45;color:#d6d6d6;flex:1}
+.tric .src{font-family:var(--display);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:13px;color:var(--gold-hi);border-top:1px solid var(--line);padding-top:10px}
+.eq{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(8px,1.4vw,20px);margin-top:30px;padding:22px 16px;border:2px solid var(--gold);background:rgba(213,184,99,.06);font-family:var(--display);font-weight:800;font-size:clamp(24px,3.6vw,50px)}
+.eq i{font-style:normal;color:var(--gray)}.eq .ar{color:var(--gold)}
+.eq sub{font-size:.55em}
+.eqn{text-align:center;font-size:14px;color:var(--gray);margin-top:10px}
+.chem{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+.ch{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);padding:18px}
+.ch h3{font-size:clamp(17px,1.6vw,21px);color:var(--gold);margin-bottom:8px}
+.ch p{font-size:14.5px;line-height:1.45;color:#d0d0d0}
+.mg4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}
+.m4{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);padding:20px 18px;display:flex;flex-direction:column;gap:10px}
+.m4 .ic{align-self:flex-start;border:2px solid var(--gold);color:var(--gold);font-family:var(--display);font-weight:800;letter-spacing:.08em;font-size:17px;padding:6px 10px}
+.m4 p{font-size:14.5px;line-height:1.45;color:#cfcfcf}
+.g2b{display:grid;grid-template-columns:.85fr 1.3fr;gap:clamp(20px,3.4vw,50px);align-items:center}
+.ev{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+.evc{border-top:3px solid var(--gold);background:linear-gradient(180deg,rgba(213,184,99,.10),rgba(213,184,99,0) 70%);padding:22px 18px;position:relative}
+.evc.human{background:linear-gradient(180deg,rgba(213,184,99,.22),rgba(213,184,99,.02) 80%)}
+.evc .tagx{font-family:var(--display);font-weight:700;letter-spacing:.2em;font-size:12px;text-transform:uppercase;color:#000;background:var(--gold);display:inline-block;padding:3px 8px}
+.evc .n{font-family:var(--display);font-weight:800;font-size:clamp(56px,7vw,100px);line-height:.95;color:var(--gold);margin-top:10px;font-variant-numeric:tabular-nums}
+.evc .n small{font-size:.45em;margin-left:2px}
+.evc .l{font-size:15px;color:#d8d8d8;line-height:1.4;margin-top:8px}
+.mini{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.mini span{border:1px solid var(--line);color:var(--gold-hi);padding:8px 14px;font-family:var(--display);font-weight:600;letter-spacing:.12em;font-size:14px;text-transform:uppercase;background:rgba(213,184,99,.06)}
+.uses{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.use{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);border-top:3px solid var(--gold);padding:22px}
+.use .ut{font-family:var(--display);font-weight:800;font-size:clamp(22px,2.2vw,30px);text-transform:uppercase;color:var(--gold);line-height:1;margin-bottom:14px}
+.use ul{list-style:none;display:grid;gap:10px}
+.use li{padding-left:22px;position:relative;font-size:16px;line-height:1.4;color:#e2e2e2}
+.use li::before{content:"";position:absolute;left:0;top:7px;width:10px;height:10px;border:2px solid var(--gold);border-radius:50%}
+.kitimg{background:#fff;padding:0;border:1px solid var(--line)}
+@media (max-width:1100px){.chem,.mg4,.ev{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:900px){.hero2,.pm,.g2b{grid-template-columns:1fr}.tri,.uses{grid-template-columns:1fr}.pmfig{max-width:320px;margin:auto}}
+@media (max-width:520px){.chem,.mg4,.ev{grid-template-columns:1fr}}
+.g2b h2,.hero2 h1{font-size:clamp(34px,4.2vw,60px)}
+.hero2 .lede{font-size:clamp(16px,1.45vw,19px)}
+
 </style>
 </head>
 <body>
@@ -197,41 +249,115 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
 <a id="home" href="../index.html">‹ Brochures</a>
 <main id="deck">
 
-<!-- 1 HERO -->
-<section class="panel" data-name="Mg OsteoCrete Protein Matrix">
+<!-- 1 INSIDE THE GRAFT -->
+<section class="panel" data-name="Inside the graft">
   <div class="bone"></div><canvas id="dust"></canvas><div class="vignette"></div>
-  <div class="wrap hero">
+  <div class="wrap hero2">
     <div>
       <div class="wordmark rise"><b class="mgbox">Mg</b>OSTEO<strong>CRETE</strong></div>
       <div class="sub rise d1">PROTEIN MATRIX</div>
-      <div class="eyebrow rise d1">Built to become bone</div>
-      <h1 class="rise d2">Biology and structure.<br><span class="gold">One graft.</span></h1>
-      <p class="lede rise d3">Magnesium-driven bone biology and osteoinductive allograft proteins, in a durable scaffold that sets in place and remodels into the patient's own bone.</p>
-      <div class="chips">
-        <span class="chip pop d4">Ready in 1 minute</span>
-        <span class="chip pop d5">Moldable · Drillable</span>
-        <span class="chip pop d6">Adult and pediatric</span>
-      </div>
+      <div class="eyebrow rise d1">Inside the graft</div>
+      <h1 class="rise d2">Bone's own proteins.<br><span class="gold">Locked in magnesium.</span></h1>
+      <p class="lede rise d3">Demineralized allograft fibers carry the protein frame of living bone. A magnesium phosphate crystal phase forms around them and sets in place. The result is one graft that holds its shape, signals bone formation and remodels into the patient's own bone.</p>
+      <div class="chips"><span class="chip pop d4">Collagen + growth factors</span><span class="chip pop d5">Magnesium chemistry</span><span class="chip pop d6">Sets in place</span></div>
     </div>
-    <div class="herofig slideR d2"><div class="glow"></div><img src="img/fibers.webp" alt="Mixed Mg OsteoCrete Protein Matrix stretched between gloved hands, the allograft fibers holding it together"></div>
+    <div class="slideR d2" id="animInside"></div>
   </div>
 </section>
 
-<!-- 2 NUMBERS -->
-<section class="panel" data-name="By the numbers">
+<!-- 2 THE PROTEIN MATRIX -->
+<section class="panel" data-name="The protein matrix">
   <div class="wrap">
-    <div class="eyebrow rise">By the numbers</div>
-    <h2 class="rise d1">Four numbers.<br><span class="gold">One graft.</span></h2>
-    <div class="stats">
-      <div class="stat pop d2"><div><span class="n" data-count="1">1</span><span class="u">min</span></div><div class="l">From kit to a moldable graft, ready for the void</div></div>
-      <div class="stat pop d3"><div><span class="n" data-count="15">15</span><span class="u">MPa</span></div><div class="l">Compressive strength once it sets in place</div></div>
-      <div class="stat pop d4"><div><span class="n" data-count="2">2</span><span class="u">sizes</span></div><div class="l">5 cc and 10 cc, so only what the void needs is opened</div></div>
-      <div class="stat pop d5"><div><span class="n" data-count="6">6</span><span class="u">+ yrs</span></div><div class="l">Adult and pediatric patients older than 6 for benign cysts and tumors</div></div>
+    <div class="eyebrow rise">The protein matrix</div>
+    <h2 class="rise d1">Bone is a protein frame<br><span class="gold">filled with mineral.</span></h2>
+    <div class="pm">
+      <div class="pmtext">
+        <p class="lede rise d2" style="margin-top:0">By weight, bone is roughly two parts mineral to one part protein. Nearly all of that protein is type I collagen, woven into fibers that give bone its toughness. Bound inside the collagen sit the signaling proteins that tell the body to make new bone.</p>
+        <div class="bmx">
+          <div class="bm slideL d3"><span class="k">01</span><div><h3>Demineralize</h3><p>Allograft cortical bone is processed to remove the mineral. What remains is the collagen matrix and the proteins held within it.</p></div></div>
+          <div class="bm slideL d4"><span class="k">02</span><div><h3>Expose the signal</h3><p>Removing mineral exposes the bone morphogenetic proteins (BMPs) that bone stores in its matrix. Their discovery, in demineralized bone matrix, dates to Urist in 1965.<sup>1</sup></p></div></div>
+          <div class="bm slideL d5"><span class="k">03</span><div><h3>Keep them as fibers</h3><p>Non-uniform fibers interlock, so the graft holds together and stretches instead of crumbling. Each lot is tested for osteoinductive potential after sterilization.*</p></div></div>
+        </div>
+      </div>
+      <figure class="pmfig pop d3"><img src="img/fibers.webp" alt="Mixed Mg OsteoCrete Protein Matrix stretched between gloved hands, showing the interlocking fibers"><figcaption>Interlocking fibers hold the mixed graft together.</figcaption></figure>
     </div>
   </div>
 </section>
 
-<!-- 3 THE COMPROMISE -->
+<!-- 3 THREE JOBS OF A GRAFT -->
+<section class="panel" data-name="Three jobs of a graft">
+  <div class="wrap">
+    <div class="eyebrow rise">The biology of a bone graft</div>
+    <h2 class="rise d1">Every graft does three jobs.<br><span class="gold">This one is built for each.</span></h2>
+    <div class="tri">
+      <div class="tric pop d2"><div class="trk">Scaffold</div><h3>Osteoconductive</h3><p>A surface for cells and vessels to attach and grow across. The magnesium phosphate crystals and the collagen fibers both provide it.</p><span class="src">Magnesium phase + fibers</span></div>
+      <div class="tric pop d3"><div class="trk">Signal</div><h3>Osteoinductive potential</h3><p>Proteins that recruit stem cells and steer them toward bone. They come from the allograft fibers, lot-tested after sterilization.*</p><span class="src">Allograft fibers</span></div>
+      <div class="tric pop d4"><div class="trk">Cells</div><h3>Osteogenic</h3><p>Living bone-forming cells. They come from the patient: marrow, blood and the surrounding bone move into the graft as it is replaced.</p><span class="src">The patient's own biology</span></div>
+    </div>
+    <p class="note rise d5">Magnesium adds a fourth element: the mineral itself is biologically active. Its ions take part in the signaling that bone healing runs on.</p>
+  </div>
+</section>
+
+<!-- 4 THE MAGNESIUM PHASE -->
+<section class="panel" data-name="The magnesium phase">
+  <div class="wrap">
+    <div class="eyebrow rise">The magnesium phase</div>
+    <h2 class="rise d1">An acid-base reaction<br><span class="gold">that crystallizes in place.</span></h2>
+    <div class="eq pop d2"><span>KH<sub>2</sub>PO<sub>4</sub></span><i>+</i><span>MgO</span><i>+</i><span>5H<sub>2</sub>O</span><i class="ar">&rarr;</i><span class="gold">MgKPO<sub>4</sub>&middot;6H<sub>2</sub>O</span></div>
+    <p class="eqn rise d3">Simplified reaction for the Mg OSTEO material: potassium phosphate and magnesium oxide crystallize into magnesium potassium phosphate.<sup>2</sup></p>
+    <div class="chem">
+      <div class="ch slideL d3"><h3>Magnesium oxide binds</h3><p>Excess magnesium oxide acts as the binder. It gives the graft its adhesive, cohesive handling, so it stays where it is placed.</p></div>
+      <div class="ch slideL d4"><h3>Phosphate conducts</h3><p>The phosphate phase supports osteoconduction: a crystalline surface new bone can grow across.</p></div>
+      <div class="ch slideL d5"><h3>Sets, then dissolves</h3><p>Once cured, the crystals degrade by hydrolysis and are remodeled through creeping substitution. The graft grows less dense as bone takes its place.</p></div>
+      <div class="ch slideL d6"><h3>Stronger than the bone it fills</h3><p>Set strength of 15 MPa sits above cancellous bone, roughly 2 to 12 MPa. It stays drillable, radiopaque and MR safe.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 WHAT MAGNESIUM DOES -->
+<section class="panel" data-name="What magnesium does in bone">
+  <div class="wrap">
+    <div class="eyebrow rise">What magnesium does in bone</div>
+    <h2 class="rise d1">60% of the body's magnesium<br><span class="gold">lives in bone.</span></h2>
+    <p class="lede rise d2">Magnesium helps regulate calcium and the mineralization of bone. As the graft dissolves, it releases Mg<sup>2+</sup> ions into the healing zone, where preclinical research shows they act on every stage of repair.</p>
+    <div class="mg4">
+      <div class="m4 pop d3"><div class="ic">MSC</div><h3>Stem cells</h3><p>Magnesium ions increase proliferation of marrow stromal cells and enhance their osteogenic activity.<sup>3</sup></p></div>
+      <div class="m4 pop d4"><div class="ic">VEGF</div><h3>Blood supply</h3><p>Raised magnesium increases VEGF and HIF expression, the signals that drive new vessels into the defect.<sup>3</sup></p></div>
+      <div class="m4 pop d5"><div class="ic">CGRP</div><h3>Nerve signaling</h3><p>Implant-derived magnesium raised local CGRP from sensory nerves, activating periosteal stem cells and improving fracture healing in rats.<sup>4</sup></p></div>
+      <div class="m4 pop d6"><div class="ic">ALP</div><h3>Mineralization</h3><p>Magnesium improves osteoblast attachment and growth and promotes apatite formation on scaffolds.<sup>5</sup></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 GRAFT TO BONE -->
+<section class="panel" data-name="Graft to bone">
+  <div class="wrap g2b">
+    <div>
+      <div class="eyebrow rise">Graft to bone</div>
+      <h2 class="rise d1">Resorbed from the edges.<br><span class="gold">Replaced with bone.</span></h2>
+      <p class="lede rise d2">Creeping substitution: osteoclasts resorb the graft at its surface while osteoblasts lay new bone right behind them. The magnesium phase is designed to resorb at a pace bone can keep up with, neither gone too soon nor left behind for years.</p>
+      <p class="note rise d3">Timing varies by patient, site and defect size.</p>
+    </div>
+    <div class="slideR d2" id="animRemodel"></div>
+  </div>
+</section>
+
+<!-- 7 THE EVIDENCE -->
+<section class="panel" data-name="The evidence">
+  <div class="wrap">
+    <div class="eyebrow rise">The evidence behind the magnesium</div>
+    <h2 class="rise d1">Measured in patients.<br><span class="gold">Proven at the bench.</span></h2>
+    <div class="ev">
+      <div class="evc human pop d2"><div class="tagx">Clinical</div><div class="n"><span data-count="3.6" data-dec="1">3.6</span></div><div class="l">Mean radiographic resorption grade at 1 year (&plusmn;0.6), up from 1.5 at 6 weeks, p&lt;0.001. 18 patients.<sup>6</sup></div></div>
+      <div class="evc pop d3"><div class="tagx">Preclinical</div><div class="n"><span data-count="84">84</span><small>%</small></div><div class="l">Of the material resorbed and replaced with woven or lamellar bone at 26 weeks in the 510(k) bone void study.<sup>2</sup></div></div>
+      <div class="evc pop d4"><div class="tagx">Preclinical</div><div class="n"><span data-count="83">83</span><small>%</small></div><div class="l">Greater resorption than calcium phosphate cement at 12 weeks in the same study.<sup>2</sup></div></div>
+      <div class="evc pop d5"><div class="tagx">Preclinical</div><div class="n"><span data-count="69">69</span><small>%</small></div><div class="l">Replaced by woven bone at the screw interface at 6 months, versus 44% for calcium phosphate.<sup>2</sup></div></div>
+    </div>
+    <p class="note rise d6">Data from the Mg OSTEO magnesium technology that forms the base of the Protein Matrix. Animal data may not predict human clinical performance.</p>
+  </div>
+</section>
+
+<!-- 8 THE COMPROMISE -->
 <section class="panel" data-name="The compromise">
   <div class="wrap">
     <div class="eyebrow rise">Can be used to replace</div>
@@ -245,130 +371,65 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
   </div>
 </section>
 
-<!-- 4 INSIDE THE GRAFT -->
-<section class="panel" data-name="Inside the graft">
-  <div class="wrap">
-    <div class="eyebrow rise">Inside the graft</div>
-    <h2 class="rise d1">Three ingredients.<br><span class="gold">One minute.</span></h2>
-    <div class="inside">
-      <svg class="graft rise d2" viewBox="0 0 520 380" role="img" aria-label="Animation: allograft fibers interlock, magnesium joins them, and the graft sets into one block">
-        <g>
-          <path class="fib" d="M40 120 C140 60 220 200 320 120 S460 90 490 150"/>
-          <path class="fib" d="M30 200 C120 260 200 130 300 210 S440 250 495 190" style="animation-delay:.15s"/>
-          <path class="fib" d="M50 280 C150 220 230 320 330 260 S450 230 485 290" style="animation-delay:.3s"/>
-          <path class="fib" d="M60 90 C110 180 170 250 250 300 S400 330 470 260" style="animation-delay:.45s;opacity:.75"/>
-          <path class="fib" d="M70 310 C160 260 220 170 300 110 S420 70 480 110" style="animation-delay:.6s;opacity:.75"/>
-        </g>
-        <g font-family="Barlow Condensed,Arial Narrow,sans-serif" font-weight="800" font-size="15" text-anchor="middle">
-          <g class="ion" style="animation-delay:1.2s"><circle cx="120" cy="150" r="17"/><text x="120" y="155" fill="#000">Mg</text></g>
-          <g class="ion" style="animation-delay:1.35s"><circle cx="230" cy="220" r="17"/><text x="230" y="225" fill="#000">Mg</text></g>
-          <g class="ion" style="animation-delay:1.5s"><circle cx="345" cy="160" r="17"/><text x="345" y="165" fill="#000">Mg</text></g>
-          <g class="ion" style="animation-delay:1.65s"><circle cx="420" cy="245" r="17"/><text x="420" y="250" fill="#000">Mg</text></g>
-          <g class="ion" style="animation-delay:1.8s"><circle cx="175" cy="290" r="17"/><text x="175" y="295" fill="#000">Mg</text></g>
-          <g class="ion" style="animation-delay:1.95s"><circle cx="300" cy="80" r="17"/><text x="300" y="85" fill="#000">Mg</text></g>
-        </g>
-        <rect class="setbox" x="18" y="40" width="484" height="300" rx="26"/>
-        <g class="settag"><rect x="165" y="322" width="190" height="36" rx="18" fill="#D5B863"/><text x="260" y="345" text-anchor="middle" font-family="Barlow Condensed,Arial Narrow,sans-serif" font-weight="800" font-size="16" letter-spacing="2" fill="#000">SETS IN PLACE</text></g>
-      </svg>
-      <div class="parts3">
-        <div class="part slideL d3"><span class="k">01</span><p><strong>Inductive allograft bone fibers.</strong> Non-uniform demineralized fibers that interlock, so the graft holds together and stretches instead of crumbling. Each lot tested for osteoinductive potential after sterilization.*</p></div>
-        <div class="part slideL d4"><span class="k">02</span><p><strong>Magnesium.</strong> Mg OsteoCrete chemistry: about 60% of the body's magnesium lives in bone, where it contributes to bone structure and the regulation of calcium.</p></div>
-        <div class="part slideL d5"><span class="k">03</span><p><strong>A scaffold that sets.</strong> Mixed with its solution, the graft is moldable in about a minute, then hardens in situ to 15 MPa for stable temporary support.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 5 MOLDABLE SETTABLE DRILLABLE -->
+<!-- 9 HANDLING -->
 <section class="panel" data-name="Handling">
   <div class="wrap">
     <div class="eyebrow rise">Handling</div>
     <h2 class="rise d1">Mold it. Set it. <span class="gold">Drill it.</span></h2>
     <div class="msd">
-      <figure class="msdc pop d2"><div class="img"><img src="img/mold.webp" alt="Graft molded by hand"></div><span class="num">1</span><div class="t"><b>MOLDABLE</b><span>Easily molded and shaped to fill the defect.</span></div></figure>
-      <figure class="msdc pop d3"><div class="img"><img src="img/set.webp" alt="Calcaneus with the void filled"></div><span class="num">2</span><div class="t"><b>SETTABLE</b><span>Hardens in situ to 15 MPa for stable temporary support.</span></div></figure>
-      <figure class="msdc pop d4"><div class="img"><img src="img/drill.webp" alt="Calcaneus with screws through the set graft"></div><span class="num">3</span><div class="t"><b>DRILLABLE</b><span>Once set, it can be drilled like bone, before or after final fixation.</span></div></figure>
+      <figure class="msdc pop d2"><div class="img"><img src="img/mold.webp" alt="Graft molded by hand"></div><div class="num">1</div><div class="t"><b>MOLDABLE</b><span>Ready in about a minute and shaped by hand to fill the defect.</span></div></figure>
+      <figure class="msdc pop d3"><div class="img"><img src="img/set.webp" alt="Calcaneus with the void filled"></div><div class="num">2</div><div class="t"><b>SETTABLE</b><span>Hardens in situ to 15 MPa for stable temporary support.</span></div></figure>
+      <figure class="msdc pop d4"><div class="img"><img src="img/drill.webp" alt="Calcaneus with screws through the set graft"></div><div class="num">3</div><div class="t"><b>DRILLABLE</b><span>Once set, it can be drilled like bone, before or after final fixation.</span></div></figure>
+    </div>
+    <div class="mini">
+      <span class="pop d5">Radiopaque</span><span class="pop d5">Adhesive and cohesive</span><span class="pop d6">MR safe</span><span class="pop d6">Adult and pediatric patients older than 6</span>
     </div>
   </div>
 </section>
 
-<!-- 6 PROPERTIES -->
-<section class="panel" data-name="Eight properties">
+<!-- 10 WHERE IT IS USED -->
+<section class="panel" data-name="Where it is used">
   <div class="wrap">
-    <div class="eyebrow rise">Built to become bone</div>
-    <h2 class="rise d1">Eight reasons <span class="gold">in one kit.</span></h2>
-    <div class="props">
-      <div class="prop pop d1"><span class="ic">1</span><h3>Ready in 1 minute</h3><p>From kit to graft while the void is prepared.</p></div>
-      <div class="prop pop d2"><span class="ic">2</span><h3>Moldable</h3><p>Shaped by hand to the defect.</p></div>
-      <div class="prop pop d3"><span class="ic">3</span><h3>Verified osteoinductivity*</h3><p>Each lot tested and verified post-sterilization.</p></div>
-      <div class="prop pop d4"><span class="ic">4</span><h3>Drillable · settable</h3><p>Sets in place; screws pass through.</p></div>
-      <div class="prop pop d5"><span class="ic">5</span><h3>Radiopaque</h3><p>Visible on fluoroscopy and follow-up films.</p></div>
-      <div class="prop pop d6"><span class="ic">6</span><h3>Adhesive qualities</h3><p>Stays where it is placed.</p></div>
-      <div class="prop pop d7"><span class="ic">7</span><h3>15 MPa</h3><p>Compressive strength once set.</p></div>
-      <div class="prop pop d8"><span class="ic">8</span><h3>Adult and pediatric</h3><p>Pediatric patients older than 6 for benign cysts and tumors.</p></div>
+    <div class="eyebrow rise">Where it is used</div>
+    <h2 class="rise d1">Voids across the skeleton.<br><span class="gold">Fixation carries the load.</span></h2>
+    <div class="uses">
+      <div class="use slideL d2"><div class="ut">Foot and ankle</div><ul><li>Calcaneal voids after reduction</li><li>Gaps in hindfoot and midfoot fusions</li><li>Talar and calcaneal cysts and benign lesions</li></ul></div>
+      <div class="use slideL d3"><div class="ut">Knee and lower extremity trauma</div><ul><li>Tibial plateau voids after elevation and reduction</li><li>Distal femur and tibial metaphyseal voids</li><li>Defects after hardware removal</li></ul></div>
+      <div class="use slideL d4"><div class="ut">Upper extremity and pelvis</div><ul><li>Distal radius and proximal humerus metaphyseal voids</li><li>Pelvic and acetabular voids</li><li>Benign cysts and tumors, adult and pediatric</li></ul></div>
     </div>
+    <p class="note rise d5">Indicated for bony voids or defects of the extremities, pelvis and spine that are not intrinsic to the stability of the bony structure. In the posterolateral spine and with interbody devices it is used with morselized autograft at 1:1 by volume. Set graft is a temporary support medium; rigid fixation carries the load.</p>
   </div>
 </section>
 
-<!-- 7 RELIABLE -->
-<section class="panel" data-name="A reliable surgical solution">
-  <div class="wrap">
-    <div class="eyebrow rise">A reliable surgical solution</div>
-    <h2 class="rise d1">Support through <span class="gold">the healing window.</span></h2>
-    <div class="rel">
-      <img class="slideL d2" src="img/indic.webp" alt="Illustrations of an ankle fusion with crossed screws, a spinal construct and a hip stem, each with graft in place">
-      <div>
-        <ul class="rlist">
-          <li class="slideR d2">Osteoinductive signaling without rapid collapse or washout.</li>
-          <li class="slideR d3">Designed to maintain support during the critical healing window.</li>
-          <li class="slideR d4">Confidence in challenging revision and fusion environments.</li>
-          <li class="slideR d5">Faster OR preparation and workflow simplicity.</li>
-        </ul>
-        <p class="fa rise d6"><b>In the foot and ankle:</b> calcaneal and tibial plateau voids after reduction, gaps in hindfoot and midfoot fusions, and benign cysts and lesions. The fixation carries the load; the graft fills the space.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 8 KIT -->
+<!-- 11 ORDERING -->
 <section class="panel" data-name="Ordering">
   <div class="wrap">
     <div class="eyebrow rise">Ordering information</div>
     <h2 class="rise d1">Everything in <span class="gold">one box.</span></h2>
     <div class="kit">
-      <img class="kitimg slideL d2" src="img/kit.webp" alt="Mg OsteoCrete Protein Matrix kit: box, Mg powder, solution, allograft fibers, basin and spatula">
+      <img class="kitimg slideL d2" src="img/kit.webp" alt="Mg OsteoCrete Protein Matrix kit: purple box, powder and solution packets, allograft fibers, basin and spatula">
       <div>
         <div class="sku pop d3"><div><div class="code">44-050-00-OPM</div><div class="sz">5 cc</div></div><div><div class="code">44-100-00-OPM</div><div class="sz">10 cc</div></div></div>
-        <ul class="contents">
-          <li class="rise d3">Mg powder</li>
-          <li class="rise d4">Solution</li>
-          <li class="rise d5">Inductive allograft bone fibers</li>
-          <li class="rise d6">Basin</li>
-          <li class="rise d7">Spatula</li>
-        </ul>
-        <p class="note">Sterile and single use. Store at room temperature.</p>
+        <ul class="contents"><li class="rise d4">Mg powder</li><li class="rise d4">Solution</li><li class="rise d5">Inductive allograft bone fibers</li><li class="rise d5">Basin</li><li class="rise d6">Spatula</li></ul>
+        <p class="note rise d6">Sterile and single use. Store at room temperature.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 9 CLOSE -->
+<!-- 12 CLOSE -->
 <section class="panel" data-name="Lotus Medical">
-  <div class="bone" style="opacity:.10"></div><div class="vignette"></div>
   <div class="wrap close">
-    <img class="lotus pop" src="../lotus-logo.webp?v=13" alt="Lotus Medical. Healing Sooner. Wellness Longer.">
-    <div class="eyebrow rise d1" style="justify-content:center">Lotus Medical · Northeast Ohio</div>
+    <img class="lotus pop" src="../lotus-logo.webp?v=13" alt="Lotus Medical">
+    <div class="eyebrow rise d1" style="justify-content:center">Lotus Medical &middot; Northeast Ohio</div>
     <h2 class="rise d2">Healing sooner.<br><span class="gold">Wellness longer.</span></h2>
-    <p class="lede rise d3" style="text-align:center;margin-left:auto;margin-right:auto">Lotus Medical brings Mg OSTEOCRETE Protein Matrix to surgeons across Northeast Ohio, in collaboration with the clinician for advanced patient care.</p>
-    <div class="contact rise d4">
-      <a class="btn solid" href="mailto:scott@lotusmedcompany.com">Scott Stojetz · scott@lotusmedcompany.com</a>
-      <a class="btn" href="https://lotusmedcompany.com">lotusmedcompany.com</a>
-    </div>
+    <p class="lede rise d3" style="margin-left:auto;margin-right:auto">Lotus Medical brings Mg OSTEOCRETE Protein Matrix to surgeons across Northeast Ohio, in collaboration with the clinician for advanced patient care.</p>
+    <div class="contact rise d4"><a class="btn solid" href="mailto:scott@lotusmedcompany.com">Scott Stojetz &middot; scott@lotusmedcompany.com</a><a class="btn" href="https://lotusmedcompany.com">lotusmedcompany.com</a></div>
     <div class="tag rise d5">Integrity First. Patient First. Always.</div>
-    <p class="fine rise d6">Mg OSTEOCRETE Protein Matrix is manufactured by Bone Solutions, Inc. *Each lot of the allograft bone fibers is tested for osteoinductive potential after sterilization in an athymic rat model; animal data may not predict human clinical performance. Mg OSTEOCRETE Protein Matrix is a bone void filler for voids and defects that are not intrinsic to the stability of the bony structure and is not intended to provide structural support during the healing process. Refer to the instructions for use (10260 Rev A) for indications, contraindications and warnings. Content summarized from the Mg OSTEOCRETE Protein Matrix launch sheet (10152 Rev A).</p>
+    <p class="fine">Mg OSTEOCRETE Protein Matrix is manufactured by Bone Solutions, Inc. *Each lot of the allograft bone fibers is tested for osteoinductive potential after sterilization in an athymic rat model; animal data may not predict human clinical performance. Mg OSTEOCRETE Protein Matrix is a bone void filler for voids and defects that are not intrinsic to the stability of the bony structure and is not intended to provide structural support during the healing process. Do not use in infected sites. Refer to the instructions for use (10260 Rev A) for indications, contraindications and warnings. Animations are illustrations, not to scale.<br><br>
+    References: 1. Urist MR. Bone: formation by autoinduction. Science. 1965;150:893-899. 2. Bone Solutions, Inc. Mg OSTEO technologies: in vivo, in vitro and retrospective studies (product information); 510(k) preclinical bone void study, data on file. 3. Yoshizawa S, et al. Magnesium ion stimulation of bone marrow stromal cells enhances osteogenic activity. Acta Biomater. 2014;10(6):2834-2842. 4. Zhang Y, et al. Implant-derived magnesium induces local neuronal production of CGRP to improve bone-fracture healing in rats. Nat Med. 2016;22(10):1160-1169. 5. Wong HM, et al. Engineered polycaprolactone-magnesium hybrid biodegradable porous scaffold for bone tissue engineering. Prog Nat Sci Mater Int. 2014;24:561-567. 6. Magister S, Kolaczko J, Sattar A, Wetzel RJ. Clinical parameters and radiographic resorption of a novel magnesium based bone void filler. Injury. 2022;53(3):947-952.</p>
   </div>
 </section>
-
 </main>
 
 <script>
@@ -396,9 +457,9 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
   function countUp(p){
     if(reduce)return;
     [].forEach.call(p.querySelectorAll('[data-count]'),function(el,k){
-      var end=+el.getAttribute('data-count'),t0=null,dur=1300,delay=300+k*120;el.textContent='0';
+      var end=+el.getAttribute('data-count'),t0=null,dur=1300,delay=300+k*120;el.textContent=(0).toFixed(+(el.getAttribute('data-dec')||0));
       function step(t){if(!t0)t0=t;var x=Math.min(1,(t-t0-delay)/dur);if(x<0){requestAnimationFrame(step);return}
-        el.textContent=Math.round(end*(1-Math.pow(1-x,3)));if(x<1)requestAnimationFrame(step);}
+        var dec=+(el.getAttribute('data-dec')||0);el.textContent=(end*(1-Math.pow(1-x,3))).toFixed(dec);if(x<1)requestAnimationFrame(step);}
       requestAnimationFrame(step);
     });
   }
@@ -414,6 +475,199 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
       requestAnimationFrame(tick);})();
   }
 })();
+</script>
+<script>
+/* Lotus Medical · Mg OsteoCrete Protein Matrix · two science animations (self-contained SVG). */
+(function(){
+var NS='http://www.w3.org/2000/svg',RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function el(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
+function cl(x){return x<0?0:x>1?1:x}
+function ease(x){x=cl(x);return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2}
+function seg(t,a,b){return ease((t-a)/(b-a))}
+function rnd(s){return function(){s=(s*9301+49297)%233280;return s/233280}}
+function runner(host,svg,dur,draw,steps,cap){
+  var t0=null,vis=false,raf=0,last=-1;
+  function frame(ts){if(!t0)t0=ts;var t=((ts-t0)/1000)%dur;draw(t);
+    var k=0;for(var i=0;i<steps.length;i++)if(t>=steps[i][0])k=i;
+    if(k!==last){last=k;cap.n.textContent=String(k+1).padStart(2,'0');cap.h.textContent=steps[k][1];cap.p.textContent=steps[k][2];
+      [].forEach.call(cap.d.children,function(d,j){d.classList.toggle('on',j<=k)});}
+    if(vis)raf=requestAnimationFrame(frame)}
+  if(RM){draw(steps[steps.length-1][0]+1.5);cap.n.textContent=String(steps.length).padStart(2,'0');cap.h.textContent=steps[steps.length-1][1];cap.p.textContent=steps[steps.length-1][2];return}
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting&&!vis){vis=true;t0=null;raf=requestAnimationFrame(frame)}else if(!e.isIntersecting){vis=false;cancelAnimationFrame(raf)}})},{threshold:.25}).observe(host)}
+  else{vis=true;raf=requestAnimationFrame(frame)}
+}
+function caption(host,n){
+  var c=document.createElement('div');c.className='ax-cap';
+  c.innerHTML='<div class="ax-n">01</div><div><div class="ax-h"></div><div class="ax-p"></div></div><div class="ax-d"></div>';
+  host.appendChild(c);var d=c.querySelector('.ax-d');for(var i=0;i<n;i++)d.appendChild(document.createElement('i'));
+  return {n:c.querySelector('.ax-n'),h:c.querySelector('.ax-h'),p:c.querySelector('.ax-p'),d:d}
+}
+var CSS='.ax{position:relative;width:100%}.ax svg{width:100%;height:auto;display:block;border:1px solid rgba(213,184,99,.35);background:#050505}'+
+'.ax-cap{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;margin-top:12px;min-height:64px}'+
+'.ax-n{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;font-size:40px;color:#D5B863;line-height:1}'+
+'.ax-h{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;font-size:clamp(18px,1.9vw,24px);letter-spacing:.08em;text-transform:uppercase;color:#fff}'+
+'.ax-p{font-size:15px;color:#cfcfcf;line-height:1.4;margin-top:2px}'+
+'.ax-d{display:flex;gap:6px}.ax-d i{width:9px;height:9px;border-radius:50%;border:1.5px solid #D5B863;display:block;transition:background .3s}.ax-d i.on{background:#D5B863}'+
+'@media(max-width:520px){.ax-d{display:none}.ax-cap{grid-template-columns:auto 1fr}}';
+var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);
+
+/* ---------- A: INSIDE THE GRAFT ---------- */
+window.OpmInside=function(host){
+  host.classList.add('ax');var W=800,H=500,R=rnd(7);
+  var svg=el('svg',{viewBox:'0 0 '+W+' '+H,role:'img','aria-label':'Animation: inside the graft. Allograft collagen fibers carrying growth factors interlock, magnesium powder and solution react, crystals form and lock the fibers, and the graft sets in place.'},host);
+  var d=el('defs',{},svg);
+  var g1=el('radialGradient',{id:'oiG'},d);el('stop',{offset:'0','stop-color':'#F1DC9C','stop-opacity':'1'},g1);el('stop',{offset:'1','stop-color':'#D5B863','stop-opacity':'0'},g1);
+  var g2=el('linearGradient',{id:'oiW',x1:'0',x2:'1'},d);el('stop',{offset:'0','stop-color':'#9fc3e6','stop-opacity':'0'},g2);el('stop',{offset:'.5','stop-color':'#bcdcff','stop-opacity':'.55'},g2);el('stop',{offset:'1','stop-color':'#9fc3e6','stop-opacity':'0'},g2);
+  var cp=el('clipPath',{id:'oiC'},d);el('rect',{x:20,y:20,width:760,height:420,rx:22},cp);
+  var stage=el('g',{'clip-path':'url(#oiC)'},svg);
+  el('rect',{x:20,y:20,width:760,height:420,rx:22,fill:'#0c0b09'},stage);
+  // faint grid of scale
+  for(var gx=60;gx<780;gx+=40)el('line',{x1:gx,y1:20,x2:gx,y2:440,stroke:'rgba(213,184,99,.05)'},stage);
+  // fibers
+  var fdefs=[[30,120,160,40,300,210,450,120,600,40,700,190,790,130],[20,250,150,330,280,150,420,260,560,360,680,210,790,280],[30,380,170,300,300,410,440,330,580,250,690,390,790,360],
+    [60,40,120,180,190,300,300,360,420,420,560,300,700,430],[90,440,170,320,250,180,360,90,480,30,620,140,760,60],[20,190,130,230,250,90,380,170,520,220,640,100,790,200],[40,320,180,380,320,250,470,310,600,170,700,300,790,240]];
+  var fibers=[],bands=[];
+  fdefs.forEach(function(p){
+    var dd='M'+p[0]+' '+p[1]+' C'+p[2]+' '+p[3]+' '+p[4]+' '+p[5]+' '+p[6]+' '+p[7]+' S'+p[10]+' '+p[11]+' '+p[12]+' '+p[13];
+    var a=el('path',{d:dd,fill:'none',stroke:'#cdb57a','stroke-width':11,'stroke-linecap':'round',opacity:.35},stage);
+    var b=el('path',{d:dd,fill:'none',stroke:'#f3e6c0','stroke-width':5,'stroke-linecap':'round'},stage);
+    var c=el('path',{d:dd,fill:'none',stroke:'#7a6438','stroke-width':5,'stroke-dasharray':'1 7',opacity:0},stage);
+    fibers.push([a,b]);bands.push(c)});
+  var L=fibers.map(function(f){var l=f[1].getTotalLength();f[0].setAttribute('stroke-dasharray',l);f[1].setAttribute('stroke-dasharray',l);return l});
+  // growth factor dots along fibers
+  var gfs=[];fibers.forEach(function(f,i){for(var k=0;k<4;k++){var pt=f[1].getPointAtLength(L[i]*(.12+k*.23+R()*.06));
+    var g=el('g',{opacity:0},stage);el('circle',{cx:pt.x,cy:pt.y,r:13,fill:'url(#oiG)',opacity:.6},g);el('circle',{cx:pt.x,cy:pt.y,r:4.2,fill:'#F1DC9C'},g);gfs.push(g)}});
+  // magnesium particles
+  var parts=[];for(var i=0;i<64;i++){var tx=50+R()*700,ty=50+R()*370,s=3+R()*4;
+    var p=el('rect',{x:-s/2,y:-s/2,width:s,height:s,fill:'#ffffff',opacity:0,transform:'translate('+tx+' -20)'},stage);parts.push({e:p,x:tx,y:ty,d:R()*1.2})}
+  // solution wave
+  var wave=el('rect',{x:-300,y:20,width:300,height:420,fill:'url(#oiW)',opacity:0},stage);
+  // crystals: hexagonal prisms
+  var crys=[];parts.forEach(function(q,i){if(i%2)return;var g=el('g',{transform:'translate('+q.x+' '+q.y+') scale(0)'},stage);
+    var r=9+R()*9,rot=R()*60,pts=[];for(var k=0;k<6;k++){var a=(rot+k*60)*Math.PI/180;pts.push((r*Math.cos(a)).toFixed(1)+','+(r*.62*Math.sin(a)).toFixed(1))}
+    el('polygon',{points:pts.join(' '),fill:'rgba(245,243,255,.92)',stroke:'#b9b0e0','stroke-width':1.4},g);
+    el('line',{x1:-r*.5,y1:0,x2:r*.5,y2:0,stroke:'#d8d2f2','stroke-width':1},g);
+    crys.push({g:g,x:q.x,y:q.y,d:R()*1.6})});
+  // set overlay
+  var setr=el('rect',{x:26,y:26,width:748,height:408,rx:18,fill:'#f4f1e8',opacity:0},stage);
+  var frame=el('rect',{x:26,y:26,width:748,height:408,rx:18,fill:'none',stroke:'#D5B863','stroke-width':3,'stroke-dasharray':2300,'stroke-dashoffset':2300},svg);
+  // labels
+  var F='font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;letter-spacing:.12em';
+  function tag(x,y,txt,w){var g=el('g',{opacity:0},svg);el('rect',{x:x,y:y,width:w,height:30,rx:15,fill:'#000',stroke:'#D5B863','stroke-width':1.5},g);
+    var t=el('text',{x:x+w/2,y:y+20,'text-anchor':'middle',fill:'#F1DC9C',style:F+';font-size:14px'},g);t.textContent=txt;return g}
+  var t1=tag(40,40,'TYPE I COLLAGEN FIBERS',230),t2=tag(530,40,'NATIVE GROWTH FACTORS',230),t3=tag(40,40,'Mg POWDER',140),
+      t4=tag(210,40,'MgO + KH₂PO₄ + H₂O  →  MgKPO₄·6H₂O',380),t5=tag(530,390,'CRYSTALS LOCK THE FIBERS',230);
+  var tsetg=el('g',{opacity:0},svg);el('rect',{x:250,y:200,width:300,height:60,rx:30,fill:'#D5B863'},tsetg);
+  var ts=el('text',{x:400,y:239,'text-anchor':'middle',fill:'#000',style:F+';font-size:26px'},tsetg);ts.textContent='SETS IN PLACE · 15 MPa';
+  // bottom strip
+  var bt=el('text',{x:400,y:476,'text-anchor':'middle',fill:'#8a8a8a',style:'font-family:Barlow,Arial,sans-serif;font-size:13px'},svg);
+  bt.textContent='Illustration, not to scale. Collagen fibers and their proteins come from the allograft; the crystal phase is the magnesium chemistry.';
+  var steps=[[0,'Allograft bone fibers','Demineralized cortical fibers: type I collagen, the protein frame of living bone.'],
+    [3.4,'The proteins inside','Demineralizing the fibers exposes the growth factors bone stores in its matrix.'],
+    [6,'Magnesium joins the matrix','A pre-measured magnesium and phosphate powder is folded in.'],
+    [8.8,'An acid-base reaction','With the solution, magnesium oxide and phosphate begin to crystallize.'],
+    [11,'Crystals interlock','Magnesium potassium phosphate crystals grow between and around the fibers.'],
+    [14,'One graft, set in place','Moldable in about a minute, then set: a scaffold with biology built in.']];
+  function draw(t){
+    var fo=t>18.4?1-seg(t,18.4,19.4):1;svg.style.opacity=fo;
+    fibers.forEach(function(f,i){var x=seg(t,.2+i*.22,2.6+i*.22);f[0].setAttribute('stroke-dashoffset',L[i]*(1-x));f[1].setAttribute('stroke-dashoffset',L[i]*(1-x));
+      bands[i].setAttribute('opacity',.3*seg(t,2.4,3.4))});
+    var gl=seg(t,3.4,4.6);gfs.forEach(function(g,i){g.setAttribute('opacity',gl*(.75+.25*Math.sin(t*3+i)))});
+    t1.setAttribute('opacity',seg(t,.8,1.6)*(1-seg(t,5.6,6)));t2.setAttribute('opacity',seg(t,3.6,4.3)*(1-seg(t,5.6,6)));
+    t3.setAttribute('opacity',seg(t,6,6.6)*(1-seg(t,8.6,9)));
+    parts.forEach(function(q){var x=seg(t,6+q.d,7.8+q.d);q.e.setAttribute('transform','translate('+q.x+' '+(-20+(q.y+20)*x)+') rotate('+(x*180)+')');q.e.setAttribute('opacity',Math.min(x*3,1)*(1-.7*seg(t,11,12.5)))});
+    var w=seg(t,8.8,10.8);wave.setAttribute('x',-300+w*1400);wave.setAttribute('opacity',w>0&&w<1?1:0);
+    t4.setAttribute('opacity',seg(t,9,9.6)*(1-seg(t,13.6,14)));
+    crys.forEach(function(c){var x=cl((t-11-c.d)/1.4);var s=x<1?(1-Math.pow(1-x,3))*1.08:1;s=x>=1?1:s;c.g.setAttribute('transform','translate('+c.x+' '+c.y+') scale('+s.toFixed(3)+')')});
+    t5.setAttribute('opacity',seg(t,12,12.6)*(1-seg(t,14,14.4)));
+    var sx=seg(t,14,15.6);frame.setAttribute('stroke-dashoffset',2300*(1-sx));setr.setAttribute('opacity',.16*seg(t,14.6,16));
+    tsetg.setAttribute('opacity',seg(t,15.4,16));
+  }
+  runner(host,svg,19.4,draw,steps,caption(host,steps.length));
+};
+
+/* ---------- B: GRAFT TO BONE ---------- */
+window.OpmRemodel=function(host){
+  host.classList.add('ax');var W=800,H=500,R=rnd(11),cx=400,cy=225,RX=250,RY=150;
+  var svg=el('svg',{viewBox:'0 0 '+W+' '+H,role:'img','aria-label':'Animation: the graft in the void over time. Magnesium ions release, blood vessels and cells move in, osteoclasts resorb the graft while osteoblasts lay new bone, and the void remodels into the patient’s own bone.'},host);
+  var d=el('defs',{},svg);
+  function trab(id,bone,mar,edge){var p=el('pattern',{id:id,width:96,height:96,patternUnits:'userSpaceOnUse'},d);el('rect',{width:96,height:96,fill:bone},p);
+    ['M10 14 Q24 4 36 14 Q42 28 30 34 Q14 36 8 26 Z','M54 8 Q74 2 84 14 Q88 26 74 30 Q58 30 52 20 Z','M36 44 Q54 36 66 48 Q70 64 54 68 Q38 70 32 58 Z',
+     'M4 58 Q14 50 22 60 Q26 74 14 78 Q2 76 2 66 Z','M74 50 Q90 46 94 60 Q94 74 80 76 Q68 72 70 60 Z','M24 84 Q40 78 50 88 Q48 98 34 98 Q22 96 24 84 Z','M64 84 Q78 82 84 92 Q78 100 66 98 Z'].forEach(function(dd){
+      el('path',{d:dd,fill:mar,stroke:edge,'stroke-width':2.4,'stroke-linejoin':'round'},p)});return p}
+  trab('obHost','#e4d3aa','#8b4a36','#cdb27c');trab('obNew','#fbebbd','#a8643f','#f1d38a');
+  var gp=el('pattern',{id:'obGraft',width:22,height:22,patternUnits:'userSpaceOnUse'},d);el('rect',{width:22,height:22,fill:'#f4f2ec'},gp);
+  [[4,5],[15,9],[9,17],[19,19],[2,14]].forEach(function(q){el('polygon',{points:(q[0]-3)+','+q[1]+' '+q[0]+','+(q[1]-2)+' '+(q[0]+3)+','+q[1]+' '+q[0]+','+(q[1]+2),fill:'#d9d4ec'},gp)});
+  var gl=el('radialGradient',{id:'obGl'},d);el('stop',{offset:'0','stop-color':'#F1DC9C'},gl);el('stop',{offset:'1','stop-color':'#D5B863','stop-opacity':'0'},gl);
+  var cp=el('clipPath',{id:'obC'},d);el('rect',{x:20,y:20,width:760,height:410,rx:22},cp);
+  var stage=el('g',{'clip-path':'url(#obC)'},svg);
+  el('rect',{x:20,y:20,width:760,height:410,fill:'url(#obHost)'},stage);
+  // cortex bands
+  el('rect',{x:20,y:20,width:760,height:26,fill:'#efe3c4'},stage);el('rect',{x:20,y:404,width:760,height:26,fill:'#efe3c4'},stage);
+  function blob(s,ph,amp){var pts=[];for(var i=0;i<=72;i++){var a=i/72*Math.PI*2,r=s*(1+amp*(.05*Math.sin(5*a+ph)+.03*Math.sin(9*a-ph*1.3)));pts.push((cx+RX*r*Math.cos(a)).toFixed(1)+','+(cy+RY*r*Math.sin(a)).toFixed(1))}return 'M'+pts.join('L')+'Z'}
+  var voidD=blob(1,0,1);
+  var mk=el('mask',{id:'obM'},d);el('path',{d:voidD,fill:'#fff'},mk);var inner=el('path',{d:blob(1,0,1),fill:'#000'},mk);
+  el('path',{d:voidD,fill:'#2a1410'},stage); // marrow / healing zone
+  el('path',{d:voidD,fill:'url(#obNew)',mask:'url(#obM)'},stage);
+  var vg=el('g',{},stage);
+  var graft=el('path',{d:voidD,fill:'url(#obGraft)'},stage);
+  el('path',{d:voidD,fill:'none',stroke:'rgba(213,184,99,.45)','stroke-width':2,'stroke-dasharray':'6 6'},stage);
+  // vessels
+  var ves=[];for(var i=0;i<9;i++){var a=i/9*Math.PI*2+.3,x0=cx+RX*1.04*Math.cos(a),y0=cy+RY*1.04*Math.sin(a),x1=cx+RX*.12*Math.cos(a+.4),y1=cy+RY*.12*Math.sin(a+.4);
+    var mx=(x0+x1)/2+(R()-.5)*90,my=(y0+y1)/2+(R()-.5)*60;
+    var p=el('path',{d:'M'+x0+' '+y0+' Q'+mx+' '+my+' '+x1+' '+y1,fill:'none',stroke:'#c0392b','stroke-width':3.2,'stroke-linecap':'round',opacity:.85},vg);
+    var l=p.getTotalLength();p.setAttribute('stroke-dasharray',l);p.setAttribute('stroke-dashoffset',l);ves.push([p,l])}
+  // ions
+  var ions=[];for(var i=0;i<46;i++)ions.push({a:R()*Math.PI*2,sp:.6+R()*.8,ph:R(),e:el('circle',{r:3.4,fill:'#F1DC9C',opacity:0},stage)});
+  // cells
+  function clast(){var g=el('g',{opacity:0},stage);el('ellipse',{rx:17,ry:10,fill:'#8e5bb5',stroke:'#c9a6ea','stroke-width':1.4},g);
+    [-8,0,8].forEach(function(x){el('circle',{cx:x,cy:-1,r:2.6,fill:'#3d1f5a'},g)});return g}
+  function blast(){var g=el('g',{opacity:0},stage);el('rect',{x:-6,y:-5,width:12,height:10,rx:2.5,fill:'#D5B863',stroke:'#fff3c9','stroke-width':1},g);el('circle',{r:2.2,fill:'#6b5220'},g);return g}
+  var clasts=[],blasts=[];for(var i=0;i<9;i++)clasts.push({a:i/9*Math.PI*2+.2,e:clast()});for(var i=0;i<18;i++)blasts.push({a:i/18*Math.PI*2,e:blast()});
+  // labels
+  var F='font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;letter-spacing:.12em';
+  function tag(x,y,txt,w,col){var g=el('g',{opacity:0},svg);el('rect',{x:x,y:y,width:w,height:30,rx:15,fill:'#000',stroke:col||'#D5B863','stroke-width':1.5},g);
+    var t=el('text',{x:x+w/2,y:y+20,'text-anchor':'middle',fill:col||'#F1DC9C',style:F+';font-size:14px'},g);t.textContent=txt;return g}
+  var lG=tag(240,60,'Mg OSTEOCRETE PROTEIN MATRIX',320,'#ffffff'),lI=tag(40,60,'Mg²⁺ RELEASE',150),lV=tag(610,60,'NEW VESSELS',150,'#e57466'),
+      lC=tag(40,360,'OSTEOCLASTS RESORB',214,'#c9a6ea'),lB=tag(546,360,'OSTEOBLASTS BUILD',214);
+  var fin=el('g',{opacity:0},svg);el('rect',{x:270,y:195,width:260,height:62,rx:31,fill:'#D5B863'},fin);
+  var ft=el('text',{x:400,y:235,'text-anchor':'middle',fill:'#000',style:F+';font-size:24px'},fin);ft.textContent="THE PATIENT'S OWN BONE";
+  // timeline
+  var TL=[[0,'DAY 0'],[.25,'6 WEEKS'],[.5,'12 WEEKS'],[.75,'26 WEEKS'],[1,'1 YEAR']],tx0=80,tx1=720,ty=462;
+  el('line',{x1:tx0,y1:ty,x2:tx1,y2:ty,stroke:'rgba(213,184,99,.3)','stroke-width':4,'stroke-linecap':'round'},svg);
+  var tf=el('line',{x1:tx0,y1:ty,x2:tx0,y2:ty,stroke:'#D5B863','stroke-width':4,'stroke-linecap':'round'},svg);
+  var tdots=TL.map(function(m){var x=tx0+(tx1-tx0)*m[0];var c=el('circle',{cx:x,cy:ty,r:6,fill:'#000',stroke:'#D5B863','stroke-width':2},svg);
+    var t=el('text',{x:x,y:ty+26,'text-anchor':'middle',fill:'#bdbdbd',style:F+';font-size:13px'},svg);t.textContent=m[1];return c});
+  var steps=[[0,'Day 0: the graft sets','Molded into the void, set in place, and surrounded by the host bone.'],
+    [2.6,'Magnesium releases','As the crystals dissolve, Mg²⁺ ions move into the healing zone.'],
+    [5.4,'Vessels and cells move in','Blood vessels follow, carrying the cells that remodel bone.'],
+    [8.2,'Creeping substitution','Osteoclasts resorb the graft as osteoblasts lay new bone behind them.'],
+    [12,'Remodeled into bone','The void fills from the edges in with the patient’s own bone.']];
+  function draw(t){
+    var fo=t>16.6?1-seg(t,16.6,17.6):1;svg.style.opacity=fo;
+    var P=cl((t-1.2)/12.6);// overall time 0..1
+    var s=1-ease(cl((t-6)/7.4)),g=Math.max(0,s-.07*seg(t,5.4,7))*(1-.06*seg(t,2.6,5.4));
+    if(t<5.4)g=1-.04*seg(t,2.6,5.4);
+    inner.setAttribute('d',blob(Math.max(s,0.001),0,1));graft.setAttribute('d',blob(Math.max(g,0.001),0,1));
+    graft.setAttribute('opacity',(g<.01?0:1)*(1-.35*seg(t,5,12)));
+    ves.forEach(function(v,i){v[0].setAttribute('stroke-dashoffset',v[1]*(1-seg(t,5.4+i*.1,13.2)));v[0].setAttribute('opacity',.85*(1-.8*seg(t,12.6,14)))});
+    ions.forEach(function(q){var on=seg(t,2.8,3.6)*(1-seg(t,12,13));var k=((t*q.sp*.35+q.ph)%1),rr=g*.95+k*.32;
+      q.e.setAttribute('cx',cx+RX*rr*Math.cos(q.a+t*.05));q.e.setAttribute('cy',cy+RY*rr*Math.sin(q.a+t*.05));q.e.setAttribute('opacity',on*(1-k)*.95)});
+    clasts.forEach(function(c,i){var on=seg(t,6.2,7)*(1-seg(t,12.4,13.2));var a=c.a+t*.07;
+      c.e.setAttribute('transform','translate('+(cx+RX*g*1.0*Math.cos(a))+' '+(cy+RY*g*1.0*Math.sin(a))+') rotate('+(a*57.3+90)+')');c.e.setAttribute('opacity',on)});
+    blasts.forEach(function(b,i){var on=seg(t,8.2,9)*(1-seg(t,13,13.8));var a=b.a-t*.04;
+      b.e.setAttribute('transform','translate('+(cx+RX*(s+.025)*Math.cos(a))+' '+(cy+RY*(s+.025)*Math.sin(a))+') rotate('+(a*57.3+90)+')');b.e.setAttribute('opacity',on*(.8+.2*Math.sin(t*4+i)))});
+    lG.setAttribute('opacity',seg(t,.4,1)*(1-seg(t,2.4,2.8)));lI.setAttribute('opacity',seg(t,3,3.6)*(1-seg(t,12,12.4)));
+    lV.setAttribute('opacity',seg(t,5.8,6.4)*(1-seg(t,12,12.4)));lC.setAttribute('opacity',seg(t,6.8,7.4)*(1-seg(t,12,12.4)));lB.setAttribute('opacity',seg(t,8.6,9.2)*(1-seg(t,12,12.4)));
+    fin.setAttribute('opacity',seg(t,13.4,14.2));
+    tf.setAttribute('x2',tx0+(tx1-tx0)*P);tdots.forEach(function(c,i){c.setAttribute('fill',P>=TL[i][0]-.001?'#D5B863':'#000')});
+  }
+  runner(host,svg,17.6,draw,steps,caption(host,steps.length));
+};
+})();
+
+OpmInside(document.getElementById("animInside"));OpmRemodel(document.getElementById("animRemodel"));
 </script>
 <script src="../share.js?v=2" defer></script>
 </body>
