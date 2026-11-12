@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mg OsteoCrete Protein Matrix</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Lotus">
+<meta name="theme-color" content="#000000">
+<link rel="manifest" href="../manifest.json">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Lotus black and gold. Full-screen panels that snap, one idea per panel. */
+  --black:#000;--ink:#0b0b0b;--panel:#121212;--gold:#D5B863;--gold-hi:#F1DC9C;--white:#fff;--gray:#9a9a9a;
+  --line:rgba(213,184,99,.28);
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;--body:"Barlow","Helvetica Neue",Arial,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--black);color:var(--white);font-family:var(--body);-webkit-font-smoothing:antialiased}
+body{overflow:hidden}
+#deck{height:100%;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+.panel{position:relative;min-height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:flex;align-items:center;justify-content:center;padding:150px clamp(18px,5vw,72px) 72px;overflow:hidden}
+.wrap{width:100%;max-width:1180px;position:relative;z-index:2}
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:.01em;line-height:.95;text-wrap:balance;text-transform:uppercase}
+h1{font-size:clamp(40px,5.4vw,80px)}
+h2{font-size:clamp(36px,5.6vw,76px)}
+h3{font-size:clamp(20px,2.2vw,28px);font-weight:700;letter-spacing:.03em}
+.gold{color:var(--gold)}
+.eyebrow{font-family:var(--display);font-weight:600;font-size:clamp(13px,1.3vw,16px);letter-spacing:.32em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.eyebrow::before{content:"";width:42px;height:2px;background:var(--gold)}
+.lede{font-size:clamp(17px,1.7vw,22px);line-height:1.5;color:#e6e6e6;max-width:60ch;margin-top:22px}
+.note{margin-top:18px;font-size:15px;color:#cfcfcf;line-height:1.5;max-width:62ch}
+.mg{display:inline-flex;align-items:center;gap:.28em;white-space:nowrap}
+.mg b{display:inline-block;background:var(--white);color:var(--black);font-weight:800;padding:.02em .16em;line-height:1;font-size:.82em}
+.bone{position:absolute;inset:-6%;background:url(img/bone.webp) center/cover no-repeat;opacity:.16;filter:sepia(1) saturate(2.2) hue-rotate(5deg) brightness(.9);animation:drift 28s ease-in-out infinite alternate;z-index:0}
+@keyframes drift{from{transform:scale(1.04)}to{transform:scale(1.14) translate(-2.5%,-2%)}}
+.vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,transparent 20%,rgba(0,0,0,.85) 78%);z-index:1}
+canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-hi));z-index:50;box-shadow:0 0 12px var(--gold);transition:width .4s ease}
+#brand{position:fixed;top:16px;left:clamp(18px,3vw,36px);z-index:40}
+#brand img{width:clamp(120px,11vw,150px);height:auto;display:block}
+#dots{position:fixed;right:clamp(10px,2vw,26px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:40}
+#dots button{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--gold);background:transparent;cursor:pointer;transition:all .3s;padding:0}
+#dots button.on{background:var(--gold);transform:scale(1.35);box-shadow:0 0 10px var(--gold)}
+#next{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:40;background:none;border:0;color:var(--gold);cursor:pointer;animation:bob 1.8s ease-in-out infinite}
+#next svg{width:26px;height:26px}
+@keyframes bob{50%{transform:translate(-50%,7px)}}
+#home{position:fixed;top:10px;right:clamp(14px,2.4vw,30px);z-index:60;font-family:var(--display);font-weight:800;letter-spacing:.14em;font-size:14px;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(213,184,99,.5);padding:6px 12px;background:rgba(0,0,0,.6)}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+
+/* entrance animations: visible at rest; .in replays the entrance */
+.in .rise{animation:rise .9s cubic-bezier(.2,.9,.25,1.15) both}
+.in .pop{animation:pop .75s cubic-bezier(.3,1.6,.4,1) both}
+.in .slideL{animation:slideL 1s cubic-bezier(.2,.9,.2,1) both}
+.in .slideR{animation:slideR 1s cubic-bezier(.2,.9,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(46px)}}
+@keyframes pop{0%{opacity:0;transform:scale(.4)}}
+@keyframes slideL{from{opacity:0;transform:translateX(-90px)}}
+@keyframes slideR{from{opacity:0;transform:translateX(110px) rotate(4deg)}}
+.d1{animation-delay:.12s!important}.d2{animation-delay:.24s!important}.d3{animation-delay:.36s!important}.d4{animation-delay:.48s!important}.d5{animation-delay:.6s!important}.d6{animation-delay:.72s!important}.d7{animation-delay:.84s!important}.d8{animation-delay:.96s!important}
+
+/* 1 hero */
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(20px,4vw,60px);align-items:center}
+.wordmark{font-family:var(--display);font-size:clamp(28px,3.6vw,48px);font-weight:500;letter-spacing:.04em;margin-bottom:6px;line-height:1}
+.wordmark b.mgbox{background:var(--white);color:var(--black);padding:0 .14em;margin-right:.22em;font-weight:800}
+.wordmark strong{font-weight:800}
+.sub{font-family:var(--display);font-weight:600;letter-spacing:.42em;font-size:clamp(13px,1.4vw,18px);color:#d8d8d8;margin:0 0 26px 2px}
+.herofig{position:relative;max-width:520px;margin:auto}
+.herofig img{width:100%;border-radius:50%;box-shadow:0 0 0 2px rgba(213,184,99,.5),0 30px 60px rgba(0,0,0,.8);animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-14px) rotate(-1deg)}}
+.glow{position:absolute;inset:-6%;background:radial-gradient(circle,rgba(213,184,99,.38),transparent 65%);filter:blur(30px);z-index:-1}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.chip{border:1px solid var(--line);color:var(--gold-hi);padding:8px 14px;font-family:var(--display);font-weight:600;letter-spacing:.14em;font-size:14px;text-transform:uppercase;background:rgba(213,184,99,.06)}
+
+/* 2 numbers */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,24px);margin-top:44px}
+.stat{border-top:3px solid var(--gold);background:linear-gradient(180deg,rgba(213,184,99,.10),rgba(213,184,99,0) 70%);padding:26px 20px 22px;position:relative;overflow:hidden}
+.stat .n{font-family:var(--display);font-weight:800;font-size:clamp(60px,8.5vw,120px);line-height:.9;color:var(--gold);font-variant-numeric:tabular-nums}
+.stat .u{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.4vw,32px);margin-left:4px}
+.stat .l{margin-top:12px;font-size:16px;color:#d8d8d8;line-height:1.35}
+.stat::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,240,200,.18),transparent);transform:skewX(-18deg)}
+.in .stat::after{animation:shine 1.6s 1s ease-out}
+@keyframes shine{to{left:130%}}
+
+/* 3 the compromise */
+.cmp{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+.cmpc{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);padding:22px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.cmpc h3{color:#cfcfcf}
+.cmpc .bad{font-family:var(--display);font-weight:700;letter-spacing:.18em;font-size:13px;text-transform:uppercase;color:#d9765f}
+.cmpc p{font-size:16px;line-height:1.45;color:#cfcfcf}
+.meter{height:8px;background:rgba(255,255,255,.08);position:relative;overflow:hidden}
+.meter i{position:absolute;left:0;top:0;bottom:0;background:#8a8a8a;transform-origin:left}
+.in .meter i{animation:grow 1.6s .6s cubic-bezier(.6,0,.2,1) both}
+@keyframes grow{from{transform:scaleX(0)}}
+.meter-l{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);font-family:var(--display);font-weight:600}
+.answer{margin-top:16px;border:2px solid var(--gold);background:rgba(213,184,99,.08);padding:22px 24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.answer .w{font-family:var(--display);font-weight:800;font-size:clamp(28px,3.4vw,44px);color:var(--gold);line-height:.95;text-transform:uppercase}
+.answer p{font-size:17px;line-height:1.5;color:#eee}
+
+/* 4 inside the graft */
+.inside{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,60px);align-items:center;margin-top:20px}
+.graft{width:100%;height:auto;overflow:visible}
+.fib{stroke:#F6E7B6;stroke-width:3;fill:none;stroke-linecap:round;stroke-dasharray:420;stroke-dashoffset:0}
+.in .fib{animation:draw 2.4s cubic-bezier(.6,0,.2,1) both}
+@keyframes draw{from{stroke-dashoffset:420}}
+.ion{fill:#D5B863}
+.in .ion{animation:ion 1.2s cubic-bezier(.3,1.6,.4,1) both}
+@keyframes ion{from{opacity:0;transform:scale(0)}}
+.ion{transform-box:fill-box;transform-origin:center}
+.setbox{fill:rgba(213,184,99,.0);stroke:#D5B863;stroke-width:3;stroke-dasharray:1100;stroke-dashoffset:0}
+.in .setbox{animation:boxdraw 1.6s 2.2s ease-out both,boxfill 1.4s 3.4s ease-out both}
+@keyframes boxdraw{from{stroke-dashoffset:1100}}
+@keyframes boxfill{to{fill:rgba(213,184,99,.16)}}
+.settag{opacity:1}
+.in .settag{animation:tag .8s 3.6s ease-out both}
+@keyframes tag{from{opacity:0;transform:translateY(10px)}}
+.parts3{display:grid;gap:14px}
+.part{display:flex;gap:16px;align-items:flex-start;padding:16px 18px;border-left:3px solid var(--gold);background:rgba(255,255,255,.035)}
+.part .k{font-family:var(--display);font-weight:800;color:var(--gold);font-size:24px;min-width:34px}
+.part p{font-size:16.5px;line-height:1.45;color:#e2e2e2}
+.part p strong{color:#fff}
+
+/* 5 mold set drill */
+.msd{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+.msdc{background:#fff;color:#111;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.msdc .img{aspect-ratio:1.32;overflow:hidden;background:#fff}
+.msdc img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.msdc:hover img{transform:scale(1.06)}
+.msdc .t{flex:1;background:#000;color:#fff;padding:16px 18px;border-top:3px solid var(--gold)}
+.msdc .t b{display:block;font-family:var(--display);font-weight:800;font-size:26px;letter-spacing:.06em;color:var(--gold)}
+.msdc .t span{font-size:15px;color:#d6d6d6;line-height:1.4}
+.msdc .num{position:absolute;top:10px;left:10px;width:34px;height:34px;background:var(--gold);color:#000;font-family:var(--display);font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center}
+
+/* 6 properties */
+.props{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px}
+.prop{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);padding:20px 18px;display:flex;flex-direction:column;gap:10px;transition:border-color .3s,background .3s;cursor:default}
+.prop:hover{border-color:var(--gold);background:rgba(213,184,99,.08)}
+.prop .ic{width:42px;height:42px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;color:var(--gold);font-size:18px}
+.prop h3{font-size:clamp(19px,1.8vw,24px)}
+.prop p{font-size:14.5px;color:#cfcfcf;line-height:1.45}
+
+/* 7 reliable */
+.rel{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(24px,4vw,56px);align-items:center;margin-top:20px}
+.rel img{width:100%;display:block;border:1px solid var(--line)}
+.rlist{list-style:none;display:grid;gap:12px}
+.rlist li{padding:16px 18px 16px 58px;position:relative;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);font-size:17px;line-height:1.45;color:#e2e2e2}
+.rlist li::before{content:"";position:absolute;left:20px;top:20px;width:18px;height:18px;border:2px solid var(--gold);border-radius:50%;background:radial-gradient(circle,var(--gold) 0 4px,transparent 5px)}
+.fa{margin-top:20px;font-size:16px;color:#d6d6d6;line-height:1.5}
+.fa b{color:var(--gold)}
+
+/* 8 kit */
+.kit{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,4vw,60px);align-items:center;margin-top:30px}
+.kitimg{width:100%;display:block;background:#fff;padding:10px}
+.sku{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--gold);margin-bottom:22px}
+.sku div{padding:18px 20px;background:rgba(213,184,99,.07)}
+.sku div+div{border-left:1px solid var(--line)}
+.sku .code{font-family:var(--display);font-weight:800;font-size:clamp(18px,1.9vw,26px);white-space:nowrap;color:var(--gold);line-height:1}
+.sku .sz{font-family:var(--display);font-weight:800;font-size:clamp(40px,4.6vw,60px);line-height:1;margin-top:6px}
+.contents{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.contents li{padding:12px 14px;border:1px solid rgba(255,255,255,.1);font-family:var(--display);font-weight:600;letter-spacing:.06em;font-size:18px;text-transform:uppercase}
+
+/* 9 close */
+.close{text-align:center;display:flex;flex-direction:column;align-items:center}
+.lotus{width:clamp(200px,24vw,300px);height:auto;margin-bottom:26px}
+.close h2{font-size:clamp(42px,6.4vw,92px)}
+.tag{font-family:var(--display);font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-size:clamp(14px,1.6vw,20px);margin-top:26px}
+.contact{margin-top:38px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 26px;font-family:var(--display);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:16px;text-decoration:none;border:2px solid var(--gold);color:var(--gold)}
+.btn.solid{background:var(--gold);color:var(--black)}
+.fine{margin-top:40px;font-size:12.5px;color:#8a8a8a;line-height:1.6;max-width:78ch}
+
+@media (max-width:900px){
+  .hero,.inside,.rel,.kit{grid-template-columns:1fr}
+  .stats,.props{grid-template-columns:repeat(2,1fr)}
+  .cmp,.msd{grid-template-columns:1fr}
+  .answer{grid-template-columns:1fr}
+  .herofig{max-width:360px}
+  #dots{display:none}
+}
+@media (max-width:700px){#brand img{width:110px}.panel{padding-top:120px}}
+@media (max-width:520px){.props,.contents{grid-template-columns:1fr}.sku{grid-template-columns:1fr}.sku div+div{border-left:0;border-top:1px solid var(--line)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}#deck{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="brand"><img src="../lotus-logo.webp?v=13" alt="Lotus Medical. Healing Sooner. Wellness Longer."></div>
+<nav id="dots" aria-label="Brochure sections"></nav>
+<button id="next" aria-label="Next section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+<a id="home" href="../index.html">‹ Brochures</a>
+<main id="deck">
+
+<!-- 1 HERO -->
+<section class="panel" data-name="Mg OsteoCrete Protein Matrix">
+  <div class="bone"></div><canvas id="dust"></canvas><div class="vignette"></div>
+  <div class="wrap hero">
+    <div>
+      <div class="wordmark rise"><b class="mgbox">Mg</b>OSTEO<strong>CRETE</strong></div>
+      <div class="sub rise d1">PROTEIN MATRIX</div>
+      <div class="eyebrow rise d1">Built to become bone</div>
+      <h1 class="rise d2">Biology and structure.<br><span class="gold">One graft.</span></h1>
+      <p class="lede rise d3">Magnesium-driven bone biology and osteoinductive allograft proteins, in a durable scaffold that sets in place and remodels into the patient's own bone.</p>
+      <div class="chips">
+        <span class="chip pop d4">Ready in 1 minute</span>
+        <span class="chip pop d5">Moldable · Drillable</span>
+        <span class="chip pop d6">Adult and pediatric</span>
+      </div>
+    </div>
+    <div class="herofig slideR d2"><div class="glow"></div><img src="img/fibers.webp" alt="Mixed Mg OsteoCrete Protein Matrix stretched between gloved hands, the allograft fibers holding it together"></div>
+  </div>
+</section>
+
+<!-- 2 NUMBERS -->
+<section class="panel" data-name="By the numbers">
+  <div class="wrap">
+    <div class="eyebrow rise">By the numbers</div>
+    <h2 class="rise d1">Four numbers.<br><span class="gold">One graft.</span></h2>
+    <div class="stats">
+      <div class="stat pop d2"><div><span class="n" data-count="1">1</span><span class="u">min</span></div><div class="l">From kit to a moldable graft, ready for the void</div></div>
+      <div class="stat pop d3"><div><span class="n" data-count="15">15</span><span class="u">MPa</span></div><div class="l">Compressive strength once it sets in place</div></div>
+      <div class="stat pop d4"><div><span class="n" data-count="2">2</span><span class="u">sizes</span></div><div class="l">5 cc and 10 cc, so only what the void needs is opened</div></div>
+      <div class="stat pop d5"><div><span class="n" data-count="6">6</span><span class="u">+ yrs</span></div><div class="l">Adult and pediatric patients older than 6 for benign cysts and tumors</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 THE COMPROMISE -->
+<section class="panel" data-name="The compromise">
+  <div class="wrap">
+    <div class="eyebrow rise">Can be used to replace</div>
+    <h2 class="rise d1">Every void filler<br><span class="gold">makes a trade.</span></h2>
+    <div class="cmp">
+      <div class="cmpc slideL d2"><span class="bad">Too fast</span><h3>Calcium sulfate</h3><p>Fast-resorbing. It can be gone before new bone has filled the void.</p><span class="meter-l">Time in the void</span><div class="meter"><i style="width:22%"></i></div></div>
+      <div class="cmpc slideL d3"><span class="bad">Too slow</span><h3>Calcium phosphate</h3><p>Slow-resorbing. It can stay in the bone for years.</p><span class="meter-l">Time in the void</span><div class="meter"><i style="width:96%"></i></div></div>
+      <div class="cmpc slideL d4"><span class="bad">No structure</span><h3>DBM putty</h3><p>Carries biology, but lacks structural integrity once it is placed.</p><span class="meter-l">Holds its shape</span><div class="meter"><i style="width:12%"></i></div></div>
+    </div>
+    <div class="answer pop d5"><div class="w">Mg OsteoCrete<br>Protein Matrix</div><p>Allograft proteins for biology, magnesium for bone chemistry, and a scaffold that sets in place: osteoinductive signaling without rapid collapse or washout, then remodeling into bone.</p></div>
+  </div>
+</section>
+
+<!-- 4 INSIDE THE GRAFT -->
+<section class="panel" data-name="Inside the graft">
+  <div class="wrap">
+    <div class="eyebrow rise">Inside the graft</div>
+    <h2 class="rise d1">Three ingredients.<br><span class="gold">One minute.</span></h2>
+    <div class="inside">
+      <svg class="graft rise d2" viewBox="0 0 520 380" role="img" aria-label="Animation: allograft fibers interlock, magnesium joins them, and the graft sets into one block">
+        <g>
+          <path class="fib" d="M40 120 C140 60 220 200 320 120 S460 90 490 150"/>
+          <path class="fib" d="M30 200 C120 260 200 130 300 210 S440 250 495 190" style="animation-delay:.15s"/>
+          <path class="fib" d="M50 280 C150 220 230 320 330 260 S450 230 485 290" style="animation-delay:.3s"/>
+          <path class="fib" d="M60 90 C110 180 170 250 250 300 S400 330 470 260" style="animation-delay:.45s;opacity:.75"/>
+          <path class="fib" d="M70 310 C160 260 220 170 300 110 S420 70 480 110" style="animation-delay:.6s;opacity:.75"/>
+        </g>
+        <g font-family="Barlow Condensed,Arial Narrow,sans-serif" font-weight="800" font-size="15" text-anchor="middle">
+          <g class="ion" style="animation-delay:1.2s"><circle cx="120" cy="150" r="17"/><text x="120" y="155" fill="#000">Mg</text></g>
+          <g class="ion" style="animation-delay:1.35s"><circle cx="230" cy="220" r="17"/><text x="230" y="225" fill="#000">Mg</text></g>
+          <g class="ion" style="animation-delay:1.5s"><circle cx="345" cy="160" r="17"/><text x="345" y="165" fill="#000">Mg</text></g>
+          <g class="ion" style="animation-delay:1.65s"><circle cx="420" cy="245" r="17"/><text x="420" y="250" fill="#000">Mg</text></g>
+          <g class="ion" style="animation-delay:1.8s"><circle cx="175" cy="290" r="17"/><text x="175" y="295" fill="#000">Mg</text></g>
+          <g class="ion" style="animation-delay:1.95s"><circle cx="300" cy="80" r="17"/><text x="300" y="85" fill="#000">Mg</text></g>
+        </g>
+        <rect class="setbox" x="18" y="40" width="484" height="300" rx="26"/>
+        <g class="settag"><rect x="165" y="322" width="190" height="36" rx="18" fill="#D5B863"/><text x="260" y="345" text-anchor="middle" font-family="Barlow Condensed,Arial Narrow,sans-serif" font-weight="800" font-size="16" letter-spacing="2" fill="#000">SETS IN PLACE</text></g>
+      </svg>
+      <div class="parts3">
+        <div class="part slideL d3"><span class="k">01</span><p><strong>Inductive allograft bone fibers.</strong> Non-uniform demineralized fibers that interlock, so the graft holds together and stretches instead of crumbling. Each lot tested for osteoinductive potential after sterilization.*</p></div>
+        <div class="part slideL d4"><span class="k">02</span><p><strong>Magnesium.</strong> Mg OsteoCrete chemistry: about 60% of the body's magnesium lives in bone, where it contributes to bone structure and the regulation of calcium.</p></div>
+        <div class="part slideL d5"><span class="k">03</span><p><strong>A scaffold that sets.</strong> Mixed with its solution, the graft is moldable in about a minute, then hardens in situ to 15 MPa for stable temporary support.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 MOLDABLE SETTABLE DRILLABLE -->
+<section class="panel" data-name="Handling">
+  <div class="wrap">
+    <div class="eyebrow rise">Handling</div>
+    <h2 class="rise d1">Mold it. Set it. <span class="gold">Drill it.</span></h2>
+    <div class="msd">
+      <figure class="msdc pop d2"><div class="img"><img src="img/mold.webp" alt="Graft molded by hand"></div><span class="num">1</span><div class="t"><b>MOLDABLE</b><span>Easily molded and shaped to fill the defect.</span></div></figure>
+      <figure class="msdc pop d3"><div class="img"><img src="img/set.webp" alt="Calcaneus with the void filled"></div><span class="num">2</span><div class="t"><b>SETTABLE</b><span>Hardens in situ to 15 MPa for stable temporary support.</span></div></figure>
+      <figure class="msdc pop d4"><div class="img"><img src="img/drill.webp" alt="Calcaneus with screws through the set graft"></div><span class="num">3</span><div class="t"><b>DRILLABLE</b><span>Once set, it can be drilled like bone, before or after final fixation.</span></div></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 6 PROPERTIES -->
+<section class="panel" data-name="Eight properties">
+  <div class="wrap">
+    <div class="eyebrow rise">Built to become bone</div>
+    <h2 class="rise d1">Eight reasons <span class="gold">in one kit.</span></h2>
+    <div class="props">
+      <div class="prop pop d1"><span class="ic">1</span><h3>Ready in 1 minute</h3><p>From kit to graft while the void is prepared.</p></div>
+      <div class="prop pop d2"><span class="ic">2</span><h3>Moldable</h3><p>Shaped by hand to the defect.</p></div>
+      <div class="prop pop d3"><span class="ic">3</span><h3>Verified osteoinductivity*</h3><p>Each lot tested and verified post-sterilization.</p></div>
+      <div class="prop pop d4"><span class="ic">4</span><h3>Drillable · settable</h3><p>Sets in place; screws pass through.</p></div>
+      <div class="prop pop d5"><span class="ic">5</span><h3>Radiopaque</h3><p>Visible on fluoroscopy and follow-up films.</p></div>
+      <div class="prop pop d6"><span class="ic">6</span><h3>Adhesive qualities</h3><p>Stays where it is placed.</p></div>
+      <div class="prop pop d7"><span class="ic">7</span><h3>15 MPa</h3><p>Compressive strength once set.</p></div>
+      <div class="prop pop d8"><span class="ic">8</span><h3>Adult and pediatric</h3><p>Pediatric patients older than 6 for benign cysts and tumors.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 RELIABLE -->
+<section class="panel" data-name="A reliable surgical solution">
+  <div class="wrap">
+    <div class="eyebrow rise">A reliable surgical solution</div>
+    <h2 class="rise d1">Support through <span class="gold">the healing window.</span></h2>
+    <div class="rel">
+      <img class="slideL d2" src="img/indic.webp" alt="Illustrations of an ankle fusion with crossed screws, a spinal construct and a hip stem, each with graft in place">
+      <div>
+        <ul class="rlist">
+          <li class="slideR d2">Osteoinductive signaling without rapid collapse or washout.</li>
+          <li class="slideR d3">Designed to maintain support during the critical healing window.</li>
+          <li class="slideR d4">Confidence in challenging revision and fusion environments.</li>
+          <li class="slideR d5">Faster OR preparation and workflow simplicity.</li>
+        </ul>
+        <p class="fa rise d6"><b>In the foot and ankle:</b> calcaneal and tibial plateau voids after reduction, gaps in hindfoot and midfoot fusions, and benign cysts and lesions. The fixation carries the load; the graft fills the space.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 KIT -->
+<section class="panel" data-name="Ordering">
+  <div class="wrap">
+    <div class="eyebrow rise">Ordering information</div>
+    <h2 class="rise d1">Everything in <span class="gold">one box.</span></h2>
+    <div class="kit">
+      <img class="kitimg slideL d2" src="img/kit.webp" alt="Mg OsteoCrete Protein Matrix kit: box, Mg powder, solution, allograft fibers, basin and spatula">
+      <div>
+        <div class="sku pop d3"><div><div class="code">44-050-00-OPM</div><div class="sz">5 cc</div></div><div><div class="code">44-100-00-OPM</div><div class="sz">10 cc</div></div></div>
+        <ul class="contents">
+          <li class="rise d3">Mg powder</li>
+          <li class="rise d4">Solution</li>
+          <li class="rise d5">Inductive allograft bone fibers</li>
+          <li class="rise d6">Basin</li>
+          <li class="rise d7">Spatula</li>
+        </ul>
+        <p class="note">Sterile and single use. Store at room temperature.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 CLOSE -->
+<section class="panel" data-name="Lotus Medical">
+  <div class="bone" style="opacity:.10"></div><div class="vignette"></div>
+  <div class="wrap close">
+    <img class="lotus pop" src="../lotus-logo.webp?v=13" alt="Lotus Medical. Healing Sooner. Wellness Longer.">
+    <div class="eyebrow rise d1" style="justify-content:center">Lotus Medical · Northeast Ohio</div>
+    <h2 class="rise d2">Healing sooner.<br><span class="gold">Wellness longer.</span></h2>
+    <p class="lede rise d3" style="text-align:center;margin-left:auto;margin-right:auto">Lotus Medical brings Mg OSTEOCRETE Protein Matrix to surgeons across Northeast Ohio, in collaboration with the clinician for advanced patient care.</p>
+    <div class="contact rise d4">
+      <a class="btn solid" href="mailto:scott@lotusmedcompany.com">Scott Stojetz · scott@lotusmedcompany.com</a>
+      <a class="btn" href="https://lotusmedcompany.com">lotusmedcompany.com</a>
+    </div>
+    <div class="tag rise d5">Integrity First. Patient First. Always.</div>
+    <p class="fine rise d6">Mg OSTEOCRETE Protein Matrix is manufactured by Bone Solutions, Inc. *Each lot of the allograft bone fibers is tested for osteoinductive potential after sterilization in an athymic rat model; animal data may not predict human clinical performance. Mg OSTEOCRETE Protein Matrix is a bone void filler for voids and defects that are not intrinsic to the stability of the bony structure and is not intended to provide structural support during the healing process. Refer to the instructions for use (10260 Rev A) for indications, contraindications and warnings. Content summarized from the Mg OSTEOCRETE Protein Matrix launch sheet (10152 Rev A).</p>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function(){
+  var deck=document.getElementById('deck'),panels=[].slice.call(document.querySelectorAll('.panel')),dots=document.getElementById('dots'),bar=document.getElementById('bar'),nextBtn=document.getElementById('next');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches,current=0;
+  panels.forEach(function(p,i){var b=document.createElement('button');b.setAttribute('aria-label',p.getAttribute('data-name'));b.addEventListener('click',function(){go(i)});dots.appendChild(b);});
+  function go(i){i=Math.max(0,Math.min(panels.length-1,i));deck.scrollTo({top:panels[i].offsetTop,behavior:reduce?'auto':'smooth'});}
+  nextBtn.addEventListener('click',function(){go(current+1>=panels.length?0:current+1);});
+  document.addEventListener('keydown',function(e){
+    if(['ArrowDown','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(current+1)}
+    if(['ArrowUp','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(current-1)}
+  });
+  function enter(i){
+    current=i;[].forEach.call(dots.children,function(d,k){d.classList.toggle('on',k===i)});
+    bar.style.width=((i+1)/panels.length*100)+'%';nextBtn.style.opacity=i===panels.length-1?'.35':'1';
+    var p=panels[i];p.classList.remove('in');void p.offsetWidth;p.classList.add('in');
+    if(p.querySelector('[data-count]'))countUp(p);
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&e.intersectionRatio>.55)enter(panels.indexOf(e.target));});},{root:deck,threshold:[.55]});
+    panels.forEach(function(p){io.observe(p)});
+  }
+  enter(0);
+  function countUp(p){
+    if(reduce)return;
+    [].forEach.call(p.querySelectorAll('[data-count]'),function(el,k){
+      var end=+el.getAttribute('data-count'),t0=null,dur=1300,delay=300+k*120;el.textContent='0';
+      function step(t){if(!t0)t0=t;var x=Math.min(1,(t-t0-delay)/dur);if(x<0){requestAnimationFrame(step);return}
+        el.textContent=Math.round(end*(1-Math.pow(1-x,3)));if(x<1)requestAnimationFrame(step);}
+      requestAnimationFrame(step);
+    });
+  }
+  var cv=document.getElementById('dust');if(cv&&!reduce){
+    var cx=cv.getContext('2d'),W,H,pts=[],dpr=Math.min(2,window.devicePixelRatio||1);
+    function size(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+    size();window.addEventListener('resize',size);
+    for(var i=0;i<70;i++)pts.push({x:Math.random(),y:Math.random(),r:Math.random()*1.8+.4,v:Math.random()*.00035+.0001,p:Math.random()*6.28});
+    (function tick(){cx.clearRect(0,0,W,H);
+      pts.forEach(function(q){q.y-=q.v;q.p+=.02;if(q.y<-.02){q.y=1.02;q.x=Math.random()}
+        var a=.35+.35*Math.sin(q.p);cx.beginPath();cx.arc(q.x*W+Math.sin(q.p)*6,q.y*H,q.r,0,6.283);
+        cx.fillStyle='rgba(225,196,110,'+a+')';cx.shadowColor='#D5B863';cx.shadowBlur=8;cx.fill();});
+      requestAnimationFrame(tick);})();
+  }
+})();
+</script>
+<script src="../share.js?v=2" defer></script>
+</body>
+</html>

@@ -2,11 +2,12 @@
 (function(){
   var BASE='https://sstojetz-art.github.io/lotus-medical/brochures/';
   var INFO={
-    '':            ['Lotus Medical surgeon brochures','animated digital brochures for Shark Screw, Integrity, Mg OsteoCrete, Mg OsteoRod, FibFix, MiniLock and LapiLock'],
+    '':            ['Lotus Medical surgeon brochures','animated digital brochures for Shark Screw, Integrity, Mg OsteoCrete, Mg OsteoCrete Protein Matrix, Mg OsteoRod, FibFix, MiniLock and LapiLock'],
     'shark-screw/':['Shark Screw','allograft bone screw fixation for 1st MTP fusion and nonunion'],
     'integrity/':  ['Integrity','HA scaffold augmentation for Achilles, peroneal and posterior tibialis repair'],
     'osteocrete/': ['Mg OsteoCrete','the magnesium bone void filler for the foot and ankle that sets like a cement and remodels to bone'],
     'osteorod.html':['Mg OsteoRod','the spacer mold for the intramedullary canal'],
+    'osteocrete-opm/':['Mg OsteoCrete Protein Matrix','magnesium and allograft proteins in one graft that sets in place and remodels to bone'],
     'fibfix/':     ['FibFix','the low-profile intramedullary fibula nail: rigid at both ends, flexible in the middle'],
     'minilock/':   ['MiniLock','minimally invasive bunion plating with compression across the osteotomy'],
     'lapilock/':   ['LapiLock','4D Lapidus correction with one jig and one cut']
