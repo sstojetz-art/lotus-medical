@@ -431,6 +431,16 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
   </div>
 </section>
 
+<!-- 7c TIBIAL NAIL TO BONE -->
+<section class="panel" data-name="Tibial nail to bone">
+  <div class="wrap">
+    <div class="eyebrow rise">See it start to finish · Tibia</div>
+    <h2 class="rise d1">Tibial nail <span class="gold">to bone.</span></h2>
+    <p class="lede rise d2" style="margin-top:10px;margin-bottom:16px">Nail out. Canal cleaned. Rod molded and seated. Magnesium replaced with bone.</p>
+    <div id="tibSizzle" class="rise d3" style="--orx-max:34vh"></div>
+  </div>
+</section>
+
 <!-- 8 KIT -->
 <section class="panel" data-name="Ordering">
   <div class="wrap">
@@ -831,6 +841,251 @@ window.OrxAnim=function(host,opts){
 })();
 
 OrxAnim(document.getElementById("orxSizzle"),{autoplay:true,title:"From TTC nail to bone with Mg OSTEOROD"});
+</script>
+<script>
+/* Mg OsteoRod: tibial nail to bone. Same engine and look as OrxAnim (TTC). Usage: TibAnim(document.getElementById('x')) */
+(function(){
+var NS='http://www.w3.org/2000/svg';
+var STEPS=[
+ {t:'A tibial nail',c:'An intramedullary nail runs the length of the tibia, locked proximally and distally. Look at the fracture line at the midshaft. The hardware is coming out.',d:5600},
+ {t:'Locking screws out',c:'The proximal and distal locking screws come out first, through the accepted incisions for hardware removal.',d:3600},
+ {t:'Nail out',c:'The nail is extracted through its proximal start point. What it leaves behind is an empty canal: dead space.',d:3600},
+ {t:'Open, debride, irrigate',c:'The canal is opened to 13 mm or greater, debrided per accepted practice and surgeon preference, and irrigated.',d:6400},
+ {t:'Powder to putty',c:'On the back table, Mg OsteoCrete powder and one vial of solution become a workable putty in 30 seconds.',d:5600},
+ {t:'Mold the OsteoRod',c:'The putty is laid in the Mg OsteoRod mold, closed, locked with the wing nuts and cured 30 minutes into a 13 mm rod.',d:7600},
+ {t:'Seat it under fluoroscopy',c:'The rod is seated through the proximal start point under fluoroscopy to the preferred or maximum depth. It is radiopaque.',d:6200},
+ {t:'Replaced with bone',c:'The magnesium is resorbed and replaced with bone by creeping substitution. New bone fills the canal and the spaces around it, until it is the patient’s own bone.',d:11000}
+];
+var CSS='.orx{--og:#D5B863;--og2:#F1DC9C;--ob:#0a0a0a;border:1px solid rgba(213,184,99,.45);border-radius:14px;overflow:hidden;background:#050504;color:#f1ebdd;font-family:inherit}'+
+'.orx-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(213,184,99,.22);flex-wrap:wrap}'+
+'.orx-badge{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#000;background:var(--og);border-radius:999px;padding:3px 10px}'+
+'.orx-title{font-size:17px;font-weight:600;flex:1;min-width:180px}'+
+'.orx-n{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#a79e8c}'+
+'.orx-stage{position:relative;background:#050504}'+
+'.orx-stage svg{display:block;width:100%;height:auto;max-height:var(--orx-max,520px)}'+
+'.orx-big{position:absolute;inset:0;margin:auto;width:84px;height:84px;border-radius:50%;border:2px solid var(--og);background:rgba(0,0,0,.62);color:var(--og);font-size:32px;cursor:pointer;display:grid;place-items:center;padding:0}'+
+'.orx-big:hover{background:var(--og);color:#000}.orx.started .orx-big{display:none}'+
+'.orx-cap{min-height:66px;padding:12px 16px;font-size:15.5px;line-height:1.55;border-top:1px solid rgba(213,184,99,.18);background:#0d0c09}'+
+'.orx-cap b{color:var(--og)}.orx-cap.fl{animation:orxCap .45s ease}@keyframes orxCap{from{opacity:.2;transform:translateY(5px)}to{opacity:1;transform:none}}'+
+'.orx-bar{height:3px;background:rgba(213,184,99,.15)}.orx-bar i{display:block;height:100%;width:0;background:var(--og)}'+
+'.orx-ctl{display:flex;align-items:center;gap:8px;padding:10px 12px;flex-wrap:wrap;border-top:1px solid rgba(213,184,99,.18)}'+
+'.orx-ctl button{font:600 13px inherit;font-family:inherit;background:transparent;color:var(--og);border:1px solid rgba(213,184,99,.6);border-radius:6px;padding:7px 12px;cursor:pointer}'+
+'.orx-ctl button.pri{background:var(--og);color:#000;border-color:var(--og)}'+
+'.orx-dots{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}'+
+'.orx-dots button{width:26px;height:26px;padding:0;border-radius:50%;font-size:11px}'+
+'.orx-dots button.on{background:var(--og);color:#000}'+
+'.orx-fine{padding:8px 16px 12px;font-size:12px;color:#8f877a;line-height:1.5}'+
+'@media (max-width:560px){.orx-dots{margin-left:0}}';
+
+function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function cl(x){return x<0?0:x>1?1:x}
+function ez(x){x=cl(x);return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2}
+function seg(p,a,b){return ez((p-a)/(b-a))}
+function mix(a,b,t){return a+(b-a)*t}
+function hex(a,b,t){var A=[1,3,5].map(function(i){return parseInt(a.substr(i,2),16)}),B=[1,3,5].map(function(i){return parseInt(b.substr(i,2),16)});return 'rgb('+A.map(function(v,i){return Math.round(mix(v,B[i],t))}).join(',')+')'}
+
+/* canal geometry: x 272..298 (centre 285), y 70..520 */
+var CX=285,CT=70,CB=520,CH=CB-CT;
+
+window.TibAnim=function(host,opts){
+  opts=opts||{};
+  if(!document.getElementById('orx-css')){var st=document.createElement('style');st.id='orx-css';st.textContent=CSS;document.head.appendChild(st);}
+  var uid='t'+Math.random().toString(36).slice(2,7);
+  host.classList.add('orx');
+  host.innerHTML='<div class="orx-head"><span class="orx-badge">▶ Animation</span><span class="orx-title">'+(opts.title||'From tibial nail to bone with Mg OsteoRod')+'</span><span class="orx-n"></span></div>'+
+   '<div class="orx-stage"><button class="orx-big" type="button" aria-label="Play animation">▶</button></div><div class="orx-bar"><i></i></div><div class="orx-cap" aria-live="polite"></div>'+
+   '<div class="orx-ctl"><button type="button" class="pri" data-a="play">Play</button><button type="button" data-a="prev">‹ Back</button><button type="button" data-a="next">Next ›</button><button type="button" data-a="replay">Replay</button><div class="orx-dots"></div></div>'+
+   '<div class="orx-fine">'+(opts.fine||'Illustration. Mg OsteoCrete is a bone void filler, not structural support; the healed or fixed bone carries the load. Resorption timing varies; OsteoCrete material data are animal studies and an 18-patient radiographic review. Refer to the surgical technique 10263 and the IFU.')+'</div>';
+  var stage=host.querySelector('.orx-stage');
+  var svg=el('svg',{viewBox:'0 0 1000 600',role:'img','aria-label':'Animation: tibial nail removal, canal debridement and irrigation, Mg OsteoRod molding and insertion, and the rod being replaced with bone'});
+  stage.insertBefore(svg,stage.firstChild);
+  var defs=el('defs',{},svg);
+  defs.innerHTML='<linearGradient id="'+uid+'b" x1="0" x2="1"><stop offset="0" stop-color="#4a4740"/><stop offset=".5" stop-color="#8a8577"/><stop offset="1" stop-color="#4a4740"/></linearGradient>'+
+   '<linearGradient id="'+uid+'n" x1="0" x2="1"><stop offset="0" stop-color="#6d7680"/><stop offset=".45" stop-color="#e6edf3"/><stop offset="1" stop-color="#59616b"/></linearGradient>'+
+   '<linearGradient id="'+uid+'r" x1="0" x2="1"><stop offset="0" stop-color="#cdc8bd"/><stop offset=".45" stop-color="#ffffff"/><stop offset="1" stop-color="#bfb9ad"/></linearGradient>'+
+   '<linearGradient id="'+uid+'m" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe45c"/><stop offset="1" stop-color="#d1a614"/></linearGradient>'+
+   '<pattern id="'+uid+'t" width="26" height="26" patternUnits="userSpaceOnUse"><rect width="26" height="26" fill="#958f7c"/><ellipse cx="6" cy="5" rx="3.6" ry="2.4" fill="#4e4a40"/><ellipse cx="18" cy="9" rx="2.6" ry="3.4" fill="#57524a"/><ellipse cx="10" cy="17" rx="3" ry="2" fill="#4e4a40"/><ellipse cx="22" cy="21" rx="2.2" ry="2.8" fill="#5a554b"/><circle cx="2" cy="22" r="1.6" fill="#4e4a40"/><circle cx="14" cy="2" r="1.2" fill="#5a554b"/></pattern>'+
+   '<clipPath id="'+uid+'c"><rect x="272" y="'+CT+'" width="26" height="'+CH+'" rx="13"/></clipPath>'+
+   '<clipPath id="'+uid+'f"><rect id="'+uid+'fr" x="260" y="'+CT+'" width="50" height="0"/></clipPath><clipPath id="'+uid+'v"><rect x="0" y="0" width="1000" height="600"/></clipPath>'+
+   '<filter id="'+uid+'g"><feGaussianBlur stdDeviation="6"/></filter>';
+  var root=el('g',{'clip-path':'url(#'+uid+'v)'},svg);var fr=defs.querySelector('#'+uid+'fr');
+  /* soft tissue: the lower leg */
+  el('path',{d:'M168 0 L432 0 C434 120 424 220 404 330 C392 400 390 470 394 540 C398 572 412 600 412 600 L200 600 C200 570 214 540 216 500 C220 420 202 330 188 250 C176 180 168 100 168 0 Z',fill:'rgba(255,255,255,.035)',stroke:'rgba(213,184,99,.25)','stroke-width':'1.5'},root);
+  var bones=el('g',{fill:'url(#'+uid+'b)',stroke:'rgba(241,220,156,.55)','stroke-width':'1.6'},root);
+  /* femoral condyles, faded */
+  el('path',{d:'M196 -10 L376 -10 L380 20 C372 38 344 42 304 38 C272 42 248 42 230 38 C210 42 192 34 196 20 Z',opacity:'.45'},bones);
+  /* tibia: plateau, shaft, plafond and medial malleolus */
+  el('path',{d:'M190 54 C222 46 340 46 372 54 C378 72 372 94 352 108 C336 120 324 142 320 172 L318 468 C320 498 330 520 334 548 L318 560 C300 556 270 556 252 560 L232 556 C240 520 250 498 252 468 L250 172 C246 142 234 120 218 108 C198 94 186 72 190 54 Z'},bones);
+  /* fibula */
+  el('path',{d:'M368 106 C374 98 392 100 396 112 C398 124 390 132 384 136 L382 528 C394 546 396 572 386 590 C374 594 364 582 364 562 L368 528 L370 136 C364 128 362 114 368 106 Z',opacity:'.8'},bones);
+  /* talus */
+  el('path',{d:'M236 568 C270 562 320 562 360 570 C372 592 360 612 340 612 L250 612 C232 610 226 588 236 568 Z'},bones);
+  /* the midshaft fracture line: shown, not named. Rounded, sclerotic ends with a little callus that never bridged */
+  var cal=el('g',{fill:'url(#'+uid+'b)',stroke:'rgba(241,220,156,.55)','stroke-width':'1.4'},root);
+  el('ellipse',{cx:'246',cy:'301',rx:'9',ry:'22'},cal);el('ellipse',{cx:'323',cy:'301',rx:'9',ry:'22'},cal);
+  var gapD='M242 290 L257 298 L271 286 L286 299 L300 287 L314 300 L328 292 L328 310 L314 318 L300 305 L286 317 L271 304 L257 316 L242 308 Z';
+  var gapA=el('g',{},root);el('path',{d:gapD,fill:'#050505',stroke:'#efe6cf','stroke-width':'3','stroke-linejoin':'round'},gapA);el('path',{d:gapD,fill:'none',stroke:'rgba(255,255,255,.35)','stroke-width':'7','stroke-linejoin':'round',opacity:'.5'},gapA);
+  var gapFill=el('g',{opacity:'0'},root);
+  el('path',{d:gapD,fill:'url(#'+uid+'t)',stroke:'url(#'+uid+'t)','stroke-width':'8','stroke-linejoin':'round'},gapFill);
+  var flA=el('circle',{cx:String(CX),cy:'300',r:'0',fill:'none',stroke:'#F1DC9C','stroke-width':'3',opacity:'0'},root);
+  var lab=el('g',{'font-size':'14','letter-spacing':'2',fill:'rgba(241,220,156,.6)','font-family':'inherit'},root);
+  [['FEMUR',388,26,'start'],['TIBIA',238,220,'end'],['FIBULA',404,230,'start'],['TALUS',372,596,'start']].forEach(function(a){var t=el('text',{x:a[1],y:a[2],'text-anchor':a[3]},lab);t.textContent=a[0];});
+  /* canal */
+  var canal=el('rect',{x:'272',y:String(CT),width:'26',height:String(CH),rx:'13',fill:'#030303',stroke:'rgba(241,220,156,.35)','stroke-dasharray':'4 5',opacity:'0'},root);
+  var cg=el('g',{'clip-path':'url(#'+uid+'c)'},root);
+  var bonefill=el('rect',{x:'272',y:String(CT),width:'26',height:String(CH),fill:'url(#'+uid+'t)',opacity:'0','clip-path':'url(#'+uid+'f)'},cg);
+  var debris=el('g',{fill:'#8a5a3a'},cg);
+  for(var i=0;i<26;i++)el('circle',{cx:String(274+((i*7)%22)),cy:String(80+i*17+(i%3)*4),r:String(1.6+(i%3)*.8)},debris);
+  var drops=el('g',{fill:'#6fb6ff'},cg);var dropN=[];
+  for(i=0;i<16;i++)dropN.push(el('ellipse',{cx:String(278+(i*5)%14),cy:'0',rx:'2.2',ry:'4.5',opacity:'0'},drops));
+  /* reamer enters from the proximal start point */
+  var reamer=el('g',{opacity:'0'},root);
+  el('rect',{x:'282',y:'-470',width:'6',height:'470',fill:'#9aa3ad'},reamer);
+  el('rect',{x:'272',y:'0',width:'26',height:'22',rx:'6',fill:'url(#'+uid+'n)'},reamer);
+  el('path',{d:'M272 6 L298 12 M272 13 L298 19',stroke:'#3a3f45','stroke-width':'2'},reamer);
+  /* nail and locking screws */
+  var nail=el('g',{},root);
+  el('rect',{x:'274',y:'40',width:'22',height:'480',rx:'11',fill:'url(#'+uid+'n)',stroke:'#2b3036'},nail);
+  el('rect',{x:'270',y:'32',width:'30',height:'14',rx:'3',fill:'#59616b'},nail);
+  var screws=el('g',{stroke:'#c9d1d9','stroke-width':'7','stroke-linecap':'round'},root);
+  [[214,122,354,122],[230,162,338,162],[238,478,332,478],[236,506,334,506]].forEach(function(s){el('line',{x1:s[0],y1:s[1],x2:s[2],y2:s[3]},screws);});
+  /* rod in canal */
+  var rodIn=el('g',{opacity:'0'},root);
+  var rodRect=el('rect',{x:'274',y:String(CT),width:'22',height:String(CH),rx:'11',fill:'url(#'+uid+'r)'},rodIn);
+  var rodGlow=el('rect',{x:'270',y:String(CT),width:'30',height:String(CH),rx:'15',fill:'#D5B863',filter:'url(#'+uid+'g)',opacity:'0'},root);
+  var mg=el('g',{'font-size':'11',fill:'#F1DC9C','font-family':'inherit',opacity:'0'},root);var mgN=[];
+  for(i=0;i<12;i++){var tt=el('text',{x:String(CX),y:String(100+i*35)},mg);tt.textContent='Mg²⁺';mgN.push(tt);}
+  var front=el('g',{opacity:'0'},root);
+  el('rect',{x:'256',y:'-10',width:'58',height:'20',rx:'10',fill:'#F6E7B6',filter:'url(#'+uid+'g)'},front);
+  el('rect',{x:'270',y:'-3',width:'30',height:'6',rx:'3',fill:'#fffbe8'},front);
+  var sparks=el('g',{},root);var spN=[];
+  for(i=0;i<46;i++)spN.push(el('circle',{r:String(1.2+(i%4)*.7),fill:i%3?'#F6E7B6':'#ffffff',opacity:'0'},sparks));
+  var halo=el('rect',{x:'248',y:'60',width:'74',height:'470',rx:'37',fill:'#D5B863',filter:'url(#'+uid+'g)',opacity:'0'},root);
+  var fluoro=el('rect',{x:'0',y:'0',width:'640',height:'600',fill:'#9fc6ff',opacity:'0',style:'mix-blend-mode:screen'},root);
+  /* bench: identical to the TTC animation */
+  var bench=el('g',{opacity:'0'},root);
+  el('line',{x1:'640',y1:'520',x2:'990',y2:'520',stroke:'rgba(213,184,99,.35)','stroke-width':'2'},bench);
+  var bt=el('text',{x:'815',y:'560','text-anchor':'middle','font-size':'14','letter-spacing':'4',fill:'rgba(241,220,156,.7)'},bench);bt.textContent='BACK TABLE';
+  var basin=el('g',{},bench);
+  el('path',{d:'M665 250 L685 300 L775 300 L795 250 Z',fill:'#2a2a2a',stroke:'#9a9a9a','stroke-width':'2'},basin);
+  el('ellipse',{cx:'730',cy:'250',rx:'65',ry:'14',fill:'#141414',stroke:'#bdbdbd','stroke-width':'2'},basin);
+  var mound=el('ellipse',{cx:'730',cy:'252',rx:'44',ry:'9',fill:'#f2f2f2'},basin);
+  var vial=el('g',{},basin);el('rect',{x:'812',y:'150',width:'26',height:'44',rx:'5',fill:'rgba(200,225,255,.35)',stroke:'#dfe7ef'},vial);
+  var pour=el('path',{d:'M812 190 Q780 210 740 246',stroke:'#8fc6ff','stroke-width':'4',fill:'none',opacity:'0'},basin);
+  var spat=el('g',{},basin);el('line',{x1:'730',y1:'250',x2:'760',y2:'190',stroke:'#111','stroke-width':'5','stroke-linecap':'round'},spat);el('ellipse',{cx:'730',cy:'250',rx:'10',ry:'5',fill:'#111'},spat);
+  var mold=el('g',{},bench);
+  el('rect',{x:'650',y:'410',width:'330',height:'66',rx:'16',fill:'#9c7a0c'},mold);
+  el('rect',{x:'650',y:'400',width:'330',height:'64',rx:'16',fill:'url(#'+uid+'m)'},mold);
+  el('rect',{x:'664',y:'424',width:'302',height:'18',rx:'9',fill:'#b8901a'},mold);
+  var benchRod=el('rect',{x:'668',y:'426',width:'294',height:'14',rx:'7',fill:'url(#'+uid+'r)',opacity:'0'},mold);
+  var log=el('rect',{x:'690',y:'240',width:'80',height:'16',rx:'8',fill:'#f7f5ef',stroke:'#cfc9bc',opacity:'0'},bench);
+  var top=el('g',{opacity:'0'},bench);
+  el('rect',{x:'650',y:'390',width:'330',height:'34',rx:'14',fill:'url(#'+uid+'m)',stroke:'#9c7a0c'},top);
+  var nuts=el('g',{opacity:'0',fill:'#cfcfcf',stroke:'#777'},bench);
+  [690,815,940].forEach(function(x){el('path',{d:'M'+(x-14)+' 482 l8 -6 h12 l8 6 l-8 6 h-12 Z'},nuts);});
+  var lens=el('text',{x:'815',y:'385','text-anchor':'middle','font-size':'18','font-weight':'700','letter-spacing':'2',fill:'#F1DC9C',opacity:'0'},bench);lens.textContent='13 mm · 220 mm ROD';
+  var ring=el('g',{transform:'translate(900 245)'},bench);
+  el('circle',{r:'38',fill:'#000',stroke:'rgba(213,184,99,.25)','stroke-width':'7'},ring);
+  var arc=el('circle',{r:'38',fill:'none',stroke:'#D5B863','stroke-width':'7','stroke-linecap':'round','stroke-dasharray':'238.8','stroke-dashoffset':'238.8',transform:'rotate(-90)'},ring);
+  var rn=el('text',{y:'6','text-anchor':'middle','font-size':'24','font-weight':'800',fill:'#fff'},ring);rn.textContent='30';
+  var ru=el('text',{y:'22','text-anchor':'middle','font-size':'8','letter-spacing':'2',fill:'#D5B863'},ring);ru.textContent='SECONDS';
+  /* right-side callouts */
+  var call=el('g',{},root);
+  var cA=el('text',{x:'815',y:'250','text-anchor':'middle','font-size':'30','font-weight':'800','letter-spacing':'2',fill:'#F1DC9C',opacity:'0'},call);
+  var cB=el('text',{x:'815',y:'286','text-anchor':'middle','font-size':'16','letter-spacing':'3',fill:'rgba(241,220,156,.75)',opacity:'0'},call);
+  var tl=el('g',{opacity:'0'},root);
+  el('line',{x1:'680',y1:'330',x2:'950',y2:'330',stroke:'rgba(213,184,99,.3)','stroke-width':'4','stroke-linecap':'round'},tl);
+  var tlFill=el('line',{x1:'680',y1:'330',x2:'680',y2:'330',stroke:'#D5B863','stroke-width':'4','stroke-linecap':'round'},tl);
+  var tlL=[['Weeks',680],['Months',815],['About a year',950]].map(function(a){var t=el('text',{x:a[1],y:'362','text-anchor':'middle','font-size':'15','letter-spacing':'1',fill:'rgba(241,220,156,.5)'},tl);t.textContent=a[0];return t;});
+
+  var R=7; /* the resorb step */
+  function sa(e,k,v){e.setAttribute(k,v)}
+  function render(s,p){
+    function k(i){return s>i?1:s===i?p:0}
+    var k1=k(1),k2=k(2),k3=k(3);
+    /* screws out laterally, nail out proximally */
+    sa(screws,'transform','translate('+(260*ez(k1))+' 0)');sa(screws,'opacity',String(1-seg(k1,.45,1)));
+    sa(nail,'transform','translate(0 '+(-580*ez(k2))+')');sa(nail,'opacity',String(1-seg(k2,.75,1)));
+    sa(debris,'opacity',String(seg(k2,.5,1)*(1-seg(k3,.2,.62))));
+    /* reamer down and back, then irrigation */
+    if(s===3&&p<.6){var q=p/.6,tri=q<.5?q*2:2-q*2;sa(reamer,'opacity','1');sa(reamer,'transform','translate(0 '+(60+430*ez(tri))+')');}else sa(reamer,'opacity','0');
+    var irr=s===3?seg(p,.55,.65)*(1-seg(p,.95,1)):0;
+    dropN.forEach(function(d,j){var y=CT+((p*2600+j*29)%CH);sa(d,'cy',String(y));sa(d,'opacity',String(irr*.9));});
+    /* bench */
+    var bOn=s>=4&&s<=6?(s===4?seg(p,0,.15):s===6?1-seg(p,.55,.85):1):0;sa(bench,'opacity',String(bOn));
+    sa(basin,'opacity',String(s===4?1:s===5?1-seg(p,.15,.35):0));
+    sa(pour,'opacity',String(s===4?seg(p,.12,.2)*(1-seg(p,.3,.38)):0));
+    sa(vial,'opacity',String(s===4?1-seg(p,.35,.45):0));
+    sa(mound,'fill',hex('#e9e9e9','#fbfaf6',s===4?seg(p,.35,.95):1));sa(mound,'ry',String(s===4?mix(9,12,seg(p,.4,.9)):12));
+    sa(spat,'transform','rotate('+(s===4?seg(p,.3,.95)*900:0)+' 730 250)');
+    sa(spat,'opacity',String(s===4?seg(p,.25,.32):0));
+    var ringT=s===4?seg(p,.3,.95):s===5?seg(p,.5,.82):0;
+    sa(arc,'stroke-dashoffset',String(238.8*(1-ringT)));rn.textContent='30';ru.textContent=s===5?'MINUTES':'SECONDS';
+    sa(ring,'opacity',String(s===4?seg(p,.25,.32):s===5?seg(p,.45,.5)*(1-seg(p,.86,.92)):0));
+    if(s===5){var m=seg(p,0,.25);sa(log,'opacity',String(seg(p,0,.04)*(1-seg(p,.25,.27))));sa(log,'x',String(mix(690,668,m)));sa(log,'y',String(mix(240,426,m)));sa(log,'width',String(mix(80,294,m)));sa(log,'height',String(mix(16,14,m)));}
+    else sa(log,'opacity','0');
+    var topOn=s===5?seg(p,.27,.4):0,topLift=s===5?seg(p,.84,.92):0;
+    sa(top,'opacity',String(s===5?topOn*(1-topLift):0));sa(top,'transform','translate(0 '+(-80*(1-topOn)-90*topLift)+')');
+    sa(nuts,'opacity',String(s===5?seg(p,.4,.46)*(1-seg(p,.8,.84)):0));
+    var br=s===5?seg(p,.25,.3):s===6?1-seg(p,0,.25):0;sa(benchRod,'opacity',String(br));
+    sa(lens,'opacity',String(s===5?seg(p,.9,.97):s===6?1-seg(p,0,.2):0));
+    /* rod into the canal from the proximal start point */
+    if(s===6){var up=seg(p,.25,.85);sa(rodIn,'opacity',String(seg(p,.2,.28)));sa(rodIn,'transform','translate(0 '+(-560*(1-up))+')');}
+    else if(s>6){sa(rodIn,'opacity','1');sa(rodIn,'transform','');}else sa(rodIn,'opacity','0');
+    sa(fluoro,'opacity',String(s===6?.16*seg(p,.3,.4)*(1-seg(p,.88,.98)):0));
+    /* resorb and remodel: the glowing front travels down the rod from the start point and leaves bone behind */
+    var r=s===R?seg(p,.06,.8):s>R?1:0,fy=CT+CH*r;
+    sa(fr,'y',String(CT));sa(fr,'height',String(fy-CT));
+    sa(bonefill,'opacity',String(s>=R?1:0));
+    sa(rodRect,'y',String(s>=R?fy:CT));sa(rodRect,'height',String(s>=R?Math.max(0,CB-fy):CH));
+    var fOn=s===R?seg(p,.03,.08)*(1-seg(p,.8,.86)):0;
+    sa(front,'opacity',String(fOn*(.75+.25*Math.sin(p*90))));sa(front,'transform','translate(0 '+fy+')');
+    var fin=s===R?seg(p,.84,.9)*(1-seg(p,.94,1)):0;
+    sa(halo,'opacity',String(s===R?Math.max(fOn*(.18+.12*Math.sin(p*60)),.75*fin):0));
+    spN.forEach(function(c,j){var op=0,x=0,y=0,ang=j*2.39996;
+      if(s===R){var tj=.06+(j/46)*.72,a1=(p-tj)/.1;
+        if(a1>=0&&a1<=1){var y0=CT+CH*((tj-.06)/.74),d=8+70*ez(a1);x=CX+Math.cos(ang)*d*1.3;y=y0+Math.sin(ang)*d*.55+14*a1;op=1-a1;}
+        var a2=(p-.84)/.13;if(a2>=0&&a2<=1&&op===0){var y1=80+(j/46)*430,d2=6+110*ez(a2);x=CX+Math.cos(ang)*d2;y=y1+Math.sin(ang)*d2*.35;op=(1-a2)*.95;}}
+      sa(c,'cx',String(x));sa(c,'cy',String(y));sa(c,'opacity',String(op));});
+    /* the fracture line fills with bone as the front passes it */
+    var gA=s>=R?seg(r,.46,.56):0;
+    sa(gapFill,'opacity',String(gA));sa(gapA,'opacity',String(1-gA));
+    var on=gA>0&&gA<1?1:0;sa(flA,'r',String(10+70*gA));sa(flA,'opacity',String(on*(1-gA)));
+    sa(canal,'opacity',String(s>=R?1-seg(r,.7,1):seg(k2,.2,.6)));
+    sa(rodGlow,'opacity',String(s===6?.6*seg(p,.85,1):0));
+    sa(mg,'opacity',String(s===R?seg(p,.04,.12)*(1-seg(p,.7,.85)):0));
+    mgN.forEach(function(t,j){var dx=(j%2?1:-1)*(10+80*seg(p,.04,.8));sa(t,'x',String(CX-7+dx));});
+    sa(tl,'opacity',String(s===R?seg(p,0,.08):0));sa(tlFill,'x2',String(680+270*r));
+    tlL.forEach(function(t,j){sa(t,'fill',r>=j/2-.001?'#F1DC9C':'rgba(241,220,156,.4)');});
+    /* callouts */
+    var C=[['TIBIAL NAIL','COMING OUT'],['SCREWS OUT','HARDWARE REMOVAL'],['NAIL OUT','EMPTY CANAL'],['13 MM','OPEN · DEBRIDE · IRRIGATE'],null,null,null,(s===R&&p>.84)?['THE PATIENT’S','OWN BONE']:['CREEPING','SUBSTITUTION']][s];
+    if(C){cA.textContent=C[0];cB.textContent=C[1];var o=String(s===R&&p>.84?seg(p,.84,.9):seg(p,0,.12));sa(cA,'opacity',o);sa(cB,'opacity',o);sa(cA,'y',s===R?'250':'280');sa(cB,'y',s===R?'286':'316');
+      sa(cA,'font-size',s===R&&p>.84?'38':'30');}else{sa(cA,'opacity','0');sa(cB,'opacity','0');}
+  }
+
+  var cur=0,t0=0,playing=false,raf=0,elapsed=0;
+  var cap=host.querySelector('.orx-cap'),barI=host.querySelector('.orx-bar i'),nEl=host.querySelector('.orx-n'),pb=host.querySelector('[data-a=play]'),dots=host.querySelector('.orx-dots');
+  STEPS.forEach(function(st,i){var b=document.createElement('button');b.type='button';b.textContent=i+1;b.title=st.t;b.addEventListener('click',function(){go(i,true)});dots.appendChild(b);});
+  function paint(){cap.innerHTML='<b>'+(cur+1)+'. '+STEPS[cur].t+'.</b> '+STEPS[cur].c;cap.classList.remove('fl');void cap.offsetWidth;cap.classList.add('fl');
+    nEl.textContent='Step '+(cur+1)+' of '+STEPS.length;[].forEach.call(dots.children,function(b,i){b.classList.toggle('on',i===cur)});}
+  function frame(ts){if(!playing)return;var p=(elapsed+(ts-t0))/STEPS[cur].d;
+    if(p>=1){render(cur,1);if(cur<STEPS.length-1){cur++;elapsed=0;t0=ts;paint();}else{stop();barI.style.width='100%';return;}p=0;}
+    render(cur,p);barI.style.width=((cur+p)/STEPS.length*100)+'%';raf=requestAnimationFrame(frame);}
+  function play(){if(playing)return;host.classList.add('started');if(cur===STEPS.length-1&&elapsed>=STEPS[cur].d){cur=0;elapsed=0;paint();}
+    playing=true;pb.textContent='Pause';t0=performance.now();raf=requestAnimationFrame(frame);}
+  function stop(){if(playing){elapsed+=performance.now()-t0;}playing=false;pb.textContent='Play';cancelAnimationFrame(raf);}
+  function go(i,user){var was=playing;stop();cur=Math.max(0,Math.min(STEPS.length-1,i));elapsed=0;render(cur,0);paint();barI.style.width=(cur/STEPS.length*100)+'%';host.classList.add('started');if(was||user)play();}
+  host.querySelector('.orx-big').addEventListener('click',play);
+  host.querySelector('.orx-ctl').addEventListener('click',function(e){var a=e.target.dataset&&e.target.dataset.a;if(!a)return;
+    if(a==='play')playing?stop():play();else if(a==='prev')go(cur-1,true);else if(a==='next')go(cur+1,true);else if(a==='replay')go(0,true);});
+  render(0,0);paint();
+  if(opts.autoplay&&'IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&e.intersectionRatio>.5){if(!host.classList.contains('started'))play();}else if(playing&&!e.isIntersecting)stop();});},{threshold:[0,.5]});io.observe(host);}
+  return {play:play,stop:stop,go:go,render:render,steps:STEPS.length};
+};
+})();
+</script>
+<script>
+TibAnim(document.getElementById("tibSizzle"),{autoplay:true,title:"From tibial nail to bone with Mg OSTEOROD"});
 </script>
 <script src="share.js?v=2" defer></script>
 </body>
