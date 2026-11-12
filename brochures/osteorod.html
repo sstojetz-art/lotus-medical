@@ -421,6 +421,16 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
   </div>
 </section>
 
+<!-- 7b NAIL TO BONE -->
+<section class="panel" data-name="From nail to bone">
+  <div class="wrap">
+    <div class="eyebrow rise">See it start to finish</div>
+    <h2 class="rise d1">From nail <span class="gold">to bone.</span></h2>
+    <p class="lede rise d2" style="margin-top:10px;margin-bottom:16px">Nail out. Canal cleaned. Rod molded and seated. Magnesium replaced with bone.</p>
+    <div id="orxSizzle" class="rise d3" style="--orx-max:34vh"></div>
+  </div>
+</section>
+
 <!-- 8 KIT -->
 <section class="panel" data-name="Ordering">
   <div class="wrap">
@@ -568,6 +578,221 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
     })();
   }
 })();
+</script>
+<script>
+/* Mg OsteoRod: TTC nail to bone. Self-contained SVG animation. Usage: OrxAnim(document.getElementById('x')) */
+(function(){
+var NS='http://www.w3.org/2000/svg';
+var STEPS=[
+ {t:'A healed TTC fusion',c:'A tibiotalocalcaneal nail holds a healed hindfoot fusion through the calcaneus, talus and tibia. The nail is coming out.',d:4200},
+ {t:'Locking screws out',c:'The locking screws come out first, through the accepted incisions for hardware removal.',d:3600},
+ {t:'Nail out',c:'The nail is extracted through its plantar start point. What it leaves behind is an empty canal: dead space.',d:3600},
+ {t:'Open, debride, irrigate',c:'The canal is opened to 13 mm or greater, debrided per accepted practice and surgeon preference, and irrigated.',d:6400},
+ {t:'Powder to putty',c:'On the back table, Mg OsteoCrete powder and one vial of solution become a workable putty in 30 seconds.',d:5600},
+ {t:'Mold the OsteoRod',c:'The putty is laid in the Mg OsteoRod mold, closed, locked with the wing nuts and cured 30 minutes into a 13 mm rod.',d:7600},
+ {t:'Seat it under fluoroscopy',c:'The rod is seated through the plantar start point under fluoroscopy to the preferred or maximum depth. It is radiopaque.',d:6200},
+ {t:'Replaced with bone',c:'Over time the magnesium is resorbed and replaced with bone by creeping substitution, until the canal holds the patient’s own bone.',d:8200}
+];
+var CSS='.orx{--og:#D5B863;--og2:#F1DC9C;--ob:#0a0a0a;border:1px solid rgba(213,184,99,.45);border-radius:14px;overflow:hidden;background:#050504;color:#f1ebdd;font-family:inherit}'+
+'.orx-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(213,184,99,.22);flex-wrap:wrap}'+
+'.orx-badge{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#000;background:var(--og);border-radius:999px;padding:3px 10px}'+
+'.orx-title{font-size:17px;font-weight:600;flex:1;min-width:180px}'+
+'.orx-n{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#a79e8c}'+
+'.orx-stage{position:relative;background:#050504}'+
+'.orx-stage svg{display:block;width:100%;height:auto;max-height:var(--orx-max,520px)}'+
+'.orx-big{position:absolute;inset:0;margin:auto;width:84px;height:84px;border-radius:50%;border:2px solid var(--og);background:rgba(0,0,0,.62);color:var(--og);font-size:32px;cursor:pointer;display:grid;place-items:center;padding:0}'+
+'.orx-big:hover{background:var(--og);color:#000}.orx.started .orx-big{display:none}'+
+'.orx-cap{min-height:66px;padding:12px 16px;font-size:15.5px;line-height:1.55;border-top:1px solid rgba(213,184,99,.18);background:#0d0c09}'+
+'.orx-cap b{color:var(--og)}.orx-cap.fl{animation:orxCap .45s ease}@keyframes orxCap{from{opacity:.2;transform:translateY(5px)}to{opacity:1;transform:none}}'+
+'.orx-bar{height:3px;background:rgba(213,184,99,.15)}.orx-bar i{display:block;height:100%;width:0;background:var(--og)}'+
+'.orx-ctl{display:flex;align-items:center;gap:8px;padding:10px 12px;flex-wrap:wrap;border-top:1px solid rgba(213,184,99,.18)}'+
+'.orx-ctl button{font:600 13px inherit;font-family:inherit;background:transparent;color:var(--og);border:1px solid rgba(213,184,99,.6);border-radius:6px;padding:7px 12px;cursor:pointer}'+
+'.orx-ctl button.pri{background:var(--og);color:#000;border-color:var(--og)}'+
+'.orx-dots{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}'+
+'.orx-dots button{width:26px;height:26px;padding:0;border-radius:50%;font-size:11px}'+
+'.orx-dots button.on{background:var(--og);color:#000}'+
+'.orx-fine{padding:8px 16px 12px;font-size:12px;color:#8f877a;line-height:1.5}'+
+'@media (max-width:560px){.orx-dots{margin-left:0}}';
+
+function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function cl(x){return x<0?0:x>1?1:x}
+function ez(x){x=cl(x);return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2}
+function seg(p,a,b){return ez((p-a)/(b-a))}
+function mix(a,b,t){return a+(b-a)*t}
+function hex(a,b,t){var A=[1,3,5].map(function(i){return parseInt(a.substr(i,2),16)}),B=[1,3,5].map(function(i){return parseInt(b.substr(i,2),16)});return 'rgb('+A.map(function(v,i){return Math.round(mix(v,B[i],t))}).join(',')+')'}
+
+window.OrxAnim=function(host,opts){
+  opts=opts||{};
+  if(!document.getElementById('orx-css')){var st=document.createElement('style');st.id='orx-css';st.textContent=CSS;document.head.appendChild(st);}
+  var uid='o'+Math.random().toString(36).slice(2,7);
+  host.classList.add('orx');
+  host.innerHTML='<div class="orx-head"><span class="orx-badge">▶ Animation</span><span class="orx-title">'+(opts.title||'From TTC nail to bone with Mg OsteoRod')+'</span><span class="orx-n"></span></div>'+
+   '<div class="orx-stage"><button class="orx-big" type="button" aria-label="Play animation">▶</button></div><div class="orx-bar"><i></i></div><div class="orx-cap" aria-live="polite"></div>'+
+   '<div class="orx-ctl"><button type="button" class="pri" data-a="play">Play</button><button type="button" data-a="prev">‹ Back</button><button type="button" data-a="next">Next ›</button><button type="button" data-a="replay">Replay</button><div class="orx-dots"></div></div>'+
+   '<div class="orx-fine">'+(opts.fine||'Illustration. Mg OsteoCrete is a bone void filler, not structural support; the healed or fixed bone carries the load. Resorption timing varies; OsteoCrete material data are animal studies and an 18-patient radiographic review. Refer to the surgical technique 10263 and the IFU.')+'</div>';
+  var stage=host.querySelector('.orx-stage');
+  var svg=el('svg',{viewBox:'0 0 1000 600',role:'img','aria-label':'Animation: TTC nail removal, canal debridement and irrigation, Mg OsteoRod molding and insertion, and the rod being replaced with bone'});
+  stage.insertBefore(svg,stage.firstChild);
+  var defs=el('defs',{},svg);
+  defs.innerHTML='<linearGradient id="'+uid+'b" x1="0" x2="1"><stop offset="0" stop-color="#4a4740"/><stop offset=".5" stop-color="#8a8577"/><stop offset="1" stop-color="#4a4740"/></linearGradient>'+
+   '<linearGradient id="'+uid+'n" x1="0" x2="1"><stop offset="0" stop-color="#6d7680"/><stop offset=".45" stop-color="#e6edf3"/><stop offset="1" stop-color="#59616b"/></linearGradient>'+
+   '<linearGradient id="'+uid+'r" x1="0" x2="1"><stop offset="0" stop-color="#9c8240"/><stop offset=".45" stop-color="#F6E7B6"/><stop offset="1" stop-color="#9c8240"/></linearGradient>'+
+   '<linearGradient id="'+uid+'m" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9e9e9"/><stop offset="1" stop-color="#8a8a8a"/></linearGradient>'+
+   '<pattern id="'+uid+'t" width="26" height="26" patternUnits="userSpaceOnUse"><rect width="26" height="26" fill="#958f7c"/><ellipse cx="6" cy="5" rx="3.6" ry="2.4" fill="#4e4a40"/><ellipse cx="18" cy="9" rx="2.6" ry="3.4" fill="#57524a"/><ellipse cx="10" cy="17" rx="3" ry="2" fill="#4e4a40"/><ellipse cx="22" cy="21" rx="2.2" ry="2.8" fill="#5a554b"/><circle cx="2" cy="22" r="1.6" fill="#4e4a40"/><circle cx="14" cy="2" r="1.2" fill="#5a554b"/></pattern>'+
+   '<clipPath id="'+uid+'c"><rect x="252" y="60" width="26" height="432" rx="13"/></clipPath>'+
+   '<clipPath id="'+uid+'v"><rect x="0" y="0" width="1000" height="600"/></clipPath>'+
+   '<filter id="'+uid+'g"><feGaussianBlur stdDeviation="6"/></filter>';
+  var root=el('g',{'clip-path':'url(#'+uid+'v)'},svg);
+  /* soft tissue */
+  el('path',{d:'M150 0 L362 0 L364 280 C372 330 398 350 432 360 C520 380 590 415 620 440 L620 520 C560 515 420 500 330 505 C280 508 240 515 200 510 C150 505 120 470 130 420 C140 380 150 340 150 280 Z',fill:'rgba(255,255,255,.035)',stroke:'rgba(213,184,99,.25)','stroke-width':'1.5'},root);
+  var bones=el('g',{fill:'url(#'+uid+'b)',stroke:'rgba(241,220,156,.55)','stroke-width':'1.6'},root);
+  el('path',{d:'M178 30 L196 30 L200 300 C204 330 200 360 188 372 C176 360 172 330 176 300 Z',opacity:'.55'},bones);
+  el('path',{d:'M222 0 L310 0 L312 250 C316 290 334 305 338 330 L198 330 C204 305 220 290 220 250 Z'},bones);
+  el('path',{d:'M198 330 L338 330 C350 345 352 360 345 372 C362 372 380 368 398 372 C410 376 412 392 400 398 C370 402 340 400 320 400 L210 400 C196 390 192 350 198 330 Z'},bones);
+  el('path',{d:'M150 430 C150 405 175 398 210 400 L320 400 C350 402 380 405 405 410 L425 440 C420 455 400 462 380 462 L300 470 C278 480 268 490 240 492 C180 494 150 470 150 430 Z'},bones);
+  el('ellipse',{cx:'425',cy:'392',rx:'22',ry:'26'},bones);
+  el('path',{d:'M448 372 L490 368 L496 412 L452 418 Z'},bones);
+  el('path',{d:'M420 425 L470 420 L478 455 L428 462 Z'},bones);
+  el('path',{d:'M494 378 L606 432 L600 450 L490 410 Z'},bones);
+  el('path',{d:'M478 418 L598 462 L592 478 L476 446 Z',opacity:'.8'},bones);
+  /* healed fusion lines */
+  el('path',{d:'M200 330 L336 330 M212 400 L318 400',stroke:'rgba(241,220,156,.25)','stroke-dasharray':'3 6',fill:'none'},root);
+  var lab=el('g',{'font-size':'14','letter-spacing':'2',fill:'rgba(241,220,156,.6)','font-family':'inherit'},root);
+  [['TIBIA',326,120],['TALUS',350,352],['CALCANEUS',140,520]].forEach(function(a){var t=el('text',{x:a[1],y:a[2]},lab);t.textContent=a[0];});
+  /* canal */
+  var canal=el('rect',{x:'252',y:'60',width:'26',height:'432',rx:'13',fill:'#030303',stroke:'rgba(241,220,156,.35)','stroke-dasharray':'4 5',opacity:'0'},root);
+  var cg=el('g',{'clip-path':'url(#'+uid+'c)'},root);
+  var bonefill=el('rect',{x:'252',y:'60',width:'26',height:'432',fill:'url(#'+uid+'t)',opacity:'0'},cg);
+  var debris=el('g',{fill:'#8a5a3a'},cg);
+  for(var i=0;i<26;i++)el('circle',{cx:String(254+((i*7)%22)),cy:String(70+i*16+(i%3)*4),r:String(1.6+(i%3)*.8)},debris);
+  var drops=el('g',{fill:'#6fb6ff'},cg);var dropN=[];
+  for(i=0;i<16;i++)dropN.push(el('ellipse',{cx:String(258+(i*5)%14),cy:'0',rx:'2.2',ry:'4.5',opacity:'0'},drops));
+  var reamer=el('g',{opacity:'0'},root);
+  el('rect',{x:'262',y:'22',width:'6',height:'460',fill:'#9aa3ad'},reamer);
+  el('rect',{x:'252',y:'0',width:'26',height:'22',rx:'6',fill:'url(#'+uid+'n)'},reamer);
+  el('path',{d:'M252 6 L278 12 M252 13 L278 19',stroke:'#3a3f45','stroke-width':'2'},reamer);
+  /* nail and screws */
+  var nail=el('g',{},root);
+  el('rect',{x:'254',y:'60',width:'22',height:'432',rx:'11',fill:'url(#'+uid+'n)',stroke:'#2b3036'},nail);
+  el('rect',{x:'250',y:'480',width:'30',height:'14',rx:'3',fill:'#59616b'},nail);
+  var screws=el('g',{stroke:'#c9d1d9','stroke-width':'7','stroke-linecap':'round'},root);
+  [[212,150,322,150],[212,200,322,200],[206,366,346,366],[165,455,300,436]].forEach(function(s){el('line',{x1:s[0],y1:s[1],x2:s[2],y2:s[3]},screws);});
+  /* rod in canal */
+  var rodIn=el('g',{opacity:'0'},root);
+  var rodRect=el('rect',{x:'254',y:'60',width:'22',height:'432',rx:'11',fill:'url(#'+uid+'r)'},rodIn);
+  var rodGlow=el('rect',{x:'250',y:'60',width:'30',height:'432',rx:'15',fill:'#D5B863',filter:'url(#'+uid+'g)',opacity:'.0'},root);
+  var mg=el('g',{'font-size':'11',fill:'#F1DC9C','font-family':'inherit',opacity:'0'},root);var mgN=[];
+  for(i=0;i<12;i++){var tt=el('text',{x:'265',y:String(90+i*34)},mg);tt.textContent='Mg²⁺';mgN.push(tt);}
+  var fluoro=el('rect',{x:'0',y:'0',width:'640',height:'600',fill:'#9fc6ff',opacity:'0',style:'mix-blend-mode:screen'},root);
+  /* bench */
+  var bench=el('g',{opacity:'0'},root);
+  el('line',{x1:'640',y1:'520',x2:'990',y2:'520',stroke:'rgba(213,184,99,.35)','stroke-width':'2'},bench);
+  var bt=el('text',{x:'815',y:'560','text-anchor':'middle','font-size':'14','letter-spacing':'4',fill:'rgba(241,220,156,.7)'},bench);bt.textContent='BACK TABLE';
+  var basin=el('g',{},bench);
+  el('path',{d:'M665 250 L685 300 L775 300 L795 250 Z',fill:'#2a2a2a',stroke:'#9a9a9a','stroke-width':'2'},basin);
+  el('ellipse',{cx:'730',cy:'250',rx:'65',ry:'14',fill:'#141414',stroke:'#bdbdbd','stroke-width':'2'},basin);
+  var mound=el('ellipse',{cx:'730',cy:'252',rx:'44',ry:'9',fill:'#f2f2f2'},basin);
+  var vial=el('g',{},basin);el('rect',{x:'812',y:'150',width:'26',height:'44',rx:'5',fill:'rgba(200,225,255,.35)',stroke:'#dfe7ef'},vial);
+  var pour=el('path',{d:'M812 190 Q780 210 740 246',stroke:'#8fc6ff','stroke-width':'4',fill:'none',opacity:'0'},basin);
+  var spat=el('g',{},basin);el('line',{x1:'730',y1:'250',x2:'760',y2:'190',stroke:'#111','stroke-width':'5','stroke-linecap':'round'},spat);el('ellipse',{cx:'730',cy:'250',rx:'10',ry:'5',fill:'#111'},spat);
+  var mold=el('g',{},bench);
+  el('rect',{x:'650',y:'410',width:'330',height:'66',rx:'16',fill:'#6e6e6e'},mold);
+  el('rect',{x:'650',y:'400',width:'330',height:'64',rx:'16',fill:'url(#'+uid+'m)'},mold);
+  el('rect',{x:'664',y:'424',width:'302',height:'18',rx:'9',fill:'#8f8f8f'},mold);
+  var benchRod=el('rect',{x:'668',y:'426',width:'294',height:'14',rx:'7',fill:'url(#'+uid+'r)',opacity:'0'},mold);
+  var log=el('rect',{x:'690',y:'240',width:'80',height:'16',rx:'8',fill:'#D5B863',opacity:'0'},bench);
+  var top=el('g',{opacity:'0'},bench);
+  el('rect',{x:'650',y:'390',width:'330',height:'34',rx:'14',fill:'url(#'+uid+'m)',stroke:'#7a7a7a'},top);
+  var nuts=el('g',{opacity:'0',fill:'#cfcfcf',stroke:'#777'},bench);
+  [690,815,940].forEach(function(x){el('path',{d:'M'+(x-14)+' 482 l8 -6 h12 l8 6 l-8 6 h-12 Z'},nuts);});
+  var lens=el('text',{x:'815',y:'385','text-anchor':'middle','font-size':'18','font-weight':'700','letter-spacing':'2',fill:'#F1DC9C',opacity:'0'},bench);lens.textContent='13 mm · 220 mm ROD';
+  var ring=el('g',{transform:'translate(900 245)'},bench);
+  el('circle',{r:'38',fill:'#000',stroke:'rgba(213,184,99,.25)','stroke-width':'7'},ring);
+  var arc=el('circle',{r:'38',fill:'none',stroke:'#D5B863','stroke-width':'7','stroke-linecap':'round','stroke-dasharray':'238.8','stroke-dashoffset':'238.8',transform:'rotate(-90)'},ring);
+  var rn=el('text',{y:'6','text-anchor':'middle','font-size':'24','font-weight':'800',fill:'#fff'},ring);rn.textContent='30';
+  var ru=el('text',{y:'22','text-anchor':'middle','font-size':'8','letter-spacing':'2',fill:'#D5B863'},ring);ru.textContent='SECONDS';
+  /* right-side callouts */
+  var call=el('g',{},root);
+  var cA=el('text',{x:'815',y:'250','text-anchor':'middle','font-size':'30','font-weight':'800','letter-spacing':'2',fill:'#F1DC9C',opacity:'0'},call);
+  var cB=el('text',{x:'815',y:'286','text-anchor':'middle','font-size':'16','letter-spacing':'3',fill:'rgba(241,220,156,.75)',opacity:'0'},call);
+  var tl=el('g',{opacity:'0'},root);
+  el('line',{x1:'680',y1:'330',x2:'950',y2:'330',stroke:'rgba(213,184,99,.3)','stroke-width':'4','stroke-linecap':'round'},tl);
+  var tlFill=el('line',{x1:'680',y1:'330',x2:'680',y2:'330',stroke:'#D5B863','stroke-width':'4','stroke-linecap':'round'},tl);
+  var tlL=[['Weeks',680],['Months',815],['About a year',950]].map(function(a){var t=el('text',{x:a[1],y:'362','text-anchor':'middle','font-size':'15','letter-spacing':'1',fill:'rgba(241,220,156,.5)'},tl);t.textContent=a[0];return t;});
+
+  function sa(e,k,v){e.setAttribute(k,v)}
+  function render(s,p){
+    function k(i){return s>i?1:s===i?p:0}
+    var k1=k(1),k2=k(2),k3=k(3),k4=k(4),k5=k(5),k6=k(6),k7=k(7);
+    /* screws and nail */
+    sa(screws,'transform','translate('+(260*ez(k1))+' 0)');sa(screws,'opacity',String(1-seg(k1,.45,1)));
+    sa(nail,'transform','translate(0 '+(560*ez(k2))+')');sa(nail,'opacity',String(1-seg(k2,.75,1)));
+    sa(canal,'opacity',String(seg(k2,.2,.6)));
+    sa(debris,'opacity',String(seg(k2,.5,1)*(1-seg(k3,.2,.62))));
+    /* reamer up and down, then irrigation */
+    if(s===3&&p<.6){var q=p/.6,tri=q<.5?q*2:2-q*2;sa(reamer,'opacity','1');sa(reamer,'transform','translate(0 '+(500-440*ez(tri))+')');}else sa(reamer,'opacity','0');
+    var irr=s===3?seg(p,.55,.65)*(1-seg(p,.95,1)):0;
+    dropN.forEach(function(d,j){var y=60+((p*2600+j*29)%460);sa(d,'cy',String(y));sa(d,'opacity',String(irr*.9));});
+    /* bench */
+    var bOn=s>=4&&s<=6?(s===4?seg(p,0,.15):s===6?1-seg(p,.55,.85):1):0;sa(bench,'opacity',String(bOn));
+    sa(basin,'opacity',String(s===4?1:s===5?1-seg(p,.15,.35):0));
+    sa(pour,'opacity',String(s===4?seg(p,.12,.2)*(1-seg(p,.3,.38)):0));
+    sa(vial,'opacity',String(s===4?1-seg(p,.35,.45):0));
+    sa(mound,'fill',hex('#f2f2f2','#D5B863',s===4?seg(p,.35,.95):1));sa(mound,'ry',String(s===4?mix(9,12,seg(p,.4,.9)):12));
+    sa(spat,'transform','rotate('+(s===4?seg(p,.3,.95)*900:0)+' 730 250)');
+    sa(spat,'opacity',String(s===4?seg(p,.25,.32):0));
+    var ringT=s===4?seg(p,.3,.95):s===5?seg(p,.5,.82):0;
+    sa(arc,'stroke-dashoffset',String(238.8*(1-ringT)));rn.textContent='30';ru.textContent=s===5?'MINUTES':'SECONDS';
+    sa(ring,'opacity',String(s===4?seg(p,.25,.32):s===5?seg(p,.45,.5)*(1-seg(p,.86,.92)):0));
+    /* log into mold */
+    if(s===5){var m=seg(p,0,.25);sa(log,'opacity',String(seg(p,0,.04)*(1-seg(p,.25,.27))));sa(log,'x',String(mix(690,668,m)));sa(log,'y',String(mix(240,426,m)));sa(log,'width',String(mix(80,294,m)));sa(log,'height',String(mix(16,14,m)));}
+    else sa(log,'opacity','0');
+    var topOn=s===5?seg(p,.27,.4):0,topLift=s===5?seg(p,.84,.92):0;
+    sa(top,'opacity',String(s===5?topOn*(1-topLift):0));sa(top,'transform','translate(0 '+(-80*(1-topOn)-90*topLift)+')');
+    sa(nuts,'opacity',String(s===5?seg(p,.4,.46)*(1-seg(p,.8,.84)):0));
+    var br=s===5?seg(p,.25,.3):s===6?1-seg(p,0,.25):0;sa(benchRod,'opacity',String(br));
+    sa(lens,'opacity',String(s===5?seg(p,.9,.97):s===6?1-seg(p,0,.2):0));
+    /* rod into canal */
+    if(s===6){var up=seg(p,.25,.85);sa(rodIn,'opacity',String(seg(p,.2,.28)));sa(rodIn,'transform','translate(0 '+(500*(1-up))+')');}
+    else if(s>6){sa(rodIn,'opacity','1');sa(rodIn,'transform','');}else sa(rodIn,'opacity','0');
+    sa(fluoro,'opacity',String(s===6?.16*seg(p,.3,.4)*(1-seg(p,.88,.98)):0));
+    /* resorb and remodel */
+    var r=s===7?seg(p,.08,.92):s>7?1:0;
+    var w=22*(1-r);sa(rodRect,'width',String(w));sa(rodRect,'x',String(265-w/2));sa(rodRect,'rx',String(Math.max(0,w/2)));
+    sa(bonefill,'opacity',String(s>=7?seg(r,0,.9):0));
+    sa(canal,'opacity',String(s>=7?1-seg(r,.6,1):seg(k2,.2,.6)));
+    sa(rodGlow,'opacity',String(s===6?.6*seg(p,.85,1):s===7?.6*(1-seg(p,0,.5)):0));
+    sa(mg,'opacity',String(s===7?seg(p,.05,.15)*(1-seg(p,.75,.9)):0));
+    mgN.forEach(function(t,j){var dx=(j%2?1:-1)*(10+70*seg(p,.05,.8));sa(t,'x',String(258+dx));});
+    sa(tl,'opacity',String(s===7?seg(p,0,.1):0));sa(tlFill,'x2',String(680+270*r));
+    tlL.forEach(function(t,j){sa(t,'fill',r>=j/2-.001?'#F1DC9C':'rgba(241,220,156,.4)');});
+    /* callouts */
+    var C=[['TTC NAIL','HEALED FUSION'],['SCREWS OUT','HARDWARE REMOVAL'],['NAIL OUT','EMPTY CANAL'],['13 MM','OPEN · DEBRIDE · IRRIGATE'],null,null,null,['CREEPING','SUBSTITUTION']][s];
+    if(C){cA.textContent=C[0];cB.textContent=C[1];var o=String(seg(p,0,.12));sa(cA,'opacity',o);sa(cB,'opacity',o);sa(cA,'y',s===7?'250':'280');sa(cB,'y',s===7?'286':'316');}else{sa(cA,'opacity','0');sa(cB,'opacity','0');}
+  }
+
+  var cur=0,t0=0,playing=false,raf=0,elapsed=0;
+  var cap=host.querySelector('.orx-cap'),barI=host.querySelector('.orx-bar i'),nEl=host.querySelector('.orx-n'),pb=host.querySelector('[data-a=play]'),dots=host.querySelector('.orx-dots');
+  STEPS.forEach(function(st,i){var b=document.createElement('button');b.type='button';b.textContent=i+1;b.title=st.t;b.addEventListener('click',function(){go(i,true)});dots.appendChild(b);});
+  function paint(){cap.innerHTML='<b>'+(cur+1)+'. '+STEPS[cur].t+'.</b> '+STEPS[cur].c;cap.classList.remove('fl');void cap.offsetWidth;cap.classList.add('fl');
+    nEl.textContent='Step '+(cur+1)+' of '+STEPS.length;[].forEach.call(dots.children,function(b,i){b.classList.toggle('on',i===cur)});}
+  function frame(ts){if(!playing)return;var p=(elapsed+(ts-t0))/STEPS[cur].d;
+    if(p>=1){render(cur,1);if(cur<STEPS.length-1){cur++;elapsed=0;t0=ts;paint();}else{stop();barI.style.width='100%';return;}p=0;}
+    render(cur,p);barI.style.width=((cur+p)/STEPS.length*100)+'%';raf=requestAnimationFrame(frame);}
+  function play(){if(playing)return;host.classList.add('started');if(cur===STEPS.length-1&&elapsed>=STEPS[cur].d){cur=0;elapsed=0;paint();}
+    playing=true;pb.textContent='Pause';t0=performance.now();raf=requestAnimationFrame(frame);}
+  function stop(){if(playing){elapsed+=performance.now()-t0;}playing=false;pb.textContent='Play';cancelAnimationFrame(raf);}
+  function go(i,user){var was=playing;stop();cur=Math.max(0,Math.min(STEPS.length-1,i));elapsed=0;render(cur,0);paint();barI.style.width=(cur/STEPS.length*100)+'%';host.classList.add('started');if(was||user)play();}
+  host.querySelector('.orx-big').addEventListener('click',play);
+  host.querySelector('.orx-ctl').addEventListener('click',function(e){var a=e.target.dataset&&e.target.dataset.a;if(!a)return;
+    if(a==='play')playing?stop():play();else if(a==='prev')go(cur-1,true);else if(a==='next')go(cur+1,true);else if(a==='replay')go(0,true);});
+  render(0,0);paint();
+  if(opts.autoplay&&'IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&e.intersectionRatio>.5){if(!host.classList.contains('started'))play();}else if(playing&&!e.isIntersecting)stop();});},{threshold:[0,.5]});io.observe(host);}
+  return {play:play,stop:stop,go:go,render:render,steps:STEPS.length};
+};
+})();
+
+OrxAnim(document.getElementById("orxSizzle"),{autoplay:true,title:"From TTC nail to bone with Mg OSTEOROD"});
 </script>
 <script src="share.js?v=2" defer></script>
 </body>
