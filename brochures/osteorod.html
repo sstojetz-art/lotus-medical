@@ -288,7 +288,7 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
       <h2 class="rise d1">From the start point <span class="gold">to full depth.</span></h2>
       <div class="uses">
         <div class="use slideL d2"><span class="k">01</span><p><strong>Upper and lower extremity long bones.</strong> Set up and positioned as for intramedullary nailing.</p></div>
-        <div class="use slideL d3"><span class="k">02</span><p><strong>Periprosthetic infection.</strong> Positioning follows the surgeon's preferred approach to the joint.</p></div>
+        <div class="use slideL d3"><span class="k">02</span><p><strong>Implant removal.</strong> Remove implants when applicable, then debride per accepted practice.</p></div>
         <div class="use slideL d4"><span class="k">03</span><p><strong>Simple canal access.</strong> Any opening intramedullary reamer, or any drill 13mm or greater.</p></div>
       </div>
     </div>
@@ -413,7 +413,7 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
     <h2 class="rise d1">Four steps. <span class="gold">A familiar workflow.</span></h2>
     <div class="tl">
       <div class="track"></div>
-      <div class="tstep rise d2"><div class="dot">1</div><h3>Set up</h3><p>Position as for intramedullary nailing of the target bone. For periprosthetic infection, follow the preferred approach to the joint.</p><p>Clear orthogonal fluoroscopic views are essential.</p></div>
+      <div class="tstep rise d2"><div class="dot">1</div><h3>Set up</h3><p>Position as for intramedullary nailing of the target bone.</p><p>Clear orthogonal fluoroscopic views are essential.</p></div>
       <div class="tstep rise d3"><div class="dot">2</div><h3>Approach</h3><p>Standard exposure to the preferred nail start point. Open the canal with any opening reamer or drill 13mm or greater.</p><p>With prior IM implants, use the accepted incisions for hardware removal.</p></div>
       <div class="tstep rise d4"><div class="dot">3</div><h3>Remove &amp; debride</h3><p>Total or subtotal implant removal when applicable, then debridement per accepted practice and surgeon preference.</p></div>
       <div class="tstep final rise d5"><div class="dot">4</div><h3>Insert</h3><p>Seat the molded Mg OSTEOROD in the canal under fluoroscopic guidance to the preferred or maximum depth.</p></div>
@@ -426,7 +426,7 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
   <div class="wrap">
     <div class="eyebrow rise">See it start to finish</div>
     <h2 class="rise d1">From nail <span class="gold">to bone.</span></h2>
-    <p class="lede rise d2" style="margin-top:10px;margin-bottom:16px">Nail out. Canal cleaned. Rod molded and seated. Magnesium replaced with bone.</p>
+    <p class="lede rise d2" style="margin-top:10px;margin-bottom:16px">Nail out of a nonunion. Canal cleaned. Rod molded, seated and fixed. Magnesium replaced with bone.</p>
     <div id="orxSizzle" class="rise d3" style="--orx-max:34vh"></div>
   </div>
 </section>
@@ -584,14 +584,15 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
 (function(){
 var NS='http://www.w3.org/2000/svg';
 var STEPS=[
- {t:'A healed TTC fusion',c:'A tibiotalocalcaneal nail holds a healed hindfoot fusion through the calcaneus, talus and tibia. The nail is coming out.',d:4200},
- {t:'Locking screws out',c:'The locking screws come out first, through the accepted incisions for hardware removal.',d:3600},
- {t:'Nail out',c:'The nail is extracted through its plantar start point. What it leaves behind is an empty canal: dead space.',d:3600},
- {t:'Open, debride, irrigate',c:'The canal is opened to 13 mm or greater, debrided per accepted practice and surgeon preference, and irrigated.',d:6400},
+ {t:'A TTC nonunion',c:'A tibiotalocalcaneal nail is in place, but the ankle and subtalar joints have not fused: an aseptic nonunion, with a broken calcaneal screw. The nail is coming out.',d:5200},
+ {t:'Locking screws out',c:'The locking screws come out first, broken one included, through the accepted incisions for hardware removal.',d:3600},
+ {t:'Nail out',c:'The nail is extracted through its plantar start point. What it leaves behind is an empty canal: dead space, crossing the nonunion.',d:3600},
+ {t:'Open, debride, irrigate',c:'The canal is opened to 13 mm or greater, the nonunion is debrided per accepted practice and surgeon preference, and everything is irrigated.',d:6400},
  {t:'Powder to putty',c:'On the back table, Mg OsteoCrete powder and one vial of solution become a workable putty in 30 seconds.',d:5600},
  {t:'Mold the OsteoRod',c:'The putty is laid in the Mg OsteoRod mold, closed, locked with the wing nuts and cured 30 minutes into a 13 mm rod.',d:7600},
  {t:'Seat it under fluoroscopy',c:'The rod is seated through the plantar start point under fluoroscopy to the preferred or maximum depth. It is radiopaque.',d:6200},
- {t:'Replaced with bone',c:'Over time the magnesium is resorbed and replaced with bone by creeping substitution, until the canal holds the patient’s own bone.',d:8200}
+ {t:'Fixation carries the load',c:'Mg OsteoCrete is not structural, so the surgeon stabilizes the nonunion. Shown here, a lateral plate, its screws drilled straight through the set rod.',d:6400},
+ {t:'Replaced with bone',c:'The magnesium is resorbed and replaced with bone by creeping substitution. Bone fills the canal and grows across the nonunion, until it is the patient\u2019s own bone.',d:11000}
 ];
 var CSS='.orx{--og:#D5B863;--og2:#F1DC9C;--ob:#0a0a0a;border:1px solid rgba(213,184,99,.45);border-radius:14px;overflow:hidden;background:#050504;color:#f1ebdd;font-family:inherit}'+
 '.orx-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(213,184,99,.22);flex-wrap:wrap}'+
@@ -640,9 +641,9 @@ window.OrxAnim=function(host,opts){
    '<linearGradient id="'+uid+'m" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9e9e9"/><stop offset="1" stop-color="#8a8a8a"/></linearGradient>'+
    '<pattern id="'+uid+'t" width="26" height="26" patternUnits="userSpaceOnUse"><rect width="26" height="26" fill="#958f7c"/><ellipse cx="6" cy="5" rx="3.6" ry="2.4" fill="#4e4a40"/><ellipse cx="18" cy="9" rx="2.6" ry="3.4" fill="#57524a"/><ellipse cx="10" cy="17" rx="3" ry="2" fill="#4e4a40"/><ellipse cx="22" cy="21" rx="2.2" ry="2.8" fill="#5a554b"/><circle cx="2" cy="22" r="1.6" fill="#4e4a40"/><circle cx="14" cy="2" r="1.2" fill="#5a554b"/></pattern>'+
    '<clipPath id="'+uid+'c"><rect x="252" y="60" width="26" height="432" rx="13"/></clipPath>'+
-   '<clipPath id="'+uid+'v"><rect x="0" y="0" width="1000" height="600"/></clipPath>'+
+   '<clipPath id="'+uid+'f"><rect id="'+uid+'fr" x="240" y="492" width="50" height="0"/></clipPath><clipPath id="'+uid+'v"><rect x="0" y="0" width="1000" height="600"/></clipPath>'+
    '<filter id="'+uid+'g"><feGaussianBlur stdDeviation="6"/></filter>';
-  var root=el('g',{'clip-path':'url(#'+uid+'v)'},svg);
+  var root=el('g',{'clip-path':'url(#'+uid+'v)'},svg);var fr=defs.querySelector('#'+uid+'fr');
   /* soft tissue */
   el('path',{d:'M150 0 L362 0 L364 280 C372 330 398 350 432 360 C520 380 590 415 620 440 L620 520 C560 515 420 500 330 505 C280 508 240 515 200 510 C150 505 120 470 130 420 C140 380 150 340 150 280 Z',fill:'rgba(255,255,255,.035)',stroke:'rgba(213,184,99,.25)','stroke-width':'1.5'},root);
   var bones=el('g',{fill:'url(#'+uid+'b)',stroke:'rgba(241,220,156,.55)','stroke-width':'1.6'},root);
@@ -656,13 +657,18 @@ window.OrxAnim=function(host,opts){
   el('path',{d:'M494 378 L606 432 L600 450 L490 410 Z'},bones);
   el('path',{d:'M478 418 L598 462 L592 478 L476 446 Z',opacity:'.8'},bones);
   /* healed fusion lines */
-  el('path',{d:'M200 330 L336 330 M212 400 L318 400',stroke:'rgba(241,220,156,.25)','stroke-dasharray':'3 6',fill:'none'},root);
+  var gaps=el('g',{},root);
+  var gapA=el('path',{d:'M199 326 L215 333 L232 324 L250 334 L270 325 L290 334 L310 325 L338 332 L338 338 L310 331 L290 340 L270 331 L250 340 L232 330 L215 339 L199 332 Z',fill:'#050505',stroke:'rgba(241,220,156,.45)','stroke-width':'1'},gaps);
+  var gapB=el('path',{d:'M206 397 L225 403 L245 395 L265 404 L285 396 L305 404 L322 398 L322 404 L305 410 L285 402 L265 410 L245 401 L225 409 L206 403 Z',fill:'#050505',stroke:'rgba(241,220,156,.45)','stroke-width':'1'},gaps);
+  var gapFill=el('g',{opacity:'0'},root);
+  el('path',{d:gapA.getAttribute('d'),fill:'url(#'+uid+'t)'},gapFill);el('path',{d:gapB.getAttribute('d'),fill:'url(#'+uid+'t)'},gapFill);
+  var flashes=el('g',{},root);var flA=el('circle',{cx:'268',cy:'332',r:'0',fill:'none',stroke:'#F1DC9C','stroke-width':'3',opacity:'0'},flashes);var flB=el('circle',{cx:'265',cy:'402',r:'0',fill:'none',stroke:'#F1DC9C','stroke-width':'3',opacity:'0'},flashes);
   var lab=el('g',{'font-size':'14','letter-spacing':'2',fill:'rgba(241,220,156,.6)','font-family':'inherit'},root);
   [['TIBIA',326,120],['TALUS',350,352],['CALCANEUS',140,520]].forEach(function(a){var t=el('text',{x:a[1],y:a[2]},lab);t.textContent=a[0];});
   /* canal */
   var canal=el('rect',{x:'252',y:'60',width:'26',height:'432',rx:'13',fill:'#030303',stroke:'rgba(241,220,156,.35)','stroke-dasharray':'4 5',opacity:'0'},root);
   var cg=el('g',{'clip-path':'url(#'+uid+'c)'},root);
-  var bonefill=el('rect',{x:'252',y:'60',width:'26',height:'432',fill:'url(#'+uid+'t)',opacity:'0'},cg);
+  var bonefill=el('rect',{x:'252',y:'60',width:'26',height:'432',fill:'url(#'+uid+'t)',opacity:'0','clip-path':'url(#'+uid+'f)'},cg);
   var debris=el('g',{fill:'#8a5a3a'},cg);
   for(var i=0;i<26;i++)el('circle',{cx:String(254+((i*7)%22)),cy:String(70+i*16+(i%3)*4),r:String(1.6+(i%3)*.8)},debris);
   var drops=el('g',{fill:'#6fb6ff'},cg);var dropN=[];
@@ -676,13 +682,23 @@ window.OrxAnim=function(host,opts){
   el('rect',{x:'254',y:'60',width:'22',height:'432',rx:'11',fill:'url(#'+uid+'n)',stroke:'#2b3036'},nail);
   el('rect',{x:'250',y:'480',width:'30',height:'14',rx:'3',fill:'#59616b'},nail);
   var screws=el('g',{stroke:'#c9d1d9','stroke-width':'7','stroke-linecap':'round'},root);
-  [[212,150,322,150],[212,200,322,200],[206,366,346,366],[165,455,300,436]].forEach(function(s){el('line',{x1:s[0],y1:s[1],x2:s[2],y2:s[3]},screws);});
+  [[212,150,322,150],[212,200,322,200],[206,366,346,366],[165,455,226,446],[234,445,300,436]].forEach(function(s){el('line',{x1:s[0],y1:s[1],x2:s[2],y2:s[3]},screws);});
   /* rod in canal */
   var rodIn=el('g',{opacity:'0'},root);
   var rodRect=el('rect',{x:'254',y:'60',width:'22',height:'432',rx:'11',fill:'url(#'+uid+'r)'},rodIn);
   var rodGlow=el('rect',{x:'250',y:'60',width:'30',height:'432',rx:'15',fill:'#D5B863',filter:'url(#'+uid+'g)',opacity:'.0'},root);
   var mg=el('g',{'font-size':'11',fill:'#F1DC9C','font-family':'inherit',opacity:'0'},root);var mgN=[];
   for(i=0;i<12;i++){var tt=el('text',{x:'265',y:String(90+i*34)},mg);tt.textContent='Mg²⁺';mgN.push(tt);}
+  var plate=el('g',{opacity:'0'},root);
+  el('path',{d:'M232 120 C226 200 226 280 230 330 C233 370 226 410 206 450 L224 460 C246 418 254 372 252 330 C250 280 250 200 254 120 Z',fill:'url(#'+uid+'n)',stroke:'#2b3036','stroke-width':'1.5',opacity:'.92'},plate);
+  var pScr=[[247,150],[246,205],[246,260],[247,300],[244,360],[236,415],[218,450]].map(function(q){var g=el('g',{transform:'translate('+q[0]+' '+q[1]+')',opacity:'0'},plate);el('path',{d:'M0 -2.6 L40 -1.6 L44 0 L40 1.6 L0 2.6 Z',fill:'#aeb7c0',stroke:'#2b3036','stroke-width':'.8'},g);el('circle',{r:'7',fill:'#c9d1d9',stroke:'#2b3036','stroke-width':'1.5'},g);el('path',{d:'M-4 0 H4 M0 -4 V4',stroke:'#2b3036','stroke-width':'1.6'},g);return g;});
+  var drillTxt=el('text',{x:'300',y:'235','font-size':'13','letter-spacing':'1.5',fill:'#F1DC9C',opacity:'0'},root);drillTxt.textContent='\u2190 drilled through the rod';
+  var front=el('g',{opacity:'0'},root);
+  el('rect',{x:'236',y:'-10',width:'58',height:'20',rx:'10',fill:'#F6E7B6',filter:'url(#'+uid+'g)'},front);
+  el('rect',{x:'250',y:'-3',width:'30',height:'6',rx:'3',fill:'#fffbe8'},front);
+  var sparks=el('g',{},root);var spN=[];
+  for(i=0;i<46;i++)spN.push(el('circle',{r:String(1.2+(i%4)*.7),fill:i%3?'#F6E7B6':'#ffffff',opacity:'0'},sparks));
+  var halo=el('rect',{x:'228',y:'50',width:'74',height:'452',rx:'37',fill:'#D5B863',filter:'url(#'+uid+'g)',opacity:'0'},root);
   var fluoro=el('rect',{x:'0',y:'0',width:'640',height:'600',fill:'#9fc6ff',opacity:'0',style:'mix-blend-mode:screen'},root);
   /* bench */
   var bench=el('g',{opacity:'0'},root);
@@ -723,7 +739,7 @@ window.OrxAnim=function(host,opts){
   function sa(e,k,v){e.setAttribute(k,v)}
   function render(s,p){
     function k(i){return s>i?1:s===i?p:0}
-    var k1=k(1),k2=k(2),k3=k(3),k4=k(4),k5=k(5),k6=k(6),k7=k(7);
+    var k1=k(1),k2=k(2),k3=k(3);
     /* screws and nail */
     sa(screws,'transform','translate('+(260*ez(k1))+' 0)');sa(screws,'opacity',String(1-seg(k1,.45,1)));
     sa(nail,'transform','translate(0 '+(560*ez(k2))+')');sa(nail,'opacity',String(1-seg(k2,.75,1)));
@@ -756,19 +772,41 @@ window.OrxAnim=function(host,opts){
     if(s===6){var up=seg(p,.25,.85);sa(rodIn,'opacity',String(seg(p,.2,.28)));sa(rodIn,'transform','translate(0 '+(500*(1-up))+')');}
     else if(s>6){sa(rodIn,'opacity','1');sa(rodIn,'transform','');}else sa(rodIn,'opacity','0');
     sa(fluoro,'opacity',String(s===6?.16*seg(p,.3,.4)*(1-seg(p,.88,.98)):0));
-    /* resorb and remodel */
-    var r=s===7?seg(p,.08,.92):s>7?1:0;
-    var w=22*(1-r);sa(rodRect,'width',String(w));sa(rodRect,'x',String(265-w/2));sa(rodRect,'rx',String(Math.max(0,w/2)));
-    sa(bonefill,'opacity',String(s>=7?seg(r,0,.9):0));
-    sa(canal,'opacity',String(s>=7?1-seg(r,.6,1):seg(k2,.2,.6)));
-    sa(rodGlow,'opacity',String(s===6?.6*seg(p,.85,1):s===7?.6*(1-seg(p,0,.5)):0));
-    sa(mg,'opacity',String(s===7?seg(p,.05,.15)*(1-seg(p,.75,.9)):0));
-    mgN.forEach(function(t,j){var dx=(j%2?1:-1)*(10+70*seg(p,.05,.8));sa(t,'x',String(258+dx));});
-    sa(tl,'opacity',String(s===7?seg(p,0,.1):0));sa(tlFill,'x2',String(680+270*r));
+    /* fixation: lateral plate, screws drilled through the rod */
+    sa(plate,'opacity',String(s===7?seg(p,0,.18):s===8?1-.6*seg(p,.04,.12):0));
+    pScr.forEach(function(g,j){var t0=.2+j*.09,v=s===7?seg(p,t0,t0+.08):s>7?1:0;var rot=s===7&&v<1?v*720:0;
+      sa(g,'opacity',String(v));var c=g.getAttribute('transform').replace(/ rotate\([^)]*\)| scale\([^)]*\)/g,'');sa(g,'transform',c+' rotate('+rot+') scale('+(.6+.4*v)+')');});
+    sa(drillTxt,'opacity',String(s===7?seg(p,.45,.55)*(1-seg(p,.92,1)):0));
+    /* resorb and remodel: a glowing front climbs the rod and leaves bone behind */
+    var r=s===8?seg(p,.06,.8):s>8?1:0,fy=492-432*r;
+    sa(fr,'y',String(fy));sa(fr,'height',String(492-fy));
+    sa(bonefill,'opacity',String(s>=8?1:0));
+    sa(rodRect,'width','22');sa(rodRect,'x','254');sa(rodRect,'rx','11');
+    sa(rodRect,'height',String(s>=8?Math.max(0,fy-60):432));
+    var fOn=s===8?seg(p,.03,.08)*(1-seg(p,.8,.86)):0;
+    sa(front,'opacity',String(fOn*(.75+.25*Math.sin(p*90))));sa(front,'transform','translate(0 '+fy+')');
+    var fin=s===8?seg(p,.84,.9)*(1-seg(p,.94,1)):0;
+    sa(halo,'opacity',String(s===8?Math.max(fOn*(.18+.12*Math.sin(p*60)),.75*fin):0));
+    spN.forEach(function(c,j){var op=0,x=0,y=0,ang=j*2.39996;
+      if(s===8){var tj=.06+(j/46)*.72,a1=(p-tj)/.1;
+        if(a1>=0&&a1<=1){var y0=492-432*((tj-.06)/.74),d=8+70*ez(a1);x=265+Math.cos(ang)*d*1.3;y=y0+Math.sin(ang)*d*.55-14*a1;op=1-a1;}
+        var a2=(p-.84)/.13;if(a2>=0&&a2<=1&&op===0){var y1=70+(j/46)*420,d2=6+110*ez(a2);x=265+Math.cos(ang)*d2;y=y1+Math.sin(ang)*d2*.35;op=(1-a2)*.95;}}
+      sa(c,'cx',String(x));sa(c,'cy',String(y));sa(c,'opacity',String(op));});
+    /* the nonunion bridges with bone as the front passes */
+    var gA=s>=8?seg(r,.33,.42):0,gB=s>=8?seg(r,.17,.26):0;
+    sa(gapFill.childNodes[0],'opacity',String(gA));sa(gapFill.childNodes[1],'opacity',String(gB));sa(gapFill,'opacity',String(s>=8?1:0));
+    sa(gaps,'opacity',String(s>=8?1-Math.min(gA,gB)*.0:1));
+    [[flA,gA],[flB,gB]].forEach(function(f){var g=f[1],on=g>0&&g<1?1:0;sa(f[0],'r',String(10+70*g));sa(f[0],'opacity',String(on*(1-g)));});
+    sa(canal,'opacity',String(s>=8?1-seg(r,.7,1):seg(k2,.2,.6)));
+    sa(rodGlow,'opacity',String(s===6?.6*seg(p,.85,1):0));
+    sa(mg,'opacity',String(s===8?seg(p,.04,.12)*(1-seg(p,.7,.85)):0));
+    mgN.forEach(function(t,j){var dx=(j%2?1:-1)*(10+80*seg(p,.04,.8));sa(t,'x',String(258+dx));});
+    sa(tl,'opacity',String(s===8?seg(p,0,.08):0));sa(tlFill,'x2',String(680+270*r));
     tlL.forEach(function(t,j){sa(t,'fill',r>=j/2-.001?'#F1DC9C':'rgba(241,220,156,.4)');});
     /* callouts */
-    var C=[['TTC NAIL','HEALED FUSION'],['SCREWS OUT','HARDWARE REMOVAL'],['NAIL OUT','EMPTY CANAL'],['13 MM','OPEN · DEBRIDE · IRRIGATE'],null,null,null,['CREEPING','SUBSTITUTION']][s];
-    if(C){cA.textContent=C[0];cB.textContent=C[1];var o=String(seg(p,0,.12));sa(cA,'opacity',o);sa(cB,'opacity',o);sa(cA,'y',s===7?'250':'280');sa(cB,'y',s===7?'286':'316');}else{sa(cA,'opacity','0');sa(cB,'opacity','0');}
+    var C=[['NONUNION','ASEPTIC · TTC NAIL'],['SCREWS OUT','HARDWARE REMOVAL'],['NAIL OUT','EMPTY CANAL'],['13 MM','OPEN · DEBRIDE · IRRIGATE'],null,null,null,['FIXATION','CARRIES THE LOAD'],(s===8&&p>.84)?['THE PATIENT’S','OWN BONE']:['CREEPING','SUBSTITUTION']][s];
+    if(C){cA.textContent=C[0];cB.textContent=C[1];var o=String(s===8&&p>.84?seg(p,.84,.9):seg(p,0,.12));sa(cA,'opacity',o);sa(cB,'opacity',o);sa(cA,'y',s===8?'250':'280');sa(cB,'y',s===8?'286':'316');
+      sa(cA,'font-size',s===8&&p>.84?'38':'30');}else{sa(cA,'opacity','0');sa(cB,'opacity','0');}
   }
 
   var cur=0,t0=0,playing=false,raf=0,elapsed=0;
