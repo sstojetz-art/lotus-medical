@@ -221,6 +221,89 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
 .panel{padding-top:150px!important}
 @media (max-width:700px){#brand img{width:100px}.panel{padding-top:118px!important}}
 </style>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style id="or-sizzle-css">
+#orSnd{position:fixed;right:300px;top:12px;z-index:60;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.14em;font-size:14px;text-transform:uppercase;color:#D5B863;border:1px solid rgba(213,184,99,.5);padding:7px 12px;background:rgba(0,0,0,.65);cursor:pointer}
+#orSnd.off{color:#888;border-color:#555}
+.opplayer{width:min(100%,calc((100svh - 420px) * 1.7778));min-width:min(100%,520px);margin:14px auto 0;border:1px solid rgba(213,184,99,.35);background:#000;position:relative}
+.opstage{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}
+svg.opsvg text{font-family:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif}
+.opstage svg.opsvg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.opbig{position:absolute;inset:0;margin:auto;width:96px;height:96px;border-radius:50%;border:2px solid #D5B863;background:rgba(0,0,0,.6);color:#D5B863;font-size:38px;cursor:pointer;display:grid;place-items:center;animation:oppulse 1.8s infinite;z-index:3}
+.opplayer.started .opbig{display:none}
+@keyframes oppulse{0%{box-shadow:0 0 0 0 rgba(213,184,99,.55)}70%{box-shadow:0 0 0 24px rgba(213,184,99,0)}100%{box-shadow:0 0 0 0 rgba(213,184,99,0)}}
+.opctl{display:flex;align-items:center;gap:8px;padding:10px 12px;border-top:1px solid rgba(213,184,99,.28);flex-wrap:wrap;background:#0b0a08}
+.opctl button{background:#000;border:1px solid rgba(213,184,99,.28);color:#fff;padding:8px 14px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.1em;font-size:16px;text-transform:uppercase;cursor:pointer}
+.opctl button.g{background:#D5B863;color:#000;border-color:#D5B863}
+.opctl input[type=range]{flex:1;min-width:140px;accent-color:#D5B863}
+.opchap{display:flex;flex-wrap:wrap;border-top:1px solid rgba(213,184,99,.28)}
+.opchap button{flex:1 1 auto;background:transparent;border:0;border-right:1px solid rgba(213,184,99,.28);color:#cfc7b6;padding:11px 8px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:clamp(14px,1.45vw,18px);letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.opchap button:last-child{border-right:0}
+.opchap button.on{background:#D5B863;color:#000}
+.mgwrap{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(20px,3vw,44px);align-items:center;margin-top:24px}
+.mgbars{display:grid;gap:20px}
+.mgb .lb{display:flex;justify-content:space-between;align-items:baseline;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:clamp(17px,1.8vw,22px);margin-bottom:7px}
+.mgb .lb em{font-style:normal;font-weight:800;font-size:clamp(22px,2.4vw,32px);font-variant-numeric:tabular-nums}
+.mgb .tr{height:30px;background:rgba(255,255,255,.06);position:relative;overflow:hidden}
+.mgb .tr i{position:absolute;top:0;bottom:0;left:0;width:0;transition:width 1.6s cubic-bezier(.6,0,.2,1),left 1.6s cubic-bezier(.6,0,.2,1)}
+.mgb.c .tr i{background:linear-gradient(90deg,#5d5446,#9c8a66)}
+.mgb.o .tr i{background:linear-gradient(90deg,#8a7330,#D5B863,#F1DC9C);box-shadow:0 0 14px rgba(213,184,99,.45)}
+.mgb.k .tr i{background:linear-gradient(90deg,#6e6656,#cbbd9b)}
+.mgb.o em{color:#D5B863}
+.props{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pr{border:1px solid rgba(255,255,255,.1);background:linear-gradient(160deg,rgba(213,184,99,.10),rgba(18,17,16,.92) 60%);padding:18px;cursor:pointer;transition:border-color .3s,transform .3s}
+.pr.on{border-color:#D5B863;transform:translateY(-3px)}
+.pr b{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:clamp(22px,2.3vw,30px);text-transform:uppercase;color:#D5B863;line-height:1}
+.pr p{font-size:16.5px;color:#d7d1c4;line-height:1.4;margin-top:8px}
+.evwrap{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(20px,3vw,44px);align-items:start;margin-top:22px}
+.evchart{border:1px solid rgba(213,184,99,.3);background:radial-gradient(ellipse at 50% 40%,#1a1712,#050505 75%);padding:10px}
+.evchart svg{display:block;width:100%;height:auto}
+.evcards{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+.ev{border-left:4px solid #D5B863;background:rgba(213,184,99,.07);padding:11px 13px}
+.ev b{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:clamp(24px,2.6vw,34px);color:#D5B863;line-height:1}
+.ev span{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:15px;color:#fff;margin-top:4px}
+.ev p{font-size:14.5px;color:#d7d1c4;line-height:1.4;margin-top:6px}
+.ev.pre{border-left-color:#8f98a3;background:rgba(255,255,255,.04)}
+.vso{margin-top:22px;border:1px solid rgba(213,184,99,.28)}
+.vso .h,.vso .r{display:grid;grid-template-columns:1fr 1.5fr 1.5fr}
+.vso .h div{padding:12px 16px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:clamp(16px,1.7vw,21px)}
+.vso .h div:nth-child(2){background:#D5B863;color:#000}
+.vso .h div:nth-child(3){background:#2a2d31;color:#d6dbe0}
+.vso .r{border-top:1px solid rgba(213,184,99,.28);opacity:.12;transition:opacity .5s,background .5s;cursor:pointer}
+.vso .r.on{opacity:1}.vso .r.cur{background:rgba(213,184,99,.07)}
+.vso .r div{padding:13px 16px;font-size:clamp(16px,1.6vw,19px);line-height:1.35}
+.vso .r div:first-child{font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#D5B863}
+.vso .r div:nth-child(3){color:#a9afb5}
+.vsoctl{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.vsoctl button{background:transparent;border:2px solid rgba(213,184,99,.28);color:#fff;padding:9px 16px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:17px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.vsoctl button.g{background:#D5B863;border-color:#D5B863;color:#000}
+.orcite{font-size:14.5px;color:#9a9284;margin-top:14px;line-height:1.5}
+@media (max-width:980px){.mgwrap,.evwrap{grid-template-columns:1fr}}
+@media (max-width:700px){#orSnd{right:auto;left:16px;top:auto;bottom:14px}}
+@media (max-width:620px){.evcards{grid-template-columns:1fr}.props{grid-template-columns:1fr}.vso .h,.vso .r{grid-template-columns:.8fr 1.2fr 1.2fr}}
+</style>
+<style id="ml-extra">
+#mlPlayer{width:min(100%,calc((100svh - 430px) * 1.7778))}
+.panel[data-name="The evidence"] .evwrap{grid-template-columns:1fr 1.15fr;margin-top:16px}
+#mlEv{max-height:46svh}
+.panel[data-name="The evidence"] .ev p{font-size:13.5px;line-height:1.35}
+.panel[data-name="The evidence"] .ev span{font-size:13.5px}
+.panel[data-name="The evidence"] .orcite{font-size:12.5px;margin-top:10px;line-height:1.4}
+@media (max-width:980px){.panel[data-name="The evidence"] .evwrap{grid-template-columns:1fr}}
+#mlChap{flex-wrap:nowrap}
+#mlChap button{padding:9px 3px;font-size:clamp(11px,1.15vw,15px);letter-spacing:.02em;min-width:0}
+#mlPlayer .opctl input{min-width:60px}
+#mlPlayer .opctl button{padding:8px 10px}
+.wtc{margin-top:16px;display:inline-flex;align-items:center;gap:14px;background:linear-gradient(160deg,rgba(213,184,99,.18),rgba(18,17,16,.95) 65%);border:1px solid rgba(213,184,99,.6);color:#fff;padding:12px 22px 12px 12px;cursor:pointer;position:relative;overflow:hidden}
+.wtc i{width:46px;height:46px;border-radius:50%;border:2px solid #D5B863;color:#D5B863;font-style:normal;display:grid;place-items:center;font-size:18px;animation:oppulse 1.8s infinite}
+.wtc span{display:block;text-align:left;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(20px,2.1vw,26px);line-height:1}
+.wtc small{display:block;font-weight:700;letter-spacing:.2em;font-size:12px;color:#D5B863;margin-bottom:4px}
+#mlEv .evb rect{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0);transition:transform 1.4s cubic-bezier(.6,0,.2,1) .3s}
+#mlEv .evb.e2 rect{transition-delay:.9s}
+#mlEv .evv{opacity:0;transition:opacity .6s 1.6s}
+.in #mlEv .evb rect{transform:scaleY(1)}.in #mlEv .evv{opacity:1}
+</style>
 </head>
 <body>
 <div id="bar"></div>
@@ -228,6 +311,7 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
 <nav id="dots" aria-label="Sections"></nav>
 <button id="next" aria-label="Next section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
 <a id="home" href="../index.html">‹ Brochures</a>
+<button id="orSnd" aria-label="Sound on or off">Sound on</button>
 <main id="deck">
 <section class="panel" data-name="Home">
   <div class="bg"></div><div class="vig"></div>
@@ -238,44 +322,155 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
       <h1 class="rise d2">Bunion correction, <span class="g">locked in.</span></h1>
       <p class="lede rise d3">MiniLock is a small titanium plate that seats inside the canal through a 1&ndash;2&nbsp;cm medial incision, then locks the capital fragment where the surgeon puts it.</p>
       <div class="chips"><span class="chip pop d4">FDA cleared</span><span class="chip o pop d5">1&ndash;2 cm incision</span><span class="chip o pop d6">Left &amp; Right</span></div>
+      <button class="wtc pop d6" id="wtMl"><i>▶</i><span><small>Watch the procedure</small>Bunion correction, locked in</span></button>
       <div class="mfr rise d7">Fusion Orthopedics &middot; Distributed by Lotus Medical</div>
     </div>
     <div class="heroimg pop d3"><div class="glow"></div><img src="img/hero.webp" alt=""></div>
   </div>
-</section><section class="panel" data-name="Watch it work">
+</section><section class="panel" data-name="Watch the procedure" data-snd="whoosh">
   <div class="wrap">
-    <div class="workhead">
-      <div><div class="eyebrow rise">Watch it work</div><h2 class="rise d1">Shift it. <span class="gold">Lock it. Keep it.</span></h2></div>
-      <div class="stagebtns rise d2" role="group" aria-label="Animation stage"><button class="sb on" data-s="0"><small>Step 1</small>Cut</button><button class="sb" data-s="1"><small>Step 2</small>Shift</button><button class="sb" data-s="2"><small>Step 3</small>Seat</button><button class="sb" data-s="3"><small>Step 4</small>Lock</button><button class="sb" data-s="4"><small>Step 5</small>Compression</button><button class="sb" data-s="5"><small>Step 6</small>Anchor</button></div>
+    <div class="eyebrow rise">Watch the procedure</div>
+    <h2 class="rise d1" style="font-size:clamp(32px,4.4vw,58px)">Shift it. <span class="gold">Lock it. Keep it.</span></h2>
+    <div class="opplayer rise d2" id="mlPlayer">
+      <div class="opstage"><svg id="mlfilm" class="opsvg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <radialGradient id="m-bg" cx="50%" cy="50%" r="70%"><stop offset="0" stop-color="#16130f"/><stop offset=".6" stop-color="#070706"/><stop offset="1" stop-color="#000"/></radialGradient>
+  <radialGradient id="m-vig" cx="50%" cy="50%" r="72%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></radialGradient>
+  <linearGradient id="m-bone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4ead2"/><stop offset=".5" stop-color="#ddc8a0"/><stop offset="1" stop-color="#a68c5e"/></linearGradient>
+  <linearGradient id="m-tiH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f5"/><stop offset=".5" stop-color="#a5afb9"/><stop offset="1" stop-color="#525c66"/></linearGradient>
+  <linearGradient id="m-tiV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#525c66"/><stop offset=".45" stop-color="#eef2f5"/><stop offset="1" stop-color="#525c66"/></linearGradient>
+  <linearGradient id="m-plate" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fc2ff"/><stop offset=".5" stop-color="#3f6fd6"/><stop offset="1" stop-color="#1f3f8f"/></linearGradient>
+  <linearGradient id="m-goldG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b8973f"/><stop offset=".5" stop-color="#D5B863"/><stop offset="1" stop-color="#f0dc9a"/></linearGradient>
+  <linearGradient id="m-goldV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0dc9a"/><stop offset=".5" stop-color="#D5B863"/><stop offset="1" stop-color="#8a7330"/></linearGradient>
+  <pattern id="m-trab" width="6" height="5" patternUnits="userSpaceOnUse"><ellipse cx="1.7" cy="1.3" rx="1.2" ry=".7" fill="#8a7046" opacity=".22"/><circle cx="4.6" cy="3.7" r=".45" fill="#fff" opacity=".25"/></pattern>
+  <filter id="m-soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter>
+  <filter id="m-glow" x="-30%" y="-80%" width="160%" height="260%"><feGaussianBlur stdDeviation="5" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0.84 0 0 0 0 0.72 0 0 0 0 0.39 0 0 0 1 0" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <path id="m-mt1" d="M 200 368 C 188 380, 188 420, 200 434 C 230 432, 270 424, 300 423 L 560 423 L 586 426 C 600 440, 640 446, 660 426 C 676 408, 672 382, 656 366 C 650 356, 640 346, 626 344 C 612 342, 600 352, 590 372 L 560 377 L 300 377 C 270 376, 230 368, 200 368 Z"/>
+  <clipPath id="m-shaftC"><rect x="100" y="200" width="460" height="400"/></clipPath>
+  <clipPath id="m-headC"><rect x="560" y="200" width="300" height="400"/></clipPath>
+</defs>
+<rect width="1920" height="1080" fill="url(#m-bg)"/>
+
+<g id="m-world" opacity="0"><g id="m-cam">
+  <g id="m-skin" filter="url(#m-soft)" opacity=".5">
+    <path d="M -300 300 C -100 290, 300 300, 600 330 C 700 300, 760 330, 880 360 C 1010 380, 1020 430, 980 450 C 1040 470, 1050 520, 1000 540 C 1030 560, 1030 600, 980 610 C 1000 630, 990 670, 940 670 C 700 700, 200 730, -300 720 Z" fill="#4a3a2b"/>
+  </g>
+  <g id="m-rays">
+    <g fill="url(#m-bone)" stroke="#f7eedb" stroke-width="1.2" vector-effect="non-scaling-stroke">
+      <path d="M -260 380 L 150 360 L 190 440 L 150 700 L -260 700 Z" opacity=".9"/>
+      <path d="M 210 452 L 640 482 C 660 476, 676 490, 672 504 C 668 518, 650 522, 638 512 L 212 498 Z"/>
+      <path d="M 214 512 L 620 552 C 640 548, 652 562, 648 574 C 642 588, 626 590, 616 580 L 214 556 Z"/>
+      <path d="M 212 570 L 596 616 C 614 614, 624 626, 620 638 C 614 650, 598 650, 590 642 L 212 612 Z"/>
+      <path d="M 206 626 L 560 676 C 576 676, 584 688, 580 698 C 574 708, 560 708, 552 700 L 206 668 Z"/>
+      <path d="M 682 488 L 790 504 L 792 520 L 682 512 Z"/><path d="M 800 506 L 860 514 L 860 526 L 800 520 Z"/>
+      <path d="M 660 556 L 760 572 L 760 588 L 658 576 Z"/><path d="M 770 574 L 826 582 L 824 594 L 770 588 Z"/>
+      <path d="M 632 618 L 720 632 L 718 648 L 630 638 Z"/>
+      <path d="M 594 680 L 660 690 L 658 704 L 592 698 Z"/>
+    </g>
+  </g>
+  <g id="m-mtg">
+    <!-- shaft fragment -->
+    <g clip-path="url(#m-shaftC)"><use href="#m-mt1" fill="url(#m-bone)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/><use href="#m-mt1" fill="url(#m-trab)"/>
+      <rect id="m-canal" x="260" y="392" width="300" height="16" rx="8" fill="#3a2016" opacity=".35"/></g>
+    <!-- capital fragment -->
+    <g id="m-head"><g clip-path="url(#m-headC)"><use href="#m-mt1" fill="url(#m-bone)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/><use href="#m-mt1" fill="url(#m-trab)"/></g>
+      <g id="m-ses" fill="url(#m-bone)" stroke="#b8a37a" stroke-width="1" vector-effect="non-scaling-stroke" opacity=".85"><ellipse cx="624" cy="0" rx="14" ry="9"/><ellipse cx="624" cy="0" rx="14" ry="9"/></g>
+      <g id="m-hal"><path d="M 674 396 L 790 430 C 806 438, 806 456, 790 460 L 670 430 C 662 420, 664 404, 674 396 Z" fill="url(#m-bone)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+        <path d="M 800 436 L 870 456 C 884 462, 882 478, 868 478 L 798 462 Z" fill="url(#m-bone)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/></g>
+    </g>
+    <line id="m-cut" x1="560" y1="360" x2="560" y2="440" stroke="#c4473d" stroke-width="3" opacity="0"/>
+    <line id="m-heal" x1="560" y1="370" x2="560" y2="440" stroke="#D5B863" stroke-width="6" opacity="0" filter="url(#m-glow)"/>
+  </g>
+  <!-- plate (moves with insertion) -->
+  <g id="m-plateg" opacity="0">
+    <path d="M 360 395 L 548 395 L 572 421 L 652 421 C 660 421, 660 431, 652 431 L 566 431 L 542 405 L 360 405 C 354 405, 354 395, 360 395 Z" fill="url(#m-plate)" stroke="#cfe0ff" stroke-width="1" vector-effect="non-scaling-stroke"/>
+  </g>
+  <!-- screws -->
+  <g id="m-scr"></g>
+  <!-- jig -->
+  <g id="m-jig" opacity="0">
+    <rect x="376" y="288" width="296" height="24" rx="8" fill="url(#m-goldV)" stroke="#8a7330" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <rect x="652" y="288" width="22" height="142" rx="6" fill="url(#m-goldV)" stroke="#8a7330" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <g fill="#c9a94f" stroke="#8a7330" stroke-width="1" vector-effect="non-scaling-stroke">
+      <rect x="412" y="312" width="16" height="40" rx="3"/><rect x="602" y="312" width="16" height="50" rx="3"/><rect x="630" y="312" width="16" height="50" rx="3"/>
+      <rect x="-8" y="0" width="16" height="100" rx="3" transform="translate(388,312) rotate(-55)"/>
+    </g>
+  </g>
+  <g id="m-burr" opacity="0"><rect x="555" y="-900" width="10" height="900" fill="url(#m-tiV)"/><rect x="553" y="-24" width="14" height="30" rx="5" fill="url(#m-tiV)"/><g id="m-bfl" stroke="#3f464d" stroke-width="1.6"></g></g>
+  <g id="m-awl" opacity="0"><rect x="0" y="-5" width="900" height="10" fill="url(#m-tiH)"/><path d="M 0 -5 L -26 0 L 0 5 Z" fill="#c9d3dc"/></g>
+  <line id="m-kw" x1="640" y1="-600" x2="640" y2="380" stroke="#e7ecf0" stroke-width="3" opacity="0"/>
+  <g id="m-rot" opacity="0" fill="none" stroke="#D5B863" stroke-width="5" stroke-linecap="round"><path d="M 600 310 C 640 280, 690 290, 706 330"/><polygon points="712,342 694,330 716,322" fill="#D5B863" stroke="none"/></g>
+  <g id="m-drill" opacity="0"><rect x="-4" y="-900" width="8" height="900" fill="url(#m-tiV)"/><rect x="-12" y="-560" width="24" height="120" rx="6" fill="#525c66"/></g>
+  <g id="m-sparks"></g>
+  <g id="m-inc" opacity="0"><line x1="540" y1="336" x2="600" y2="336" stroke="#7a2e22" stroke-width="5" stroke-linecap="round"/></g>
+  <ellipse id="m-ring" cx="620" cy="410" rx="110" ry="80" fill="none" stroke="#D5B863" stroke-width="3" vector-effect="non-scaling-stroke" opacity="0"/>
+</g></g>
+<rect width="1920" height="1080" fill="url(#m-vig)" pointer-events="none"/>
+
+<g id="m-lbls" fill="#D5B863" font-size="28" font-weight="600"></g>
+<g id="m-checks" opacity="0" font-size="26" font-weight="800" letter-spacing="3">
+  <g id="m-ck1" opacity="0"><rect x="1470" y="700" width="330" height="52" rx="6" fill="rgba(0,0,0,.6)" stroke="#D5B863" stroke-width="2"/><text x="1492" y="735" fill="#D5B863">✓ ROTATION</text></g>
+  <g id="m-ck2" opacity="0"><rect x="1470" y="764" width="330" height="52" rx="6" fill="rgba(0,0,0,.6)" stroke="#D5B863" stroke-width="2"/><text x="1492" y="799" fill="#D5B863">✓ PISTONING</text></g>
+  <g id="m-ck3" opacity="0"><rect x="1470" y="828" width="330" height="52" rx="6" fill="rgba(0,0,0,.6)" stroke="#D5B863" stroke-width="2"/><text x="1492" y="863" fill="#D5B863">✓ DRIFT</text></g>
+</g>
+<g id="m-prog" opacity="0">
+  <text x="960" y="938" text-anchor="middle" fill="#bdbdbd" font-size="24" letter-spacing="4">OSTEOTOMY HEALS · PLATE STAYS INSIDE THE CANAL</text>
+  <rect x="660" y="962" width="600" height="10" rx="5" fill="#2b2b2b"/><rect id="m-progBar" x="660" y="962" width="0" height="10" rx="5" fill="url(#m-goldG)"/>
+</g>
+<text id="m-fine" x="960" y="1058" text-anchor="middle" fill="#6f6f6f" font-size="17" opacity="0">Illustration. Steps summarized from the MiniLock surgical technique. Refer to the technique guide and IFU.</text>
+<g id="m-capg" opacity="0">
+  <text id="m-capK" x="960" y="96" text-anchor="middle" fill="#D5B863" font-size="26" font-weight="700" letter-spacing="8"></text>
+  <text id="m-capH" x="960" y="160" text-anchor="middle" fill="#fff" font-size="54" font-weight="700"></text>
+  <text id="m-capS" x="960" y="210" text-anchor="middle" fill="#b9b9b9" font-size="30"></text>
+</g>
+<g id="m-title" opacity="0">
+  <text x="960" y="450" text-anchor="middle" fill="url(#m-goldG)" font-size="150" font-weight="800" letter-spacing="8">MINILOCK™</text>
+  <rect id="m-titleRule" x="960" y="500" width="0" height="4" fill="#D5B863"/>
+  <text x="960" y="590" text-anchor="middle" fill="#fff" font-size="50" font-weight="300" letter-spacing="3">Bunion correction, locked in</text>
+  <text x="960" y="650" text-anchor="middle" fill="#9a9a9a" font-size="30" letter-spacing="2">Minimally invasive bunion plating</text>
+</g>
+<g id="m-end" opacity="0">
+  <text x="960" y="340" text-anchor="middle" fill="url(#m-goldG)" font-size="130" font-weight="800" letter-spacing="8">MINILOCK™</text>
+  <text x="960" y="440" text-anchor="middle" fill="#fff" font-size="48" font-weight="600">Shift it. Lock it. Keep it.</text>
+  <text x="960" y="500" text-anchor="middle" fill="#b9b9b9" font-size="32">1–2 cm incision · plate inside the canal · guided by the jig</text>
+  <rect x="860" y="590" width="200" height="3" fill="#D5B863"/>
+  <text x="960" y="670" text-anchor="middle" fill="#D5B863" font-size="40" font-weight="700" letter-spacing="14">LOTUS MEDICAL</text>
+  <text x="960" y="720" text-anchor="middle" fill="#fff" font-size="28" font-style="italic" font-weight="300">Healing Sooner. Wellness Longer.</text>
+  <text x="960" y="1010" text-anchor="middle" fill="#6f6f6f" font-size="18">MiniLock screws are FDA cleared (510(k) K211843). Manufactured by Fusion Orthopedics, Mesa, AZ. Distributed by Lotus Medical. Refer to the IFU.</text>
+</g>
+</svg><button class="opbig" id="mlBig" aria-label="Play the MiniLock procedure">▶</button></div>
+      <div class="opctl"><button class="g" id="mlPlay">▶ Play</button><button id="mlBack">‹ Step</button><button id="mlFwd">Step ›</button><input type="range" id="mlScrub" min="0" max="1000" value="0" aria-label="Scrub through the procedure"><button id="mlRe">↺ Replay</button></div>
+      <div class="opchap" id="mlChap"><button data-t="4.4">Bunion</button><button data-t="12.4">Incision</button><button data-t="15">Osteotomy</button><button data-t="18">Shift</button><button data-t="21">Seat</button><button data-t="26.4">Derotate</button><button data-t="29.2">Lock</button><button data-t="33.8">Compress</button><button data-t="37.6">Anchor</button><button data-t="44">Healed</button></div>
     </div>
-    <div class="rise d2">
-      <div class="sim" id="sim"><svg viewBox="0 0 1000 400" id="msvg">
-<defs><linearGradient id="bn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1ead8"/><stop offset="1" stop-color="#b9ad92"/></linearGradient>
-<linearGradient id="bl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fa8ff"/><stop offset="1" stop-color="#2d58c8"/></linearGradient><filter id="cgf" x="-200%" y="-20%" width="500%" height="140%"><feGaussianBlur stdDeviation="4"/></filter></defs>
-<g opacity=".32"><rect x="150" y="282" width="470" height="44" rx="20" fill="url(#bn)"/><circle cx="632" cy="304" r="30" fill="url(#bn)"/>
-<text x="180" y="355" fill="#f1ead8" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="20" letter-spacing="4">2ND MET</text></g>
-<g><ellipse cx="128" cy="175" rx="34" ry="46" fill="url(#bn)"/><rect x="120" y="140" width="442" height="70" rx="22" fill="url(#bn)"/><rect x="150" y="162" width="412" height="26" rx="10" fill="#5e5443" opacity=".5"/></g>
-<text id="mtl" x="170" y="120" fill="#f1ead8" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="24" letter-spacing="5">1ST METATARSAL</text>
-<g id="hd"><rect x="564" y="140" width="70" height="70" rx="6" fill="url(#bn)"/><circle cx="672" cy="168" r="56" fill="url(#bn)"/><rect x="564" y="162" width="70" height="26" fill="#5e5443" opacity=".4"/>
-<text x="672" y="250" text-anchor="middle" fill="#f1ead8" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="20" letter-spacing="3" id="cfl">CAPITAL FRAGMENT</text></g>
-<line id="cut" x1="563" y1="126" x2="563" y2="224" stroke="#c0392b" stroke-width="4" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
-<rect id="saw" x="548" y="60" width="30" height="8" fill="#ccc" opacity="0"/>
-<path id="pl" d="M330 175 L556 175 L590 205 L700 205" stroke="url(#bl)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
-<g id="hl" stroke="#e6e6e6" stroke-width="6" stroke-linecap="round"><line x1="650" y1="150" x2="650" y2="262" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/><line x1="690" y1="152" x2="690" y2="258" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></g>
-<line id="lag" x1="500" y1="146" x2="620" y2="248" stroke="#d5b863" stroke-width="8" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
-<line id="anc" x1="372" y1="126" x2="372" y2="224" stroke="#d5b863" stroke-width="8" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
-<line id="cg" x1="566" y1="128" x2="566" y2="262" stroke="#f3de9c" stroke-width="10" filter="url(#cgf)" opacity="0"/>
-<g id="arr" opacity="0" stroke="#f3de9c" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path id="aT"/><path id="aB"/></g>
-<g id="bd" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="26" letter-spacing="3">
-<g opacity="0"><rect x="768" y="84" width="222" height="50" fill="none" stroke="#d5b863" stroke-width="2"/><text x="782" y="118" fill="#d5b863">&#10003; ROTATION</text></g>
-<g opacity="0"><rect x="768" y="150" width="222" height="50" fill="none" stroke="#d5b863" stroke-width="2"/><text x="782" y="184" fill="#d5b863">&#10003; PISTONING</text></g>
-<g opacity="0"><rect x="768" y="216" width="222" height="50" fill="none" stroke="#d5b863" stroke-width="2"/><text x="782" y="250" fill="#d5b863">&#10003; DRIFT</text></g></g>
-</svg><div class="prog"><i id="progBar"></i></div></div>
-      <div class="hud" style="grid-template-columns:1fr">
-        <div><div class="k">What is happening</div><div class="cap" id="cap">A transverse osteotomy.</div></div>
-        
+    <audio id="mlAudio" src="procedure.m4a?v=27" preload="auto" playsinline></audio>
+  </div>
+</section>
+<section class="panel" data-name="The evidence" data-snd="whoosh">
+  <div class="wrap">
+    <div class="eyebrow rise">The evidence</div>
+    <h2 class="rise d1">Correct the rotation. <span class="gold">Hold the correction.</span></h2>
+    <div class="evwrap">
+      <div class="evchart rise d2">
+        <svg viewBox="0 0 640 380" id="mlEv" aria-label="Postoperative hallux valgus and intermetatarsal angles, minimally invasive versus open surgery">
+          <text x="320" y="34" fill="#cfc7b6" font-family="Barlow Condensed,Arial" font-weight="700" font-size="19" letter-spacing="2" text-anchor="middle">POSTOPERATIVE ANGLE · MIS VS OPEN</text>
+          <g stroke="rgba(255,255,255,.12)"><line x1="70" y1="320" x2="610" y2="320"/><line x1="70" y1="245" x2="610" y2="245"/><line x1="70" y1="170" x2="610" y2="170"/><line x1="70" y1="95" x2="610" y2="95"/></g>
+          <g fill="#9a9284" font-family="Barlow Condensed,Arial" font-weight="700" font-size="16" text-anchor="end"><text x="60" y="325">0°</text><text x="60" y="250">5°</text><text x="60" y="175">10°</text><text x="60" y="100">15°</text></g>
+          <g class="evb"><rect x="120" y="140" width="80" height="180" fill="url(#mlG1)"/><rect x="215" y="140" width="80" height="180" fill="#5d6268"/></g>
+          <g class="evb e2"><rect x="365" y="215" width="80" height="105" fill="url(#mlG1)"/><rect x="460" y="215" width="80" height="105" fill="#5d6268"/></g>
+          <defs><linearGradient id="mlG1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F1DC9C"/><stop offset="1" stop-color="#8a7330"/></linearGradient></defs>
+          <g class="evv" fill="#fff" font-family="Barlow Condensed,Arial" font-weight="800" font-size="30" text-anchor="middle"><text x="160" y="128" fill="#D5B863">12°</text><text x="255" y="128">12°</text><text x="405" y="203" fill="#D5B863">7°</text><text x="500" y="203">7°</text></g>
+          <g fill="#cfc7b6" font-family="Barlow Condensed,Arial" font-weight="700" font-size="18" text-anchor="middle"><text x="207" y="348">HALLUX VALGUS ANGLE</text><text x="452" y="348">INTERMETATARSAL ANGLE</text></g>
+          <g font-family="Barlow Condensed,Arial" font-weight="700" font-size="15" letter-spacing="1" text-anchor="middle"><text x="160" y="370" fill="#D5B863">MIS</text><text x="255" y="370" fill="#a9afb5">OPEN</text><text x="405" y="370" fill="#D5B863">MIS</text><text x="500" y="370" fill="#a9afb5">OPEN</text></g>
+        </svg>
+      </div>
+      <div class="evcards rise d3">
+        <div class="ev"><b>Up to 87%</b><span>Pronated first metatarsal</span><p>CT studies show most bunions carry rotation as well as angle. MiniLock derotates over a wire before anything is locked.</p></div>
+        <div class="ev"><b>12° = 12°</b><span>Small incision, same correction</span><p>A 2023 meta-analysis found MIS matched open surgery on hallux valgus angle, intermetatarsal angle and pain.</p></div>
+        <div class="ev pre"><b>2.37&times;</b><span>Hardware removal with MIS</span><p>The odds of hardware removal were higher with MIS screw techniques. The MiniLock plate sits inside the canal, off the medial wall. MiniLock removal data are not yet published.</p></div>
+        <div class="ev"><b>4 screws</b><span>Locked, compressed, anchored</span><p>Two locking screws, a lag screw and a proximal anchor answer rotation, pistoning and drift.</p></div>
       </div>
     </div>
+    <p class="orcite rise d4">Pronation: Kim Y et al. Foot Ankle Int. 2015;36(8):944&ndash;952, reviewed in Wagner P, Wagner E. JAAOS Glob Res Rev. 2020;4(8):e20.00091. MIS vs open: Rolvien T et al. Clin Orthop Relat Res. 2023;481(6):1143&ndash;1155 (HVA p = 0.76, IMA p = 0.69). Hardware removal: Kafagi A-H et al. Osteology. 2025;5(1):3 (OR 2.37, 95% CI 1.41&ndash;4.00). These studies cover MIS techniques generally, not MiniLock specifically.</p>
   </div>
 </section><section class="panel" data-name="Stability">
   <div class="wrap">
@@ -283,7 +478,7 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
     <h2 class="rise d1">Shifts fail three ways. <span class="gold">MiniLock resists all three.</span></h2>
     <div class="split">
       <img class="pic pop d2" src="img/plate.webp" alt="MiniLock plate with screws">
-      <div class="feats"><div class="ft rise d2 hl"><div class="n">ROTATION</div><h3>Locked capital fragment</h3><p>Two 2.4&nbsp;mm distal locking screws lock the head to the plate.</p></div><div class="ft rise d3 hl"><div class="n">PISTONING</div><h3>Compression across the cut</h3><p>A 2.5&nbsp;mm lag screw compresses the osteotomy.</p></div><div class="ft rise d4 hl"><div class="n">DRIFT</div><h3>Proximal anchor</h3><p>A 2.5&nbsp;mm proximal screw anchors the plate in the shaft, reducing torsion and pistoning.</p></div><div class="ft rise d5"><div class="n">IN THE CANAL</div><h3>Low profile by design</h3><p>The plate sits inside the canal, not on the medial wall.</p></div></div>
+      <div class="feats"><div class="ft rise d2 hl"><div class="n">ROTATION</div><h3>Locked capital fragment</h3><p>Two 2.4&nbsp;mm locking screws (16&ndash;20&nbsp;mm) lock the head.</p></div><div class="ft rise d3 hl"><div class="n">PISTONING</div><h3>Compression across the cut</h3><p>A 2.5&nbsp;mm lag screw (14&ndash;24&nbsp;mm) compresses the cut.</p></div><div class="ft rise d4 hl"><div class="n">DRIFT</div><h3>Proximal anchor</h3><p>A 2.5&nbsp;mm anchor (12&ndash;20&nbsp;mm) in the shaft resists torsion and pistoning.</p></div><div class="ft rise d5"><div class="n">IN THE CANAL</div><h3>Low profile by design</h3><p>Titanium, left and right, seated inside the canal.</p></div></div>
     </div>
   </div>
 </section><section class="panel" data-name="Guided,">
@@ -303,16 +498,6 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
     </div>
     <p class="note rise d5">Refer to the MiniLock surgical technique guide for complete instructions.</p>
   </div>
-</section><section class="panel" data-name="Construct">
-  <div class="wrap">
-    <div class="eyebrow rise">The construct</div>
-    <h2 class="rise d1">One plate. <span class="gold">Four screws.</span></h2>
-    <div class="split" style="grid-template-columns:1.4fr 1fr">
-      <div class="rise d2"><table class="sztab"><thead><tr><th>Screw</th><th>Diameter</th><th>Lengths</th><th>Role</th></tr></thead><tbody><tr><td><b>Distal locking &times; 2</b></td><td>2.4 mm</td><td>16&ndash;20 mm</td><td>Locks the capital fragment</td></tr><tr><td><b>Lag</b></td><td>2.5 mm</td><td>14&ndash;24 mm</td><td>Compresses across the osteotomy</td></tr><tr><td><b>Proximal anchor</b></td><td>2.5 mm</td><td>12&ndash;20 mm</td><td>Resists torsion and pistoning</td></tr></tbody></table>
-      <p class="note">Titanium plate in left and right versions, placed through a dedicated jig with drill turrets.</p></div>
-      <img class="pic pop d3" src="img/hero.webp" alt="">
-    </div>
-  </div>
 </section><section class="panel" data-name="Lotus Medical">
   <div class="bg"></div><div class="vig"></div>
   <div class="wrap close">
@@ -329,34 +514,7 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
 </main>
 <script>
 
-window.SIM=(function(){
- var T=[0,2.5,5,7.5,9.5,14,17],$=function(i){return document.getElementById(i)};
- var svg=$('msvg'),hd=$('hd'),cut=$('cut'),saw=$('saw'),pl=$('pl'),hl=$('hl').children,lag=$('lag'),anc=$('anc'),arr=$('arr'),aT=$('aT'),aB=$('aB'),cg=$('cg'),bd=$('bd').children,cfl=$('cfl');
- var zl=document.createElement('div');zl.className='zl';zl.innerHTML='Compression<br><span>across the osteotomy</span>';$('sim').appendChild(zl);
- function arrows(y,o){var l=500+o,r=632-o;return 'M'+(l-40)+' '+y+' L'+l+' '+y+' M'+(l-8)+' '+(y-7)+' L'+l+' '+y+' L'+(l-8)+' '+(y+7)+' M'+(r+40)+' '+y+' L'+r+' '+y+' M'+(r+8)+' '+(y-7)+' L'+r+' '+y+' L'+(r+8)+' '+(y+7)}
- return {T:T,rest:15.5,
-  caps:['A transverse osteotomy through the metatarsal neck, through a 1–2 cm medial incision.',
-        'The capital fragment shifts laterally to correct the deformity.',
-        'The MiniLock plate seats inside the canal, guided by the jig.',
-        'Two 2.4 mm distal locking screws lock the capital fragment to the plate.',
-        'Compression across the osteotomy. The 2.5 mm lag screw draws the capital fragment tight against the shaft.',
-        'A 2.5 mm proximal anchor screw finishes the construct, resisting rotation, pistoning and drift.'],
-  render:function(t){
-   var c=ease(cl(t/2));cut.setAttribute('stroke-dashoffset',1-c);saw.style.opacity=t<2.3?1:0;saw.setAttribute('y',60+c*160);
-   var s=ease(cl((t-2.6)/2)),g=(t>.8?12:0)*(1-ease(cl((t-10.6)/1.8)));hd.setAttribute('transform','translate('+g+' '+(s*42)+')');
-   pl.setAttribute('stroke-dashoffset',1-ease(cl((t-5.1)/2)));
-   for(var k=0;k<2;k++)hl[k].setAttribute('stroke-dashoffset',1-ease(cl((t-7.6-k*.7)/.7)));
-   var z=ease(cl((t-9.5)/.9))*(1-ease(cl((t-13.2)/.8)));
-   svg.setAttribute('viewBox',(z*300)+' '+(z*100)+' '+(1000-z*580)+' '+(400-z*232));
-   lag.setAttribute('stroke-dashoffset',1-ease(cl((t-10)/.7)));
-   var on=t>10.5&&t<13.4,o=((t*1.4)%1)*16;arr.style.opacity=on?1:0;aT.setAttribute('d',arrows(120,o));aB.setAttribute('d','');
-   cg.style.opacity=on?(.45+.45*Math.abs(Math.sin(t*5))):0;
-   cfl.style.opacity=z>.1?0:1;$('mtl').style.opacity=z>.1?0:1;
-   zl.style.opacity=t>10.4&&t<13.3?1:0;zl.style.transform='scale('+(t>10.4&&t<13.3?1:.85)+')';
-   anc.setAttribute('stroke-dashoffset',1-ease(cl((t-14.1)/.9)));
-   for(k=0;k<3;k++){var p=cl((t-14.9-k*.4)/.4);bd[k].setAttribute('opacity',p);}
-  }};
-})();
+
 
 
 (function(){
@@ -370,7 +528,7 @@ window.SIM=(function(){
   function go(i){i=Math.max(0,Math.min(panels.length-1,i));deck.scrollTo({top:panels[i].offsetTop,behavior:reduce?'auto':'smooth'})}
   nextBtn.addEventListener('click',function(){go(current+1>=panels.length?0:current+1)});
   document.addEventListener('keydown',function(e){if(['ArrowDown','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(current+1)}if(['ArrowUp','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(current-1)}});
-  function enter(i){current=i;[].forEach.call(dots.children,function(d,k){d.classList.toggle('on',k===i)});bar.style.width=((i+1)/panels.length*100)+'%';nextBtn.style.opacity=i===panels.length-1?'.35':'1';var p=panels[i];p.classList.remove('in');void p.offsetWidth;p.classList.add('in')}
+  function enter(i){current=i;[].forEach.call(dots.children,function(d,k){d.classList.toggle('on',k===i)});bar.style.width=((i+1)/panels.length*100)+'%';nextBtn.style.opacity=i===panels.length-1?'.35':'1';var p=panels[i];p.classList.remove('in');void p.offsetWidth;p.classList.add('in');if(window.OrEnter)OrEnter(p)}
 
   /* generic stage sim: SIM = {T:[...], caps:[...], hud:fn(t)->string, render:fn(t)} */
   var sim=(function(){
@@ -410,6 +568,198 @@ window.SIM=(function(){
 })();
 
 </script>
-<script src="../share.js?v=2" defer></script>
+
+<script>
+/* ===== Lotus sizzle sound (Web Audio) ===== */
+var soundOn=true;try{soundOn=localStorage.getItem('lcc-sound')!=='off'}catch(e){}
+var AC=null;
+function audio(){try{if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AC=new C()}if(AC.state==='suspended')AC.resume();return AC}catch(e){return null}}
+function snd(name){
+  if(!soundOn)return;var a=audio();if(!a||a.state!=='running')return;var t0=a.currentTime+0.01,out=a.destination;
+  function tone(f,f2,d,type,v,dl){dl=dl||0;var o=a.createOscillator(),g=a.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,t0+dl);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t0+dl+d);g.gain.setValueAtTime(0.0001,t0+dl);g.gain.exponentialRampToValueAtTime(v||0.2,t0+dl+0.012);g.gain.exponentialRampToValueAtTime(0.0001,t0+dl+d);o.connect(g);g.connect(out);o.start(t0+dl);o.stop(t0+dl+d+.05)}
+  function noise(d,f1,f2,v,dl,q){dl=dl||0;var len=Math.floor(a.sampleRate*d),buf=a.createBuffer(1,len,a.sampleRate),c=buf.getChannelData(0);for(var i=0;i<len;i++)c[i]=Math.random()*2-1;var s=a.createBufferSource();s.buffer=buf;var bp=a.createBiquadFilter();bp.type='bandpass';bp.Q.value=q||1.2;bp.frequency.setValueAtTime(f1,t0+dl);bp.frequency.exponentialRampToValueAtTime(f2,t0+dl+d);var g=a.createGain();g.gain.setValueAtTime(0.0001,t0+dl);g.gain.exponentialRampToValueAtTime(v||.2,t0+dl+d*.3);g.gain.exponentialRampToValueAtTime(0.0001,t0+dl+d);s.connect(bp);bp.connect(g);g.connect(out);s.start(t0+dl);s.stop(t0+dl+d+.05)}
+  switch(name){
+    case 'pop':tone(320,900,.14,'sine',.2);break;
+    case 'tick':tone(1900,0,.035,'square',.035);break;
+    case 'swish':noise(.38,700,4200,.28);break;
+    case 'whoosh':noise(.65,260,2600,.4);tone(70,45,.5,'sine',.25,.05);break;
+    case 'boom':tone(70,32,1.4,'sine',.55);noise(.9,200,60,.25);noise(1.2,300,5000,.12,.05);break;
+    case 'click':tone(2500,0,.04,'square',.06);tone(1300,0,.07,'triangle',.09,.01);break;
+    case 'clank':[820,1370,2210].forEach(function(f,i){tone(f,0,.5,'sine',.08)});noise(.08,1500,5000,.2);break;
+    case 'chime':[880,1108.7,1318.5].forEach(function(f,i){tone(f,0,.8,'sine',.14,i*.09)});break;
+    case 'level':[523.3,659.3,784,1046.5].forEach(function(f,i){tone(f,0,.45,'triangle',.16,i*.09)});noise(.5,4000,9000,.06,.3);break;
+    case 'rise':tone(220,880,1.4,'sawtooth',.03);noise(1.4,400,5000,.08);break;
+  }
+}
+(function(){
+  var b=document.getElementById('orSnd');
+  function ui(){b.textContent=soundOn?'Sound on':'Sound off';b.classList.toggle('off',!soundOn)}
+  b.onclick=function(e){e.stopPropagation();soundOn=!soundOn;try{localStorage.setItem('lcc-sound',soundOn?'on':'off')}catch(x){}ui();if(soundOn){audio();setTimeout(function(){snd('pop')},30)}if(window.OpProc)OpProc.soundChanged()};ui();
+  ['touchstart','pointerdown','keydown'].forEach(function(ev){document.addEventListener(ev,function(){audio()},{passive:true})});
+  /* every button in the brochure answers with a soft tick unless it has its own sound */
+  document.addEventListener('click',function(e){var t=e.target.closest('button');if(!t||t.id==='orSnd'||t.closest('[data-own-snd]'))return;snd('tick')},true);
+})();
+</script>
+<script>
+var MlFilm=(function(){
+const NS="http://www.w3.org/2000/svg";
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const P=(t,a,b)=>ease(cl((t-a)/(b-a)));
+const W=(t,a,b,f=.6)=>Math.min(cl((t-a)/f),cl((b-t)/f));
+const lerp=(a,b,k)=>a+(b-a)*k;
+const mk=(tag,attrs,parent)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e;};
+let seed=21;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+for(let i=0;i<5;i++)mk("line",{x1:553,x2:567},$("m-bfl"));
+/* screws in world coords: [x1,y1 (entry, medial), x2,y2 (tip), dia, t0, kind] */
+const SC=[[610,380,610,466,7,29.4,'L'],[638,380,638,466,7,31.2,'L'],[478,377,600,462,7.5,34.2,'G'],[420,377,420,426,7.5,37.8,'A']];
+const scr=SC.map(s=>{const dx=s[2]-s[0],dy=s[3]-s[1],L=Math.hypot(dx,dy),a=Math.atan2(dy,dx)*180/Math.PI;
+  const g=mk("g",{opacity:0},$("m-scr"));const inner=mk("g",{},g);
+  mk("rect",{x:0,y:-s[4]/2,width:L,height:s[4],rx:2,fill:"url(#m-tiH)"},inner);
+  for(let x=8;x<L-4;x+=6)mk("line",{x1:x,y1:-s[4]/2,x2:x+3,y2:s[4]/2,stroke:"#3f464d","stroke-width":1.2},inner);
+  mk("rect",{x:-4,y:-s[4]/2-3,width:7,height:s[4]+6,rx:2,fill:"#c9d3dc",stroke:"#525c66","stroke-width":1},inner);
+  return{g,inner,x:s[0],y:s[1],a,L,t0:s[5],k:s[6]}});
+const spk=[];for(let i=0;i<24;i++)spk.push({b:15.6+rnd()*2.2,vx:(rnd()*2-1)*140,vy:-(60+rnd()*200),c:mk("circle",{r:1.4+rnd()*2,fill:rnd()>.4?"#fff1c7":"#e9dcbd"},$("m-sparks"))});
+const glow=[];for(let i=0;i<20;i++)glow.push({x:548+rnd()*24,y:380+rnd()*70,ph:rnd()*6.28,c:mk("circle",{r:1.5+rnd()*2.5,fill:"#f3dd92",opacity:0},$("m-sparks"))});
+
+const CH={cx:380,cy:510,k:1.25,r:0,sx:960,sy:640}, CZ={cx:520,cy:410,k:2.5,r:0,sx:960,sy:640};
+function camT(p,t){const k=CH.k*Math.pow(CZ.k/CH.k,p)*(1+.01*Math.sin(t*.3));
+  return `translate(${lerp(CH.sx,CZ.sx,p)},${lerp(CH.sy,CZ.sy,p)}) scale(${k}) translate(${-lerp(CH.cx,CZ.cx,p)},${-lerp(CH.cy,CZ.cy,p)})`;}
+const zs=(x,y)=>[CZ.sx+CZ.k*(x-CZ.cx), CZ.sy+CZ.k*(y-CZ.cy)];
+const LB=[];function lbl(wx,wy,tx,ty,txt,a,b,anchor){const g=mk("g",{opacity:0},$("m-lbls"));const[x,y]=zs(wx,wy);
+  mk("line",{x1:x,y1:y,x2:tx,y2:ty,stroke:"#D5B863","stroke-width":2},g);mk("circle",{cx:x,cy:y,r:7},g);
+  const tt=mk("text",{x:anchor==="end"?tx-12:tx+12,y:ty+10,"text-anchor":anchor||"start"},g);tt.textContent=txt;LB.push({g,a,b});}
+lbl(570,336,1300,300,"1–2 cm medial incision",12.8,15.0);
+lbl(560,420,1300,880,"Transverse osteotomy",16.4,18.4);
+lbl(440,400,300,880,"Plate seats inside the canal",23.6,26.2);
+lbl(622,452,1340,880,"Sesamoids recentered",27.4,29.2);
+lbl(624,430,1440,300,"Two 2.4 mm distal locks",31.8,33.6);
+lbl(530,420,300,300,"2.5 mm lag screw · compression",35.2,37.4);
+lbl(420,400,300,880,"2.5 mm proximal anchor",38.6,40.4);
+
+const CAPS=[
+ [[4.4,8.8],"HALLUX VALGUS","The first metatarsal drifts. The toe follows.","And on CT, up to 87% of bunions are also pronated."],
+ [[12.4,15.0],"STEP 1","A 1–2 cm medial incision.","Release through a small window."],
+ [[15.0,18.0],"STEP 2","Transverse osteotomy.","Through the metatarsal neck."],
+ [[18.0,21.0],"STEP 3","Shift the head. Open the canal.","Translate the capital fragment laterally."],
+ [[21.0,26.4],"STEP 4","Seat the construct.","The plate slides into the canal on its jig."],
+ [[26.4,29.2],"STEP 5","Wire and derotate.","Correct the pronation, not just the angle."],
+ [[29.2,33.8],"STEP 6","Lock the capital fragment.","Two 2.4 mm screws through the jig's turrets."],
+ [[33.8,37.6],"STEP 7","Compress the osteotomy.","A 2.5 mm lag screw across the cut."],
+ [[37.6,40.6],"STEP 8","Anchor proximally.","A 2.5 mm screw resists torsion and pistoning."],
+ [[40.6,44.0],"STEP 9","Jig off. Close.","One small incision. Nothing on the medial wall."],
+ [[44.0,52.0],"THE RESULT","Bunion correction, locked in.","Rotation, pistoning and drift resisted. The osteotomy heals."]];
+
+function render(t){
+  $("m-title").setAttribute("opacity",W(t,.2,4.2,.8));
+  const tr=P(t,.6,2);$("m-titleRule").setAttribute("width",520*tr);$("m-titleRule").setAttribute("x",960-260*tr);
+  $("m-world").setAttribute("opacity",W(t,3.8,52.4,1.2));
+  const zp=P(t,8.8,12.4)-P(t,44.0,48.0);
+  $("m-cam").setAttribute("transform",camT(zp,t));
+  $("m-rays").setAttribute("opacity",1-.6*zp);$("m-skin").setAttribute("opacity",.5*(1-.8*zp));
+  $("m-ring").setAttribute("opacity",W(t,5,8.8,.5)*(.55+.45*Math.sin(t*4)));
+  $("m-fine").setAttribute("opacity",W(t,4.4,52,.6));
+  /* incision */
+  $("m-inc").setAttribute("opacity",W(t,12.8,44.4,.4)*(1-P(t,42,43.5)*.7));
+  /* osteotomy */
+  $("m-burr").setAttribute("opacity",t>15.2&&t<18.0?1:0);
+  const by=t<17.4?lerp(-400,470,P(t,15.4,17.4)):lerp(470,-900,P(t,17.4,18.0));$("m-burr").setAttribute("transform",`translate(0,${by})`);
+  [...$("m-bfl").children].forEach((l,i)=>{const y=-22+((i*6+t*120)%30);l.setAttribute("y1",y);l.setAttribute("y2",y+3)});
+  spk.forEach(s=>{const a=t-s.b;if(a<0||a>.6){s.c.setAttribute("opacity",0);return}s.c.setAttribute("cx",560+s.vx*a);s.c.setAttribute("cy",lerp(360,440,(s.b-15.6)/2.2)+s.vy*a+300*a*a);s.c.setAttribute("opacity",1-a/.6)});
+  $("m-cut").setAttribute("opacity",cl((t-15.6)/1.2)*(1-P(t,45,50)));
+  /* shift head laterally, compress later; derotate sesamoids; hallux straightens */
+  const sh=P(t,18.2,19.2),cp=P(t,35.4,36.6);
+  $("m-head").setAttribute("transform",`translate(${-5*cp},${26*sh})`);
+  const der=P(t,27.0,28.6);
+  const sesY=lerp(470,438,der);[...$("m-ses").children].forEach((e,i)=>{e.setAttribute("cy",sesY+(i?14:0));e.setAttribute("cx",i?640:610)});
+  $("m-hal").setAttribute("transform",`rotate(${-12*P(t,46.4,48.6)} 668 412)`);
+  /* canal opener */
+  $("m-awl").setAttribute("opacity",t>19.2&&t<21.2?1:0);
+  const ax=t<20.4?lerp(1200,330,P(t,19.3,20.4)):lerp(330,1300,P(t,20.4,21.1));$("m-awl").setAttribute("transform",`translate(${ax},400)`);
+  $("m-canal").setAttribute("opacity",.35+.5*P(t,19.6,20.4));
+  /* construct: plate + jig slide in from distal */
+  const ins=lerp(420,0,P(t,21.4,24.4));
+  $("m-plateg").setAttribute("opacity",t>21.2?1:0);$("m-jig").setAttribute("opacity",t>21.2&&t<43.0?1:0);
+  $("m-plateg").setAttribute("transform",`translate(${ins-5*cp},${0})`);
+  $("m-jig").setAttribute("transform",`translate(${ins},${-lerp(0,700,P(t,41.0,42.6))})`);
+  /* wire + derotate */
+  $("m-kw").setAttribute("opacity",t>26.6&&t<29.4?1:0);$("m-kw").setAttribute("y2",lerp(-600,440,P(t,26.6,27.2)));
+  $("m-rot").setAttribute("opacity",W(t,27.0,29.0,.3));
+  /* drill + screws */
+  let dOn=false,dx=0,dy=0,da=90;
+  scr.forEach(s=>{const d=P(t,s.t0,s.t0+.55),ins2=P(t,s.t0+.55,s.t0+1.3);
+    if(t>s.t0&&t<s.t0+.6){dOn=true;const rad=s.a*Math.PI/180;dx=s.x+Math.cos(rad)*s.L*d;dy=s.y+Math.sin(rad)*s.L*d;da=s.a}
+    s.g.setAttribute("opacity",t>s.t0+.55?1:0);
+    const back=lerp(-60,0,ins2);s.g.setAttribute("transform",`translate(${s.x},${s.y}) rotate(${s.a}) translate(${back},0)`);
+    if(s.k==='L')s.g.setAttribute("transform",`translate(${-5*cp},${26*sh}) translate(${s.x},${s.y-26}) rotate(${s.a}) translate(${back},0)`);});
+  $("m-drill").setAttribute("opacity",dOn?1:0);$("m-drill").setAttribute("transform",`translate(${dx},${dy}) rotate(${da-90})`);
+  $("m-checks").setAttribute("opacity",W(t,32.4,51.6,.5));
+  $("m-ck1").setAttribute("opacity",cl((t-32.6)/.4));$("m-ck2").setAttribute("opacity",cl((t-36.6)/.4));$("m-ck3").setAttribute("opacity",cl((t-39.4)/.4));
+  /* heal */
+  const hp=P(t,48.6,51.4);
+  $("m-heal").setAttribute("opacity",W(t,48.4,52,.6)*.8);
+  glow.forEach(s=>{s.c.setAttribute("cx",s.x+26*0);s.c.setAttribute("cy",s.y+13);s.c.setAttribute("opacity",W(t,48.4,51.8,.6)*(.5+.5*Math.sin(t*5+s.ph)))});
+  $("m-prog").setAttribute("opacity",W(t,48.4,52,.5));$("m-progBar").setAttribute("width",600*hp);
+  LB.forEach(l=>l.g.setAttribute("opacity",W(t,l.a,l.b,.4)));
+  let cur=null;CAPS.forEach(c=>{if(t>=c[0][0]&&t<c[0][1])cur=c});
+  if(cur){$("m-capK").textContent=cur[1];$("m-capH").textContent=cur[2];$("m-capS").textContent=cur[3];$("m-capg").setAttribute("opacity",Math.min(cl((t-cur[0][0])/.45),cl((cur[0][1]-t)/.45)))}
+  else $("m-capg").setAttribute("opacity",0);
+  $("m-end").setAttribute("opacity",cl((t-52.6)/.9));
+}
+render(0);
+return {render,DUR:60};
+})();
+
+</script>
+<script>
+/* ===== MiniLock procedure player ===== */
+var OpProc=(function(){
+  var p='ml',Film=MlFilm,PS=4.4,PE=51.4,LEN=PE-PS;
+  var $=function(id){return document.getElementById(p+id)};
+  var box=$('Player'),play=$('Play'),scrub=$('Scrub'),chap=[].slice.call($('Chap').querySelectorAll('button')),pa=$('Audio');
+  box.setAttribute('data-own-snd','1');
+  try{fetch(pa.getAttribute('src')).then(function(r){return r.ok?r.blob():null}).then(function(b){if(b&&pa.paused){pa.src=URL.createObjectURL(b);pa.load()}}).catch(function(){})}catch(e){}
+  var t=6.2,playing=false,last=null,raf=null,visible=false;
+  function syncAudio(){if(soundOn&&playing){try{pa.currentTime=Math.max(0,t-PS);var q=pa.play();if(q&&q.catch)q.catch(function(){})}catch(e){}}else{try{pa.pause()}catch(e){}}}
+  function ui(){play.textContent=playing?'❚❚ Pause':(t>=PE-.05?'↺ Play again':'▶ Play');scrub.value=Math.round((t-PS)/LEN*1000);
+    var k=0;chap.forEach(function(b,i){if(t>=+b.dataset.t-.01)k=i});chap.forEach(function(b,i){b.classList.toggle('on',i===k&&box.classList.contains('started'))})}
+  function frame(ts){
+    if(playing){if(soundOn&&!pa.paused&&!pa.ended&&pa.readyState>1){t=PS+pa.currentTime}else if(last!=null){t+=Math.min(.05,(ts-last)/1000)}
+      if(t>=PE){t=PE;playing=false;try{pa.pause()}catch(e){}}}
+    last=ts;Film.render(t);ui();raf=visible?requestAnimationFrame(frame):null}
+  function kick(){if(!raf&&visible){last=null;raf=requestAnimationFrame(frame)}}
+  function start(){audio();box.classList.add('started');if(t>=PE-.05)t=PS;playing=true;syncAudio();kick()}
+  function pause(){playing=false;syncAudio();ui()}
+  function seek(nt){box.classList.add('started');t=Math.max(PS,Math.min(PE,nt));if(playing)syncAudio();Film.render(t);ui()}
+  $('Big').onclick=start;play.onclick=function(){playing?pause():start()};
+  $('Re').onclick=function(){t=PS;start()};
+  chap.forEach(function(b){b.onclick=function(){snd('tick');seek(+b.dataset.t+.05);if(!playing)start()}});
+  function stepTo(dir){var ts=chap.map(function(b){return +b.dataset.t});var k=0;ts.forEach(function(x,i){if(t>=x-.01)k=i});
+    var n=dir>0?Math.min(ts.length-1,k+1):(t-ts[k]>1.2?k:Math.max(0,k-1));snd('tick');seek(ts[n]+.05);if(!playing)start()}
+  $('Fwd').onclick=function(){stepTo(1)};$('Back').onclick=function(){stepTo(-1)};
+  scrub.oninput=function(){seek(PS+scrub.value/1000*LEN)};
+  box.addEventListener('keydown',function(e){e.stopPropagation()});
+  Film.render(t);ui();
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){visible=e.isIntersecting;if(visible)kick();else if(playing)pause()})},{threshold:[.25]}).observe(box)}else{visible=true;kick()}
+  var w=document.getElementById('wtMl');w.setAttribute('data-own-snd','1');
+  w.onclick=function(){var panel=document.querySelector('.panel[data-name="Watch the procedure"]');snd('swish');document.getElementById('deck').scrollTo({top:panel.offsetTop,behavior:'smooth'});start()};
+  return{soundChanged:syncAudio};
+})();
+</script>
+<script>
+/* ===== per-panel sound ===== */
+(function(){
+  window.OrEnter=function(p){
+    var n=p.getAttribute('data-name');
+    snd(n==='Home'?'boom':(n==='Lotus Medical'?'chime':'whoosh'));
+    if(n==='The evidence'){setTimeout(function(){snd('rise')},350);setTimeout(function(){snd('level')},1700);[0,1,2,3].forEach(function(k){setTimeout(function(){snd('pop')},1900+k*140)})}
+    if(n==='Stability')[0,1,2].forEach(function(k){setTimeout(function(){snd('clank')},450+k*260)});
+    if(n==='Guided,')[0,1,2].forEach(function(k){setTimeout(function(){snd('click')},400+k*180)});
+    if(n==='Technique')setTimeout(function(){snd('tick')},500);
+  };
+})();
+</script>
+<script src="../share.js?v=3" defer></script>
 </body>
 </html>
