@@ -221,6 +221,99 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
 .panel{padding-top:150px!important}
 @media (max-width:700px){#brand img{width:100px}.panel{padding-top:118px!important}}
 </style>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style id="or-sizzle-css">
+#orSnd{position:fixed;right:300px;top:12px;z-index:60;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.14em;font-size:14px;text-transform:uppercase;color:#D5B863;border:1px solid rgba(213,184,99,.5);padding:7px 12px;background:rgba(0,0,0,.65);cursor:pointer}
+#orSnd.off{color:#888;border-color:#555}
+.opplayer{width:min(100%,calc((100svh - 420px) * 1.7778));min-width:min(100%,520px);margin:14px auto 0;border:1px solid rgba(213,184,99,.35);background:#000;position:relative}
+.opstage{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}
+svg.opsvg text{font-family:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif}
+.opstage svg.opsvg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.opbig{position:absolute;inset:0;margin:auto;width:96px;height:96px;border-radius:50%;border:2px solid #D5B863;background:rgba(0,0,0,.6);color:#D5B863;font-size:38px;cursor:pointer;display:grid;place-items:center;animation:oppulse 1.8s infinite;z-index:3}
+.opplayer.started .opbig{display:none}
+@keyframes oppulse{0%{box-shadow:0 0 0 0 rgba(213,184,99,.55)}70%{box-shadow:0 0 0 24px rgba(213,184,99,0)}100%{box-shadow:0 0 0 0 rgba(213,184,99,0)}}
+.opctl{display:flex;align-items:center;gap:8px;padding:10px 12px;border-top:1px solid rgba(213,184,99,.28);flex-wrap:wrap;background:#0b0a08}
+.opctl button{background:#000;border:1px solid rgba(213,184,99,.28);color:#fff;padding:8px 14px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.1em;font-size:16px;text-transform:uppercase;cursor:pointer}
+.opctl button.g{background:#D5B863;color:#000;border-color:#D5B863}
+.opctl input[type=range]{flex:1;min-width:140px;accent-color:#D5B863}
+.opchap{display:flex;flex-wrap:wrap;border-top:1px solid rgba(213,184,99,.28)}
+.opchap button{flex:1 1 auto;background:transparent;border:0;border-right:1px solid rgba(213,184,99,.28);color:#cfc7b6;padding:11px 8px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:clamp(14px,1.45vw,18px);letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.opchap button:last-child{border-right:0}
+.opchap button.on{background:#D5B863;color:#000}
+.mgwrap{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(20px,3vw,44px);align-items:center;margin-top:24px}
+.mgbars{display:grid;gap:20px}
+.mgb .lb{display:flex;justify-content:space-between;align-items:baseline;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:clamp(17px,1.8vw,22px);margin-bottom:7px}
+.mgb .lb em{font-style:normal;font-weight:800;font-size:clamp(22px,2.4vw,32px);font-variant-numeric:tabular-nums}
+.mgb .tr{height:30px;background:rgba(255,255,255,.06);position:relative;overflow:hidden}
+.mgb .tr i{position:absolute;top:0;bottom:0;left:0;width:0;transition:width 1.6s cubic-bezier(.6,0,.2,1),left 1.6s cubic-bezier(.6,0,.2,1)}
+.mgb.c .tr i{background:linear-gradient(90deg,#5d5446,#9c8a66)}
+.mgb.o .tr i{background:linear-gradient(90deg,#8a7330,#D5B863,#F1DC9C);box-shadow:0 0 14px rgba(213,184,99,.45)}
+.mgb.k .tr i{background:linear-gradient(90deg,#6e6656,#cbbd9b)}
+.mgb.o em{color:#D5B863}
+.props{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pr{border:1px solid rgba(255,255,255,.1);background:linear-gradient(160deg,rgba(213,184,99,.10),rgba(18,17,16,.92) 60%);padding:18px;cursor:pointer;transition:border-color .3s,transform .3s}
+.pr.on{border-color:#D5B863;transform:translateY(-3px)}
+.pr b{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:clamp(22px,2.3vw,30px);text-transform:uppercase;color:#D5B863;line-height:1}
+.pr p{font-size:16.5px;color:#d7d1c4;line-height:1.4;margin-top:8px}
+.evwrap{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(20px,3vw,44px);align-items:start;margin-top:22px}
+.evchart{border:1px solid rgba(213,184,99,.3);background:radial-gradient(ellipse at 50% 40%,#1a1712,#050505 75%);padding:10px}
+.evchart svg{display:block;width:100%;height:auto}
+.evcards{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+.ev{border-left:4px solid #D5B863;background:rgba(213,184,99,.07);padding:11px 13px}
+.ev b{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:clamp(24px,2.6vw,34px);color:#D5B863;line-height:1}
+.ev span{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:15px;color:#fff;margin-top:4px}
+.ev p{font-size:14.5px;color:#d7d1c4;line-height:1.4;margin-top:6px}
+.ev.pre{border-left-color:#8f98a3;background:rgba(255,255,255,.04)}
+.vso{margin-top:22px;border:1px solid rgba(213,184,99,.28)}
+.vso .h,.vso .r{display:grid;grid-template-columns:1fr 1.5fr 1.5fr}
+.vso .h div{padding:12px 16px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:clamp(16px,1.7vw,21px)}
+.vso .h div:nth-child(2){background:#D5B863;color:#000}
+.vso .h div:nth-child(3){background:#2a2d31;color:#d6dbe0}
+.vso .r{border-top:1px solid rgba(213,184,99,.28);opacity:.12;transition:opacity .5s,background .5s;cursor:pointer}
+.vso .r.on{opacity:1}.vso .r.cur{background:rgba(213,184,99,.07)}
+.vso .r div{padding:13px 16px;font-size:clamp(16px,1.6vw,19px);line-height:1.35}
+.vso .r div:first-child{font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#D5B863}
+.vso .r div:nth-child(3){color:#a9afb5}
+.vsoctl{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.vsoctl button{background:transparent;border:2px solid rgba(213,184,99,.28);color:#fff;padding:9px 16px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:17px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.vsoctl button.g{background:#D5B863;border-color:#D5B863;color:#000}
+.orcite{font-size:14.5px;color:#9a9284;margin-top:14px;line-height:1.5}
+@media (max-width:980px){.mgwrap,.evwrap{grid-template-columns:1fr}}
+@media (max-width:700px){#orSnd{right:auto;left:16px;top:auto;bottom:14px}}
+@media (max-width:620px){.evcards{grid-template-columns:1fr}.props{grid-template-columns:1fr}.vso .h,.vso .r{grid-template-columns:.8fr 1.2fr 1.2fr}}
+</style>
+<style id="ff-extra">
+.ffev{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(20px,3vw,44px);align-items:start;margin-top:22px}
+.rr{border:1px solid rgba(213,184,99,.4);background:linear-gradient(160deg,rgba(213,184,99,.12),rgba(18,17,16,.92) 60%);padding:20px;text-align:center}
+.rr .big{font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:clamp(70px,9vw,120px);line-height:.85;color:#D5B863;font-variant-numeric:tabular-nums}
+.rr .lb{font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:clamp(16px,1.7vw,20px);margin-top:8px}
+.rr p{font-size:16px;color:#d7d1c4;line-height:1.4;margin-top:8px}
+.pair{margin-top:16px}
+.pair .t{font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:clamp(20px,2.1vw,26px);margin-bottom:6px}
+.honest{border-left:4px solid #8f98a3;background:rgba(255,255,255,.04);padding:12px 14px;font-size:16px;line-height:1.45;color:#ddd;margin-top:14px}
+.honest b{font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#cfd6dd;display:block;font-size:17px}
+.thr{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(20px,3vw,44px);align-items:center;margin-top:20px}
+.thrvis{border:1px solid rgba(213,184,99,.3);background:radial-gradient(ellipse at 50% 45%,#1a1712,#050505 75%)}
+.thrvis svg{display:block;width:100%;height:auto}
+.in .push{animation:push 3.2s cubic-bezier(.5,0,.3,1) infinite}
+@keyframes push{0%{transform:translateX(320px)}20%{transform:translateX(220px)}25%{transform:translateX(230px)}45%{transform:translateX(120px)}50%{transform:translateX(130px)}75%,100%{transform:translateX(0)}}
+.in .mallet{animation:mallet 3.2s ease-in-out infinite;transform-origin:540px 70px}
+@keyframes mallet{0%,15%{transform:rotate(-25deg)}20%{transform:rotate(0)}22%,40%{transform:rotate(-25deg)}45%{transform:rotate(0)}47%,100%{transform:rotate(-25deg)}}
+.in .screwin{animation:screwin 3.2s linear infinite}
+@keyframes screwin{0%{transform:translateX(320px)}75%,100%{transform:translateX(0)}}
+.in .spin{animation:spin2 .45s linear infinite}
+@keyframes spin2{to{transform:translateX(-14px)}}
+.fitchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.fitchips span{border:1px solid rgba(213,184,99,.5);padding:7px 12px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:16px;color:#eadfc6}
+.blist{display:grid;gap:10px}
+.blist div{padding:12px 14px;border-left:4px solid #D5B863;background:rgba(213,184,99,.08);font-size:17px;line-height:1.4;color:#eee;cursor:pointer;transition:background .3s}
+.blist div.on{background:rgba(213,184,99,.2)}
+.blist b{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-size:clamp(20px,2.2vw,26px);letter-spacing:.04em;color:#D5B863;text-transform:uppercase;line-height:1}
+#opPlayer{width:min(100%,calc((100svh - 470px) * 1.7778))}
+#opChap button{padding:9px 6px;font-size:clamp(13px,1.3vw,16px)}
+@media (max-width:980px){.ffev,.thr{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <div id="bar"></div>
@@ -228,6 +321,7 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
 <nav id="dots" aria-label="Sections"></nav>
 <button id="next" aria-label="Next section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
 <a id="home" href="../index.html">‹ Brochures</a>
+<button id="orSnd" aria-label="Sound on or off">Sound on</button>
 <main id="deck">
 <section class="panel" data-name="Home">
   <div class="bg"></div><div class="vig"></div>
@@ -241,6 +335,116 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
       <div class="mfr rise d7">Fusion Orthopedics &middot; Distributed by Lotus Medical</div>
     </div>
     <div class="heroimg pop d3"><div class="glow"></div><img src="img/hero.webp" alt=""></div>
+  </div>
+</section><section class="panel" data-name="Watch the procedure" data-snd="whoosh">
+  <div class="wrap">
+    <div class="eyebrow rise">Watch it start to finish</div>
+    <h2 class="rise d1">From the tip. <span class="gold">Through a small incision.</span></h2>
+    <div class="opplayer rise d2" id="opPlayer">
+      <div class="opstage"><svg id="fffilm" class="opsvg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <radialGradient id="f-bg" cx="50%" cy="50%" r="70%"><stop offset="0" stop-color="#16130f"/><stop offset=".6" stop-color="#070706"/><stop offset="1" stop-color="#000"/></radialGradient>
+  <radialGradient id="f-vig" cx="50%" cy="50%" r="72%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></radialGradient>
+  <radialGradient id="f-swell" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#c0503c" stop-opacity=".75"/><stop offset="1" stop-color="#c0503c" stop-opacity="0"/></radialGradient>
+  <linearGradient id="f-boneV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a68c5e"/><stop offset=".35" stop-color="#e9dcbd"/><stop offset=".65" stop-color="#f4ead2"/><stop offset="1" stop-color="#9c8256"/></linearGradient>
+  <linearGradient id="f-tiV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4f5a66"/><stop offset=".4" stop-color="#d9e2ea"/><stop offset=".7" stop-color="#9aa8b6"/><stop offset="1" stop-color="#46505b"/></linearGradient>
+  <linearGradient id="f-tiH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3eaf0"/><stop offset=".5" stop-color="#9aa8b6"/><stop offset="1" stop-color="#4f5a66"/></linearGradient>
+  <linearGradient id="f-goldG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b8973f"/><stop offset=".5" stop-color="#D5B863"/><stop offset="1" stop-color="#f0dc9a"/></linearGradient>
+  <linearGradient id="f-goldV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8a7330"/><stop offset=".5" stop-color="#f0dc9a"/><stop offset="1" stop-color="#8a7330"/></linearGradient>
+  <pattern id="f-trab" width="6" height="5" patternUnits="userSpaceOnUse"><ellipse cx="1.7" cy="1.3" rx="1.2" ry=".7" fill="#8a7046" opacity=".22"/><circle cx="4.6" cy="3.7" r=".45" fill="#fff" opacity=".25"/></pattern>
+  <filter id="f-soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter>
+  <filter id="f-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0.84 0 0 0 0 0.72 0 0 0 0 0.39 0 0 0 1 0" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <path id="f-tib" d="M 420 -400 L 522 -400 L 528 700 C 540 800, 580 900, 590 960 C 596 990, 592 1005, 580 1008 L 430 1008 C 420 1030, 410 1062, 392 1066 C 372 1066, 366 1030, 372 990 C 380 930, 400 800, 412 700 Z"/>
+  <path id="f-fib" d="M 628 -400 L 652 -400 L 656 700 C 660 800, 672 900, 678 980 C 684 1040, 676 1080, 650 1092 C 630 1100, 616 1080, 612 1040 C 608 990, 618 900, 622 800 Z"/>
+  <path id="f-tal" d="M 432 1012 C 450 1004, 570 1004, 600 1012 C 618 1050, 606 1090, 576 1098 L 448 1098 C 420 1090, 414 1050, 432 1012 Z"/>
+  <clipPath id="f-fibClip"><use href="#f-fib"/></clipPath>
+  <clipPath id="f-proxC"><polygon points="300,-600 900,-600 900,925 660,925 612,972 300,972"/></clipPath>
+  <clipPath id="f-distC"><polygon points="300,972 612,972 660,925 900,925 900,1400 300,1400"/></clipPath>
+  <clipPath id="f-nailC"><rect x="633" y="0" width="14" height="572" rx="6"/></clipPath>
+</defs>
+<rect width="1920" height="1080" fill="url(#f-bg)"/>
+
+<g id="f-world" opacity="0"><g id="f-cam">
+  <g id="f-skin" filter="url(#f-soft)" opacity=".5">
+    <path d="M 330 -500 L 760 -500 C 780 200, 760 700, 730 900 C 740 1000, 760 1080, 720 1130 L 640 1240 C 600 1300, 420 1300, 360 1220 C 330 1150, 330 1050, 340 950 C 300 700, 300 200, 330 -500 Z" fill="#4a3a2b"/>
+  </g>
+  <ellipse id="f-swell" cx="690" cy="960" rx="150" ry="210" fill="url(#f-swell)"/>
+  <g id="f-others">
+    <use href="#f-tib" fill="url(#f-boneV)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/><use href="#f-tib" fill="url(#f-trab)"/>
+    <use href="#f-tal" fill="url(#f-boneV)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/><use href="#f-tal" fill="url(#f-trab)"/>
+    <ellipse cx="520" cy="1170" rx="120" ry="55" fill="url(#f-boneV)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+  </g>
+  <!-- fibula: proximal + distal fragments -->
+  <g id="f-fibula">
+    <g clip-path="url(#f-proxC)"><use href="#f-fib" fill="url(#f-boneV)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/><use href="#f-fib" fill="url(#f-trab)"/>
+      <g clip-path="url(#f-fibClip)"><rect id="f-canalP" x="636" y="460" width="8" height="520" fill="#3a2016" opacity="0"/></g></g>
+    <g id="f-dist"><g clip-path="url(#f-distC)"><use href="#f-fib" fill="url(#f-boneV)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/><use href="#f-fib" fill="url(#f-trab)"/>
+      <g clip-path="url(#f-fibClip)"><rect id="f-canalD" x="636" y="900" width="8" height="200" fill="#3a2016" opacity="0"/></g></g>
+      <line id="f-fxD" x1="612" y1="972" x2="660" y2="925" stroke="#5b2a20" stroke-width="3"/></g>
+    <line id="f-fxP" x1="612" y1="972" x2="660" y2="925" stroke="#5b2a20" stroke-width="3"/>
+    <line id="f-call" x1="612" y1="972" x2="660" y2="925" stroke="#D5B863" stroke-width="5" opacity="0" filter="url(#f-glow)"/>
+  </g>
+  <!-- guide wire / reamers -->
+  <rect id="f-wire" x="638.5" y="0" width="3" height="900" fill="#e7ecf0" opacity="0"/>
+  <g id="f-ream" opacity="0"><rect x="636" y="0" width="8" height="1200" fill="url(#f-tiV)"/><g id="f-rhead"><rect x="633" y="-18" width="14" height="22" rx="5" fill="url(#f-tiV)"/><g id="f-rfl" stroke="#3f464d" stroke-width="1.6"></g></g></g>
+  <!-- nail -->
+  <g id="f-nail" opacity="0">
+    <rect x="633" y="0" width="14" height="572" rx="6" fill="url(#f-tiV)"/>
+    <g clip-path="url(#f-nailC)"><g id="f-thr" stroke="#2f3842" stroke-width="2.2"></g><g id="f-flex" stroke="#38414b" stroke-width="1.6"></g></g>
+    <g fill="#2a323b"><rect x="637" y="342" width="6" height="12" rx="3"/><rect x="637" y="372" width="6" height="12" rx="3"/><rect x="637" y="402" width="6" height="12" rx="3"/>
+      <circle cx="640" cy="475" r="3"/><circle cx="640" cy="500" r="3"/><circle cx="640" cy="525" r="3"/><circle cx="640" cy="548" r="3"/></g>
+    <g id="f-handle"><rect x="637" y="572" width="6" height="90" fill="#9aa8b6"/><rect id="f-tbar" x="600" y="652" width="80" height="16" rx="6" fill="#D5B863"/></g>
+    <rect id="f-cap" x="633" y="572" width="14" height="10" rx="3" fill="#c9d3dc" opacity="0"/>
+  </g>
+  <!-- targeting arm -->
+  <g id="f-arm" opacity="0">
+    <path d="M 640 1100 L 640 1130 L 748 1130 L 748 820 L 732 820 L 732 1110 L 640 1110 Z" fill="url(#f-goldV)" stroke="#8a7330" stroke-width="1"/>
+    <g fill="#c9a94f" stroke="#8a7330" stroke-width="1"><rect x="688" y="984" width="46" height="12" rx="3"/><rect x="688" y="1009" width="46" height="12" rx="3"/><rect x="688" y="1034" width="46" height="12" rx="3"/><rect x="688" y="1056" width="46" height="12" rx="3"/><rect x="688" y="852" width="46" height="16" rx="3"/></g>
+  </g>
+  <g id="f-screws"></g>
+  <g id="f-drill" opacity="0"><rect x="0" y="-3" width="900" height="6" fill="url(#f-tiH)"/><rect x="300" y="-9" width="200" height="18" rx="4" fill="#4f5a66"/></g>
+  <g id="f-clamp" opacity="0">
+    <path id="f-jawA" d="M 760 880 L 668 905 L 672 914 L 770 900 Z" fill="url(#f-tiH)"/>
+    <path id="f-jawB" d="M 760 1010 L 674 990 L 670 999 L 770 1024 Z" fill="url(#f-tiH)"/>
+    <path d="M 760 880 C 860 900, 860 1000, 760 1024" fill="none" stroke="#9aa8b6" stroke-width="8"/>
+  </g>
+  <g id="f-sparks"></g>
+  <g id="f-inc" opacity="0" stroke="#7a2e22" stroke-width="3" stroke-linecap="round"><line x1="640" y1="1100" x2="640" y2="1118"/><line x1="682" y1="1000" x2="700" y2="1000"/><line x1="682" y1="1035" x2="700" y2="1035"/><line x1="676" y1="860" x2="694" y2="860"/></g>
+  <ellipse id="f-ring" cx="640" cy="950" rx="90" ry="170" fill="none" stroke="#D5B863" stroke-width="3" vector-effect="non-scaling-stroke" opacity="0"/>
+</g></g>
+<rect width="1920" height="1080" fill="url(#f-vig)" pointer-events="none"/>
+
+<g id="f-lbls" fill="#D5B863" font-size="28" font-weight="600"></g>
+<g id="f-flexHud" opacity="0">
+  <text x="960" y="938" text-anchor="middle" fill="#bdbdbd" font-size="24" letter-spacing="4">FRACTURE HEALS · NO LATERAL PLATE</text>
+  <rect x="660" y="962" width="600" height="10" rx="5" fill="#2b2b2b"/><rect id="f-progBar" x="660" y="962" width="0" height="10" rx="5" fill="url(#f-goldG)"/>
+</g>
+<text id="f-fine" x="960" y="1058" text-anchor="middle" fill="#6f6f6f" font-size="17" opacity="0">Illustration. Steps summarized from the FibFix surgical technique. Refer to the technique guide and IFU.</text>
+<g id="f-capg" opacity="0">
+  <text id="f-capK" x="960" y="96" text-anchor="middle" fill="#D5B863" font-size="26" font-weight="700" letter-spacing="8"></text>
+  <text id="f-capH" x="960" y="160" text-anchor="middle" fill="#fff" font-size="54" font-weight="700"></text>
+  <text id="f-capS" x="960" y="210" text-anchor="middle" fill="#b9b9b9" font-size="30"></text>
+</g>
+<g id="f-title" opacity="0">
+  <text x="960" y="450" text-anchor="middle" fill="url(#f-goldG)" font-size="150" font-weight="800" letter-spacing="8">FIBFIX™</text>
+  <rect id="f-titleRule" x="960" y="500" width="0" height="4" fill="#D5B863"/>
+  <text x="960" y="590" text-anchor="middle" fill="#fff" font-size="50" font-weight="300" letter-spacing="3">Fix the fibula from the inside</text>
+  <text x="960" y="650" text-anchor="middle" fill="#9a9a9a" font-size="30" letter-spacing="2">Low-profile intramedullary fibula nail</text>
+</g>
+<g id="f-end" opacity="0">
+  <text x="960" y="340" text-anchor="middle" fill="url(#f-goldG)" font-size="130" font-weight="800" letter-spacing="8">FIBFIX™</text>
+  <text x="960" y="440" text-anchor="middle" fill="#fff" font-size="48" font-weight="600">Rigid at both ends. Flexible in the middle.</text>
+  <text x="960" y="500" text-anchor="middle" fill="#b9b9b9" font-size="32">Threaded in by hand · 4 distal locks · 3 syndesmosis holes · 9 sizes</text>
+  <rect x="860" y="590" width="200" height="3" fill="#D5B863"/>
+  <text x="960" y="670" text-anchor="middle" fill="#D5B863" font-size="40" font-weight="700" letter-spacing="14">LOTUS MEDICAL</text>
+  <text x="960" y="720" text-anchor="middle" fill="#fff" font-size="28" font-style="italic" font-weight="300">Healing Sooner. Wellness Longer.</text>
+  <text x="960" y="1010" text-anchor="middle" fill="#6f6f6f" font-size="18">FibFix is FDA cleared (510(k) K252961). Manufactured by Fusion Orthopedics, Mesa, AZ. Distributed by Lotus Medical. Refer to the IFU.</text>
+</g>
+</svg><button class="opbig" id="opBig" aria-label="Play the procedure">▶</button></div>
+      <div class="opctl"><button class="g" id="opPlay">▶ Play</button><button id="opBack">‹ Step</button><button id="opFwd">Step ›</button><input type="range" id="opScrub" min="0" max="1000" value="0" aria-label="Scrub through the procedure"><button id="opRe">↺ Replay</button></div>
+      <div class="opchap" id="opChap"><button data-t="4.4">Fracture</button><button data-t="12.6">Reduce</button><button data-t="16">Guide wire</button><button data-t="19.4">Ream</button><button data-t="23">Thread in</button><button data-t="29.6">Lock</button><button data-t="36.8">Syndesmosis</button><button data-t="41.6">End cap</button><button data-t="44.6">Result</button></div>
+    </div>
+    <audio id="opAudio" src="procedure.m4a?v=24" preload="auto" playsinline></audio>
   </div>
 </section><section class="panel" data-name="Watch it work">
   <div class="wrap">
@@ -291,6 +495,56 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
     <div class="f3">
       <div class="feats"><div class="ft rise d2"><div class="n">01</div><h3>Dual Helix thread</h3><p>Self-tapping, reverse-cutting thread for purchase on the way in and on the way out.</p></div><div class="ft rise d3 hl"><div class="n">02</div><h3>FlexZone</h3><p>Controlled flexibility for dynamic load sharing.</p></div><div class="ft rise d4"><div class="n">03</div><h3>Locked distally</h3><p>Up to four low-profile screws thread directly into the nail.</p></div><div class="ft rise d5"><div class="n">04</div><h3>Syndesmosis ready</h3><p>Up to three 3.5&nbsp;mm screws or the BOLO Button flexible system.</p></div><div class="ft rise d6"><div class="n">05</div><h3>End caps</h3><p>Seven sizes, 0&ndash;20&nbsp;mm, to finish flush.</p></div><div class="ft rise d7"><div class="n">06</div><h3>Ti-6Al-4V ELI</h3><p>Titanium alloy. FDA 510(k) K252961, cleared March 18, 2026.</p></div></div>
     </div>
+  </div>
+</section><section class="panel" data-name="Threaded, not pushed" data-snd="whoosh">
+  <div class="wrap">
+    <div class="eyebrow rise">How it goes in</div>
+    <h2 class="rise d1">Threaded in. <span class="gold">Not pushed.</span></h2>
+    <div class="thr">
+      <div class="thrvis rise d2"><svg viewBox="0 0 640 360" aria-label="A smooth rod pushed with a mallet compared with the FibFix nail threaded in by hand">
+        <defs><linearGradient id="thB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4ead2"/><stop offset="1" stop-color="#a68c5e"/></linearGradient><linearGradient id="thT" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3eaf0"/><stop offset=".5" stop-color="#9aa8b6"/><stop offset="1" stop-color="#4f5a66"/></linearGradient><clipPath id="thC"><rect x="0" y="0" width="470" height="360"/></clipPath><clipPath id="thN"><rect x="60" y="244" width="420" height="20" rx="8"/></clipPath></defs>
+        <text x="20" y="34" fill="#9aa1a8" font-family="Barlow Condensed,Arial" font-weight="800" font-size="20" letter-spacing="3">SMOOTH ROD · PUSHED</text>
+        <rect x="20" y="66" width="450" height="44" rx="20" fill="url(#thB)"/><rect x="20" y="82" width="450" height="12" fill="#3a2016"/>
+        <g clip-path="url(#thC)"><g class="push"><rect x="60" y="80" width="420" height="16" rx="7" fill="url(#thT)"/></g></g>
+        <g class="mallet"><rect x="532" y="40" width="22" height="64" rx="5" fill="#8f98a3"/><rect x="540" y="96" width="8" height="80" fill="#6b747e"/></g>
+        <text x="20" y="140" fill="#a9a29a" font-family="Barlow,Arial" font-size="17">Nothing holds length until the cross-screws go in.</text>
+        <text x="20" y="214" fill="#D5B863" font-family="Barlow Condensed,Arial" font-weight="800" font-size="20" letter-spacing="3">FIBFIX · THREADED BY HAND</text>
+        <rect x="20" y="232" width="450" height="44" rx="20" fill="url(#thB)"/><rect x="20" y="248" width="450" height="12" fill="#3a2016"/>
+        <g clip-path="url(#thC)"><g class="screwin"><rect x="60" y="244" width="420" height="20" rx="8" fill="url(#thT)"/><g clip-path="url(#thN)"><g class="spin" stroke="#2f3842" stroke-width="3">
+          <path d="M60 244l7 20M74 244l7 20M88 244l7 20M102 244l7 20M116 244l7 20M130 244l7 20M144 244l7 20M158 244l7 20M172 244l7 20M186 244l7 20M200 244l7 20M214 244l7 20M228 244l7 20M242 244l7 20"/></g></g>
+          <rect x="480" y="236" width="8" height="36" fill="#9aa8b6"/><rect x="488" y="226" width="44" height="56" rx="8" fill="#D5B863"/></g></g>
+        <text x="20" y="306" fill="#eadfc6" font-family="Barlow,Arial" font-size="17">The thread grips cortex as it advances. Length and rotation hold.</text>
+      </svg></div>
+      <div class="blist rise d3" id="ffList">
+        <div class="on"><b>Grips on the way in</b>Self-tapping, reverse-cutting Dual Helix thread engages the canal as the nail advances.</div>
+        <div><b>Holds before the screws</b>Length and rotation are held when the targeting arm goes on.</div>
+        <div><b>Feel the seat</b>Turned to its final position by hand, not tapped home.</div>
+        <div><b>Comes out the way it went in</b>Reverse-cutting threads: removal is a reversal, not an extraction.</div>
+      </div>
+    </div>
+    <div class="fitchips rise d4"><span>Elderly, osteopenic ankle</span><span>Diabetic</span><span>Smoker</span><span>Swollen or thin skin</span><span>Fibula fractures</span><span>Osteotomies</span></div>
+    <p class="orcite rise d5">Design features from the Fusion Orthopedics FibFix sell sheet (SLS022). Patient profiles are clinical considerations, not indications; refer to the IFU.</p>
+  </div>
+</section><section class="panel" data-name="Nail vs plate" data-snd="whoosh">
+  <div class="bg" style="opacity:.1"></div><div class="vig"></div>
+  <div class="wrap">
+    <div class="eyebrow rise">The evidence · fibular nails as a class</div>
+    <h2 class="rise d1">Nail or plate? <span class="gold">The trials answer.</span></h2>
+    <div class="ffev">
+      <div class="rise d2">
+        <div class="rr"><div class="big"><span id="ffRR">0.23</span></div><div class="lb">Relative risk of infection, nail vs. plate</div><p>Seven randomized trials, 586 patients. Infection risk with the nail was about a quarter of plating (p &lt; 0.0001). Function equal at 3, 6 and 12 months; union no different.</p></div>
+        <div class="honest"><b>The honest part</b>The same analysis found more hardware failure with the nail (RR 2.05), most in older patients. FibFix is built around that problem: diameters to 5.7 mm, threaded proximal purchase and four distal locks.</div>
+      </div>
+      <div class="rise d3" id="ffBars">
+        <div class="pair"><div class="t">Complications</div>
+          <div class="mgb o"><div class="lb"><span>Fibular nail</span><em data-n="15" data-u="%">15%</em></div><div class="tr"><i data-l="0" data-w="15"></i></div></div>
+          <div class="mgb c" style="margin-top:10px"><div class="lb"><span>Plate</span><em data-n="30" data-u="%">30%</em></div><div class="tr"><i data-l="0" data-w="30"></i></div></div></div>
+        <div class="pair" style="margin-top:22px"><div class="t">Union</div>
+          <div class="mgb o"><div class="lb"><span>Fibular nail</span><em data-n="99" data-u="%">99%</em></div><div class="tr"><i data-l="0" data-w="99"></i></div></div>
+          <div class="mgb c" style="margin-top:10px"><div class="lb"><span>Plate</span><em data-n="97" data-u="%">97%</em></div><div class="tr"><i data-l="0" data-w="97"></i></div></div></div>
+      </div>
+    </div>
+    <p class="orcite rise d4">Zhang J, Luo R, Chen J. J Orthop Surg Res. 2024;19:542 (meta-analysis of 7 RCTs, 586 patients). Samuel Z et al. J Am Acad Orthop Surg Glob Res Rev. 2024;8(7):e24.00119 (systematic review). Class data from fibular nails; FibFix-specific outcomes are not yet published.</p>
   </div>
 </section><section class="panel" data-name="Real films.">
   <div class="wrap">
@@ -383,7 +637,7 @@ window.SIM=(function(){
   function go(i){i=Math.max(0,Math.min(panels.length-1,i));deck.scrollTo({top:panels[i].offsetTop,behavior:reduce?'auto':'smooth'})}
   nextBtn.addEventListener('click',function(){go(current+1>=panels.length?0:current+1)});
   document.addEventListener('keydown',function(e){if(['ArrowDown','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(current+1)}if(['ArrowUp','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(current-1)}});
-  function enter(i){current=i;[].forEach.call(dots.children,function(d,k){d.classList.toggle('on',k===i)});bar.style.width=((i+1)/panels.length*100)+'%';nextBtn.style.opacity=i===panels.length-1?'.35':'1';var p=panels[i];p.classList.remove('in');void p.offsetWidth;p.classList.add('in')}
+  function enter(i){current=i;[].forEach.call(dots.children,function(d,k){d.classList.toggle('on',k===i)});bar.style.width=((i+1)/panels.length*100)+'%';nextBtn.style.opacity=i===panels.length-1?'.35':'1';var p=panels[i];p.classList.remove('in');void p.offsetWidth;p.classList.add('in');if(window.OrEnter)OrEnter(p)}
 
   /* generic stage sim: SIM = {T:[...], caps:[...], hud:fn(t)->string, render:fn(t)} */
   var sim=(function(){
@@ -423,6 +677,207 @@ window.SIM=(function(){
 })();
 
 </script>
-<script src="../share.js?v=2" defer></script>
+
+<script>
+/* ===== Lotus sizzle sound (Web Audio) ===== */
+var soundOn=true;try{soundOn=localStorage.getItem('lcc-sound')!=='off'}catch(e){}
+var AC=null;
+function audio(){try{if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AC=new C()}if(AC.state==='suspended')AC.resume();return AC}catch(e){return null}}
+function snd(name){
+  if(!soundOn)return;var a=audio();if(!a||a.state!=='running')return;var t0=a.currentTime+0.01,out=a.destination;
+  function tone(f,f2,d,type,v,dl){dl=dl||0;var o=a.createOscillator(),g=a.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,t0+dl);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t0+dl+d);g.gain.setValueAtTime(0.0001,t0+dl);g.gain.exponentialRampToValueAtTime(v||0.2,t0+dl+0.012);g.gain.exponentialRampToValueAtTime(0.0001,t0+dl+d);o.connect(g);g.connect(out);o.start(t0+dl);o.stop(t0+dl+d+.05)}
+  function noise(d,f1,f2,v,dl,q){dl=dl||0;var len=Math.floor(a.sampleRate*d),buf=a.createBuffer(1,len,a.sampleRate),c=buf.getChannelData(0);for(var i=0;i<len;i++)c[i]=Math.random()*2-1;var s=a.createBufferSource();s.buffer=buf;var bp=a.createBiquadFilter();bp.type='bandpass';bp.Q.value=q||1.2;bp.frequency.setValueAtTime(f1,t0+dl);bp.frequency.exponentialRampToValueAtTime(f2,t0+dl+d);var g=a.createGain();g.gain.setValueAtTime(0.0001,t0+dl);g.gain.exponentialRampToValueAtTime(v||.2,t0+dl+d*.3);g.gain.exponentialRampToValueAtTime(0.0001,t0+dl+d);s.connect(bp);bp.connect(g);g.connect(out);s.start(t0+dl);s.stop(t0+dl+d+.05)}
+  switch(name){
+    case 'pop':tone(320,900,.14,'sine',.2);break;
+    case 'tick':tone(1900,0,.035,'square',.035);break;
+    case 'swish':noise(.38,700,4200,.28);break;
+    case 'whoosh':noise(.65,260,2600,.4);tone(70,45,.5,'sine',.25,.05);break;
+    case 'boom':tone(70,32,1.4,'sine',.55);noise(.9,200,60,.25);noise(1.2,300,5000,.12,.05);break;
+    case 'click':tone(2500,0,.04,'square',.06);tone(1300,0,.07,'triangle',.09,.01);break;
+    case 'clank':[820,1370,2210].forEach(function(f,i){tone(f,0,.5,'sine',.08)});noise(.08,1500,5000,.2);break;
+    case 'chime':[880,1108.7,1318.5].forEach(function(f,i){tone(f,0,.8,'sine',.14,i*.09)});break;
+    case 'level':[523.3,659.3,784,1046.5].forEach(function(f,i){tone(f,0,.45,'triangle',.16,i*.09)});noise(.5,4000,9000,.06,.3);break;
+    case 'rise':tone(220,880,1.4,'sawtooth',.03);noise(1.4,400,5000,.08);break;
+  }
+}
+(function(){
+  var b=document.getElementById('orSnd');
+  function ui(){b.textContent=soundOn?'Sound on':'Sound off';b.classList.toggle('off',!soundOn)}
+  b.onclick=function(e){e.stopPropagation();soundOn=!soundOn;try{localStorage.setItem('lcc-sound',soundOn?'on':'off')}catch(x){}ui();if(soundOn){audio();setTimeout(function(){snd('pop')},30)}if(window.OpProc)OpProc.soundChanged()};ui();
+  ['touchstart','pointerdown','keydown'].forEach(function(ev){document.addEventListener(ev,function(){audio()},{passive:true})});
+  /* every button in the brochure answers with a soft tick unless it has its own sound */
+  document.addEventListener('click',function(e){var t=e.target.closest('button');if(!t||t.id==='orSnd'||t.closest('[data-own-snd]'))return;snd('tick')},true);
+})();
+</script>
+<script>
+var FfFilm=(function(){
+const NS="http://www.w3.org/2000/svg";
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const P=(t,a,b)=>ease(cl((t-a)/(b-a)));
+const W=(t,a,b,f=.6)=>Math.min(cl((t-a)/f),cl((b-t)/f));
+const lerp=(a,b,k)=>a+(b-a)*k;
+const mk=(tag,attrs,parent)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e;};
+let seed=9;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+
+/* nail threads (proximal 0..150) and FlexZone slots (150..300) in nail-local coords */
+const thr=[];for(let i=0;i<24;i++)thr.push(mk("line",{x1:633,x2:647},$("f-thr")));
+for(let y=160;y<300;y+=14)mk("line",{x1:635,y1:y,x2:645,y2:y+6},$("f-flex"));
+for(let i=-2;i<=2;i++)mk("line",{x1:633,y1:i*4-6,x2:647,y2:i*4-3},$("f-rfl"));
+
+/* screws: [worldY, xFrom(lateral), xTo, thick, t0] */
+const SC=[[990,662,620,7,32.0],[1015,664,618,7,33.1],[1040,664,620,7,34.2],[1062,660,624,7,35.3],[860,668,428,10,37.2]];
+const screws=SC.map(s=>{const g=mk("g",{opacity:0},$("f-screws"));const L=s[1]-s[2];
+  mk("rect",{x:-L,y:-s[3]/2,width:L,height:s[3],rx:2,fill:"url(#f-tiH)"},g);
+  for(let x=-L+6;x<-8;x+=7)mk("line",{x1:x,y1:-s[3]/2,x2:x+4,y2:s[3]/2,stroke:"#38414b","stroke-width":1.4},g);
+  mk("rect",{x:-2,y:-s[3]/2-3,width:8,height:s[3]+6,rx:2,fill:"#c9d3dc",stroke:"#4f5a66","stroke-width":1},g);
+  return{g,y:s[0],x1:s[1],x2:s[2],L,t0:s[4],syn:s[0]<900}});
+const debris=[];for(let i=0;i<40;i++)debris.push({b:20.6+rnd()*2.2,vx:30+rnd()*120,vy:(rnd()*2-1)*30,r:1.5+rnd()*2.5,c:mk("circle",{fill:rnd()>.4?"#7a3020":"#c9b48a"},$("f-sparks"))});
+const sparks=[];for(let i=0;i<26;i++)sparks.push({x:612+rnd()*50,y:925+rnd()*50,ph:rnd()*6.28,c:mk("circle",{r:2+rnd()*3,fill:"#f3dd92",opacity:0},$("f-sparks"))});
+
+const CH={cx:540,cy:760,k:.8,r:-6,sx:960,sy:600}, CZ={cx:560,cy:820,k:2.4,r:-90,sx:960,sy:700};
+function camT(p,t){const k=CH.k*Math.pow(CZ.k/CH.k,p)*(1+.01*Math.sin(t*.3));
+  return `translate(${lerp(CH.sx,CZ.sx,p)},${lerp(CH.sy,CZ.sy,p)}) rotate(${lerp(CH.r,CZ.r,p)}) scale(${k}) translate(${-lerp(CH.cx,CZ.cx,p)},${-lerp(CH.cy,CZ.cy,p)})`;}
+const zs=(x,y)=>[CZ.sx+CZ.k*(y-CZ.cy), CZ.sy-CZ.k*(x-CZ.cx)];
+const LB=[];function lbl(wx,wy,tx,ty,txt,a,b,anchor){const g=mk("g",{opacity:0},$("f-lbls"));const[x,y]=zs(wx,wy);
+  mk("line",{x1:x,y1:y,x2:tx,y2:ty,stroke:"#D5B863","stroke-width":2},g);mk("circle",{cx:x,cy:y,r:7},g);
+  const tt=mk("text",{x:anchor==="end"?tx-12:tx+12,y:ty+10,"text-anchor":anchor||"start"},g);tt.textContent=txt;LB.push({g,a,b});}
+lbl(636,950,1180,880,"Weber B fracture · shortened",12.6,15.4);
+lbl(640,590,330,880,"Dual Helix thread grips the canal",26.4,29.4);
+lbl(640,745,760,300,"FlexZone",27.4,29.4);
+lbl(640,1020,1580,880,"4 distal locks into the nail",35.4,36.8,"end");
+lbl(500,860,520,880,"3.5 mm syndesmosis screw",39.0,41.4);
+lbl(640,1082,1640,300,"End cap · flush",42.4,44.2,"end");
+
+const CAPS=[
+ [[4.4,9.2],"UNSTABLE ANKLE FRACTURE","A fragile envelope. A fibula to fix.","Swollen, thin skin over the lateral ankle, right where a plate would go."],
+ [[12.6,16.0],"STEP 1","Reduce the fracture.","Restore length and rotation first."],
+ [[16.0,19.4],"STEP 2","Guide wire from the tip.","A small incision at the fibula tip, under fluoroscopy."],
+ [[19.4,23.0],"STEP 3","Open the canal. Ream.","Reamer matched to the nail: 3.4, 4.4 or 5.4 mm cannulated."],
+ [[23.0,29.6],"STEP 4","Thread it in by hand.","The nail grips the canal as it advances. Length and rotation hold before any screw."],
+ [[29.6,36.8],"STEP 5","Targeting arm on. Lock distally.","Up to four 2.8 mm screws thread into the nail."],
+ [[36.8,41.6],"STEP 6","Syndesmosis fixation.","Up to three 3.5 mm screws or the BOLO Button."],
+ [[41.6,44.6],"STEP 7","End cap. Finish flush.","Seven sizes, 0 to 20 mm."],
+ [[44.6,49.0],"THE RESULT","Fixed from the inside.","Small incisions. No lateral plate."],
+ [[49.0,54.0],"FIBFIX","Rigid at both ends. Flexible in the middle.",""]];
+
+function render(t){
+  $("f-title").setAttribute("opacity",W(t,.2,4.2,.8));
+  const tr=P(t,.6,2);$("f-titleRule").setAttribute("width",520*tr);$("f-titleRule").setAttribute("x",960-260*tr);
+  $("f-world").setAttribute("opacity",W(t,3.8,54.2,1.2));
+  const zp=P(t,9.2,12.6)-P(t,49,53.2);
+  $("f-cam").setAttribute("transform",camT(zp,t));
+  $("f-others").setAttribute("opacity",1-.35*zp);$("f-skin").setAttribute("opacity",.5*(1-.85*zp));
+  $("f-swell").setAttribute("opacity",(.9-.25*zp)*(1-P(t,44.6,48.6))*(.85+.15*Math.sin(t*3)));
+  $("f-ring").setAttribute("opacity",Math.max(W(t,5,9.2,.5),W(t,52.4,54.2,.5))*(.55+.45*Math.sin(t*4)));
+  $("f-fine").setAttribute("opacity",W(t,4.4,54,.6));
+  /* displacement and reduction */
+  const red=P(t,13.4,15.4);
+  $("f-dist").setAttribute("transform",`translate(${lerp(9,0,red)},${lerp(-18,0,red)}) rotate(${lerp(-3,0,red)} 640 980)`);
+  $("f-clamp").setAttribute("opacity",W(t,12.8,16.4,.4));
+  const cj=lerp(0,1,P(t,12.9,13.4));$("f-clamp").setAttribute("transform",`translate(${lerp(260,0,cj)},0)`);
+  /* guide wire */
+  $("f-wire").setAttribute("opacity",t>16.2&&t<29.8?1:0);
+  const wy=lerp(1500,480,P(t,16.4,18.8));$("f-wire").setAttribute("y",wy);$("f-wire").setAttribute("height",1500-wy+200);
+  /* reaming */
+  const rOn=t>19.5&&t<23.2;$("f-ream").setAttribute("opacity",rOn?1:0);
+  const rh=t<22.2?lerp(1300,500,P(t,19.7,22.2)):lerp(500,1400,P(t,22.2,23.1));
+  $("f-ream").setAttribute("transform",`translate(0,${rh})`);
+  [...$("f-rfl").children].forEach((l,i)=>{const y=((i*4+t*80)%20)-14;l.setAttribute("y1",y);l.setAttribute("y2",y+3)});
+  const cv=P(t,19.8,22.2);$("f-canalP").setAttribute("opacity",cv);$("f-canalD").setAttribute("opacity",cv);
+  debris.forEach(d=>{const a=t-d.b;if(a<0||a>.8){d.c.setAttribute("opacity",0);return}const y0=lerp(1300,500,P(d.b,19.7,22.2));d.c.setAttribute("cx",640+d.vx*a);d.c.setAttribute("cy",y0+d.vy*a+60*a);d.c.setAttribute("r",d.r);d.c.setAttribute("opacity",1-a/.8)});
+  /* nail threaded in by hand */
+  const nOn=t>23.0;$("f-nail").setAttribute("opacity",nOn?1:0);
+  const off=lerp(760,0,P(t,23.4,29.0));$("f-nail").setAttribute("transform",`translate(0,${515+off})`);
+  const turn=(t-23.4)*7.5;
+  thr.forEach((l,i)=>{const y=((i*7-off*0+turn*6)%168+168)%168-10;l.setAttribute("y1",y);l.setAttribute("y2",y+5);l.setAttribute("opacity",y<150?1:0)});
+  $("f-handle").setAttribute("opacity",t<30.2?1:0);
+  $("f-tbar").setAttribute("transform",`translate(640,0) scale(${Math.cos(turn*.6)},1) translate(-640,0)`);
+  $("f-cap").setAttribute("opacity",t>42.6?1:0);
+  /* targeting arm */
+  $("f-arm").setAttribute("opacity",W(t,29.8,41.8,.4));
+  $("f-arm").setAttribute("transform",`translate(${lerp(260,0,P(t,29.8,31.0))},0)`);
+  /* drill + screws */
+  let drillOn=false,dy=0,dx=0;
+  screws.forEach(s=>{const d1=P(t,s.t0,s.t0+.45),s1=P(t,s.t0+.45,s.t0+1.0);
+    if(t>s.t0&&t<s.t0+.5){drillOn=true;dy=s.y;dx=lerp(s.x1+260,s.x2,d1)}
+    s.g.setAttribute("opacity",t>s.t0+.45?1:0);
+    const x=lerp(s.x1+(s.syn?260:120),s.x1,s1);
+    s.g.setAttribute("transform",`translate(${x},${s.y})`);});
+  $("f-drill").setAttribute("opacity",drillOn?1:0);$("f-drill").setAttribute("transform",`translate(${dx},${dy})`);
+  /* heal */
+  const hp=P(t,44.8,48.6);
+  $("f-fxP").setAttribute("opacity",1-hp);$("f-fxD").setAttribute("opacity",1-hp);
+  $("f-call").setAttribute("opacity",W(t,44.8,49.4,.6)*.8);
+  sparks.forEach(s=>{s.c.setAttribute("cx",s.x);s.c.setAttribute("cy",s.y);s.c.setAttribute("opacity",W(t,44.8,49.2,.6)*(.5+.5*Math.sin(t*5+s.ph)))});
+  $("f-inc").setAttribute("opacity",W(t,44.8,54,.6));
+  $("f-flexHud").setAttribute("opacity",W(t,44.8,49,.5));$("f-progBar").setAttribute("width",600*hp);
+  LB.forEach(l=>l.g.setAttribute("opacity",W(t,l.a,l.b,.4)));
+  let cur=null;CAPS.forEach(c=>{if(t>=c[0][0]&&t<c[0][1])cur=c});
+  if(cur){$("f-capK").textContent=cur[1];$("f-capH").textContent=cur[2];$("f-capS").textContent=cur[3];$("f-capg").setAttribute("opacity",Math.min(cl((t-cur[0][0])/.45),cl((cur[0][1]-t)/.45)))}
+  else $("f-capg").setAttribute("opacity",0);
+  $("f-end").setAttribute("opacity",cl((t-54.4)/.9));
+}
+render(0);
+return {render,DUR:61};
+})();
+
+</script>
+<script>
+/* ===== procedure player ===== */
+var OpProc=(function(){
+  var $=function(id){return document.getElementById(id)};
+  var PS=4.4,PE=53.2,LEN=PE-PS;
+  var box=$('opPlayer'),play=$('opPlay'),scrub=$('opScrub'),chap=[].slice.call(document.querySelectorAll('#opChap button')),pa=$('opAudio');
+  box.setAttribute('data-own-snd','1');
+  try{fetch(pa.getAttribute('src')).then(function(r){return r.ok?r.blob():null}).then(function(b){if(b&&pa.paused){pa.src=URL.createObjectURL(b);pa.load()}}).catch(function(){})}catch(e){}
+  var t=6.2,playing=false,last=null,raf=null,visible=false;
+  function syncAudio(){if(soundOn&&playing){try{pa.currentTime=Math.max(0,t-PS);var p=pa.play();if(p&&p.catch)p.catch(function(){})}catch(e){}}else{try{pa.pause()}catch(e){}}}
+  function ui(){play.textContent=playing?'❚❚ Pause':(t>=PE-.05?'↺ Play again':'▶ Play');scrub.value=Math.round((t-PS)/LEN*1000);
+    var k=0;chap.forEach(function(b,i){if(t>=+b.dataset.t-.01)k=i});chap.forEach(function(b,i){b.classList.toggle('on',i===k&&box.classList.contains('started'))})}
+  function frame(ts){
+    if(playing){if(soundOn&&!pa.paused&&!pa.ended&&pa.readyState>1){t=PS+pa.currentTime}else if(last!=null){t+=Math.min(.05,(ts-last)/1000)}
+      if(t>=PE){t=PE;playing=false;try{pa.pause()}catch(e){}}}
+    last=ts;FfFilm.render(t);ui();raf=visible?requestAnimationFrame(frame):null}
+  function kick(){if(!raf&&visible){last=null;raf=requestAnimationFrame(frame)}}
+  function start(){audio();box.classList.add('started');if(t>=PE-.05)t=PS;playing=true;syncAudio();kick()}
+  function pause(){playing=false;syncAudio();ui()}
+  function seek(nt){box.classList.add('started');t=Math.max(PS,Math.min(PE,nt));if(playing)syncAudio();FfFilm.render(t);ui()}
+  $('opBig').onclick=start;play.onclick=function(){playing?pause():start()};
+  $('opRe').onclick=function(){t=PS;start()};
+  chap.forEach(function(b){b.onclick=function(){snd('tick');seek(+b.dataset.t+.05);if(!playing)start()}});
+  function stepTo(dir){var ts=chap.map(function(b){return +b.dataset.t});var k=0;ts.forEach(function(x,i){if(t>=x-.01)k=i});
+    var n=dir>0?Math.min(ts.length-1,k+1):(t-ts[k]>1.2?k:Math.max(0,k-1));snd('tick');seek(ts[n]+.05);if(!playing)start()}
+  $('opFwd').onclick=function(){stepTo(1)};$('opBack').onclick=function(){stepTo(-1)};
+  scrub.oninput=function(){seek(PS+scrub.value/1000*LEN)};
+  box.addEventListener('keydown',function(e){e.stopPropagation()});
+  FfFilm.render(t);ui();
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){visible=e.isIntersecting;if(visible)kick();else if(playing)pause()})},{threshold:[.25]}).observe(box)}else{visible=true;kick()}
+  return{soundChanged:syncAudio};
+})();
+</script>
+<script>
+/* ===== new panels + per-panel sound ===== */
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function count(el,end,dec,u,dur,delay){var t0=null;el.textContent=(0).toFixed(dec)+u;function st(ts){if(!t0)t0=ts;var x=Math.min(1,(ts-t0-delay)/dur);if(x<0){requestAnimationFrame(st);return}el.textContent=(end*(1-Math.pow(1-x,3))).toFixed(dec)+u;if(x<1)requestAnimationFrame(st)}if(reduce){el.textContent=end.toFixed(dec)+u;return}requestAnimationFrame(st)}
+  function evRun(){
+    var rr=document.getElementById('ffRR');var t0=null;rr.textContent='1.00';
+    (function st(ts){if(!t0)t0=ts;var x=Math.min(1,(ts-t0-400)/1800);if(x<0){requestAnimationFrame(st);return}rr.textContent=(1-(.77*(1-Math.pow(1-x,3)))).toFixed(2);if(x<1)requestAnimationFrame(st);else snd('level')})(performance.now());
+    [].forEach.call(document.querySelectorAll('#ffBars .tr i'),function(i,k){i.style.transition='none';i.style.width='0';void i.offsetWidth;i.style.transition='';setTimeout(function(){i.style.width=i.dataset.w+'%';snd(k%2?'tick':'click')},900+k*380)});
+    [].forEach.call(document.querySelectorAll('#ffBars [data-n]'),function(e,k){count(e,+e.dataset.n,0,e.dataset.u,1300,900+k*380)})}
+  var li=[].slice.call(document.querySelectorAll('#ffList div'));li.forEach(function(d){d.setAttribute('data-own-snd','1');d.onclick=function(){li.forEach(function(x){x.classList.toggle('on',x===d)});snd('pop')}});
+  var lt=null;
+  window.OrEnter=function(p){
+    var n=p.getAttribute('data-name');
+    snd(n==='Home'?'boom':(n==='Lotus Medical'?'chime':'whoosh'));
+    clearInterval(lt);
+    if(n==='Nail vs plate')evRun();
+    if(n==='Threaded, not pushed'){var k=0;li.forEach(function(x,i){x.classList.toggle('on',i===0)});lt=setInterval(function(){k=(k+1)%li.length;li.forEach(function(x,i){x.classList.toggle('on',i===k)});snd('tick')},2600)}
+  };
+})();
+</script>
+<script src="../share.js?v=3" defer></script>
 </body>
 </html>
