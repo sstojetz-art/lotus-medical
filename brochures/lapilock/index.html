@@ -221,6 +221,89 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
 .panel{padding-top:150px!important}
 @media (max-width:700px){#brand img{width:100px}.panel{padding-top:118px!important}}
 </style>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style id="or-sizzle-css">
+#orSnd{position:fixed;right:300px;top:12px;z-index:60;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.14em;font-size:14px;text-transform:uppercase;color:#D5B863;border:1px solid rgba(213,184,99,.5);padding:7px 12px;background:rgba(0,0,0,.65);cursor:pointer}
+#orSnd.off{color:#888;border-color:#555}
+.opplayer{width:min(100%,calc((100svh - 420px) * 1.7778));min-width:min(100%,520px);margin:14px auto 0;border:1px solid rgba(213,184,99,.35);background:#000;position:relative}
+.opstage{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}
+svg.opsvg text{font-family:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif}
+.opstage svg.opsvg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.opbig{position:absolute;inset:0;margin:auto;width:96px;height:96px;border-radius:50%;border:2px solid #D5B863;background:rgba(0,0,0,.6);color:#D5B863;font-size:38px;cursor:pointer;display:grid;place-items:center;animation:oppulse 1.8s infinite;z-index:3}
+.opplayer.started .opbig{display:none}
+@keyframes oppulse{0%{box-shadow:0 0 0 0 rgba(213,184,99,.55)}70%{box-shadow:0 0 0 24px rgba(213,184,99,0)}100%{box-shadow:0 0 0 0 rgba(213,184,99,0)}}
+.opctl{display:flex;align-items:center;gap:8px;padding:10px 12px;border-top:1px solid rgba(213,184,99,.28);flex-wrap:wrap;background:#0b0a08}
+.opctl button{background:#000;border:1px solid rgba(213,184,99,.28);color:#fff;padding:8px 14px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.1em;font-size:16px;text-transform:uppercase;cursor:pointer}
+.opctl button.g{background:#D5B863;color:#000;border-color:#D5B863}
+.opctl input[type=range]{flex:1;min-width:140px;accent-color:#D5B863}
+.opchap{display:flex;flex-wrap:wrap;border-top:1px solid rgba(213,184,99,.28)}
+.opchap button{flex:1 1 auto;background:transparent;border:0;border-right:1px solid rgba(213,184,99,.28);color:#cfc7b6;padding:11px 8px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:clamp(14px,1.45vw,18px);letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.opchap button:last-child{border-right:0}
+.opchap button.on{background:#D5B863;color:#000}
+.mgwrap{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(20px,3vw,44px);align-items:center;margin-top:24px}
+.mgbars{display:grid;gap:20px}
+.mgb .lb{display:flex;justify-content:space-between;align-items:baseline;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:clamp(17px,1.8vw,22px);margin-bottom:7px}
+.mgb .lb em{font-style:normal;font-weight:800;font-size:clamp(22px,2.4vw,32px);font-variant-numeric:tabular-nums}
+.mgb .tr{height:30px;background:rgba(255,255,255,.06);position:relative;overflow:hidden}
+.mgb .tr i{position:absolute;top:0;bottom:0;left:0;width:0;transition:width 1.6s cubic-bezier(.6,0,.2,1),left 1.6s cubic-bezier(.6,0,.2,1)}
+.mgb.c .tr i{background:linear-gradient(90deg,#5d5446,#9c8a66)}
+.mgb.o .tr i{background:linear-gradient(90deg,#8a7330,#D5B863,#F1DC9C);box-shadow:0 0 14px rgba(213,184,99,.45)}
+.mgb.k .tr i{background:linear-gradient(90deg,#6e6656,#cbbd9b)}
+.mgb.o em{color:#D5B863}
+.props{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pr{border:1px solid rgba(255,255,255,.1);background:linear-gradient(160deg,rgba(213,184,99,.10),rgba(18,17,16,.92) 60%);padding:18px;cursor:pointer;transition:border-color .3s,transform .3s}
+.pr.on{border-color:#D5B863;transform:translateY(-3px)}
+.pr b{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:clamp(22px,2.3vw,30px);text-transform:uppercase;color:#D5B863;line-height:1}
+.pr p{font-size:16.5px;color:#d7d1c4;line-height:1.4;margin-top:8px}
+.evwrap{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(20px,3vw,44px);align-items:start;margin-top:22px}
+.evchart{border:1px solid rgba(213,184,99,.3);background:radial-gradient(ellipse at 50% 40%,#1a1712,#050505 75%);padding:10px}
+.evchart svg{display:block;width:100%;height:auto}
+.evcards{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+.ev{border-left:4px solid #D5B863;background:rgba(213,184,99,.07);padding:11px 13px}
+.ev b{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:clamp(24px,2.6vw,34px);color:#D5B863;line-height:1}
+.ev span{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:15px;color:#fff;margin-top:4px}
+.ev p{font-size:14.5px;color:#d7d1c4;line-height:1.4;margin-top:6px}
+.ev.pre{border-left-color:#8f98a3;background:rgba(255,255,255,.04)}
+.vso{margin-top:22px;border:1px solid rgba(213,184,99,.28)}
+.vso .h,.vso .r{display:grid;grid-template-columns:1fr 1.5fr 1.5fr}
+.vso .h div{padding:12px 16px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:clamp(16px,1.7vw,21px)}
+.vso .h div:nth-child(2){background:#D5B863;color:#000}
+.vso .h div:nth-child(3){background:#2a2d31;color:#d6dbe0}
+.vso .r{border-top:1px solid rgba(213,184,99,.28);opacity:.12;transition:opacity .5s,background .5s;cursor:pointer}
+.vso .r.on{opacity:1}.vso .r.cur{background:rgba(213,184,99,.07)}
+.vso .r div{padding:13px 16px;font-size:clamp(16px,1.6vw,19px);line-height:1.35}
+.vso .r div:first-child{font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#D5B863}
+.vso .r div:nth-child(3){color:#a9afb5}
+.vsoctl{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.vsoctl button{background:transparent;border:2px solid rgba(213,184,99,.28);color:#fff;padding:9px 16px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:17px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.vsoctl button.g{background:#D5B863;border-color:#D5B863;color:#000}
+.orcite{font-size:14.5px;color:#9a9284;margin-top:14px;line-height:1.5}
+@media (max-width:980px){.mgwrap,.evwrap{grid-template-columns:1fr}}
+@media (max-width:700px){#orSnd{right:auto;left:16px;top:auto;bottom:14px}}
+@media (max-width:620px){.evcards{grid-template-columns:1fr}.props{grid-template-columns:1fr}.vso .h,.vso .r{grid-template-columns:.8fr 1.2fr 1.2fr}}
+</style>
+<style id="ll-extra">
+#llPlayer{width:min(100%,calc((100svh - 430px) * 1.7778))}
+.panel[data-name="The evidence"] .evwrap{grid-template-columns:1fr 1.15fr;margin-top:16px}
+#llEv{max-height:46svh}
+.panel[data-name="The evidence"] .ev p{font-size:13.5px;line-height:1.35}
+.panel[data-name="The evidence"] .ev span{font-size:13.5px}
+.panel[data-name="The evidence"] .orcite{font-size:12.5px;margin-top:10px;line-height:1.4}
+@media (max-width:980px){.panel[data-name="The evidence"] .evwrap{grid-template-columns:1fr}}
+#llChap{flex-wrap:nowrap}
+#llChap button{white-space:nowrap}
+#llChap button{padding:9px 3px;font-size:clamp(11px,1.15vw,15px);letter-spacing:.02em;min-width:0}
+#llPlayer .opctl input{min-width:60px}
+#llPlayer .opctl button{padding:8px 10px}
+.wtc{margin-top:16px;display:inline-flex;align-items:center;gap:14px;background:linear-gradient(160deg,rgba(213,184,99,.18),rgba(18,17,16,.95) 65%);border:1px solid rgba(213,184,99,.6);color:#fff;padding:12px 22px 12px 12px;cursor:pointer;position:relative;overflow:hidden}
+.wtc i{width:46px;height:46px;border-radius:50%;border:2px solid #D5B863;color:#D5B863;font-style:normal;display:grid;place-items:center;font-size:18px;animation:oppulse 1.8s infinite}
+.wtc span{display:block;text-align:left;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(20px,2.1vw,26px);line-height:1}
+.wtc small{display:block;font-weight:700;letter-spacing:.2em;font-size:12px;color:#D5B863;margin-bottom:4px}
+#llEv .evring{transition:stroke-dashoffset 1.8s cubic-bezier(.6,0,.2,1) .3s}
+.in #llEv .evring{stroke-dashoffset:106.2}
+#llEv .evv{opacity:0;transition:opacity .6s 1.2s}.in #llEv .evv{opacity:1}
+</style>
 </head>
 <body>
 <div id="bar"></div>
@@ -228,6 +311,7 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
 <nav id="dots" aria-label="Sections"></nav>
 <button id="next" aria-label="Next section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
 <a id="home" href="../index.html">‹ Brochures</a>
+<button id="orSnd" aria-label="Sound on or off">Sound on</button>
 <main id="deck">
 <section class="panel" data-name="Home">
   <div class="bg"></div><div class="vig"></div>
@@ -238,50 +322,220 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
       <h1 class="rise d2">Correct all four planes. <span class="g">Cut once.</span></h1>
       <p class="lede rise d3">LapiLock sets frontal, transverse and sagittal correction plus compression from one jig, before a single cut. No C-clamp. The second metatarsal stays protected.</p>
       <div class="chips"><span class="chip pop d4">4D correction</span><span class="chip o pop d5">YOCO blade</span><span class="chip o pop d6">13+ fixation options</span></div>
+      <button class="wtc pop d6" id="wtLl"><i>▶</i><span><small>Watch the procedure</small>Correct all four planes</span></button>
       <div class="mfr rise d7">Fusion Orthopedics &middot; Distributed by Lotus Medical</div>
     </div>
     <div class="heroimg pop d3"><div class="glow"></div><img src="img/hero.webp" alt=""></div>
   </div>
-</section><section class="panel" data-name="Watch it work">
+</section><section class="panel" data-name="Watch the procedure" data-snd="whoosh">
   <div class="wrap">
-    <div class="workhead">
-      <div><div class="eyebrow rise">Watch it work</div><h2 class="rise d1">Four planes. <span class="gold">One jig.</span></h2></div>
-      <div class="stagebtns rise d2" role="group" aria-label="Animation stage"><button class="sb on" data-s="0"><small>Purple</small>Derotate</button><button class="sb" data-s="1"><small>Blue</small>Close IM</button><button class="sb" data-s="2"><small>Green</small>Flex</button><button class="sb" data-s="3"><small>Gold</small>Compress</button><button class="sb" data-s="4"><small>Fixate</small>U-Plate</button></div>
-    </div>
-    <div class="rise d2">
-      <div class="sim" id="sim"><svg viewBox="0 0 1000 420">
-<defs><linearGradient id="bn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1ead8"/><stop offset="1" stop-color="#b9ad92"/></linearGradient></defs>
-<rect x="70" y="110" width="118" height="92" rx="14" fill="url(#bn)"/><rect x="70" y="214" width="118" height="66" rx="12" fill="url(#bn)" opacity=".55"/>
-<text x="76" y="100" fill="#f1ead8" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="18" letter-spacing="3">MED. CUNEIFORM</text>
-<g opacity=".55"><rect x="198" y="226" width="440" height="42" rx="18" fill="url(#bn)"/><circle cx="642" cy="247" r="26" fill="url(#bn)"/></g>
-<text x="250" y="300" fill="#f1ead8" opacity=".6" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="18" letter-spacing="3">2ND MET &middot; PROTECTED</text>
-<path id="arc" d="" stroke="#3b82f6" stroke-width="4" fill="none" stroke-dasharray="6 6"/>
-<g id="m1"><rect x="198" y="132" width="420" height="54" rx="22" fill="url(#bn)"/><circle cx="628" cy="159" r="36" fill="url(#bn)"/>
-<text x="300" y="166" fill="#000" opacity=".55" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="20" letter-spacing="4">1ST METATARSAL</text></g>
-<g id="up" opacity="0"><g transform="rotate(-3 198 186)">
-<path d="M252 146 L174 146 A14 14 0 0 0 174 174 L252 174" stroke="#111" stroke-width="15" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M252 146 L174 146 A14 14 0 0 0 174 174 L252 174" stroke="#b9bfc8" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<g fill="#8b5cf6" stroke="#111" stroke-width="1.5"><circle cx="166" cy="160" r="5.5"/><circle cx="182" cy="146" r="5"/><circle cx="182" cy="174" r="5"/><circle cx="236" cy="146" r="5"/><circle cx="236" cy="174" r="5"/></g></g>
+    <div class="eyebrow rise">Watch the procedure</div>
+    <h2 class="rise d1" style="font-size:clamp(32px,4.4vw,58px)">Four planes. <span class="gold">One jig. One cut.</span></h2>
+    <div class="opplayer rise d2" id="llPlayer">
+      <div class="opstage"><svg id="llfilm" class="opsvg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <radialGradient id="l-bg" cx="50%" cy="50%" r="70%"><stop offset="0" stop-color="#16130f"/><stop offset=".6" stop-color="#070706"/><stop offset="1" stop-color="#000"/></radialGradient>
+  <radialGradient id="l-vig" cx="50%" cy="50%" r="72%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></radialGradient>
+  <linearGradient id="l-bone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4ead2"/><stop offset=".5" stop-color="#ddc8a0"/><stop offset="1" stop-color="#a68c5e"/></linearGradient>
+  <linearGradient id="l-tiH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f5"/><stop offset=".5" stop-color="#a5afb9"/><stop offset="1" stop-color="#525c66"/></linearGradient>
+  <linearGradient id="l-tiV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#525c66"/><stop offset=".45" stop-color="#eef2f5"/><stop offset="1" stop-color="#525c66"/></linearGradient>
+  <linearGradient id="l-plateG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3e8ec"/><stop offset=".5" stop-color="#9aa4ae"/><stop offset="1" stop-color="#5d6670"/></linearGradient>
+  <linearGradient id="l-blk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3d42"/><stop offset=".4" stop-color="#1b1c1f"/><stop offset="1" stop-color="#0b0b0c"/></linearGradient>
+  <linearGradient id="l-goldG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b8973f"/><stop offset=".5" stop-color="#D5B863"/><stop offset="1" stop-color="#f0dc9a"/></linearGradient>
+  <linearGradient id="l-goldV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0dc9a"/><stop offset=".5" stop-color="#D5B863"/><stop offset="1" stop-color="#8a7330"/></linearGradient>
+  <pattern id="l-trab" width="6" height="5" patternUnits="userSpaceOnUse"><ellipse cx="1.7" cy="1.3" rx="1.2" ry=".7" fill="#8a7046" opacity=".22"/><circle cx="4.6" cy="3.7" r=".45" fill="#fff" opacity=".25"/></pattern>
+  <filter id="l-soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter>
+  <filter id="l-glow" x="-80%" y="-30%" width="260%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0.84 0 0 0 0 0.72 0 0 0 0 0.39 0 0 0 1 0" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <marker id="l-arP" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#a78bfa"/></marker>
+  <marker id="l-arB" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#60a5fa"/></marker>
+  <marker id="l-arG" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#4ade80"/></marker>
+  <marker id="l-arY" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#D5B863"/></marker>
+</defs>
+<rect width="1920" height="1080" fill="url(#l-bg)"/>
+
+<g id="l-world" opacity="0"><g id="l-cam">
+  <g id="l-skin" filter="url(#l-soft)" opacity=".5">
+    <path d="M -320 300 C -100 290, 300 300, 600 330 C 700 300, 760 330, 880 360 C 1010 380, 1020 430, 980 450 C 1040 470, 1050 520, 1000 540 C 1030 560, 1030 600, 980 610 C 1000 630, 990 670, 940 670 C 700 700, 200 730, -320 720 Z" fill="#4a3a2b"/>
+  </g>
+  <g id="l-rays">
+    <g fill="url(#l-bone)" stroke="#f7eedb" stroke-width="1.2" vector-effect="non-scaling-stroke">
+      <path d="M -300 330 L 30 330 C 60 334, 82 350, 90 368 L 96 700 L -300 720 Z" opacity=".9"/>
+      <path d="M 40 360 C 70 352, 96 360, 104 372 L 108 560 C 96 572, 66 570, 48 560 C 36 500, 34 420, 40 360 Z"/>
+      <path d="M 118 452 C 150 448, 180 448, 198 452 L 202 498 C 180 502, 150 503, 120 502 Z"/>
+      <path d="M 120 508 C 150 506, 182 505, 204 506 L 208 556 C 180 559, 150 560, 122 560 Z"/>
+      <path d="M 104 566 L 204 562 L 208 700 L 104 700 Z" opacity=".95"/>
+      <path d="M 210 452 L 640 482 C 660 476, 676 490, 672 504 C 668 518, 650 522, 638 512 L 212 498 Z"/>
+      <path d="M 214 512 L 620 552 C 640 548, 652 562, 648 574 C 642 588, 626 590, 616 580 L 214 556 Z"/>
+      <path d="M 212 570 L 596 616 C 614 614, 624 626, 620 638 C 614 650, 598 650, 590 642 L 212 612 Z"/>
+      <path d="M 210 626 L 560 676 C 576 676, 584 688, 580 698 C 574 708, 560 708, 552 700 L 210 668 Z"/>
+      <path d="M 682 488 L 790 504 L 792 520 L 682 512 Z"/><path d="M 800 506 L 860 514 L 860 526 L 800 520 Z"/>
+      <path d="M 660 556 L 760 572 L 760 588 L 658 576 Z"/><path d="M 770 574 L 826 582 L 824 594 L 770 588 Z"/>
+      <path d="M 632 618 L 720 632 L 718 648 L 630 638 Z"/>
+      <path d="M 594 680 L 660 690 L 658 704 L 592 698 Z"/>
+    </g>
+  </g>
+  <!-- medial cuneiform (fixed) -->
+  <g id="l-cun">
+    <path d="M 112 366 C 140 356, 172 356, 192 364 C 196 390, 196 420, 192 444 C 168 450, 140 450, 114 444 C 106 420, 106 390, 112 366 Z" fill="url(#l-bone)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+    <path d="M 112 366 C 140 356, 172 356, 192 364 C 196 390, 196 420, 192 444 C 168 450, 140 450, 114 444 C 106 420, 106 390, 112 366 Z" fill="url(#l-trab)"/>
+    <line id="l-carC" x1="194" y1="368" x2="194" y2="441" stroke="#cfe3f0" stroke-width="4" stroke-linecap="round"/>
+    <line id="l-cutC" x1="190" y1="368" x2="190" y2="441" stroke="#c4473d" stroke-width="3" opacity="0"/>
+  </g>
+  <!-- IM axes (world) -->
+  <g id="l-im" opacity="0" fill="none" stroke-width="3" vector-effect="non-scaling-stroke">
+    <line id="l-ax1" stroke="#60a5fa" stroke-dasharray="10 8"/><line id="l-ax2" stroke="#9a9a9a" stroke-dasharray="10 8"/>
+    <path id="l-imArc" stroke="#60a5fa" stroke-width="5"/>
+  </g>
+  <!-- first ray (moves) -->
+  <g id="l-mt">
+    <path id="l-mt1" d="M 202 362 C 199 385, 199 420, 202 440 C 240 436, 280 426, 310 423 L 560 423 L 586 426 C 600 440, 640 446, 660 426 C 676 408, 672 382, 656 366 C 650 356, 640 346, 626 344 C 612 342, 600 352, 590 372 L 560 377 L 310 377 C 280 374, 240 364, 202 362 Z" fill="url(#l-bone)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+    <path d="M 202 362 C 199 385, 199 420, 202 440 C 240 436, 280 426, 310 423 L 560 423 L 586 426 C 600 440, 640 446, 660 426 C 676 408, 672 382, 656 366 C 650 356, 640 346, 626 344 C 612 342, 600 352, 590 372 L 560 377 L 310 377 C 280 374, 240 364, 202 362 Z" fill="url(#l-trab)"/>
+    <line id="l-carM" x1="201" y1="366" x2="201" y2="437" stroke="#cfe3f0" stroke-width="4" stroke-linecap="round"/>
+    <line id="l-cutM" x1="205" y1="366" x2="205" y2="437" stroke="#c4473d" stroke-width="3" opacity="0"/>
+    <g id="l-ses" fill="url(#l-bone)" stroke="#b8a37a" stroke-width="1" vector-effect="non-scaling-stroke" opacity=".9"><ellipse rx="14" ry="9"/><ellipse rx="14" ry="9"/></g>
+    <g id="l-hal"><path d="M 674 396 L 790 430 C 806 438, 806 456, 790 460 L 670 430 C 662 420, 664 404, 674 396 Z" fill="url(#l-bone)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+      <path d="M 800 436 L 870 456 C 884 462, 882 478, 868 478 L 798 462 Z" fill="url(#l-bone)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/></g>
+    <!-- plane cue arrows riding on the first ray -->
+    <path id="l-arrP" d="M 470 352 C 512 352, 516 448, 470 448" fill="none" stroke="#a78bfa" stroke-width="6" marker-end="url(#l-arP)" opacity="0"/>
+    <path id="l-arrB" d="M 620 300 C 650 300, 676 316, 684 342" fill="none" stroke="#60a5fa" stroke-width="6" marker-end="url(#l-arB)" opacity="0"/>
+  </g>
+  <g id="l-heal" opacity="0"><line x1="194" y1="368" x2="194" y2="442" stroke="#D5B863" stroke-width="7" filter="url(#l-glow)"/></g>
+  <g id="l-sparks"></g>
+  <!-- compression cue -->
+  <g id="l-arrY" opacity="0" stroke="#D5B863" stroke-width="5" fill="none"><line x1="110" y1="462" x2="170" y2="462" marker-end="url(#l-arY)"/><line x1="290" y1="462" x2="228" y2="462" marker-end="url(#l-arY)"/></g>
+  <!-- U-Plate -->
+  <g id="l-plate" opacity="0">
+    <path d="M 132 372 L 262 372 C 298 372, 298 428, 262 428 L 132 428 C 122 428, 122 414, 132 414 L 262 414 C 282 414, 282 386, 262 386 L 132 386 C 122 386, 122 372, 132 372 Z" fill="url(#l-plateG)" stroke="#f1f4f6" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <g id="l-scr"></g>
+  </g>
+  <!-- incision -->
+  <g id="l-inc" opacity="0"><line x1="140" y1="350" x2="300" y2="350" stroke="#7a2e22" stroke-width="5" stroke-linecap="round"/></g>
+  <!-- jig -->
+  <g id="l-jig" opacity="0">
+    <line id="l-rod" stroke="#8e98a2" stroke-width="7" stroke-dasharray="3 2"/>
+    <rect x="96" y="252" width="400" height="22" rx="5" fill="url(#l-blk)" stroke="#4a4e54" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <text x="222" y="267" text-anchor="middle" fill="#9aa3ab" font-size="11" font-weight="700" letter-spacing="3">LAPILOCK</text>
+    <g id="l-gold"><polygon points="62,263 71,247 89,247 98,263 89,279 71,279" fill="url(#l-goldV)" stroke="#8a7330" stroke-width="1" vector-effect="non-scaling-stroke"/><circle cx="80" cy="263" r="5" fill="#5e4b18"/></g>
+    <rect x="138" y="274" width="26" height="64" fill="url(#l-blk)"/>
+    <rect x="122" y="330" width="58" height="26" rx="3" fill="url(#l-tiH)" stroke="#525c66" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <g id="l-green"><circle cx="190" cy="343" r="9" fill="#22c55e" stroke="#bbf7d0" stroke-width="1.5"/><line x1="184" y1="343" x2="196" y2="343" stroke="#0b3d1f" stroke-width="2"/></g>
+    <line id="l-pw1" x1="140" y1="318" x2="146" y2="318" stroke="#e7ecf0" stroke-width="3"/>
+    <line id="l-pw2" x1="162" y1="318" x2="168" y2="318" stroke="#e7ecf0" stroke-width="3"/>
+    <g id="l-blue"><rect x="371" y="214" width="28" height="30" rx="6" fill="#3b82f6" stroke="#bfdbfe" stroke-width="1.2"/><g id="l-blueG" stroke="#1e3a8a" stroke-width="2"></g></g>
+    <g id="l-jigD">
+      <rect x="372" y="292" width="26" height="58" fill="url(#l-blk)"/>
+      <rect x="356" y="338" width="58" height="24" rx="3" fill="url(#l-tiH)" stroke="#525c66" stroke-width="1" vector-effect="non-scaling-stroke"/>
+      <line id="l-dw1" x1="376" y1="326" x2="378" y2="326" stroke="#e7ecf0" stroke-width="3"/>
+      <line id="l-dw2" x1="394" y1="326" x2="396" y2="326" stroke="#e7ecf0" stroke-width="3"/>
+      <g id="l-arch">
+        <path d="M 236 350 C 236 300, 280 282, 330 288" fill="none" stroke="#141416" stroke-width="13" stroke-linecap="round"/>
+        <path d="M 236 350 C 236 300, 280 282, 330 288" fill="none" stroke="#2c2e33" stroke-width="17" stroke-dasharray="3 5"/>
+        <circle cx="282" cy="294" r="12" fill="#8b5cf6" stroke="#ddd6fe" stroke-width="1.5"/><path d="M 276 294 L 288 294 M 282 288 L 282 300" stroke="#3b1d7a" stroke-width="2"/>
+      </g>
+    </g>
+  </g>
+  <g id="l-blade" opacity="0"><rect x="-6" y="-120" width="12" height="120" fill="url(#l-tiV)"/><path d="M -8 0 L -5 8 L -2 0 L 1 8 L 4 0 L 7 8 L 8 0 Z" fill="#e9eef2"/><rect x="-14" y="-160" width="28" height="48" rx="6" fill="#2b2e33" stroke="#D5B863" stroke-width="1.5"/></g>
+  <ellipse id="l-ring" cx="198" cy="402" rx="78" ry="96" fill="none" stroke="#D5B863" stroke-width="3" vector-effect="non-scaling-stroke" opacity="0"/>
+</g></g>
+<rect width="1920" height="1080" fill="url(#l-vig)" pointer-events="none"/>
+
+<!-- IM label in full view -->
+<text id="l-imT" x="0" y="0" fill="#60a5fa" font-size="30" font-weight="800" letter-spacing="3" opacity="0">IM ANGLE</text>
+
+<!-- plane inset -->
+<g id="l-inset" opacity="0">
+  <rect x="96" y="720" width="340" height="276" rx="8" fill="rgba(0,0,0,.78)" stroke="#D5B863" stroke-opacity=".5" stroke-width="2"/>
+  <text id="l-insT" x="266" y="760" text-anchor="middle" font-size="22" font-weight="800" letter-spacing="4" fill="#a78bfa">FRONTAL PLANE</text>
+  <text id="l-insS" x="266" y="980" text-anchor="middle" font-size="19" fill="#bdbdbd">Pronated</text>
+  <g id="l-iF">
+    <g fill="url(#l-bone)" stroke="#b8a37a" stroke-width="1.5"><circle cx="246" cy="928" r="13"/><circle cx="286" cy="928" r="13"/></g>
+    <g id="l-iFh"><path d="M -60 -10 C -60 -56, 60 -56, 60 -10 C 60 24, 22 44, 0 50 C -22 44, -60 24, -60 -10 Z" fill="url(#l-bone)" stroke="#f7eedb" stroke-width="1.5"/><path d="M 0 50 L 0 30" stroke="#8a7046" stroke-width="3"/><circle cx="0" cy="-8" r="5" fill="#8b5cf6"/></g>
+    <path d="M 196 812 C 236 790, 296 790, 336 812" fill="none" stroke="#a78bfa" stroke-width="5" marker-end="url(#l-arP)"/>
+  </g>
+  <g id="l-iT" opacity="0">
+    <line x1="150" y1="930" x2="390" y2="930" stroke="#9a9a9a" stroke-width="10" stroke-linecap="round"/>
+    <line id="l-iT1" x1="150" y1="890" x2="390" y2="890" stroke="#ddc8a0" stroke-width="14" stroke-linecap="round"/>
+    <path d="M 340 838 C 362 846, 376 862, 380 880" fill="none" stroke="#60a5fa" stroke-width="5" marker-end="url(#l-arB)"/>
+  </g>
+  <g id="l-iS" opacity="0">
+    <line x1="130" y1="950" x2="410" y2="950" stroke="#555" stroke-width="2" stroke-dasharray="6 6"/>
+    <rect x="140" y="880" width="46" height="40" rx="6" fill="#bfae86"/>
+    <line id="l-iS1" x1="190" y1="900" x2="400" y2="900" stroke="#ddc8a0" stroke-width="16" stroke-linecap="round"/>
+    <path d="M 400 846 C 414 860, 418 876, 414 892" fill="none" stroke="#4ade80" stroke-width="5" marker-end="url(#l-arG)"/>
+  </g>
+  <g id="l-iC" opacity="0">
+    <rect x="150" y="850" width="100" height="80" rx="8" fill="#bfae86"/>
+    <rect id="l-iC2" x="282" y="850" width="100" height="80" rx="8" fill="#ddc8a0"/>
+    <line x1="150" y1="830" x2="200" y2="830" stroke="#D5B863" stroke-width="5" marker-end="url(#l-arY)"/>
+    <line x1="382" y1="830" x2="332" y2="830" stroke="#D5B863" stroke-width="5" marker-end="url(#l-arY)"/>
+  </g>
 </g>
-<g id="cmp" opacity="0" stroke="#d5b863" stroke-width="4" fill="none"><path d="M262 90 l-34 0 m8 -7 l-8 7 8 7"/><path d="M262 90 l0 0"/></g>
-<g font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="20" letter-spacing="4">
-<g transform="translate(230 226) scale(.62)"><g id="fr"><circle cx="830" cy="120" r="72" fill="none" stroke="#333" stroke-width="2"/><g id="frb"><ellipse cx="830" cy="118" rx="46" ry="40" fill="url(#bn)"/><circle cx="812" cy="168" r="10" fill="#8b5cf6"/><circle cx="848" cy="168" r="10" fill="#8b5cf6"/></g>
-<path id="fra" d="M760 70 A86 86 0 0 1 830 34" stroke="#8b5cf6" stroke-width="5" fill="none"/><text x="830" y="222" text-anchor="middle" fill="#8b5cf6" font-size="30">FRONTAL</text></g></g>
-<g transform="translate(398 134) scale(.6)"><g id="sg"><line x1="720" y1="360" x2="960" y2="360" stroke="#444" stroke-width="2"/><line id="sgm" x1="730" y1="330" x2="950" y2="330" stroke="#f1ead8" stroke-width="16" stroke-linecap="round"/>
-<text x="840" y="396" text-anchor="middle" fill="#22c55e" font-size="30">SAGITTAL</text></g></g></g>
-<text x="420" y="380" text-anchor="middle" fill="#3b82f6" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="20" letter-spacing="4" id="tvl">TRANSVERSE</text>
-<image href="img/jig.webp" x="676" y="4" width="314" height="216" style="mix-blend-mode:lighten"/>
-<g id="jh" fill="none" stroke-width="4">
-<circle cx="910" cy="88" r="20" stroke="#8b5cf6"/><circle cx="711" cy="189" r="26" stroke="#3b82f6"/><circle cx="850" cy="77" r="15" stroke="#22c55e"/><circle cx="961" cy="186" r="24" stroke="#d5b863"/></g>
-<text id="jt" x="850" y="240" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="16" letter-spacing="1" fill="#8b5cf6"></text>
-</svg><div class="prog"><i id="progBar"></i></div></div>
-      <div class="hud">
-        <div><div class="k">What is happening</div><div class="cap" id="cap">Derotate.</div></div>
-        <div><div class="k">Plane</div><div class="v" id="hudV">Frontal</div></div>
+
+<g id="l-lbls" fill="#D5B863" font-size="28" font-weight="600"></g>
+<g id="l-checks" opacity="0" font-size="25" font-weight="800" letter-spacing="3">
+  <text x="1480" y="742" fill="#9a9a9a" font-size="20" letter-spacing="5">4D CORRECTION</text>
+  <g id="l-ck1" opacity="0"><rect x="1470" y="756" width="340" height="50" rx="6" fill="rgba(0,0,0,.65)" stroke="#a78bfa" stroke-width="2"/><text x="1490" y="790" fill="#c4b5fd">✓ FRONTAL</text></g>
+  <g id="l-ck2" opacity="0"><rect x="1470" y="814" width="340" height="50" rx="6" fill="rgba(0,0,0,.65)" stroke="#60a5fa" stroke-width="2"/><text x="1490" y="848" fill="#93c5fd">✓ TRANSVERSE</text></g>
+  <g id="l-ck3" opacity="0"><rect x="1470" y="872" width="340" height="50" rx="6" fill="rgba(0,0,0,.65)" stroke="#4ade80" stroke-width="2"/><text x="1490" y="906" fill="#86efac">✓ SAGITTAL</text></g>
+  <g id="l-ck4" opacity="0"><rect x="1470" y="930" width="340" height="50" rx="6" fill="rgba(0,0,0,.65)" stroke="#D5B863" stroke-width="2"/><text x="1490" y="964" fill="#D5B863">✓ COMPRESSION</text></g>
+</g>
+<g id="l-prog" opacity="0">
+  <text x="960" y="938" text-anchor="middle" fill="#bdbdbd" font-size="24" letter-spacing="4">FIRST TMT JOINT FUSES · CORRECTION HELD IN ALL FOUR PLANES</text>
+  <rect x="660" y="962" width="600" height="10" rx="5" fill="#2b2b2b"/><rect id="l-progBar" x="660" y="962" width="0" height="10" rx="5" fill="url(#l-goldG)"/>
+</g>
+<text id="l-fine" x="960" y="1058" text-anchor="middle" fill="#6f6f6f" font-size="17" opacity="0">Illustration. Steps summarized from the LapiLock surgical technique. Refer to the technique guide and IFU.</text>
+<g id="l-capg" opacity="0">
+  <text id="l-capK" x="960" y="96" text-anchor="middle" fill="#D5B863" font-size="26" font-weight="700" letter-spacing="8"></text>
+  <text id="l-capH" x="960" y="160" text-anchor="middle" fill="#fff" font-size="54" font-weight="700"></text>
+  <text id="l-capS" x="960" y="210" text-anchor="middle" fill="#b9b9b9" font-size="30"></text>
+</g>
+<g id="l-title" opacity="0">
+  <text x="960" y="450" text-anchor="middle" fill="url(#l-goldG)" font-size="150" font-weight="800" letter-spacing="8">LAPILOCK</text>
+  <rect id="l-titleRule" x="960" y="500" width="0" height="4" fill="#D5B863"/>
+  <text x="960" y="590" text-anchor="middle" fill="#fff" font-size="50" font-weight="300" letter-spacing="3">Correct all four planes. Cut once.</text>
+  <text x="960" y="650" text-anchor="middle" fill="#9a9a9a" font-size="30" letter-spacing="2">4D Lapidus correction system</text>
+</g>
+<g id="l-end" opacity="0">
+  <text x="960" y="340" text-anchor="middle" fill="url(#l-goldG)" font-size="130" font-weight="800" letter-spacing="8">LAPILOCK</text>
+  <text x="960" y="440" text-anchor="middle" fill="#fff" font-size="48" font-weight="600">Correct all four planes. Cut once.</text>
+  <text x="960" y="500" text-anchor="middle" fill="#b9b9b9" font-size="32">One jig · no C-clamp · YOCO blade · 13+ fixation options</text>
+  <rect x="860" y="590" width="200" height="3" fill="#D5B863"/>
+  <text x="960" y="670" text-anchor="middle" fill="#D5B863" font-size="40" font-weight="700" letter-spacing="14">LOTUS MEDICAL</text>
+  <text x="960" y="720" text-anchor="middle" fill="#fff" font-size="28" font-style="italic" font-weight="300">Healing Sooner. Wellness Longer.</text>
+  <text x="960" y="1010" text-anchor="middle" fill="#6f6f6f" font-size="18">Manufactured by Fusion Orthopedics, Mesa, AZ. Distributed by Lotus Medical. Refer to the IFU.</text>
+</g>
+</svg><button class="opbig" id="llBig" aria-label="Play the LapiLock procedure">▶</button></div>
+      <div class="opctl"><button class="g" id="llPlay">▶ Play</button><button id="llBack">‹ Step</button><button id="llFwd">Step ›</button><input type="range" id="llScrub" min="0" max="1000" value="0" aria-label="Scrub through the procedure"><button id="llRe">↺ Replay</button></div>
+      <div class="opchap" id="llChap"><button data-t="4.4">Deformity</button><button data-t="12.4">Incision</button><button data-t="14.6">Jig</button><button data-t="20.4">Derotate</button><button data-t="24.4">IM</button><button data-t="28.4">Flex</button><button data-t="31.4">Cut</button><button data-t="35.4">Compress</button><button data-t="38.6">Fixate</button><button data-t="47.6">Fused</button></div>
+    </div>
+    <audio id="llAudio" src="procedure.m4a?v=28" preload="auto" playsinline></audio>
+  </div>
+</section>
+<section class="panel" data-name="The evidence" data-snd="whoosh">
+  <div class="wrap">
+    <div class="eyebrow rise">The evidence</div>
+    <h2 class="rise d1">A three-plane deformity. <span class="gold">Correct it where it starts.</span></h2>
+    <div class="evwrap">
+      <div class="evchart rise d2">
+        <svg viewBox="0 0 640 380" id="llEv" aria-label="87 percent of hallux valgus feet show first metatarsal pronation on weight-bearing CT">
+          <circle cx="190" cy="190" r="130" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="34"/>
+          <path class="evring" d="M 190 60 A 130 130 0 1 1 189.99 60" fill="none" stroke="url(#llG1)" stroke-width="34" stroke-dasharray="816.8" stroke-dashoffset="816.8"/>
+          <defs><linearGradient id="llG1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1DC9C"/><stop offset="1" stop-color="#8a7330"/></linearGradient></defs>
+          <text class="evv" x="190" y="210" text-anchor="middle" fill="#D5B863" font-family="'Barlow Condensed','Arial Narrow',Arial" font-weight="800" font-size="70">87%</text>
+          <g class="evv" font-family="'Barlow Condensed','Arial Narrow',Arial" font-weight="700" fill="#cfc7b6" font-size="21" letter-spacing="1"><text x="350" y="140">OF HALLUX VALGUS</text><text x="350" y="168">FEET SHOW A</text><text x="350" y="196">PRONATED FIRST</text><text x="350" y="224">METATARSAL ON</text><text x="350" y="252">WEIGHT-BEARING CT</text></g>
+          <g class="evv" font-family="'Barlow Condensed','Arial Narrow',Arial" font-weight="800" font-size="17" letter-spacing="1"><text x="350" y="300" fill="#a78bfa">FRONTAL</text><text x="470" y="300" fill="#60a5fa">TRANSVERSE</text><text x="350" y="326" fill="#4ade80">SAGITTAL</text><text x="470" y="326" fill="#D5B863">COMPRESSION</text></g>
+        </svg>
+      </div>
+      <div class="evcards rise d3">
+        <div class="ev"><b>3 planes</b><span>Not just an angle</span><p>Most bunions carry rotation as well as an open IM angle. LapiLock sets frontal, transverse and sagittal correction before the cut.</p></div>
+        <div class="ev"><b>At the apex</b><span>The first TMT joint</span><p>The center of the deformity often lies at the first TMT joint, which makes it the place to correct all three planes.</p></div>
+        <div class="ev pre"><b>38%</b><span>Recurrence after Lapidus</span><p>In 127 primary Lapidus procedures, 38% recurred. Fusing the joint does not by itself hold the correction.</p></div>
+        <div class="ev pre"><b>Bench only</b><span>LapiLock data to date</span><p>LapiLock clinical outcomes are not yet published. The U-Plate bench results follow.</p></div>
       </div>
     </div>
+    <p class="orcite rise d4">Pronation and apex: Surgical techniques for Lapidus arthrodesis, J Clin Med. 2025;14(13):4591, citing Kim Y et al. Foot Ankle Int. 2015. Recurrence: Galli SH et al. Patient-reported outcomes and recurrence following 127 primary Lapidus surgeries for hallux valgus. Foot Ankle Orthop. 2020;5(4) (abstract).</p>
   </div>
-</section><section class="panel" data-name="4D correction">
+</section></section><section class="panel" data-name="4D correction">
   <div class="wrap">
     <div class="eyebrow rise">4D correction</div>
     <h2 class="rise d1">A dial for <span class="gold">every plane.</span></h2>
@@ -300,7 +554,7 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
         <div class="lbl" style="border:0;display:block">Cycles to failure
           <div class="track"><i style="width:100%"></i><em>LapiLock U-Plate &middot; 76,602</em></div>
           <div class="track"><i class="m" style="width:38.3%"></i><em>Biplanar plate &middot; 29,338</em></div></div>
-        <div><b>~20%</b><span>higher failure load</span></div>
+        <div><b>+20%</b><span>failure load at maximum cycles &middot; 151.3 vs 126.3 N</span></div>
       </div>
       <img class="pic pop d3" src="img/uplate.webp" alt="LapiLock U-Plate">
     </div>
@@ -339,33 +593,7 @@ button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
 </main>
 <script>
 
-window.SIM=(function(){
- var T=[0,2.6,5.2,7.8,10.2,13.2],$=function(i){return document.getElementById(i)};
- var m1=$('m1'),arc=$('arc'),frb=$('frb'),fra=$('fra'),sgm=$('sgm'),up=$('up'),cmp=$('cmp'),fr=$('fr'),sg=$('sg'),tvl=$('tvl');
- var vals=['Frontal','Transverse','Sagittal','Axial','Fixed'],jh=$('jh').children,jt=$('jt'),JC=['#8b5cf6','#3b82f6','#22c55e','#d5b863'],JN=['PURPLE · FRONTAL DEROTATION','BLUE DIAL · INTERMETATARSAL ANGLE','GREEN · PLANTAR / DORSAL FLEXION','GOLD DIAL · COMPRESS / DISTRACT'];
- function st(t){var s=0;for(var k=0;k<T.length-1;k++)if(t>=T[k])s=k;return Math.min(s,4)}
- return {T:T,rest:12.5,
-  caps:['Purple: the proprietary arch derotates the first metatarsal in the frontal plane.',
-        'Blue dial: closes the intermetatarsal angle in the transverse plane.',
-        'Green: sets plantar or dorsal flexion in the sagittal plane.',
-        'Gold dial: compresses or distracts the joint. One YOCO cut prepares it.',
-        'Fixate your way: U-Plate shown, one of 13+ fixation options.'],
-  hud:function(t){return vals[st(t)]},
-  render:function(t){
-   var rot=26*(1-ease(cl((t-.3)/2)));frb.setAttribute('transform','rotate('+rot+' 830 120)');fra.style.opacity=t<2.6?1:.25;
-   var a=-14+11*ease(cl((t-2.8)/2.1)),gap=16*(1-ease(cl((t-8)/1.8)));
-   m1.setAttribute('transform','translate('+gap+' 0) rotate('+a+' 198 186)');
-   var R=360,ar=a*Math.PI/180;arc.setAttribute('d','M'+(198+R)+' 200 A'+R+' '+R+' 0 0 0 '+(198+R*Math.cos(ar))+' '+(200+R*Math.sin(ar)));arc.style.opacity=t>2.6&&t<5.4?1:.3;
-   tvl.style.opacity=t>2.6&&t<5.4?1:.35;
-   var pf=-28*(1-ease(cl((t-5.4)/2)));sgm.setAttribute('y2',330+pf);sgm.setAttribute('stroke',t>5.2&&t<7.8?'#22c55e':'#f1ead8');
-   fr.style.opacity=t<2.6?1:.45;sg.style.opacity=t>5.2&&t<7.8?1:.45;
-   cmp.style.opacity=t>7.8&&t<10.2?1:0;
-   var u=ease(cl((t-10.4)/1));up.setAttribute('opacity',u);up.setAttribute('transform','translate(0 '+((1-u)*-30)+')');
-   var sj=st(t),pu=(Math.sin(t*6)+1)/2;
-   for(var q=0;q<4;q++){var on=q===sj;jh[q].style.opacity=on?.55+.45*pu:0;jh[q].setAttribute('stroke-width',on?3+3*pu:3);jh[q].style.filter=on?'drop-shadow(0 0 8px '+JC[q]+')':'none'}
-   jt.textContent=sj<4?JN[sj]:'ONE JIG · ALL FOUR PLANES';jt.setAttribute('fill',sj<4?JC[sj]:'#d5b863');
-  }};
-})();
+
 
 
 (function(){
@@ -379,7 +607,7 @@ window.SIM=(function(){
   function go(i){i=Math.max(0,Math.min(panels.length-1,i));deck.scrollTo({top:panels[i].offsetTop,behavior:reduce?'auto':'smooth'})}
   nextBtn.addEventListener('click',function(){go(current+1>=panels.length?0:current+1)});
   document.addEventListener('keydown',function(e){if(['ArrowDown','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(current+1)}if(['ArrowUp','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(current-1)}});
-  function enter(i){current=i;[].forEach.call(dots.children,function(d,k){d.classList.toggle('on',k===i)});bar.style.width=((i+1)/panels.length*100)+'%';nextBtn.style.opacity=i===panels.length-1?'.35':'1';var p=panels[i];p.classList.remove('in');void p.offsetWidth;p.classList.add('in')}
+  function enter(i){current=i;[].forEach.call(dots.children,function(d,k){d.classList.toggle('on',k===i)});bar.style.width=((i+1)/panels.length*100)+'%';nextBtn.style.opacity=i===panels.length-1?'.35':'1';var p=panels[i];p.classList.remove('in');void p.offsetWidth;p.classList.add('in');if(window.OrEnter)OrEnter(p)}
 
   /* generic stage sim: SIM = {T:[...], caps:[...], hud:fn(t)->string, render:fn(t)} */
   var sim=(function(){
@@ -419,6 +647,228 @@ window.SIM=(function(){
 })();
 
 </script>
-<script src="../share.js?v=2" defer></script>
+
+<script>
+/* ===== Lotus sizzle sound (Web Audio) ===== */
+var soundOn=true;try{soundOn=localStorage.getItem('lcc-sound')!=='off'}catch(e){}
+var AC=null;
+function audio(){try{if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AC=new C()}if(AC.state==='suspended')AC.resume();return AC}catch(e){return null}}
+function snd(name){
+  if(!soundOn)return;var a=audio();if(!a||a.state!=='running')return;var t0=a.currentTime+0.01,out=a.destination;
+  function tone(f,f2,d,type,v,dl){dl=dl||0;var o=a.createOscillator(),g=a.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,t0+dl);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t0+dl+d);g.gain.setValueAtTime(0.0001,t0+dl);g.gain.exponentialRampToValueAtTime(v||0.2,t0+dl+0.012);g.gain.exponentialRampToValueAtTime(0.0001,t0+dl+d);o.connect(g);g.connect(out);o.start(t0+dl);o.stop(t0+dl+d+.05)}
+  function noise(d,f1,f2,v,dl,q){dl=dl||0;var len=Math.floor(a.sampleRate*d),buf=a.createBuffer(1,len,a.sampleRate),c=buf.getChannelData(0);for(var i=0;i<len;i++)c[i]=Math.random()*2-1;var s=a.createBufferSource();s.buffer=buf;var bp=a.createBiquadFilter();bp.type='bandpass';bp.Q.value=q||1.2;bp.frequency.setValueAtTime(f1,t0+dl);bp.frequency.exponentialRampToValueAtTime(f2,t0+dl+d);var g=a.createGain();g.gain.setValueAtTime(0.0001,t0+dl);g.gain.exponentialRampToValueAtTime(v||.2,t0+dl+d*.3);g.gain.exponentialRampToValueAtTime(0.0001,t0+dl+d);s.connect(bp);bp.connect(g);g.connect(out);s.start(t0+dl);s.stop(t0+dl+d+.05)}
+  switch(name){
+    case 'pop':tone(320,900,.14,'sine',.2);break;
+    case 'tick':tone(1900,0,.035,'square',.035);break;
+    case 'swish':noise(.38,700,4200,.28);break;
+    case 'whoosh':noise(.65,260,2600,.4);tone(70,45,.5,'sine',.25,.05);break;
+    case 'boom':tone(70,32,1.4,'sine',.55);noise(.9,200,60,.25);noise(1.2,300,5000,.12,.05);break;
+    case 'click':tone(2500,0,.04,'square',.06);tone(1300,0,.07,'triangle',.09,.01);break;
+    case 'clank':[820,1370,2210].forEach(function(f,i){tone(f,0,.5,'sine',.08)});noise(.08,1500,5000,.2);break;
+    case 'chime':[880,1108.7,1318.5].forEach(function(f,i){tone(f,0,.8,'sine',.14,i*.09)});break;
+    case 'level':[523.3,659.3,784,1046.5].forEach(function(f,i){tone(f,0,.45,'triangle',.16,i*.09)});noise(.5,4000,9000,.06,.3);break;
+    case 'rise':tone(220,880,1.4,'sawtooth',.03);noise(1.4,400,5000,.08);break;
+  }
+}
+(function(){
+  var b=document.getElementById('orSnd');
+  function ui(){b.textContent=soundOn?'Sound on':'Sound off';b.classList.toggle('off',!soundOn)}
+  b.onclick=function(e){e.stopPropagation();soundOn=!soundOn;try{localStorage.setItem('lcc-sound',soundOn?'on':'off')}catch(x){}ui();if(soundOn){audio();setTimeout(function(){snd('pop')},30)}if(window.OpProc)OpProc.soundChanged()};ui();
+  ['touchstart','pointerdown','keydown'].forEach(function(ev){document.addEventListener(ev,function(){audio()},{passive:true})});
+  /* every button in the brochure answers with a soft tick unless it has its own sound */
+  document.addEventListener('click',function(e){var t=e.target.closest('button');if(!t||t.id==='orSnd'||t.closest('[data-own-snd]'))return;snd('tick')},true);
+})();
+</script>
+<script>
+var LlFilm=(function(){
+const NS="http://www.w3.org/2000/svg";
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const P=(t,a,b)=>ease(cl((t-a)/(b-a)));
+const W=(t,a,b,f=.6)=>Math.min(cl((t-a)/f),cl((b-t)/f));
+const lerp=(a,b,k)=>a+(b-a)*k;
+const mk=(tag,attrs,parent)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e;};
+let seed=37;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+for(let i=0;i<4;i++)mk("line",{x1:373,x2:397},$("l-blueG"));
+/* U-Plate screws (world): x,y,t0 */
+const SC=[[152,379,40.4],[178,379,40.95],[226,379,41.5],[252,379,42.05],[164,421,42.6],[240,421,43.15],[284,400,43.7]];
+const scr=SC.map(s=>{const g=mk("g",{opacity:0},$("l-scr"));
+  const ring=mk("circle",{cx:s[0],cy:s[1],r:7,fill:"none",stroke:"#c4b5fd","stroke-width":2},g);
+  mk("circle",{cx:s[0],cy:s[1],r:6.5,fill:"#7c3aed",stroke:"#ddd6fe","stroke-width":1.2},g);
+  mk("path",{d:`M ${s[0]-3} ${s[1]-1.7} L ${s[0]} ${s[1]-3.5} L ${s[0]+3} ${s[1]-1.7} L ${s[0]+3} ${s[1]+1.7} L ${s[0]} ${s[1]+3.5} L ${s[0]-3} ${s[1]+1.7} Z`,fill:"#2e1065"},g);
+  return{g,ring,t0:s[2]}});
+const spk=[];for(let i=0;i<26;i++)spk.push({b:32.2+rnd()*2.4,vx:(rnd()*2-1)*150,vy:-(60+rnd()*200),c:mk("circle",{r:1.4+rnd()*2,fill:rnd()>.4?"#fff1c7":"#e9dcbd"},$("l-sparks"))});
+const glow=[];for(let i=0;i<22;i++)glow.push({x:186+rnd()*16,y:368+rnd()*74,ph:rnd()*6.28,c:mk("circle",{r:1.5+rnd()*2.5,fill:"#f3dd92",opacity:0},$("l-sparks"))});
+
+const CH={cx:300,cy:500,k:1.3,sx:960,sy:600}, CZ={cx:360,cy:410,k:2.1,sx:960,sy:660};
+function camT(p,t){const k=CH.k*Math.pow(CZ.k/CH.k,p)*(1+.01*Math.sin(t*.3));
+  return `translate(${lerp(CH.sx,CZ.sx,p)},${lerp(CH.sy,CZ.sy,p)}) scale(${k}) translate(${-lerp(CH.cx,CZ.cx,p)},${-lerp(CH.cy,CZ.cy,p)})`;}
+const zs=(x,y)=>[CZ.sx+CZ.k*(x-CZ.cx), CZ.sy+CZ.k*(y-CZ.cy)];
+const hs=(x,y)=>[CH.sx+CH.k*(x-CH.cx), CH.sy+CH.k*(y-CH.cy)];
+const LB=[];function lbl(wx,wy,tx,ty,txt,a,b,anchor){const g=mk("g",{opacity:0},$("l-lbls"));const[x,y]=zs(wx,wy);
+  mk("line",{x1:x,y1:y,x2:tx,y2:ty,stroke:"#D5B863","stroke-width":2},g);mk("circle",{cx:x,cy:y,r:7},g);
+  const tt=mk("text",{x:anchor==="end"?tx-12:tx+12,y:ty+10,"text-anchor":anchor||"start"},g);tt.textContent=txt;LB.push({g,a,b});}
+lbl(230,350,1200,300,"Dorsomedial incision over the joint",12.9,14.6);
+lbl(150,400,200,900,"Pins in the medial cuneiform",16.4,18.6);
+lbl(388,400,1250,900,"Pins in the first metatarsal",17.0,18.6);
+lbl(197,404,1200,300,"First TMT joint freed",19.0,20.4);
+lbl(626,452,1440,986,"Sesamoids back under the head",22.6,24.4,"end");
+lbl(330,477,470,1012,"No C-clamp · no counter-pressure on the 2nd metatarsal",25.6,28.4);
+lbl(197,330,1200,300,"YOCO blade · both surfaces, one pass",32.4,35.2);
+lbl(196,404,1200,300,"Bone on bone",36.6,38.6);
+lbl(270,400,1200,300,"U-Plate across the joint",39.6,44.4);
+
+const CAPS=[
+ [[4.4,9.0],"HALLUX VALGUS","The deformity starts at the first TMT joint.","On weight-bearing CT, up to 87% are also pronated."],
+ [[12.4,14.6],"STEP 1","Incision over the first TMT joint.","A dorsomedial approach."],
+ [[14.6,20.4],"STEP 2","Set the jig. Free the joint.","One frame, pinned to the cuneiform and the metatarsal."],
+ [[20.4,24.4],"STEP 3 · PURPLE","Derotate the frontal plane.","The arch turns the metatarsal. The sesamoids return under the head."],
+ [[24.4,28.4],"STEP 4 · BLUE","Close the IM angle.","Turn the blue dial. No C-clamp."],
+ [[28.4,31.4],"STEP 5 · GREEN","Set plantar flexion.","The green screw sets the sagittal plane."],
+ [[31.4,35.4],"STEP 6 · Y.O.C.O.","You only cut once.","One blade prepares both surfaces with minimal resection."],
+ [[35.4,38.6],"STEP 7 · GOLD","Compress the joint.","The gold dial brings bone to bone."],
+ [[38.6,44.6],"STEP 8","Fixate your way.","Shown here: the U-Plate, one of 13+ fixation options."],
+ [[44.6,47.6],"STEP 9","Jig off. Close.","Every plane was set before the cut."],
+ [[47.6,54.6],"THE RESULT","Corrected in all four planes.","The first TMT joint fuses with the correction in place."]];
+
+const rad=d=>d*Math.PI/180;
+function render(t){
+  $("l-title").setAttribute("opacity",W(t,.2,4.2,.8));
+  const tr=P(t,.6,2);$("l-titleRule").setAttribute("width",520*tr);$("l-titleRule").setAttribute("x",960-260*tr);
+  $("l-world").setAttribute("opacity",W(t,3.8,55.0,1.2));
+  const zp=P(t,9.0,12.4)-P(t,47.6,51.6);
+  $("l-cam").setAttribute("transform",camT(zp,t));
+  $("l-rays").setAttribute("opacity",1-.45*zp);$("l-skin").setAttribute("opacity",.5*(1-.8*zp));
+  $("l-ring").setAttribute("opacity",W(t,5.2,9.0,.5)*(.55+.45*Math.sin(t*4)));
+  $("l-fine").setAttribute("opacity",W(t,4.4,54.6,.6));
+  /* corrections */
+  const der=P(t,21.0,23.4), im=P(t,25.0,27.4), pf=P(t,29.0,30.6), cp=P(t,36.0,37.6), hp=P(t,48.4,50.8);
+  const rot=-9*(1-im), cx=-9*cp;
+  $("l-mt").setAttribute("transform",`translate(${cx},0) rotate(${rot} 200 402)`);
+  $("l-jigD").setAttribute("transform",`translate(${cx},0) rotate(${rot} 200 402)`);
+  $("l-hal").setAttribute("transform",`rotate(${10-9*im-17*hp} 668 412)`);
+  const sesY=lerp(468,438,der);[...$("l-ses").children].forEach((e,i)=>{e.setAttribute("cy",sesY+(i?14:0));e.setAttribute("cx",i?640:610)});
+  /* threaded rod from bar to distal block */
+  const R=rad(rot),bx=385-200,by=292-402,px=200+cx+bx*Math.cos(R)-by*Math.sin(R),py=402+bx*Math.sin(R)+by*Math.cos(R);
+  $("l-rod").setAttribute("x1",385);$("l-rod").setAttribute("y1",236);$("l-rod").setAttribute("x2",px);$("l-rod").setAttribute("y2",py);
+  /* IM axes in full view */
+  const d1=[Math.cos(R),Math.sin(R)],p1=[200+cx,402],d2=[.999,.049],p2=[210,475];
+  const den=d1[0]*d2[1]-d1[1]*d2[0];
+  if(Math.abs(den)>.02){const s=((p2[0]-p1[0])*d2[1]-(p2[1]-p1[1])*d2[0])/den;const ix=p1[0]+d1[0]*s,iy=p1[1]+d1[1]*s;
+    $("l-ax1").setAttribute("x1",ix);$("l-ax1").setAttribute("y1",iy);$("l-ax1").setAttribute("x2",p1[0]+d1[0]*520);$("l-ax1").setAttribute("y2",p1[1]+d1[1]*520);
+    $("l-ax2").setAttribute("x1",ix);$("l-ax2").setAttribute("y1",iy);$("l-ax2").setAttribute("x2",p2[0]+d2[0]*500);$("l-ax2").setAttribute("y2",p2[1]+d2[1]*500);
+    const r=230,a1=Math.atan2(d1[1],d1[0]),a2=Math.atan2(d2[1],d2[0]);
+    $("l-imArc").setAttribute("d",`M ${ix+r*Math.cos(a2)} ${iy+r*Math.sin(a2)} A ${r} ${r} 0 0 0 ${ix+r*Math.cos(a1)} ${iy+r*Math.sin(a1)}`);
+    const[lx,ly]=hs(ix+r*Math.cos((a1+a2)/2)+14,iy+r*Math.sin((a1+a2)/2));$("l-imT").setAttribute("x",lx);$("l-imT").setAttribute("y",ly+10);}
+  const imO=W(t,5.4,9.0,.6);$("l-im").setAttribute("opacity",imO);$("l-imT").setAttribute("opacity",imO);
+  /* incision */
+  $("l-inc").setAttribute("opacity",W(t,12.9,47.0,.4)*(1-P(t,45.6,46.8)*.7));
+  /* jig drops in, lifts off */
+  $("l-jig").setAttribute("opacity",t>14.8&&t<46.8?1:0);
+  $("l-jig").setAttribute("transform",`translate(0,${lerp(-560,0,P(t,14.8,16.2))-lerp(0,760,P(t,44.8,46.6))})`);
+  const w=(id,x1,y0,y1,a,b)=>{$(id).setAttribute("y2",lerp(y0,y1,P(t,a,b)));$(id).setAttribute("x2",lerp(x1,x1+5,P(t,a,b)))};
+  w("l-pw1",140,318,432,16.2,16.7);w("l-pw2",162,318,432,16.7,17.2);w("l-dw1",376,326,424,17.3,17.8);w("l-dw2",394,326,424,17.8,18.3);
+  $("l-arch").setAttribute("transform",`rotate(${-6*der} 282 360)`);
+  [...$("l-blueG").children].forEach((l,i)=>{const y=218+((i*7+(t>25&&t<27.4?t*60:0))%26);l.setAttribute("y1",y);l.setAttribute("y2",y)});
+  $("l-blue").setAttribute("opacity",1);
+  $("l-green").setAttribute("transform",`rotate(${pf*540} 190 343)`);
+  $("l-gold").setAttribute("transform",`rotate(${cp*360} 80 263)`);
+  /* joint free + cut */
+  const cut=P(t,32.6,34.6);
+  $("l-carC").setAttribute("opacity",1-cut);$("l-carM").setAttribute("opacity",1-cut);
+  $("l-cutC").setAttribute("opacity",cut*(1-P(t,49,51)));$("l-cutM").setAttribute("opacity",cut*(1-P(t,49,51)));
+  $("l-blade").setAttribute("opacity",W(t,31.8,35.3,.25));
+  const bly=t<34.4?lerp(385,470,P(t,32.0,34.4)):lerp(470,385,P(t,34.4,35.1));
+  $("l-blade").setAttribute("transform",`translate(${197+2.5*Math.sin(t*90)},${bly})`);
+  spk.forEach(s=>{const a=t-s.b;if(a<0||a>.6){s.c.setAttribute("opacity",0);return}s.c.setAttribute("cx",197+s.vx*a);s.c.setAttribute("cy",lerp(366,440,(s.b-32.2)/2.4)+s.vy*a+300*a*a);s.c.setAttribute("opacity",1-a/.6)});
+  /* plane cues */
+  $("l-arrP").setAttribute("opacity",W(t,21.0,23.8,.3));
+  $("l-arrB").setAttribute("opacity",W(t,25.0,27.8,.3));
+  $("l-arrY").setAttribute("opacity",W(t,36.0,38.0,.3));
+  /* inset */
+  $("l-inset").setAttribute("opacity",Math.max(W(t,20.6,31.2,.4),W(t,35.6,38.6,.4)));
+  let mode=t<24.4?0:t<28.4?1:t<31.4?2:3;
+  const T=[["FRONTAL PLANE","#a78bfa",der<.5?"Pronated":"Derotated"],["TRANSVERSE PLANE","#60a5fa",im<.5?"IM angle open":"IM angle closed"],["SAGITTAL PLANE","#4ade80",pf<.5?"Neutral":"Plantar flexed"],["COMPRESSION","#D5B863",cp<.5?"Joint prepared":"Bone on bone"]][mode];
+  $("l-insT").textContent=T[0];$("l-insT").setAttribute("fill",T[1]);$("l-insS").textContent=T[2];
+  ["l-iF","l-iT","l-iS","l-iC"].forEach((id,i)=>$(id).setAttribute("opacity",i===mode?1:0));
+  $("l-iFh").setAttribute("transform",`translate(266,872) rotate(${26*(1-der)})`);
+  $("l-iT1").setAttribute("transform",`rotate(${-12*(1-im)} 150 890)`);
+  $("l-iS1").setAttribute("transform",`rotate(${7*pf} 190 900)`);
+  $("l-iC2").setAttribute("x",lerp(282,252,cp));
+  /* checks */
+  $("l-checks").setAttribute("opacity",W(t,23.6,54.4,.5));
+  $("l-ck1").setAttribute("opacity",cl((t-23.6)/.4));$("l-ck2").setAttribute("opacity",cl((t-27.6)/.4));
+  $("l-ck3").setAttribute("opacity",cl((t-30.8)/.4));$("l-ck4").setAttribute("opacity",cl((t-37.8)/.4));
+  /* plate + screws */
+  $("l-plate").setAttribute("opacity",cl((t-38.8)/.3));
+  $("l-plate").setAttribute("transform",`translate(0,${lerp(-380,0,P(t,38.8,40.1))})`);
+  scr.forEach(s=>{const a=t-s.t0;s.g.setAttribute("opacity",a>0?1:0);const k=cl(a/.45);s.ring.setAttribute("r",7+18*k);s.ring.setAttribute("opacity",a>0?1-k:0)});
+  /* heal */
+  const hz=P(t,50.6,53.8);
+  $("l-heal").setAttribute("opacity",W(t,50.4,54.8,.6)*.85);
+  glow.forEach(s=>{s.c.setAttribute("cx",s.x-9);s.c.setAttribute("cy",s.y);s.c.setAttribute("opacity",W(t,50.4,54.4,.6)*(.5+.5*Math.sin(t*5+s.ph)))});
+  $("l-prog").setAttribute("opacity",W(t,50.4,54.8,.5));$("l-progBar").setAttribute("width",600*hz);
+  LB.forEach(l=>l.g.setAttribute("opacity",W(t,l.a,l.b,.4)));
+  let cur=null;CAPS.forEach(c=>{if(t>=c[0][0]&&t<c[0][1])cur=c});
+  if(cur){$("l-capK").textContent=cur[1];$("l-capH").textContent=cur[2];$("l-capS").textContent=cur[3];$("l-capg").setAttribute("opacity",Math.min(cl((t-cur[0][0])/.45),cl((cur[0][1]-t)/.45)))}
+  else $("l-capg").setAttribute("opacity",0);
+  $("l-end").setAttribute("opacity",cl((t-55.2)/.9));
+}
+render(0);
+return {render,DUR:62};
+})();
+
+</script>
+<script>
+/* ===== LapiLock procedure player ===== */
+var OpProc=(function(){
+  var p='ll',Film=LlFilm,PS=4.4,PE=54.0,LEN=PE-PS;
+  var $=function(id){return document.getElementById(p+id)};
+  var box=$('Player'),play=$('Play'),scrub=$('Scrub'),chap=[].slice.call($('Chap').querySelectorAll('button')),pa=$('Audio');
+  box.setAttribute('data-own-snd','1');
+  try{fetch(pa.getAttribute('src')).then(function(r){return r.ok?r.blob():null}).then(function(b){if(b&&pa.paused){pa.src=URL.createObjectURL(b);pa.load()}}).catch(function(){})}catch(e){}
+  var t=6.2,playing=false,last=null,raf=null,visible=false;
+  function syncAudio(){if(soundOn&&playing){try{pa.currentTime=Math.max(0,t-PS);var q=pa.play();if(q&&q.catch)q.catch(function(){})}catch(e){}}else{try{pa.pause()}catch(e){}}}
+  function ui(){play.textContent=playing?'❚❚ Pause':(t>=PE-.05?'↺ Play again':'▶ Play');scrub.value=Math.round((t-PS)/LEN*1000);
+    var k=0;chap.forEach(function(b,i){if(t>=+b.dataset.t-.01)k=i});chap.forEach(function(b,i){b.classList.toggle('on',i===k&&box.classList.contains('started'))})}
+  function frame(ts){
+    if(playing){if(soundOn&&!pa.paused&&!pa.ended&&pa.readyState>1){t=PS+pa.currentTime}else if(last!=null){t+=Math.min(.05,(ts-last)/1000)}
+      if(t>=PE){t=PE;playing=false;try{pa.pause()}catch(e){}}}
+    last=ts;Film.render(t);ui();raf=visible?requestAnimationFrame(frame):null}
+  function kick(){if(!raf&&visible){last=null;raf=requestAnimationFrame(frame)}}
+  function start(){audio();box.classList.add('started');if(t>=PE-.05)t=PS;playing=true;syncAudio();kick()}
+  function pause(){playing=false;syncAudio();ui()}
+  function seek(nt){box.classList.add('started');t=Math.max(PS,Math.min(PE,nt));if(playing)syncAudio();Film.render(t);ui()}
+  $('Big').onclick=start;play.onclick=function(){playing?pause():start()};
+  $('Re').onclick=function(){t=PS;start()};
+  chap.forEach(function(b){b.onclick=function(){snd('tick');seek(+b.dataset.t+.05);if(!playing)start()}});
+  function stepTo(dir){var ts=chap.map(function(b){return +b.dataset.t});var k=0;ts.forEach(function(x,i){if(t>=x-.01)k=i});
+    var n=dir>0?Math.min(ts.length-1,k+1):(t-ts[k]>1.2?k:Math.max(0,k-1));snd('tick');seek(ts[n]+.05);if(!playing)start()}
+  $('Fwd').onclick=function(){stepTo(1)};$('Back').onclick=function(){stepTo(-1)};
+  scrub.oninput=function(){seek(PS+scrub.value/1000*LEN)};
+  box.addEventListener('keydown',function(e){e.stopPropagation()});
+  Film.render(t);ui();
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){visible=e.isIntersecting;if(visible)kick();else if(playing)pause()})},{threshold:[.25]}).observe(box)}else{visible=true;kick()}
+  var w=document.getElementById('wtLl');w.setAttribute('data-own-snd','1');
+  w.onclick=function(){var panel=document.querySelector('.panel[data-name="Watch the procedure"]');snd('swish');document.getElementById('deck').scrollTo({top:panel.offsetTop,behavior:'smooth'});start()};
+  return{soundChanged:syncAudio};
+})();
+</script>
+<script>
+/* ===== per-panel sound ===== */
+(function(){
+  window.OrEnter=function(p){
+    var n=p.getAttribute('data-name');
+    snd(n==='Home'?'boom':(n==='Lotus Medical'?'chime':'whoosh'));
+    if(n==='The evidence'){setTimeout(function(){snd('rise')},350);setTimeout(function(){snd('level')},2000);[0,1,2,3].forEach(function(k){setTimeout(function(){snd('pop')},2200+k*140)})}
+    if(n==='4D correction')[0,1,2,3].forEach(function(k){setTimeout(function(){snd('click')},450+k*220)});
+    if(n==='Bench test'){setTimeout(function(){snd('rise')},400);setTimeout(function(){snd('clank')},1700)}
+    if(n==='Fixation')[0,1,2,3,4,5].forEach(function(k){setTimeout(function(){snd('pop')},400+k*110)});
+    if(n==='Technique')setTimeout(function(){snd('tick')},500);
+  };
+})();
+</script>
+<script src="../share.js?v=3" defer></script>
 </body>
 </html>
