@@ -2,24 +2,252 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Shark Screw® · Scaphoid Non-Union</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Shark Screw Scaphoid Sizzler</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Lotus">
+<meta name="theme-color" content="#000000">
+<link rel="manifest" href="../manifest.json">
 <link rel="apple-touch-icon" href="../icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&family=Marcellus&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
-html,body{margin:0;height:100%;background:#000;overflow:hidden}
-svg{width:100vw;height:100vh;height:100dvh;display:block}
-#back{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);left:16px;z-index:60;color:#D5B863;text-decoration:none;font:700 15px Inter,Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;background:rgba(0,0,0,.6);border:1px solid rgba(213,184,99,.5);padding:10px 14px}
-body.cap #back{display:none}
-text{font-family:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif}
-#ctrl{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);display:flex;gap:8px;z-index:2}
-#ctrl button{background:rgba(0,0,0,.65);color:#D5B863;border:1px solid #D5B863;border-radius:20px;padding:7px 16px;font:600 13px Inter,Helvetica,Arial,sans-serif;letter-spacing:.08em;cursor:pointer}
-body.cap #ctrl{display:none}
-#ctrl button.hot{background:#D5B863;color:#000;font-weight:800}
+:root{
+  --black:#000;--panel:#121110;--gold:#D5B863;--gold-hi:#F1DC9C;--bone:#EFE6D2;--gray:#a39b8b;--blood:#c4473d;--orange:#F26B1D;
+  --line:rgba(213,184,99,.28);
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;--body:"Barlow","Helvetica Neue",Arial,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#000;color:#fff;font-family:var(--body);-webkit-font-smoothing:antialiased}
+body{overflow:hidden}
+#deck{height:100%;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+.panel{position:relative;min-height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:flex;flex-direction:column;align-items:center;padding:150px clamp(18px,5vw,72px) 70px;overflow:hidden}
+.wrap{width:100%;max-width:1180px;position:relative;z-index:2;margin-block:auto}
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:.01em;line-height:.95;text-wrap:balance;text-transform:uppercase}
+h1{font-size:clamp(40px,5.4vw,78px)}h2{font-size:clamp(34px,5vw,66px)}h3{font-size:clamp(20px,2.1vw,27px);font-weight:700;letter-spacing:.03em}
+.gold{color:var(--gold)}.ivory{color:var(--bone)}
+.eyebrow{font-family:var(--display);font-weight:600;font-size:clamp(15px,1.5vw,18px);letter-spacing:.32em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.eyebrow::before{content:"";width:42px;height:2px;background:var(--gold)}
+.lede{font-size:clamp(17px,1.7vw,21px);line-height:1.5;color:#e6e1d6;max-width:60ch;margin-top:18px}
+.cite{font-size:15px;color:var(--gray);margin-top:16px;line-height:1.5}
+.reg{font-size:.42em;vertical-align:super;color:var(--gold)}
+.bg{position:absolute;inset:-6%;background:url(../shark-screw/img/bonebg.webp) center/cover no-repeat;opacity:.2;animation:drift 30s ease-in-out infinite alternate;z-index:0}
+@keyframes drift{from{transform:scale(1.04)}to{transform:scale(1.16) translate(-2%,-2%)}}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse at 65% 45%,rgba(0,0,0,.25) 10%,rgba(0,0,0,.92) 75%);z-index:1}
+
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-hi));z-index:50;box-shadow:0 0 12px var(--gold);transition:width .4s}
+#brand{position:fixed;top:12px;left:clamp(18px,3vw,36px);z-index:40}
+#brand img{width:clamp(108px,10vw,140px);height:auto;display:block}
+#topr{position:fixed;top:14px;right:128px;z-index:60;display:flex;gap:8px}
+#topr a,#topr button{font-family:var(--display);font-weight:800;letter-spacing:.14em;font-size:14px;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(213,184,99,.5);padding:6px 12px;background:rgba(0,0,0,.6);cursor:pointer}
+#topr button.off{color:#888;border-color:#555}
+#dots{position:fixed;right:clamp(10px,2vw,26px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:40}
+#dots button{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--gold);background:transparent;cursor:pointer;transition:all .3s;padding:0}
+#dots button.on{background:var(--gold);transform:scale(1.35);box-shadow:0 0 10px var(--gold)}
+#next{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:40;background:none;border:0;color:var(--gold);cursor:pointer;animation:bob 1.8s ease-in-out infinite}
+#next svg{width:30px;height:30px}
+@keyframes bob{50%{transform:translate(-50%,7px)}}
+button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+
+.in .rise{animation:rise .9s cubic-bezier(.2,.9,.25,1.15) both}
+.in .pop{animation:pop .75s cubic-bezier(.3,1.6,.4,1) both}
+.in .slideL{animation:slideL 1s cubic-bezier(.2,.9,.2,1) both}
+.in .slideR{animation:slideR 1s cubic-bezier(.2,.9,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(46px)}}
+@keyframes pop{0%{opacity:0;transform:scale(.4)}}
+@keyframes slideL{from{opacity:0;transform:translateX(-90px)}}
+@keyframes slideR{from{opacity:0;transform:translateX(110px) rotate(3deg)}}
+.d1{animation-delay:.12s!important}.d2{animation-delay:.24s!important}.d3{animation-delay:.36s!important}.d4{animation-delay:.48s!important}.d5{animation-delay:.6s!important}.d6{animation-delay:.72s!important}
+
+/* 1 hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(20px,4vw,56px);align-items:center}
+.hero h1 .l2{display:block;color:var(--bone)}.hero h1 .l3{display:block;color:var(--gold)}
+.sub{font-family:var(--display);font-weight:600;letter-spacing:.2em;text-transform:uppercase;font-size:clamp(15px,1.6vw,20px);color:var(--bone);margin-bottom:18px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{border:1px solid var(--gold);color:#000;background:var(--gold);padding:9px 16px;font-family:var(--display);font-weight:800;letter-spacing:.12em;font-size:17px;text-transform:uppercase}
+.chip.o{background:transparent;color:var(--gold-hi);border-color:var(--line)}
+.herovis{position:relative;display:grid;place-items:center;min-height:340px}
+.herovis .ring{position:absolute;width:86%;aspect-ratio:1;border-radius:50%;border:1px solid var(--line);animation:spin 26s linear infinite}
+.herovis .ring::before{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--gold)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.herovis img{width:min(100%,520px);transform:rotate(-24deg);filter:drop-shadow(0 0 26px rgba(239,230,210,.35))}
+.in .herovis img{animation:screwIn 1.6s .3s cubic-bezier(.2,.9,.2,1) both}
+@keyframes screwIn{from{transform:translateX(-160px) rotate(-24deg);opacity:0}}
+.herovis .tag{position:absolute;bottom:4%;font-family:var(--display);font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-size:15px}
+
+/* 2 procedure player */
+.player{width:min(100%,calc((100svh - 330px) * 1.7778));min-width:min(100%,520px);margin:14px auto 0;border:1px solid var(--line);background:#000;position:relative}
+.stage{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}
+.stage svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.big{position:absolute;inset:0;margin:auto;width:96px;height:96px;border-radius:50%;border:2px solid var(--gold);background:rgba(0,0,0,.6);color:var(--gold);font-size:38px;cursor:pointer;display:grid;place-items:center;animation:pulse 1.8s infinite;z-index:3}
+.player.started .big{display:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(213,184,99,.55)}70%{box-shadow:0 0 0 24px rgba(213,184,99,0)}100%{box-shadow:0 0 0 0 rgba(213,184,99,0)}}
+.ctl{display:flex;align-items:center;gap:8px;padding:10px 12px;border-top:1px solid var(--line);flex-wrap:wrap;background:#0b0a08}
+.ctl button{background:#000;border:1px solid var(--line);color:#fff;padding:8px 14px;font-family:var(--display);font-weight:800;letter-spacing:.1em;font-size:16px;text-transform:uppercase;cursor:pointer}
+.ctl button.gold{background:var(--gold);color:#000;border-color:var(--gold)}
+.ctl input[type=range]{flex:1;min-width:140px;accent-color:#D5B863}
+.chap{display:flex;flex-wrap:wrap;border-top:1px solid var(--line)}
+.chap button{flex:1 1 auto;background:transparent;border:0;border-right:1px solid var(--line);color:#cfc7b6;padding:11px 8px;font-family:var(--display);font-weight:800;font-size:clamp(14px,1.45vw,18px);letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.chap button:last-child{border-right:0}
+.chap button.on{background:var(--gold);color:#000}
+
+/* 3 problem */
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+.cd{border:1px solid rgba(255,255,255,.1);background:linear-gradient(160deg,rgba(213,184,99,.10),rgba(18,17,16,.92) 60%);padding:22px 20px;position:relative;overflow:hidden}
+.cd .n{font-family:var(--display);font-weight:800;color:var(--gold);font-size:clamp(34px,3.6vw,52px);line-height:1}
+.cd .n small{font-size:.45em;color:var(--bone);letter-spacing:.06em}
+.cd h3{margin:10px 0 8px}
+.cd p{font-size:17px;color:#d7d1c4;line-height:1.45}
+.cd.red{border-color:rgba(196,71,61,.6)}
+.cd::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,240,200,.14),transparent);transform:skewX(-18deg)}
+.in .cd::after{animation:shine 1.5s 1s ease-out}
+@keyframes shine{to{left:130%}}
+
+/* 4 mechanism */
+.mech{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.mc{border:1px solid var(--line);background:#0b0a08;display:flex;flex-direction:column;cursor:pointer;transition:border-color .3s,transform .3s}
+.mc.on{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 14px 34px rgba(213,184,99,.18)}
+.mc svg{display:block;width:100%;height:auto;background:radial-gradient(ellipse at 50% 45%,#1a1712,#050505 75%)}
+.mc .tx{padding:16px 18px 20px}
+.mc .st{font-family:var(--display);font-weight:700;letter-spacing:.24em;color:var(--gold);font-size:14px;text-transform:uppercase}
+.mc h3{margin:6px 0 8px}
+.mc p{font-size:17px;color:#d7d1c4;line-height:1.45}
+.mc .rot{transform-origin:50% 50%}
+.in .mc .drive{animation:drive 2.6s cubic-bezier(.3,.7,.2,1) infinite}
+@keyframes drive{0%{transform:translateX(-170px)}55%,100%{transform:translateX(0)}}
+.in .mc .thr{animation:thr .35s linear infinite}
+@keyframes thr{to{transform:translateX(-12px)}}
+.in .mc .squeeze{animation:squeeze 2.6s ease-in-out infinite}
+@keyframes squeeze{0%,50%{transform:translateX(0)}70%,100%{transform:translateX(5px)}}
+.in .mc .cell{animation:cell 2.8s ease-in infinite}
+@keyframes cell{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
+.in .mc .fadeS{animation:fadeS 5s ease-in-out infinite}
+@keyframes fadeS{0%,15%{opacity:1}75%,100%{opacity:.08}}
+.in .mc .grow{animation:grow 5s ease-in-out infinite}
+@keyframes grow{0%,15%{opacity:0}75%,100%{opacity:1}}
+
+/* 5 data */
+.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:26px}
+.mt{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);padding:18px 20px;cursor:pointer;transition:border-color .3s,background .3s}
+.mt.on{border-color:var(--gold);background:rgba(213,184,99,.08)}
+.mt .hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.mt .hd b{font-family:var(--display);font-weight:800;font-size:clamp(22px,2.4vw,30px);text-transform:uppercase;letter-spacing:.03em}
+.mt .hd i{font-style:normal;color:var(--gray);font-size:15px}
+.row{display:grid;grid-template-columns:120px 1fr 110px;align-items:center;gap:10px;margin-top:10px}
+.row span{font-family:var(--display);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:15px;color:#cfc7b6}
+.row .tr{height:26px;background:rgba(255,255,255,.06);position:relative;overflow:hidden}
+.row .tr i{position:absolute;left:0;top:0;bottom:0;width:0;transition:width 1.6s cubic-bezier(.6,0,.2,1)}
+.row.m .tr i{background:linear-gradient(90deg,#4b5157,#8f98a3)}
+.row.s .tr i{background:linear-gradient(90deg,#8a7330,var(--gold),var(--gold-hi));box-shadow:0 0 12px rgba(213,184,99,.4)}
+.row em{font-style:normal;font-family:var(--display);font-weight:800;font-size:clamp(22px,2.3vw,30px);text-align:right;font-variant-numeric:tabular-nums}
+.row.s em{color:var(--gold)}
+.row.m em{color:#c9c9c9}
+
+/* 6 scaphoid stat */
+.nu{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(24px,4vw,60px);align-items:center;margin-top:20px}
+.bign{font-family:var(--display);font-weight:800;font-size:clamp(120px,18vw,240px);line-height:.8;color:var(--gold);font-variant-numeric:tabular-nums;text-shadow:0 0 50px rgba(213,184,99,.35)}
+.bign small{font-size:.4em}
+.nu .of{font-family:var(--display);font-weight:700;font-size:clamp(22px,2.4vw,32px);letter-spacing:.06em;text-transform:uppercase;margin-top:14px}
+.ctx{display:grid;gap:18px}
+.ctx .lbl{display:flex;justify-content:space-between;font-family:var(--display);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:clamp(16px,1.7vw,21px);margin-bottom:7px}
+.ctx .tr{height:30px;background:rgba(255,255,255,.06);position:relative;overflow:hidden}
+.ctx .tr i{position:absolute;top:0;bottom:0;transition:all 1.6s cubic-bezier(.6,0,.2,1)}
+.qt{border-left:4px solid var(--gold);background:rgba(213,184,99,.08);padding:14px 16px;font-size:18px;line-height:1.45;color:#eee}
+
+/* 7 versus table */
+.vs{margin-top:24px;border:1px solid var(--line)}
+.vs .h,.vs .r{display:grid;grid-template-columns:1fr 1.4fr 1.4fr}
+.vs .h div{padding:12px 16px;font-family:var(--display);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:clamp(16px,1.7vw,21px)}
+.vs .h div:nth-child(2){background:var(--gold);color:#000}
+.vs .h div:nth-child(3){background:#2a2d31;color:#d6dbe0}
+.vs .r{border-top:1px solid var(--line);opacity:.12;transition:opacity .5s,background .5s;cursor:pointer}
+.vs .r.on{opacity:1}
+.vs .r.cur{background:rgba(213,184,99,.07)}
+.vs .r div{padding:13px 16px;font-size:clamp(16px,1.6vw,19px);line-height:1.35}
+.vs .r div:first-child{font-family:var(--display);font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-size:clamp(16px,1.6vw,20px)}
+.vs .r div:nth-child(2){color:#fff}
+.vs .r div:nth-child(3){color:#a9afb5}
+.vsctl{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.vsctl button,.tech .tg button{background:transparent;border:2px solid var(--line);color:#fff;padding:9px 16px;font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.vsctl button.gold,.tech .tg button.on{background:var(--gold);border-color:var(--gold);color:#000}
+
+/* 8 technique */
+.tech{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(20px,3vw,44px);align-items:start;margin-top:22px}
+.tech .tg{display:flex;gap:8px;margin-bottom:12px}
+.traj{border:1px solid var(--line);background:radial-gradient(ellipse at 50% 45%,#1a1712,#050505 75%)}
+.traj svg{display:block;width:100%;height:auto}
+.steps{display:grid;gap:8px}
+.sp{display:grid;grid-template-columns:40px 1fr;gap:10px;align-items:start;padding:9px 14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);cursor:pointer;transition:all .3s;opacity:.55}
+.sp.on{opacity:1;border-color:var(--gold);background:rgba(213,184,99,.08)}
+.sp b{font-family:var(--display);font-weight:800;font-size:28px;color:var(--gold);line-height:1}
+.sp p{font-size:17px;line-height:1.4;color:#eee}
+.sp p span{display:none}.sp.on p span{display:block;margin-top:4px}
+.sp p strong{font-family:var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--gold-hi);font-size:18px;display:block}
+
+/* 9 close */
+.close{text-align:center;display:flex;flex-direction:column;align-items:center}
+.close .lmlogo{width:clamp(210px,26vw,320px);height:auto;display:block;margin:0 auto 10px}
+.close .tl{font-family:var(--display);font-weight:600;letter-spacing:.24em;color:var(--gold);font-size:clamp(13px,1.4vw,17px);margin-bottom:22px}
+.contacts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;width:100%;max-width:820px}
+.ct{border:1px solid var(--gold);padding:18px;text-align:left;background:rgba(213,184,99,.06)}
+.ct b{font-family:var(--display);font-size:24px;letter-spacing:.04em;display:block}
+.ct i{font-style:normal;color:var(--gold);font-family:var(--display);letter-spacing:.14em;text-transform:uppercase;font-size:13px}
+.ct a,.ct span{display:block;color:#eee;text-decoration:none;font-size:16px;margin-top:6px}
+.tagl{font-family:var(--display);font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-size:clamp(14px,1.6vw,20px);margin-top:26px}
+.fine{margin-top:22px;font-size:13.5px;color:#8a8478;line-height:1.6;max-width:90ch;text-align:left}
+
+@media (max-width:980px){
+  .hero,.nu,.tech{grid-template-columns:1fr}
+  .cards4{grid-template-columns:1fr 1fr}
+  .mech{grid-template-columns:1fr}
+  .mc{display:grid;grid-template-columns:1fr 1.2fr}
+  .metrics{grid-template-columns:1fr}
+  #dots{display:none}
+  .herovis{min-height:220px}
+}
+@media (max-width:620px){.cards4,.contacts{grid-template-columns:1fr}.mc{display:flex}.vs .h,.vs .r{grid-template-columns:.8fr 1.2fr 1.2fr}.row{grid-template-columns:90px 1fr 84px}}
+@media (max-width:700px){#brand img{width:100px}.panel{padding-top:118px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}#deck{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<svg id="s" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+<div id="bar"></div>
+<div id="brand" aria-label="Lotus Medical"><img src="../lotus-logo.webp?v=13" alt="Lotus Medical. Healing Sooner. Wellness Longer."></div>
+<div id="topr"><button id="sndBtn" aria-label="Sound on or off">Sound on</button><a href="../index.html">‹ Brochures</a></div>
+<nav id="dots" aria-label="Sections"></nav>
+<button id="next" aria-label="Next section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+
+<main id="deck">
+
+<!-- 1 HERO -->
+<section class="panel" data-name="Shark Screw scaphoid" data-snd="boom">
+  <div class="bg"></div><div class="vig"></div>
+  <div class="wrap hero">
+    <div>
+      <div class="sub rise">Shark Screw<span class="reg">®</span> · Scaphoid Non-Union</div>
+      <h1 class="rise d1">Revise the scaphoid.<span class="l2">Fix it with bone.</span><span class="l3">Nothing to remove.</span></h1>
+      <p class="lede rise d2">A threaded screw machined from human cortical bone. It compresses the non-union like a screw, then remodels into the patient's own bone.</p>
+      <div class="chips">
+        <span class="chip pop d3">Scaphoid non-union</span>
+        <span class="chip pop d4">Failed metal revision</span>
+        <span class="chip o pop d5">Hand &amp; wrist</span>
+      </div>
+    </div>
+    <div class="herovis slideR d2"><div class="ring"></div><img src="../shark-screw/img/screw.webp" alt="Shark Screw cut, a threaded screw made of human cortical bone"><div class="tag">3.5 mm Shark Screw® cut</div></div>
+  </div>
+</section>
+
+<!-- 2 PROCEDURE -->
+<section class="panel" data-name="The revision" data-snd="whoosh">
+  <div class="wrap">
+    <div class="eyebrow rise">Watch the revision</div>
+    <h2 class="rise d1">Metal out. <span class="gold">Bone in.</span></h2>
+    <div class="player rise d2" id="player">
+      <div class="stage"><svg id="proc" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 <defs>
   <radialGradient id="bg" cx="50%" cy="50%" r="70%">
     <stop offset="0" stop-color="#16130f"/><stop offset=".6" stop-color="#070706"/><stop offset="1" stop-color="#000"/>
@@ -219,13 +447,210 @@ body.cap #ctrl{display:none}
   <text x="960" y="1000" text-anchor="middle" fill="#6f6f6f" font-size="18">Huber E, Jakob G, Palle W, Borchert GH, Pastl K. Life (Basel). 2025;15(9):1421. doi:10.3390/life15091421</text>
   <text x="960" y="1028" text-anchor="middle" fill="#6f6f6f" font-size="18">Treatment of scaphoid fractures and pseudarthroses with the human allogeneic cortical bone screw. J Orthop Traumatol. 2023. doi:10.1186/s10195-023-00686-7</text>
 </g>
-</svg>
-<audio id="snd" src="sound.m4a?v=21" preload="auto" playsinline></audio>
-<a id="back" href="../index.html">‹ All brochures</a>
-<div id="ctrl"><button id="bSnd" class="hot">TAP FOR SOUND</button><button id="bPlay">PAUSE</button><button id="bReplay">REPLAY</button></div>
+</svg><button class="big" id="pBig" aria-label="Play the procedure">▶</button></div>
+      <div class="ctl"><button class="gold" id="pPlay">▶ Play</button><button id="pBack">‹ Step</button><button id="pFwd">Step ›</button><input type="range" id="pScrub" min="0" max="1000" value="0" aria-label="Scrub through the procedure"><button id="pRe">↺ Replay</button></div>
+      <div class="chap" id="pChap">
+        <button data-t="4.4">Non-union</button><button data-t="16">Metal out</button><button data-t="22">Debride</button><button data-t="28.5">Shark Screw in</button><button data-t="36">Trim flush</button><button data-t="41">Becomes bone</button><button data-t="49">Healed</button>
+      </div>
+    </div>
+    <audio id="pAudio" src="procedure.m4a?v=22" preload="auto" playsinline></audio>
+  </div>
+</section>
+
+<!-- 3 PROBLEM -->
+<section class="panel" data-name="The revision problem" data-snd="whoosh">
+  <div class="bg" style="opacity:.12"></div><div class="vig"></div>
+  <div class="wrap">
+    <div class="eyebrow rise">The revision problem</div>
+    <h2 class="rise d1">A failed scaphoid is a <span class="gold">biology problem.</span></h2>
+    <p class="lede rise d2">The fracture already failed once with metal across it. The revision has to deliver stability and bone.</p>
+    <div class="cards4">
+      <div class="cd red rise d2"><div class="n">70–80<small>%</small></div><h3>Retrograde blood supply</h3><p>The dorsal carpal branch feeds 70 to 80% of the proximal scaphoid by retrograde flow. A waist fracture can cut it off.</p></div>
+      <div class="cd red rise d3"><div class="n">12–50<small>%</small></div><h3>Proximal pole with AVN</h3><p>Published union rates for a proximal pole non-union with avascular necrosis.</p></div>
+      <div class="cd rise d4"><div class="n">0</div><h3>Biology from metal</h3><p>A titanium screw stabilizes. It does not integrate, remodel or become bone.</p></div>
+      <div class="cd red rise d5"><div class="n">63.6<small>%</small></div><h3>Hardware removed</h3><p>Upper-extremity non-unions treated conventionally that needed hardware removal in a multicentre comparison.</p></div>
+    </div>
+    <p class="cite rise d6">Blood supply: Orthopedic Reviews 2026;18. Union with AVN: references cited in J Orthop Traumatol 2023. Hardware removal: Huber et al., Life (Basel) 2025;15(9):1421.</p>
+  </div>
+</section>
+
+<!-- 4 MECHANISM -->
+<section class="panel" data-name="How it works" data-snd="whoosh">
+  <div class="wrap">
+    <div class="eyebrow rise">How it works</div>
+    <h2 class="rise d1">Fixation and biology <span class="gold">in one implant.</span></h2>
+    <div class="mech">
+      <div class="mc on rise d2" data-k="0">
+        <svg viewBox="0 0 360 170" aria-hidden="true">
+          <defs><clipPath id="mcA"><rect x="50" y="64" width="290" height="42" rx="20"/></clipPath><linearGradient id="mcBone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4ead2"/><stop offset="1" stop-color="#a68c5e"/></linearGradient><linearGradient id="mcScrew" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff7e4"/><stop offset=".5" stop-color="#e3d2a8"/><stop offset="1" stop-color="#b9995f"/></linearGradient></defs>
+          <rect x="40" y="45" width="138" height="80" rx="30" fill="url(#mcBone)"/>
+          <g class="squeeze"><rect x="186" y="45" width="138" height="80" rx="30" fill="url(#mcBone)"/></g>
+          <g class="drive"><rect x="70" y="72" width="230" height="26" rx="4" fill="url(#mcScrew)"/><g clip-path="url(#mcA)"><g class="thr" stroke="#8c6f3e" stroke-width="2.5">
+          <path d="M70 72 l6 26 M82 72 l6 26 M94 72 l6 26 M106 72 l6 26 M118 72 l6 26 M130 72 l6 26 M142 72 l6 26 M154 72 l6 26 M166 72 l6 26 M178 72 l6 26 M190 72 l6 26 M202 72 l6 26 M214 72 l6 26 M226 72 l6 26 M238 72 l6 26 M250 72 l6 26 M262 72 l6 26 M274 72 l6 26 M286 72 l6 26 M298 72 l6 26 M310 72 l6 26"/></g></g></g>
+          <text x="180" y="152" text-anchor="middle" fill="#D5B863" font-family="Barlow Condensed,Arial" font-weight="700" font-size="16" letter-spacing="3">COMPRESSION</text>
+        </svg>
+        <div class="tx"><div class="st">Day 1 · Fix</div><h3>Drives like a screw</h3><p>Threaded human cortical bone, placed over a K-wire with standard drill and tap steps. Compression across the non-union, then trimmed flush. No head.</p></div>
+      </div>
+      <div class="mc rise d3" data-k="1">
+        <svg viewBox="0 0 360 170" aria-hidden="true">
+          <rect x="40" y="45" width="284" height="80" rx="30" fill="url(#mcBone)"/>
+          <rect x="70" y="72" width="230" height="26" rx="4" fill="url(#mcScrew)" opacity=".95"/>
+          <g fill="#F6E3A6">
+            <circle class="cell" cx="90" cy="52" r="5" style="--dx:6px;--dy:24px;animation-delay:0s"/><circle class="cell" cx="140" cy="122" r="4" style="--dx:-4px;--dy:-26px;animation-delay:.5s"/>
+            <circle class="cell" cx="190" cy="50" r="5" style="--dx:2px;--dy:26px;animation-delay:1s"/><circle class="cell" cx="240" cy="120" r="4" style="--dx:5px;--dy:-24px;animation-delay:1.4s"/>
+            <circle class="cell" cx="280" cy="54" r="4" style="--dx:-6px;--dy:22px;animation-delay:1.9s"/><circle class="cell" cx="115" cy="118" r="5" style="--dx:3px;--dy:-24px;animation-delay:2.2s"/>
+          </g>
+          <g fill="#c4473d"><circle class="cell" cx="165" cy="124" r="3" style="--dx:0px;--dy:-26px;animation-delay:.8s"/><circle class="cell" cx="215" cy="48" r="3" style="--dx:0px;--dy:26px;animation-delay:1.7s"/></g>
+          <text x="180" y="152" text-anchor="middle" fill="#D5B863" font-family="Barlow Condensed,Arial" font-weight="700" font-size="16" letter-spacing="3">HOST CELLS MOVE IN</text>
+        </svg>
+        <div class="tx"><div class="st">Weeks · Integrate</div><h3>A scaffold, not a foreign body</h3><p>Human cortical bone is an osteoconductive scaffold. Host bone grows onto and into it while the screw holds the reduction.</p></div>
+      </div>
+      <div class="mc rise d4" data-k="2">
+        <svg viewBox="0 0 360 170" aria-hidden="true">
+          <rect x="40" y="45" width="284" height="80" rx="30" fill="url(#mcBone)"/>
+          <rect class="fadeS" x="70" y="72" width="230" height="26" rx="4" fill="url(#mcScrew)" stroke="#D5B863" stroke-width="1.5"/>
+          <g class="grow" fill="#8a7046" opacity="0"><circle cx="90" cy="80" r="2.5"/><circle cx="120" cy="90" r="2"/><circle cx="150" cy="78" r="2.5"/><circle cx="180" cy="92" r="2"/><circle cx="210" cy="80" r="2.5"/><circle cx="240" cy="90" r="2"/><circle cx="270" cy="79" r="2.5"/></g>
+          <text x="180" y="152" text-anchor="middle" fill="#D5B863" font-family="Barlow Condensed,Arial" font-weight="700" font-size="16" letter-spacing="3">BECOMES HOST BONE</text>
+        </svg>
+        <div class="tx"><div class="st">Months · Remodel</div><h3>Becomes the patient's bone</h3><p>Creeping substitution replaces the graft with living bone. Several months after surgery the screw is no longer distinguishable from host bone.</p></div>
+      </div>
+    </div>
+    <p class="cite rise d5">Remodeling: Brcic et al., cited in J Orthop Traumatol 2023. Technique: Surgebright Shark Screw® Hand &amp; Wrist Surgical Technique.</p>
+  </div>
+</section>
+
+<!-- 5 DATA -->
+<section class="panel" data-name="Head to head with metal" data-snd="whoosh">
+  <div class="bg" style="opacity:.1"></div><div class="vig"></div>
+  <div class="wrap">
+    <div class="eyebrow rise">The evidence · upper extremity</div>
+    <h2 class="rise d1">Head to head <span class="gold">with metal.</span></h2>
+    <p class="lede rise d2">41 upper-extremity non-unions. 11 conventional (metal ± graft), 30 Shark Screw® (± graft). Tap a result to spotlight it.</p>
+    <div class="metrics" id="metrics">
+      <div class="mt rise d2" data-k="0"><div class="hd"><b>Union</b><i>higher is better</i></div>
+        <div class="row s"><span>Shark Screw®</span><div class="tr"><i data-w="96.7"></i></div><em data-v="96.7" data-u="%">0</em></div>
+        <div class="row m"><span>Metal</span><div class="tr"><i data-w="72.7"></i></div><em data-v="72.7" data-u="%">0</em></div></div>
+      <div class="mt rise d3" data-k="1"><div class="hd"><b>Time to union</b><i>lower is better</i></div>
+        <div class="row s"><span>Shark Screw®</span><div class="tr"><i data-w="25.7"></i></div><em data-v="10.8" data-u=" wk">0</em></div>
+        <div class="row m"><span>Metal</span><div class="tr"><i data-w="92.4"></i></div><em data-v="38.8" data-u=" wk">0</em></div></div>
+      <div class="mt rise d4" data-k="2"><div class="hd"><b>Complications</b><i>lower is better</i></div>
+        <div class="row s"><span>Shark Screw®</span><div class="tr"><i data-w="3.4"></i></div><em data-v="3.4" data-u="%">0</em></div>
+        <div class="row m"><span>Metal</span><div class="tr"><i data-w="36.4"></i></div><em data-v="36.4" data-u="%">0</em></div></div>
+      <div class="mt rise d5" data-k="3"><div class="hd"><b>Hardware removal</b><i>lower is better</i></div>
+        <div class="row s"><span>Shark Screw®</span><div class="tr"><i data-w="3.4"></i></div><em data-v="3.4" data-u="%">0</em></div>
+        <div class="row m"><span>Metal</span><div class="tr"><i data-w="63.6"></i></div><em data-v="63.6" data-u="%">0</em></div></div>
+    </div>
+    <p class="cite rise d6">Huber E, Jakob G, Palle W, Borchert GH, Pastl K. Life (Basel). 2025;15(9):1421. Retrospective, multicentre, Level III. Mixed sites (shoulder, arm, wrist, fingers). Follow-up 10 months Shark Screw® vs. 18 months conventional. Groups not randomized; conventional group younger. The one Shark Screw® hardware removal was metal left from a prior surgery.</p>
+  </div>
+</section>
+
+<!-- 6 SCAPHOID -->
+<section class="panel" data-name="Scaphoid results" data-snd="whoosh">
+  <div class="wrap">
+    <div class="eyebrow rise">Scaphoid pseudarthrosis</div>
+    <h2 class="rise d1">Scaphoid non-unions <span class="gold">that heal.</span></h2>
+    <div class="nu">
+      <div class="pop d2"><div class="bign"><span id="bigN">95</span><small>%</small></div><div class="of">42 of 44 scaphoid pseudarthroses united</div></div>
+      <div class="ctx rise d3">
+        <div><div class="lbl"><span>Shark Screw® · pseudarthrosis</span><span class="gold">95%</span></div><div class="tr"><i id="ctxS" style="left:0;width:0;background:linear-gradient(90deg,#8a7330,#D5B863,#F1DC9C)"></i></div></div>
+        <div><div class="lbl"><span>Literature · proximal pole with AVN</span><span style="color:#c9c9c9">12–50%</span></div><div class="tr"><i id="ctxL" style="left:12%;width:0;background:linear-gradient(90deg,#4b5157,#8f98a3)"></i></div></div>
+        <div class="qt">The authors' conclusion: similar union rates in fresh fractures and better union rates in pseudarthrosis patients compared with the literature for other scaphoid fixation. No autograft is mandatory for the screw itself.</div>
+      </div>
+    </div>
+    <p class="cite rise d4">Treatment of scaphoid fractures and pseudarthroses with the human allogeneic cortical bone screw. J Orthop Traumatol. 2023. doi:10.1186/s10195-023-00686-7. Retrospective, multicentre, Level III; 75 patients (31 fresh, 44 pseudarthrosis). Literature range shown for context; populations differ.</p>
+  </div>
+</section>
+
+<!-- 7 VERSUS -->
+<section class="panel" data-name="Shark Screw vs metal" data-snd="whoosh">
+  <div class="bg" style="opacity:.1"></div><div class="vig"></div>
+  <div class="wrap">
+    <div class="eyebrow rise">Side by side</div>
+    <h2 class="rise d1">Shark Screw<span class="reg">®</span> <span class="gold">vs. metal screw.</span></h2>
+    <div class="vs rise d2" id="vs">
+      <div class="h"><div></div><div>Shark Screw®</div><div>Metal compression screw</div></div>
+      <div class="r"><div>Material</div><div>Human cortical bone allograft</div><div>Titanium alloy</div></div>
+      <div class="r"><div>Biology</div><div>Osteoconductive scaffold that remodels into host bone</div><div>Inert. Stays as hardware.</div></div>
+      <div class="r"><div>Union (UE non-union)</div><div>96.7%</div><div>72.7%</div></div>
+      <div class="r"><div>Time to union</div><div>About 11 weeks</div><div>About 39 weeks</div></div>
+      <div class="r"><div>Hardware removal</div><div>Nothing to remove (3.4%: prior metal)</div><div>63.6% of patients</div></div>
+      <div class="r"><div>Profile</div><div>Trimmed flush at the bone surface</div><div>Length chosen and left in place</div></div>
+      <div class="r"><div>Follow-up imaging</div><div>No metal artifact</div><div>Metal artifact on CT and MRI</div></div>
+    </div>
+    <div class="vsctl rise d3"><button class="gold" id="vsNext">Next row ›</button><button id="vsAll">Show all</button><button id="vsReset">↺ Reset</button></div>
+    <p class="cite rise d4">Union, time to union and hardware removal: Huber et al., Life (Basel) 2025 (upper-extremity non-unions, retrospective). Profile: Surgebright technique guide.</p>
+  </div>
+</section>
+
+<!-- 8 TECHNIQUE -->
+<section class="panel" data-name="Technique" data-snd="whoosh">
+  <div class="wrap">
+    <div class="eyebrow rise">Technique at a glance</div>
+    <h2 class="rise d1">Palmar or dorsal. <span class="gold">One 3.5 mm screw.</span></h2>
+    <div class="tech">
+      <div class="rise d2">
+        <div class="tg" id="apTg"><button class="on" data-a="p">Palmar · distal to proximal</button><button data-a="d">Dorsal · proximal to distal</button></div>
+        <div class="traj"><svg viewBox="0 0 520 300" id="trajSvg" aria-label="Scaphoid with screw trajectory">
+          <defs><linearGradient id="tjB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4ead2"/><stop offset="1" stop-color="#a68c5e"/></linearGradient><marker id="tjA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9z" fill="#D5B863"/></marker></defs>
+          <path d="M 80 150 C 80 115, 115 95, 150 100 C 195 106, 225 132, 270 132 C 315 132, 350 104, 395 98 C 432 93, 458 118, 455 152 C 452 186, 425 205, 390 202 C 340 198, 320 208, 270 210 C 220 212, 190 220, 140 218 C 102 216, 80 188, 80 150 Z" fill="url(#tjB)" stroke="#fbf2dc" stroke-width="2"/>
+          <path d="M 272 133 L 264 158 L 276 180 L 266 210" fill="none" stroke="#8A3A26" stroke-width="3"/>
+          <line id="tjLine" x1="40" y1="182" x2="420" y2="152" stroke="#D5B863" stroke-width="7" stroke-linecap="round" marker-end="url(#tjA)" stroke-dasharray="600" stroke-dashoffset="600"/>
+          <text x="40" y="262" fill="#EFE6D2" font-family="Barlow Condensed,Arial" font-weight="700" font-size="22" letter-spacing="2">DISTAL POLE</text>
+          <text x="480" y="262" text-anchor="end" fill="#EFE6D2" font-family="Barlow Condensed,Arial" font-weight="700" font-size="22" letter-spacing="2">PROXIMAL POLE</text>
+          <text id="tjLbl" x="260" y="44" text-anchor="middle" fill="#D5B863" font-family="Barlow Condensed,Arial" font-weight="800" font-size="22" letter-spacing="3">PALMAR · ENTERS THE TUBERCLE</text>
+        </svg></div>
+      </div>
+      <div><div class="steps rise d3" id="steps"></div><div class="vsctl rise d3"><button class="gold" id="spNext">Next step ›</button></div></div>
+    </div>
+    <p class="cite rise d4">Summarized from the Surgebright Shark Screw® Hand &amp; Wrist Surgical Technique (scaphoid fracture / non-union). Refer to the full technique guide and IFU.</p>
+  </div>
+</section>
+
+<!-- 9 CLOSE -->
+<section class="panel" data-name="Lotus Medical" data-snd="chime">
+  <div class="bg" style="opacity:.1"></div><div class="vig"></div>
+  <div class="wrap close">
+    <img class="lmlogo pop" src="../lotus-logo.webp?v=13" alt="Lotus Medical. Healing Sooner. Wellness Longer.">
+    <div class="tl rise d1">REGENERATIVE BIOLOGICS · LOWER EXTREMITY FIXATION</div>
+    <h2 class="rise d1">Bring Shark Screw<span class="reg">®</span> <span class="gold">to your next scaphoid revision.</span></h2>
+    <div class="contacts">
+      <div class="ct rise d2"><b>Scott Stojetz</b><i>Owner / Principal</i><span>513-317-6971</span><a href="mailto:scott@lotusmedcompany.com">scott@lotusmedcompany.com</a></div>
+      <div class="ct rise d3"><b>John Callahan</b><i>Vice President, Sales</i><span>330-858-6718</span><a href="mailto:john@lotusmedcompany.com">john@lotusmedcompany.com</a></div>
+    </div>
+    <div class="tagl rise d4">Integrity First. Patient First. Always.</div>
+    <p class="fine rise d5">Shark Screw<span class="reg">®</span> is precision-milled human cortical bone allograft manufactured by Surgebright GmbH and distributed by Lotus Medical. Animation is illustrative. For licensed clinicians; refer to the IFU and the Surgebright Hand &amp; Wrist Surgical Technique. Sources: Huber E et al. Life (Basel). 2025;15(9):1421. doi:10.3390/life15091421 · Treatment of scaphoid fractures and pseudarthroses with the human allogeneic cortical bone screw. J Orthop Traumatol. 2023. doi:10.1186/s10195-023-00686-7 · Scaphoid fixation review. Orthopedic Reviews. 2026;18. doi:10.52965/001c.157898.</p>
+  </div>
+</section>
+</main>
 
 <script>
-(function(){
+/* ===== shared sound (Web Audio, same voice as the other Lotus sizzlers) ===== */
+var soundOn=true;try{soundOn=localStorage.getItem('lcc-sound')!=='off'}catch(e){}
+var AC=null;
+function audio(){try{if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AC=new C()}if(AC.state==='suspended')AC.resume();return AC}catch(e){return null}}
+function snd(name){
+  if(!soundOn)return;var a=audio();if(!a)return;var t0=a.currentTime+0.01,out=a.destination;
+  function tone(f,f2,d,type,v,dl){dl=dl||0;var o=a.createOscillator(),g=a.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,t0+dl);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t0+dl+d);g.gain.setValueAtTime(0.0001,t0+dl);g.gain.exponentialRampToValueAtTime(v||0.2,t0+dl+0.012);g.gain.exponentialRampToValueAtTime(0.0001,t0+dl+d);o.connect(g);g.connect(out);o.start(t0+dl);o.stop(t0+dl+d+.05)}
+  function noise(d,f1,f2,v,dl,q){dl=dl||0;var len=Math.floor(a.sampleRate*d),buf=a.createBuffer(1,len,a.sampleRate),c=buf.getChannelData(0);for(var i=0;i<len;i++)c[i]=Math.random()*2-1;var s=a.createBufferSource();s.buffer=buf;var bp=a.createBiquadFilter();bp.type='bandpass';bp.Q.value=q||1.2;bp.frequency.setValueAtTime(f1,t0+dl);bp.frequency.exponentialRampToValueAtTime(f2,t0+dl+d);var g=a.createGain();g.gain.setValueAtTime(0.0001,t0+dl);g.gain.exponentialRampToValueAtTime(v||.2,t0+dl+d*.3);g.gain.exponentialRampToValueAtTime(0.0001,t0+dl+d);s.connect(bp);bp.connect(g);g.connect(out);s.start(t0+dl);s.stop(t0+dl+d+.05)}
+  switch(name){
+    case 'pop':tone(320,900,.14,'sine',.2);break;
+    case 'tick':tone(1900,0,.035,'square',.035);break;
+    case 'swish':noise(.38,700,4200,.28);break;
+    case 'whoosh':noise(.65,260,2600,.4);tone(70,45,.5,'sine',.25,.05);break;
+    case 'boom':tone(70,32,1.4,'sine',.55);noise(.9,200,60,.25);noise(1.2,300,5000,.12,.05);break;
+    case 'thud':tone(95,38,.4,'sine',.5);noise(.09,180,700,.25);break;
+    case 'click':tone(2500,0,.04,'square',.06);tone(1300,0,.07,'triangle',.09,.01);break;
+    case 'ratchet':for(var i=0;i<9;i++)tone(2300+Math.random()*700,0,.028,'square',.045,i*.065);break;
+    case 'chime':[880,1108.7,1318.5].forEach(function(f,i){tone(f,0,.8,'sine',.14,i*.09)});break;
+    case 'level':[523.3,659.3,784,1046.5].forEach(function(f,i){tone(f,0,.45,'triangle',.16,i*.09)});noise(.5,4000,9000,.06,.3);break;
+    case 'rise':tone(220,880,1.4,'sawtooth',.03);noise(1.4,400,5000,.08);break;
+  }
+}
+</script>
+
+<script>
+/* ===== procedure animation (same frames and soundtrack as the video) ===== */
+var Proc=(function(){
 const NS="http://www.w3.org/2000/svg";
 const $=id=>document.getElementById(id);
 const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
@@ -466,21 +891,121 @@ function render(t){
   $("scaphCtx").setAttribute("opacity",cl((t-69.6)/.6));
   $("endc").setAttribute("opacity",cl((t-72.2)/.9));
 }
-window.renderAt=render; window.DURATION=DUR;
 
-if(location.search.indexOf("capture")>=0){document.body.classList.add("cap");render(0);return;}
-let start=performance.now(),paused=false,pt=0,soundOn=false,curT=0;const snd=$("snd");
-try{fetch(snd.getAttribute("src")).then(r=>r.ok?r.blob():null).then(b=>{if(b&&snd.paused){snd.src=URL.createObjectURL(b);snd.load();}}).catch(()=>{});}catch(e){}
-function loop(now){if(!paused){let t;
-  if(soundOn&&!snd.paused&&!snd.ended){t=snd.currentTime;start=now-t*1000;}else{t=(now-start)/1000;}
-  if(t>DUR+3){start=now;t=0;if(soundOn){try{snd.currentTime=0;snd.play();}catch(e){}}}
-  curT=Math.min(t,DUR);render(curT);}requestAnimationFrame(loop);}
-requestAnimationFrame(loop);
-function playSnd(){if(!soundOn||curT>=DUR)return;try{snd.currentTime=curT;const p=snd.play();if(p&&p.catch)p.catch(function(){});}catch(e){}}
-$("bSnd").onclick=()=>{soundOn=!soundOn;const b=$("bSnd");
-  if(soundOn){b.textContent="MUTE";b.classList.remove("hot");if(!paused)playSnd();}else{b.textContent="SOUND ON";snd.pause();}};
-$("bReplay").onclick=()=>{start=performance.now();curT=0;paused=false;$("bPlay").textContent="PAUSE";playSnd();};
-$("bPlay").onclick=()=>{if(paused){start=performance.now()-pt*1000;paused=false;$("bPlay").textContent="PAUSE";playSnd();}else{pt=curT;paused=true;snd.pause();$("bPlay").textContent="PLAY";}};
+  var PS=4.4,PE=53.0,LEN=PE-PS;
+  var box=$("player"),big=$("pBig"),play=$("pPlay"),scrub=$("pScrub"),chap=[].slice.call(document.querySelectorAll('#pChap button')),pa=$("pAudio");
+  try{fetch(pa.getAttribute('src')).then(function(r){return r.ok?r.blob():null}).then(function(b){if(b&&pa.paused){pa.src=URL.createObjectURL(b);pa.load()}}).catch(function(){})}catch(e){}
+  var t=6.2,playing=false,last=null,raf=null,visible=false;
+  function syncAudio(){if(soundOn&&playing){try{pa.currentTime=Math.max(0,t-PS);var p=pa.play();if(p&&p.catch)p.catch(function(){})}catch(e){}}else{try{pa.pause()}catch(e){}}}
+  function ui(){play.textContent=playing?'❚❚ Pause':(t>=PE-.05?'↺ Play again':'▶ Play');scrub.value=Math.round((t-PS)/LEN*1000);
+    var k=0;chap.forEach(function(b,i){if(t>=+b.dataset.t-.01)k=i});chap.forEach(function(b,i){b.classList.toggle('on',i===k&&box.classList.contains('started'))})}
+  function frame(ts){
+    if(playing){if(soundOn&&!pa.paused&&!pa.ended&&pa.readyState>1){t=PS+pa.currentTime}else if(last!=null){t+=Math.min(.05,(ts-last)/1000)}
+      if(t>=PE){t=PE;playing=false;try{pa.pause()}catch(e){}}}
+    last=ts;render(t);ui();raf=visible?requestAnimationFrame(frame):null}
+  function kick(){if(!raf&&visible){last=null;raf=requestAnimationFrame(frame)}}
+  function start(){audio();box.classList.add('started');if(t>=PE-.05)t=PS;playing=true;syncAudio();kick()}
+  function pause(){playing=false;syncAudio();ui()}
+  function seek(nt){box.classList.add('started');t=Math.max(PS,Math.min(PE,nt));if(playing)syncAudio();render(t);ui()}
+  big.onclick=start;play.onclick=function(){playing?pause():start()};
+  $("pRe").onclick=function(){t=PS;start()};
+  chap.forEach(function(b){b.onclick=function(){snd('tick');seek(+b.dataset.t+.05);if(!playing)start()}});
+  function stepTo(dir){var ts=chap.map(function(b){return +b.dataset.t});var k=0;ts.forEach(function(x,i){if(t>=x-.01)k=i});
+    var n=dir>0?Math.min(ts.length-1,k+1):(t-ts[k]>1.2?k:Math.max(0,k-1));snd('tick');seek(ts[n]+.05);if(!playing)start()}
+  $("pFwd").onclick=function(){stepTo(1)};$("pBack").onclick=function(){stepTo(-1)};
+  scrub.oninput=function(){seek(PS+scrub.value/1000*LEN)};
+  box.addEventListener('keydown',function(e){e.stopPropagation()});
+  render(t);ui();
+  return{show:function(v){visible=v;if(v)kick();else{if(playing)pause()}},soundChanged:function(){syncAudio()}};
+})();
+</script>
+
+<script>
+/* ===== deck: snap panels, dots, entrances, sound ===== */
+(function(){
+  var deck=document.getElementById('deck'),panels=[].slice.call(document.querySelectorAll('.panel'));
+  var dots=document.getElementById('dots'),bar=document.getElementById('bar'),nextBtn=document.getElementById('next'),sb=document.getElementById('sndBtn');
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,current=-1;
+  function sndUI(){sb.textContent=soundOn?'Sound on':'Sound off';sb.classList.toggle('off',!soundOn)}
+  sb.onclick=function(){soundOn=!soundOn;try{localStorage.setItem('lcc-sound',soundOn?'on':'off')}catch(e){}sndUI();if(soundOn){audio();snd('pop')}Proc.soundChanged()};sndUI();
+  ['touchstart','pointerdown','keydown'].forEach(function(ev){document.addEventListener(ev,function(){audio()},{once:true,passive:true})});
+  panels.forEach(function(p,i){var b=document.createElement('button');b.setAttribute('aria-label',p.getAttribute('data-name'));b.onclick=function(){go(i)};dots.appendChild(b)});
+  function go(i){i=Math.max(0,Math.min(panels.length-1,i));deck.scrollTo({top:panels[i].offsetTop,behavior:reduce?'auto':'smooth'})}
+  nextBtn.onclick=function(){go(current+1>=panels.length?0:current+1)};
+  document.addEventListener('keydown',function(e){if(['ArrowDown','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(current+1)}if(['ArrowUp','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(current-1)}});
+  var hooks={};
+  function enter(i){if(i===current)return;current=i;
+    [].forEach.call(dots.children,function(d,k){d.classList.toggle('on',k===i)});
+    bar.style.width=((i+1)/panels.length*100)+'%';nextBtn.style.opacity=i===panels.length-1?'.35':'1';
+    var p=panels[i];p.classList.remove('in');void p.offsetWidth;p.classList.add('in');
+    if(p.dataset.snd)snd(p.dataset.snd);
+    var h=hooks[p.getAttribute('data-name')];if(h)h(p)}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)enter(panels.indexOf(e.target))})},{threshold:[.5]});
+    panels.forEach(function(p){io.observe(p)});
+    var pv=new IntersectionObserver(function(es){es.forEach(function(e){Proc.show(e.isIntersecting)})},{threshold:[.25]});
+    pv.observe(document.getElementById('player'));
+  }else{Proc.show(true)}
+
+  function count(el,end,u,dec,dur,delay){var t0=null;el.textContent=(0).toFixed(dec)+u;
+    function st(ts){if(!t0)t0=ts;var x=Math.min(1,(ts-t0-delay)/dur);if(x<0){requestAnimationFrame(st);return}var e=1-Math.pow(1-x,3);el.textContent=(end*e).toFixed(dec)+u;if(x<1)requestAnimationFrame(st)}
+    if(reduce){el.textContent=end.toFixed(dec)+u;return}requestAnimationFrame(st)}
+
+  /* mechanism cards: tap to spotlight */
+  var mcs=[].slice.call(document.querySelectorAll('.mc'));
+  mcs.forEach(function(c){c.onclick=function(){mcs.forEach(function(x){x.classList.toggle('on',x===c)});snd(['ratchet','swish','chime'][+c.dataset.k])}});
+  hooks['How it works']=function(){var k=0;mcs.forEach(function(x,i){x.classList.toggle('on',i===0)});setTimeout(function(){snd('ratchet')},700)};
+
+  /* metrics */
+  var mts=[].slice.call(document.querySelectorAll('.mt'));
+  function fillMetric(m,delay){m.querySelectorAll('.row').forEach(function(r,j){var i=r.querySelector('.tr i'),em=r.querySelector('em');
+    i.style.transition='none';i.style.width='0';void i.offsetWidth;i.style.transition='';
+    setTimeout(function(){i.style.width=i.dataset.w+'%';snd(j===0?'tick':'click')},delay+j*220);
+    count(em,parseFloat(em.dataset.v),em.dataset.u,em.dataset.u.indexOf('wk')>=0?0:1,1500,delay+j*220)})}
+  hooks['Head to head with metal']=function(){mts.forEach(function(m,i){m.classList.remove('on');fillMetric(m,500+i*450)});setTimeout(function(){snd('level')},500+4*450+1200)};
+  mts.forEach(function(m){m.onclick=function(){mts.forEach(function(x){x.classList.toggle('on',x===m)});fillMetric(m,0);snd('pop')}});
+
+  /* scaphoid stat */
+  hooks['Scaphoid results']=function(){var n=document.getElementById('bigN');count(n,95,'',0,1700,300);
+    var s=document.getElementById('ctxS'),l=document.getElementById('ctxL');s.style.width='0';l.style.width='0';
+    setTimeout(function(){s.style.width='95%';l.style.width='38%';snd('rise')},400);setTimeout(function(){snd('level')},2100)};
+
+  /* versus rows */
+  var rows=[].slice.call(document.querySelectorAll('#vs .r')),vk=-1;
+  function vsShow(k){vk=k;rows.forEach(function(r,i){r.classList.toggle('on',i<=k);r.classList.toggle('cur',i===k)})}
+  document.getElementById('vsNext').onclick=function(){if(vk<rows.length-1){vsShow(vk+1);snd(vk===rows.length-1?'level':'click')}};
+  document.getElementById('vsAll').onclick=function(){vsShow(rows.length-1);snd('swish')};
+  document.getElementById('vsReset').onclick=function(){vsShow(-1);snd('pop')};
+  rows.forEach(function(r,i){r.onclick=function(){vsShow(i);snd('click')}});
+  hooks['Shark Screw vs metal']=function(){vsShow(-1);setTimeout(function(){vsShow(0);snd('click')},700)};
+
+  /* technique */
+  var STEPS={p:[
+    ['Incision','About 0.5 cm over the STT joint, radial to the FCR tendon, just distal to the wrist crease. Blunt dissection.'],
+    ['K-wire','Palmar-radial, through the scaphoid tubercle toward the proximal pole. Fluoroscopy in PA, lateral and Stecher views, plus dynamic imaging.'],
+    ['Drill and tap','Blue drill and blue tap for the 3.5 mm Shark Screw® cut. Final threads by hand. Flush the canal with saline.'],
+    ['Insert','Drive the Shark Screw® cut with the hex screwdriver under fluoroscopy, compressing the non-union.'],
+    ['Trim flush','Flex the wrist and cut the protruding end just above the bone with a narrow oscillating saw.'],
+    ['Aftercare','Often no cast. Up to 2 weeks for fractures, up to 6 weeks for non-union.']],
+   d:[
+    ['Approach','Longitudinal incision just ulnar to Lister\'s tubercle. Open retinaculum and capsule; preserve the scapholunate ligament.'],
+    ['K-wire','Wrist flexed. 1.1 mm K-wire through the proximal pole, aimed at the center of the thumb CMC joint. Fluoroscopy in three planes.'],
+    ['Drill and tap','Blue drill and blue tap for the 3.5 mm Shark Screw® cut. Flush the canal with saline.'],
+    ['Insert','Drive the Shark Screw® cut with the hex screwdriver.'],
+    ['Trim flush','Cut just above the bone, then contour to the bone surface. It must not sit proud of the cartilage; recess with a small burr if needed.'],
+    ['Aftercare','Often no cast. Up to 2 weeks for fractures, up to 6 weeks for non-union.']]};
+  var stepsEl=document.getElementById('steps'),line=document.getElementById('tjLine'),lbl=document.getElementById('tjLbl'),ap='p',sk=0;
+  function drawSteps(){stepsEl.innerHTML=STEPS[ap].map(function(s,i){return '<div class="sp'+(i===sk?' on':'')+'" data-i="'+i+'"><b>'+(i+1)+'</b><p><strong>'+s[0]+'</strong><span>'+s[1]+'</span></p></div>'}).join('');
+    [].forEach.call(stepsEl.children,function(el){el.onclick=function(){sk=+el.dataset.i;drawSteps();snd('pop');if(sk===1||sk===3)drawLine()}})}
+  function drawLine(){var p=ap==='p';line.setAttribute('x1',p?40:490);line.setAttribute('y1',p?182:136);line.setAttribute('x2',p?420:110);line.setAttribute('y2',p?152:164);
+    lbl.textContent=p?'PALMAR · ENTERS THE TUBERCLE':'DORSAL · ENTERS THE PROXIMAL POLE';
+    line.style.transition='none';line.style.strokeDashoffset='600';void line.getBoundingClientRect();line.style.transition='stroke-dashoffset 1.4s cubic-bezier(.3,.7,.2,1)';line.style.strokeDashoffset='0';snd('ratchet')}
+  [].forEach.call(document.querySelectorAll('#apTg button'),function(b){b.onclick=function(){ap=b.dataset.a;sk=0;[].forEach.call(document.querySelectorAll('#apTg button'),function(x){x.classList.toggle('on',x===b)});drawSteps();drawLine();snd('swish')}});
+  document.getElementById('spNext').onclick=function(){sk=(sk+1)%STEPS[ap].length;drawSteps();snd('pop');if(sk===1||sk===3)drawLine()};
+  drawSteps();
+  hooks['Technique']=function(){setTimeout(drawLine,600)};
+
+  enter(0);
 })();
 </script>
 <script src="../share.js?v=3" defer></script>
