@@ -3,7 +3,7 @@
   var BASE='https://sstojetz-art.github.io/lotus-medical/brochures/';
   var INFO={
     '':            ['Lotus Medical surgeon brochures','animated digital brochures for Shark Screw (foot and ankle, scaphoid), Integrity, Mg OsteoCrete, Mg OsteoCrete Protein Matrix, Mg OsteoRod, FibFix, MiniLock and LapiLock'],
-    'shark-screw/':['Shark Screw','allograft bone screw fixation for 1st MTP fusion and nonunion'],
+    'shark-screw/':['Shark Screw','the Shark Screw Cage for 1st MTP fusion, plus nonunion fixation'],
     'shark-screw-scaphoid/':['Shark Screw Scaphoid','scaphoid non-union revision with the allograft bone screw'],
     'integrity/':  ['Integrity','HA scaffold augmentation for Achilles, peroneal and posterior tibialis repair'],
     'osteocrete/': ['Mg OsteoCrete','the magnesium bone void filler for the foot and ankle that sets like a cement and remodels to bone'],
