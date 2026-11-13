@@ -251,6 +251,68 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
 .panel{padding-top:150px!important}
 @media (max-width:700px){#brand img{width:110px}.panel{padding-top:120px!important}}
 </style>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style id="or-sizzle-css">
+#orSnd{position:fixed;right:300px;top:12px;z-index:60;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.14em;font-size:14px;text-transform:uppercase;color:#D5B863;border:1px solid rgba(213,184,99,.5);padding:7px 12px;background:rgba(0,0,0,.65);cursor:pointer}
+#orSnd.off{color:#888;border-color:#555}
+.opplayer{width:min(100%,calc((100svh - 420px) * 1.7778));min-width:min(100%,520px);margin:14px auto 0;border:1px solid rgba(213,184,99,.35);background:#000;position:relative}
+.opstage{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}
+svg.opsvg text{font-family:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif}
+.opstage svg.opsvg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.opbig{position:absolute;inset:0;margin:auto;width:96px;height:96px;border-radius:50%;border:2px solid #D5B863;background:rgba(0,0,0,.6);color:#D5B863;font-size:38px;cursor:pointer;display:grid;place-items:center;animation:oppulse 1.8s infinite;z-index:3}
+.opplayer.started .opbig{display:none}
+@keyframes oppulse{0%{box-shadow:0 0 0 0 rgba(213,184,99,.55)}70%{box-shadow:0 0 0 24px rgba(213,184,99,0)}100%{box-shadow:0 0 0 0 rgba(213,184,99,0)}}
+.opctl{display:flex;align-items:center;gap:8px;padding:10px 12px;border-top:1px solid rgba(213,184,99,.28);flex-wrap:wrap;background:#0b0a08}
+.opctl button{background:#000;border:1px solid rgba(213,184,99,.28);color:#fff;padding:8px 14px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.1em;font-size:16px;text-transform:uppercase;cursor:pointer}
+.opctl button.g{background:#D5B863;color:#000;border-color:#D5B863}
+.opctl input[type=range]{flex:1;min-width:140px;accent-color:#D5B863}
+.opchap{display:flex;flex-wrap:wrap;border-top:1px solid rgba(213,184,99,.28)}
+.opchap button{flex:1 1 auto;background:transparent;border:0;border-right:1px solid rgba(213,184,99,.28);color:#cfc7b6;padding:11px 8px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:clamp(14px,1.45vw,18px);letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.opchap button:last-child{border-right:0}
+.opchap button.on{background:#D5B863;color:#000}
+.mgwrap{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(20px,3vw,44px);align-items:center;margin-top:24px}
+.mgbars{display:grid;gap:20px}
+.mgb .lb{display:flex;justify-content:space-between;align-items:baseline;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:clamp(17px,1.8vw,22px);margin-bottom:7px}
+.mgb .lb em{font-style:normal;font-weight:800;font-size:clamp(22px,2.4vw,32px);font-variant-numeric:tabular-nums}
+.mgb .tr{height:30px;background:rgba(255,255,255,.06);position:relative;overflow:hidden}
+.mgb .tr i{position:absolute;top:0;bottom:0;left:0;width:0;transition:width 1.6s cubic-bezier(.6,0,.2,1),left 1.6s cubic-bezier(.6,0,.2,1)}
+.mgb.c .tr i{background:linear-gradient(90deg,#5d5446,#9c8a66)}
+.mgb.o .tr i{background:linear-gradient(90deg,#8a7330,#D5B863,#F1DC9C);box-shadow:0 0 14px rgba(213,184,99,.45)}
+.mgb.k .tr i{background:linear-gradient(90deg,#6e6656,#cbbd9b)}
+.mgb.o em{color:#D5B863}
+.props{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pr{border:1px solid rgba(255,255,255,.1);background:linear-gradient(160deg,rgba(213,184,99,.10),rgba(18,17,16,.92) 60%);padding:18px;cursor:pointer;transition:border-color .3s,transform .3s}
+.pr.on{border-color:#D5B863;transform:translateY(-3px)}
+.pr b{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:clamp(22px,2.3vw,30px);text-transform:uppercase;color:#D5B863;line-height:1}
+.pr p{font-size:16.5px;color:#d7d1c4;line-height:1.4;margin-top:8px}
+.evwrap{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(20px,3vw,44px);align-items:start;margin-top:22px}
+.evchart{border:1px solid rgba(213,184,99,.3);background:radial-gradient(ellipse at 50% 40%,#1a1712,#050505 75%);padding:10px}
+.evchart svg{display:block;width:100%;height:auto}
+.evcards{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+.ev{border-left:4px solid #D5B863;background:rgba(213,184,99,.07);padding:11px 13px}
+.ev b{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:clamp(24px,2.6vw,34px);color:#D5B863;line-height:1}
+.ev span{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:15px;color:#fff;margin-top:4px}
+.ev p{font-size:14.5px;color:#d7d1c4;line-height:1.4;margin-top:6px}
+.ev.pre{border-left-color:#8f98a3;background:rgba(255,255,255,.04)}
+.vso{margin-top:22px;border:1px solid rgba(213,184,99,.28)}
+.vso .h,.vso .r{display:grid;grid-template-columns:1fr 1.5fr 1.5fr}
+.vso .h div{padding:12px 16px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:clamp(16px,1.7vw,21px)}
+.vso .h div:nth-child(2){background:#D5B863;color:#000}
+.vso .h div:nth-child(3){background:#2a2d31;color:#d6dbe0}
+.vso .r{border-top:1px solid rgba(213,184,99,.28);opacity:.12;transition:opacity .5s,background .5s;cursor:pointer}
+.vso .r.on{opacity:1}.vso .r.cur{background:rgba(213,184,99,.07)}
+.vso .r div{padding:13px 16px;font-size:clamp(16px,1.6vw,19px);line-height:1.35}
+.vso .r div:first-child{font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#D5B863}
+.vso .r div:nth-child(3){color:#a9afb5}
+.vsoctl{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.vsoctl button{background:transparent;border:2px solid rgba(213,184,99,.28);color:#fff;padding:9px 16px;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-weight:800;font-size:17px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.vsoctl button.g{background:#D5B863;border-color:#D5B863;color:#000}
+.orcite{font-size:14.5px;color:#9a9284;margin-top:14px;line-height:1.5}
+@media (max-width:980px){.mgwrap,.evwrap{grid-template-columns:1fr}}
+@media (max-width:700px){#orSnd{right:auto;left:16px;top:auto;bottom:14px}}
+@media (max-width:620px){.evcards{grid-template-columns:1fr}.props{grid-template-columns:1fr}.vso .h,.vso .r{grid-template-columns:.8fr 1.2fr 1.2fr}}
+</style>
 </head>
 <body>
 <div id="bar"></div>
@@ -259,6 +321,7 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
 <button id="next" aria-label="Next section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
 
 <a id="home" href="index.html">‹ Brochures</a>
+<button id="orSnd" aria-label="Sound on or off">Sound on</button>
 <main id="deck">
 
 <!-- 1 HERO -->
@@ -282,6 +345,166 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
 </section>
 
 <!-- 2 NUMBERS -->
+
+<!-- NEW: PROCEDURE FILM -->
+<section class="panel" data-name="Watch the procedure" data-snd="whoosh">
+  <div class="wrap">
+    <div class="eyebrow rise">Watch it start to finish</div>
+    <h2 class="rise d1">From nail <span class="gold">to bone.</span></h2>
+    <div class="opplayer rise d2" id="opPlayer">
+      <div class="opstage"><svg id="orfilm" class="opsvg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <radialGradient id="o-bg" cx="50%" cy="50%" r="70%"><stop offset="0" stop-color="#16130f"/><stop offset=".6" stop-color="#070706"/><stop offset="1" stop-color="#000"/></radialGradient>
+  <radialGradient id="o-vig" cx="50%" cy="50%" r="72%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></radialGradient>
+  <linearGradient id="o-boneV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a68c5e"/><stop offset=".35" stop-color="#e9dcbd"/><stop offset=".65" stop-color="#f4ead2"/><stop offset="1" stop-color="#9c8256"/></linearGradient>
+  <linearGradient id="o-metalV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5a626b"/><stop offset=".4" stop-color="#f5f7f9"/><stop offset=".7" stop-color="#aab2bb"/><stop offset="1" stop-color="#4d555d"/></linearGradient>
+  <linearGradient id="o-metalH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5f7f9"/><stop offset=".45" stop-color="#aab2bb"/><stop offset="1" stop-color="#5a626b"/></linearGradient>
+  <linearGradient id="o-rodV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b9b4aa"/><stop offset=".4" stop-color="#f3f1ec"/><stop offset=".7" stop-color="#dcd8cf"/><stop offset="1" stop-color="#a39e94"/></linearGradient>
+  <linearGradient id="o-goldG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b8973f"/><stop offset=".5" stop-color="#D5B863"/><stop offset="1" stop-color="#f0dc9a"/></linearGradient>
+  <pattern id="o-trab" width="7" height="6" patternUnits="userSpaceOnUse"><ellipse cx="2" cy="1.6" rx="1.4" ry=".8" fill="#8a7046" opacity=".22"/><circle cx="5.4" cy="4.4" r=".5" fill="#fff" opacity=".25"/></pattern>
+  <pattern id="o-speck" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r=".6" fill="#8d877b" opacity=".35"/><circle cx="4.5" cy="4" r=".4" fill="#8d877b" opacity=".3"/></pattern>
+  <filter id="o-soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter>
+  <filter id="o-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0.84 0 0 0 0 0.72 0 0 0 0 0.39 0 0 0 1 0" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="o-white" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <path id="o-fem" d="M 420 -600 L 580 -600 L 592 110 C 650 160, 660 250, 616 284 C 576 300, 540 290, 500 286 C 460 290, 424 300, 384 284 C 340 250, 350 160, 408 110 Z"/>
+  <path id="o-tib" d="M 378 322 C 378 300, 420 292, 500 294 C 580 292, 622 300, 624 322 C 626 362, 602 402, 562 442 C 550 520, 550 700, 552 900 C 554 1150, 558 1350, 570 1480 C 592 1520, 597 1560, 587 1582 L 418 1582 C 408 1560, 413 1520, 438 1480 C 450 1350, 450 1150, 448 900 C 446 700, 446 520, 438 442 C 398 402, 376 362, 378 322 Z"/>
+  <path id="o-fib" d="M 628 340 C 640 322, 672 324, 680 344 C 684 362, 672 378, 662 386 L 656 1520 C 676 1540, 680 1600, 660 1640 C 646 1662, 624 1650, 620 1620 C 616 1590, 622 1550, 636 1520 L 640 386 C 630 378, 622 360, 628 340 Z"/>
+  <path id="o-tal" d="M 418 1590 C 430 1578, 572 1578, 588 1590 C 604 1626, 594 1664, 562 1676 L 440 1676 C 410 1664, 402 1626, 418 1590 Z"/>
+  <clipPath id="o-tibClip"><use href="#o-tib"/></clipPath>
+</defs>
+<rect width="1920" height="1080" fill="url(#o-bg)"/>
+
+<g id="o-world" opacity="0"><g id="o-cam">
+  <g id="o-skin" filter="url(#o-soft)" opacity=".5">
+    <path d="M 300 -700 L 700 -700 C 720 -200, 720 100, 700 300 C 760 500, 760 800, 690 1150 C 660 1350, 650 1500, 650 1640 L 360 1640 C 360 1500, 350 1350, 320 1150 C 250 800, 250 500, 300 300 C 280 100, 280 -200, 300 -700 Z" fill="#4a3a2b"/>
+    <ellipse cx="510" cy="1760" rx="200" ry="90" fill="#4a3a2b"/>
+  </g>
+  <g id="o-others">
+    <use href="#o-fem" fill="url(#o-boneV)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/><use href="#o-fem" fill="url(#o-trab)"/>
+    <use href="#o-fib" fill="url(#o-boneV)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/><use href="#o-fib" fill="url(#o-trab)"/>
+    <use href="#o-tal" fill="url(#o-boneV)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/><use href="#o-tal" fill="url(#o-trab)"/>
+    <ellipse cx="505" cy="1730" rx="80" ry="38" fill="url(#o-boneV)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+  </g>
+  <g id="o-tibia">
+    <use href="#o-tib" fill="url(#o-boneV)" stroke="#f7eedb" stroke-width="1.5" vector-effect="non-scaling-stroke"/><use href="#o-tib" fill="url(#o-trab)"/>
+    <g clip-path="url(#o-tibClip)">
+      <rect id="o-canal" x="480" y="318" width="40" height="1150" rx="20" fill="#2a1712"/>
+      <rect id="o-memL" x="480" y="330" width="4" height="1130" fill="#a3925a"/>
+      <rect id="o-memR" x="516" y="330" width="4" height="1130" fill="#a3925a"/>
+      <g id="o-debris"></g>
+      <g id="o-water"></g>
+      <g id="o-newbone" opacity="0"><rect x="474" y="318" width="52" height="1152" rx="24" fill="url(#o-boneV)"/><rect x="474" y="318" width="52" height="1152" rx="24" fill="url(#o-trab)"/></g>
+    </g>
+  </g>
+  <!-- nail + extractor -->
+  <g id="o-nail">
+    <rect x="490" y="-2600" width="20" height="2900" fill="url(#o-metalV)" id="o-extr" opacity="0"/>
+    <g id="o-hammer" opacity="0"><rect x="458" y="-900" width="84" height="160" rx="10" fill="url(#o-metalV)"/><rect x="458" y="-820" width="84" height="10" fill="#3a3f45"/></g>
+    <rect x="485" y="306" width="30" height="1146" rx="12" fill="url(#o-metalV)"/>
+    <rect x="497" y="306" width="6" height="1146" fill="#3a3f45" opacity=".55"/>
+  </g>
+  <!-- locking screws + driver -->
+  <g id="o-screws"></g>
+  <!-- reamer -->
+  <g id="o-reamer" opacity="0">
+    <rect x="495" y="-2600" width="10" height="2600" fill="url(#o-metalV)"/>
+    <g id="o-rhead"><circle cx="500" cy="0" r="25" fill="url(#o-metalV)"/><g id="o-rflutes" stroke="#3f464d" stroke-width="3"></g></g>
+  </g>
+  <!-- OsteoRod + inserter -->
+  <g id="o-rod" opacity="0">
+    <rect x="496" y="-2600" width="8" height="2600" fill="#7d858e"/>
+    <rect x="475" y="0" width="50" height="1130" rx="24" fill="url(#o-rodV)"/>
+    <rect x="475" y="0" width="50" height="1130" rx="24" fill="url(#o-speck)"/>
+  </g>
+  <g id="o-sparks"></g>
+  <ellipse id="o-ring" cx="500" cy="880" rx="150" ry="640" fill="none" stroke="#D5B863" stroke-width="3" vector-effect="non-scaling-stroke" opacity="0"/>
+</g></g>
+
+<!-- fluoroscopy look -->
+<g id="o-fluo" opacity="0">
+  <rect width="1920" height="1080" fill="#0b1016"/>
+  <g id="o-fcam">
+    <use href="#o-tib" fill="#55606b"/><use href="#o-fib" fill="#4a545e"/><use href="#o-fem" fill="#4a545e"/><use href="#o-tal" fill="#4a545e"/>
+    <rect x="482" y="330" width="36" height="1130" rx="18" fill="#2b333b"/>
+    <rect id="o-frod" x="475" y="330" width="50" height="1130" rx="24" fill="#f4f8fb" filter="url(#o-white)"/>
+  </g>
+  <circle cx="960" cy="560" r="520" fill="none" stroke="#000" stroke-width="320" opacity=".85"/>
+  <text x="1500" y="210" fill="#9fd3ff" font-size="28" font-weight="700" letter-spacing="4">FLUORO · AP</text>
+</g>
+
+<rect width="1920" height="1080" fill="url(#o-vig)" pointer-events="none"/>
+
+<!-- back table card -->
+<g id="o-table" opacity="0">
+  <rect x="300" y="250" width="1320" height="660" rx="18" fill="#0b0a08" stroke="#D5B863" stroke-width="2"/>
+  <text x="340" y="300" fill="#D5B863" font-size="24" font-weight="700" letter-spacing="6">BACK TABLE</text>
+  <!-- mixing -->
+  <g id="o-mix">
+    <circle id="o-cntR" cx="430" cy="400" r="54" fill="none" stroke="#2b2b2b" stroke-width="8"/>
+    <circle id="o-cntA" cx="430" cy="400" r="54" fill="none" stroke="#D5B863" stroke-width="8" stroke-dasharray="340" stroke-dashoffset="340" transform="rotate(-90 430 400)"/>
+    <text id="o-cntT" x="430" y="412" text-anchor="middle" fill="#fff" font-size="36" font-weight="800">0</text>
+    <text x="430" y="482" text-anchor="middle" fill="#bbb" font-size="18" letter-spacing="3">SECONDS</text>
+    <path d="M 500 620 C 520 760, 820 760, 840 620 Z" fill="#2c3238" stroke="#7d858e" stroke-width="3"/>
+    <ellipse cx="670" cy="620" rx="170" ry="40" fill="#1b1f23" stroke="#9aa1a8" stroke-width="3"/>
+    <g id="o-powder"></g>
+    <ellipse id="o-putty" cx="670" cy="628" rx="0" ry="0" fill="#ece7dc" stroke="#bdb6a8" stroke-width="2"/>
+    <g id="o-drops"></g>
+    <g id="o-spat"><rect x="-8" y="-230" width="16" height="200" rx="4" fill="url(#o-metalV)"/><path d="M -22 -40 L 22 -40 L 16 10 L -16 10 Z" fill="#c9ced4"/></g>
+    <text x="670" y="820" text-anchor="middle" fill="#D5B863" font-size="26" font-weight="700" letter-spacing="3">Mg OSTEOCRETE PUTTY</text>
+  </g>
+  <!-- mold -->
+  <g id="o-mold">
+    <rect x="980" y="600" width="560" height="90" rx="14" fill="url(#o-metalH)" stroke="#e7ecf0" stroke-width="1.5"/>
+    <rect x="1010" y="632" width="500" height="26" rx="13" fill="#20252a"/>
+    <rect id="o-mPutty" x="1010" y="632" width="0" height="26" rx="13" fill="#ece7dc"/>
+    <g id="o-mTop"><rect x="980" y="520" width="560" height="70" rx="14" fill="url(#o-metalH)" stroke="#e7ecf0" stroke-width="1.5"/>
+      <g id="o-nuts" fill="#8f979f" stroke="#e7ecf0" stroke-width="1.5"><polygon class="nut" points="1020,512 1036,512 1044,526 1036,540 1020,540 1012,526"/><polygon class="nut" points="1160,512 1176,512 1184,526 1176,540 1160,540 1152,526"/><polygon class="nut" points="1340,512 1356,512 1364,526 1356,540 1340,540 1332,526"/><polygon class="nut" points="1480,512 1496,512 1504,526 1496,540 1480,540 1472,526"/></g></g>
+    <circle id="o-tmR" cx="1500" cy="356" r="54" fill="none" stroke="#2b2b2b" stroke-width="8"/>
+    <circle id="o-tmA" cx="1500" cy="356" r="54" fill="none" stroke="#D5B863" stroke-width="8" stroke-dasharray="340" stroke-dashoffset="340" transform="rotate(-90 1500 356)"/>
+    <text id="o-tmT" x="1500" y="368" text-anchor="middle" fill="#fff" font-size="36" font-weight="800">0</text>
+    <text x="1500" y="434" text-anchor="middle" fill="#bbb" font-size="18" letter-spacing="3">MINUTES</text>
+    <g id="o-mRod" opacity="0" filter="url(#o-glow)"><rect x="1010" y="632" width="500" height="26" rx="13" fill="url(#o-rodV)"/></g>
+    <text x="1260" y="820" text-anchor="middle" fill="#D5B863" font-size="26" font-weight="700" letter-spacing="3">Mg OSTEOROD · 13 MM ROD</text>
+  </g>
+</g>
+
+<!-- overlays -->
+<g id="o-lbls" fill="#D5B863" font-size="28" font-weight="600"></g>
+<g id="o-prog" opacity="0">
+  <text x="960" y="938" text-anchor="middle" fill="#bdbdbd" font-size="24" letter-spacing="4">CREEPING SUBSTITUTION · MAGNESIUM REPLACED WITH BONE</text>
+  <rect x="660" y="962" width="600" height="10" rx="5" fill="#2b2b2b"/><rect id="o-progBar" x="660" y="962" width="0" height="10" rx="5" fill="url(#o-goldG)"/>
+</g>
+<text id="o-fine" x="960" y="1058" text-anchor="middle" fill="#6f6f6f" font-size="17" opacity="0">Illustration. Mg OsteoCrete is a bone void filler, not structural support; the healed or fixed bone carries the load. Resorption timing varies.</text>
+<g id="o-capg" opacity="0">
+  <text id="o-capK" x="960" y="96" text-anchor="middle" fill="#D5B863" font-size="26" font-weight="700" letter-spacing="8"></text>
+  <text id="o-capH" x="960" y="160" text-anchor="middle" fill="#fff" font-size="54" font-weight="700"></text>
+  <text id="o-capS" x="960" y="210" text-anchor="middle" fill="#b9b9b9" font-size="30"></text>
+</g>
+<g id="o-title" opacity="0">
+  <text x="960" y="430" text-anchor="middle" fill="#fff" font-size="64" font-weight="300" letter-spacing="10"><tspan font-weight="800" fill="#000" style="paint-order:stroke" stroke="#fff" stroke-width="0"></tspan></text>
+  <rect x="640" y="356" width="120" height="96" fill="#fff"/><text x="700" y="430" text-anchor="middle" fill="#000" font-size="70" font-weight="800">Mg</text>
+  <text x="780" y="432" fill="#fff" font-size="80" font-weight="300" letter-spacing="6">OSTEO<tspan font-weight="800">ROD</tspan>™</text>
+  <rect id="o-titleRule" x="960" y="500" width="0" height="4" fill="#D5B863"/>
+  <text x="960" y="590" text-anchor="middle" fill="#fff" font-size="50" font-weight="300" letter-spacing="3">From nail to bone</text>
+  <text x="960" y="650" text-anchor="middle" fill="#9a9a9a" font-size="30" letter-spacing="2">Magnesium spacer for the intramedullary canal</text>
+</g>
+<g id="o-end" opacity="0">
+  <rect x="640" y="250" width="120" height="96" fill="#fff"/><text x="700" y="324" text-anchor="middle" fill="#000" font-size="70" font-weight="800">Mg</text>
+  <text x="780" y="326" fill="#fff" font-size="80" font-weight="300" letter-spacing="6">OSTEO<tspan font-weight="800">ROD</tspan>™</text>
+  <text x="960" y="440" text-anchor="middle" fill="#fff" font-size="48" font-weight="600">Your spacer. Your length. Molded on the back table.</text>
+  <text x="960" y="500" text-anchor="middle" fill="#b9b9b9" font-size="32">13 mm · 110, 160, 220 mm · one reusable mold</text>
+  <rect x="860" y="590" width="200" height="3" fill="#D5B863"/>
+  <text x="960" y="670" text-anchor="middle" fill="#D5B863" font-size="40" font-weight="700" letter-spacing="14">LOTUS MEDICAL</text>
+  <text x="960" y="720" text-anchor="middle" fill="#fff" font-size="28" font-style="italic" font-weight="300">Healing Sooner. Wellness Longer.</text>
+  <text x="960" y="1010" text-anchor="middle" fill="#6f6f6f" font-size="18">Mg OSTEOROD and Mg OSTEOCRETE are manufactured by Bone Solutions, Inc. Steps from the Mg OSTEOROD Spacer Mold Surgical Technique, 10263 Rev A. Refer to the IFU.</text>
+</g>
+</svg><button class="opbig" id="opBig" aria-label="Play the procedure">▶</button></div>
+      <div class="opctl"><button class="g" id="opPlay">▶ Play</button><button id="opBack">‹ Step</button><button id="opFwd">Step ›</button><input type="range" id="opScrub" min="0" max="1000" value="0" aria-label="Scrub through the procedure"><button id="opRe">↺ Replay</button></div>
+      <div class="opchap" id="opChap"><button data-t="4.4">Hardware</button><button data-t="12.4">Screws out</button><button data-t="17.6">Nail out</button><button data-t="22.6">Debride</button><button data-t="28.2">Back table</button><button data-t="36">Seat it</button><button data-t="42.4">Becomes bone</button><button data-t="50">Healed</button></div>
+    </div>
+    <audio id="opAudio" src="osteorod/procedure.m4a?v=23" preload="auto" playsinline></audio>
+  </div>
+</section>
 <section class="panel" data-name="By the numbers">
   <div class="wrap">
     <div class="eyebrow rise">By the numbers</div>
@@ -292,6 +515,57 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
       <div class="stat pop d4"><div><span class="n" data-count="30">30</span><span class="u">sec</span></div><div class="l">To mix Mg OSTEOCRETE into a workable putty</div></div>
       <div class="stat pop d5"><div><span class="n" data-count="30">30</span><span class="u">min</span></div><div class="l">To cure in the closed mold, ready for the canal</div></div>
     </div>
+  </div>
+</section>
+
+
+<!-- NEW: WHY MAGNESIUM -->
+<section class="panel" data-name="Why magnesium" data-snd="whoosh">
+  <div class="bone" style="opacity:.1"></div><div class="vignette"></div>
+  <div class="wrap">
+    <div class="eyebrow rise">Mg OsteoCrete · the material</div>
+    <h2 class="rise d1">Sets like a cement. <span class="gold">Remodels to bone.</span></h2>
+    <div class="mgwrap">
+      <div class="mgbars rise d2" id="mgBars">
+        <div class="mgb c"><div class="lb"><span>Cancellous bone</span><em>2–12 MPa</em></div><div class="tr"><i data-l="1.2" data-w="5.9"></i></div></div>
+        <div class="mgb o"><div class="lb"><span>Mg OsteoCrete · 48 hours</span><em data-n="36">36 MPa</em></div><div class="tr"><i data-l="0" data-w="21.2"></i></div></div>
+        <div class="mgb k"><div class="lb"><span>Cortical bone</span><em>100–170 MPa</em></div><div class="tr"><i data-l="58.8" data-w="41.2"></i></div></div>
+        <p class="orcite">Compressive strength. Mg OsteoCrete: manufacturer specification (Bone Solutions, Inc.), about 5,200 psi at 48 hours. Bone ranges from the general literature. Mg OsteoCrete is a bone void filler, not structural support.</p>
+      </div>
+      <div class="props rise d3" id="mgProps">
+        <div class="pr on"><b>30 sec</b><p>Powder and one vial of solution become a workable putty.</p></div>
+        <div class="pr"><b>Radiopaque</b><p>Seated under fluoroscopy and visible on follow-up imaging.</p></div>
+        <div class="pr"><b>Drillable</b><p>Once set, it can be drilled.</p></div>
+        <div class="pr"><b>Resorbs</b><p>Replaced with the patient's own bone by creeping substitution.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW: EVIDENCE -->
+<section class="panel" data-name="The evidence" data-snd="whoosh">
+  <div class="wrap">
+    <div class="eyebrow rise">The evidence</div>
+    <h2 class="rise d1">Resorbed and replaced. <span class="gold">Documented in Cleveland.</span></h2>
+    <div class="evwrap">
+      <div class="evchart rise d2">
+        <svg viewBox="-40 0 680 380" id="evSvg" aria-label="Average radiographic resorption grade over one year">
+          <g stroke="rgba(255,255,255,.12)"><line x1="80" y1="60" x2="610" y2="60"/><line x1="80" y1="130" x2="610" y2="130"/><line x1="80" y1="200" x2="610" y2="200"/><line x1="80" y1="270" x2="610" y2="270"/><line x1="80" y1="340" x2="610" y2="340"/></g>
+          <g fill="#9a9284" font-family="Barlow Condensed,Arial" font-weight="700" font-size="16" text-anchor="end"><text x="70" y="65">4 · 75–100%</text><text x="70" y="135">3 · 50–75%</text><text x="70" y="205">2 · 25–50%</text><text x="70" y="275">1 · 0–25%</text></g>
+          <g fill="#cfc7b6" font-family="Barlow Condensed,Arial" font-weight="700" font-size="18" text-anchor="middle"><text x="130" y="368">6 WEEKS</text><text x="270" y="368">3 MONTHS</text><text x="420" y="368">6 MONTHS</text><text x="570" y="368">1 YEAR</text></g>
+          <polyline id="evLine" points="130,305 270,291 420,207 570,158" fill="none" stroke="#D5B863" stroke-width="5" stroke-linejoin="round" stroke-dasharray="520" stroke-dashoffset="520"/>
+          <g id="evPts" fill="#D5B863"><circle cx="130" cy="305" r="9"/><circle cx="270" cy="291" r="9"/><circle cx="420" cy="207" r="9"/><circle cx="570" cy="158" r="11"/></g>
+          <g id="evVals" fill="#fff" font-family="Barlow Condensed,Arial" font-weight="800" font-size="24" text-anchor="middle"><text x="130" y="287">1.5</text><text x="270" y="273">1.7</text><text x="420" y="189">2.9</text><text x="570" y="138" fill="#D5B863" font-size="30">3.6</text></g>
+        </svg>
+      </div>
+      <div class="evcards rise d3">
+        <div class="ev"><b>3.6 ± 0.6</b><span>Average resorption grade at 1 year</span><p>Progressive, statistically significant resorption (p &lt; 0.001). University Hospitals Cleveland; 42 patients clinical, 18 radiographic.</p></div>
+        <div class="ev"><b>FDA cleared</b><span>Extremities and pelvis</span><p>Bony voids and defects. A 2025 clearance (K251522) includes patients aged 6 and older.</p></div>
+        <div class="ev"><b>1,000+</b><span>Implanted cases</span><p>Reported by Bone Solutions in 2020. Company figure, not a study.</p></div>
+        <div class="ev pre"><b>Preclinical</b><span>Faster than calcium phosphate</span><p>In a rabbit skull-defect model, OsteoCrete resorbed and was replaced by bone faster than Norian.</p></div>
+      </div>
+    </div>
+    <p class="orcite rise d4">Magister S, Kolaczko J, Sattar A, Wetzel RJ. Clinical parameters and radiographic resorption of a novel magnesium based bone void filler. Injury. 2022;53(3):947–952. Retrospective, single surgeon, no control group; grade 1 = 0–25% resorbed to grade 4 = 75–100%. Preclinical: J Craniofac Surg. 2009;20(2). FDA: K251522.</p>
   </div>
 </section>
 
@@ -437,15 +711,34 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
 </section>
 
 <!-- 7b NAIL TO BONE -->
-<section class="panel" data-name="From nail to bone">
+<section class="panel" data-name="TTC nail to bone">
   <div class="wrap">
-    <div class="eyebrow rise">See it start to finish</div>
-    <h2 class="rise d1">From nail <span class="gold">to bone.</span></h2>
-    <p class="lede rise d2" style="margin-top:10px;margin-bottom:16px">Nail out. Canal cleaned. Rod molded and seated. Magnesium replaced with bone.</p>
+    <div class="eyebrow rise">Also for hindfoot nails</div>
+    <h2 class="rise d1">TTC nail <span class="gold">to bone.</span></h2>
+    <p class="lede rise d2" style="margin-top:10px;margin-bottom:16px">The same workflow after a tibiotalocalcaneal nail. Step through it at your own pace.</p>
     <div id="orxSizzle" class="rise d3" style="--orx-max:34vh"></div>
   </div>
 </section>
 
+
+<!-- NEW: VS PMMA -->
+<section class="panel" data-name="vs PMMA cement rod" data-snd="whoosh">
+  <div class="bone" style="opacity:.08"></div><div class="vignette"></div>
+  <div class="wrap">
+    <div class="eyebrow rise">Side by side</div>
+    <h2 class="rise d1">Mg OsteoRod <span class="gold">vs. a PMMA cement rod.</span></h2>
+    <div class="vso rise d2" id="vso">
+      <div class="h"><div></div><div>Mg OsteoRod</div><div>PMMA cement rod</div></div>
+      <div class="r"><div>Material</div><div>Magnesium-based bone void filler (Mg OsteoCrete)</div><div>Polymethylmethacrylate bone cement</div></div>
+      <div class="r"><div>Over time</div><div>Resorbed and replaced with bone</div><div>Permanent. Does not resorb.</div></div>
+      <div class="r"><div>Shape</div><div>Closed reusable mold: 13 mm, at 110, 160 or 220 mm</div><div>Formed per surgeon technique</div></div>
+      <div class="r"><div>Prep</div><div>30 seconds to mix, 30 minutes to cure in the mold</div><div>Varies by cement and technique</div></div>
+      <div class="r"><div>Imaging</div><div>Radiopaque</div><div>Radiopaque with an added contrast agent</div></div>
+    </div>
+    <div class="vsoctl rise d3"><button class="g" id="vsoNext">Next row ›</button><button id="vsoAll">Show all</button><button id="vsoReset">↺ Reset</button></div>
+    <p class="orcite rise d4">General material comparison, not a head-to-head study. Mg OsteoRod details from the Mg OSTEOROD Spacer Mold Surgical Technique, 10263 Rev A.</p>
+  </div>
+</section>
 <!-- 8 KIT -->
 <section class="panel" data-name="Ordering">
   <div class="wrap">
@@ -518,6 +811,7 @@ canvas#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-e
     nextBtn.style.opacity=i===panels.length-1?'.35':'1';
     var p=panels[i];
     p.classList.remove('in'); void p.offsetWidth; p.classList.add('in');
+    if(window.OrEnter) OrEnter(p);
     if(p.querySelector('[data-count]')) countUp(p);
     if(p.querySelector('#stage')) startCure(); else stopCure();
     if(p.querySelector('#fill')) startAuto(); else stopAuto();
@@ -1093,6 +1387,252 @@ window.TibAnim=function(host,opts){
 window.tibHero=TibAnim(document.getElementById("tibSizzle"),{loop:true,title:"From tibial nail to bone with Mg OSTEOROD"});
 setTimeout(function(){window.tibHero.play()},700);
 </script>
-<script src="share.js?v=2" defer></script>
+
+<script>
+/* ===== Lotus sizzle sound (Web Audio) ===== */
+var soundOn=true;try{soundOn=localStorage.getItem('lcc-sound')!=='off'}catch(e){}
+var AC=null;
+function audio(){try{if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AC=new C()}if(AC.state==='suspended')AC.resume();return AC}catch(e){return null}}
+function snd(name){
+  if(!soundOn)return;var a=audio();if(!a||a.state!=='running')return;var t0=a.currentTime+0.01,out=a.destination;
+  function tone(f,f2,d,type,v,dl){dl=dl||0;var o=a.createOscillator(),g=a.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,t0+dl);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t0+dl+d);g.gain.setValueAtTime(0.0001,t0+dl);g.gain.exponentialRampToValueAtTime(v||0.2,t0+dl+0.012);g.gain.exponentialRampToValueAtTime(0.0001,t0+dl+d);o.connect(g);g.connect(out);o.start(t0+dl);o.stop(t0+dl+d+.05)}
+  function noise(d,f1,f2,v,dl,q){dl=dl||0;var len=Math.floor(a.sampleRate*d),buf=a.createBuffer(1,len,a.sampleRate),c=buf.getChannelData(0);for(var i=0;i<len;i++)c[i]=Math.random()*2-1;var s=a.createBufferSource();s.buffer=buf;var bp=a.createBiquadFilter();bp.type='bandpass';bp.Q.value=q||1.2;bp.frequency.setValueAtTime(f1,t0+dl);bp.frequency.exponentialRampToValueAtTime(f2,t0+dl+d);var g=a.createGain();g.gain.setValueAtTime(0.0001,t0+dl);g.gain.exponentialRampToValueAtTime(v||.2,t0+dl+d*.3);g.gain.exponentialRampToValueAtTime(0.0001,t0+dl+d);s.connect(bp);bp.connect(g);g.connect(out);s.start(t0+dl);s.stop(t0+dl+d+.05)}
+  switch(name){
+    case 'pop':tone(320,900,.14,'sine',.2);break;
+    case 'tick':tone(1900,0,.035,'square',.035);break;
+    case 'swish':noise(.38,700,4200,.28);break;
+    case 'whoosh':noise(.65,260,2600,.4);tone(70,45,.5,'sine',.25,.05);break;
+    case 'boom':tone(70,32,1.4,'sine',.55);noise(.9,200,60,.25);noise(1.2,300,5000,.12,.05);break;
+    case 'click':tone(2500,0,.04,'square',.06);tone(1300,0,.07,'triangle',.09,.01);break;
+    case 'clank':[820,1370,2210].forEach(function(f,i){tone(f,0,.5,'sine',.08)});noise(.08,1500,5000,.2);break;
+    case 'chime':[880,1108.7,1318.5].forEach(function(f,i){tone(f,0,.8,'sine',.14,i*.09)});break;
+    case 'level':[523.3,659.3,784,1046.5].forEach(function(f,i){tone(f,0,.45,'triangle',.16,i*.09)});noise(.5,4000,9000,.06,.3);break;
+    case 'rise':tone(220,880,1.4,'sawtooth',.03);noise(1.4,400,5000,.08);break;
+  }
+}
+(function(){
+  var b=document.getElementById('orSnd');
+  function ui(){b.textContent=soundOn?'Sound on':'Sound off';b.classList.toggle('off',!soundOn)}
+  b.onclick=function(e){e.stopPropagation();soundOn=!soundOn;try{localStorage.setItem('lcc-sound',soundOn?'on':'off')}catch(x){}ui();if(soundOn){audio();setTimeout(function(){snd('pop')},30)}if(window.OpProc)OpProc.soundChanged()};ui();
+  ['touchstart','pointerdown','keydown'].forEach(function(ev){document.addEventListener(ev,function(){audio()},{passive:true})});
+  /* every button in the brochure answers with a soft tick unless it has its own sound */
+  document.addEventListener('click',function(e){var t=e.target.closest('button');if(!t||t.id==='orSnd'||t.closest('[data-own-snd]'))return;snd('tick')},true);
+})();
+</script>
+<script>
+var OrFilm=(function(){
+const NS="http://www.w3.org/2000/svg";
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const P=(t,a,b)=>ease(cl((t-a)/(b-a)));
+const W=(t,a,b,f=.6)=>Math.min(cl((t-a)/f),cl((b-t)/f));
+const lerp=(a,b,k)=>a+(b-a)*k;
+const mk=(tag,attrs,parent)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e;};
+const DUR=62;
+let seed=5;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+
+/* locking screws: [y, xHead(medial), xTip(lateral)] */
+const SC=[[372,392,612,12.6],[412,398,604,13.85],[1398,436,566,15.1],[1434,436,566,16.35]];
+const screws=SC.map(s=>{const g=mk("g",{},$("o-screws"));
+  const L=s[2]-s[1];
+  const body=mk("g",{},g);
+  mk("rect",{x:0,y:-7,width:L,height:14,rx:3,fill:"url(#o-metalH)"},body);
+  for(let x=14;x<L-6;x+=9)mk("line",{x1:x,y1:-7,x2:x+5,y2:7,stroke:"#3f464d","stroke-width":2},body);
+  mk("rect",{x:-10,y:-12,width:14,height:24,rx:3,fill:"#c9ced4",stroke:"#5a626b","stroke-width":1.5},body);
+  const drv=mk("g",{opacity:0},g);
+  mk("rect",{x:-1400,y:-5,width:1392,height:10,fill:"url(#o-metalH)"},drv);
+  mk("rect",{x:-700,y:-14,width:300,height:28,rx:8,fill:"#D5B863"},drv);
+  return {g,body,drv,y:s[0],x:s[1],t0:s[3]};});
+
+/* reamer flutes */
+for(let i=-3;i<=3;i++)mk("line",{x1:476,y1:i*7,x2:524,y2:i*7+4},$("o-rflutes"));
+const debris=[];for(let i=0;i<70;i++)debris.push({b:23.4+rnd()*3.2,y0:0,vx:(rnd()*2-1)*20,vy:-(150+rnd()*450),r:2+rnd()*4,c:mk("circle",{fill:rnd()>.4?"#7a3020":"#a3925a"},$("o-debris"))});
+const water=[];for(let i=0;i<60;i++)water.push({ph:rnd(),x:482+rnd()*36,r:2+rnd()*4,c:mk("circle",{fill:"#7fc3ff",opacity:0},$("o-water"))});
+const sparks=[];for(let i=0;i<40;i++)sparks.push({x:478+rnd()*44,y:340+rnd()*1110,ph:rnd()*6.28,c:mk("circle",{r:3+rnd()*4,fill:"#f3dd92",opacity:0},$("o-sparks"))});
+const powder=[];for(let i=0;i<50;i++)powder.push({x:600+rnd()*140,d:rnd(),c:mk("circle",{r:2+rnd()*3,fill:"#f2efe8",opacity:0},$("o-powder"))});
+const drops=[];for(let i=0;i<8;i++)drops.push({x:640+rnd()*60,d:i/8,c:mk("ellipse",{rx:5,ry:8,fill:"#8fd0ff",opacity:0},$("o-drops"))});
+
+/* camera */
+const CH={cx:500,cy:790,k:.44,r:-8,sx:960,sy:620}, CZ={cx:500,cy:886,k:1.36,r:-90,sx:960,sy:600};
+function camT(p,t){const k=CH.k*Math.pow(CZ.k/CH.k,p)*(1+.01*Math.sin(t*.3));
+  return `translate(${lerp(CH.sx,CZ.sx,p)},${lerp(CH.sy,CZ.sy,p)}) rotate(${lerp(CH.r,CZ.r,p)}) scale(${k}) translate(${-lerp(CH.cx,CZ.cx,p)},${-lerp(CH.cy,CZ.cy,p)})`;}
+const zs=(x,y)=>[CZ.sx+CZ.k*(y-CZ.cy), CZ.sy-CZ.k*(x-CZ.cx)];
+
+/* labels at full zoom */
+const LB=[];function lbl(wx,wy,tx,ty,txt,a,b,anchor){const g=mk("g",{opacity:0},$("o-lbls"));const[x,y]=zs(wx,wy);
+  mk("line",{x1:x,y1:y,x2:tx,y2:ty,stroke:"#D5B863","stroke-width":2},g);mk("circle",{cx:x,cy:y,r:7},g);
+  const tt=mk("text",{x:anchor==="end"?tx-12:tx+12,y:ty+10,"text-anchor":anchor||"start"},g);tt.textContent=txt;LB.push({g,a,b});}
+lbl(520,330,300,340,"IM nail",12.4,16.2,"end");
+lbl(400,392,260,830,"Proximal locking screws",12.6,16.2);
+lbl(440,1416,1660,840,"Distal locking screws",12.8,16.2,"end");
+lbl(500,880,1000,330,"Empty canal · dead space",21.2,23.6);
+lbl(475,1100,1340,830,"13 mm or greater",26.6,28.4);
+lbl(500,1000,1040,330,"Radiopaque",40.8,42.6);
+lbl(500,700,760,330,"New bone fills the canal",47.6,50.6);
+
+const CAPS=[
+ [[4.4,8.8],"TIBIAL IM NAIL","The hardware is coming out.","An intramedullary nail runs the length of the tibia, locked proximally and distally."],
+ [[12.4,17.6],"STEP 1","Locking screws out.","Proximal and distal, through the accepted incisions for hardware removal."],
+ [[17.6,22.6],"STEP 2","Extract the nail.","Through its proximal start point. What it leaves behind is an empty canal."],
+ [[22.6,28.2],"STEP 3","Open, debride, irrigate.","Canal opened to 13 mm or greater, debrided per accepted practice, irrigated."],
+ [[28.2,36],"STEP 4 · BACK TABLE","Mix. Mold. Cure.","Powder to putty in 30 seconds. Closed mold, 30 minutes, a 13 mm rod."],
+ [[36,42.4],"STEP 5","Seat it under fluoroscopy.","Through the proximal start point to the preferred or maximum depth."],
+ [[42.4,50],"THE BIOLOGY","Magnesium becomes bone.","Resorbed and replaced with bone by creeping substitution. Timing varies."],
+ [[50,55.2],"FROM NAIL TO BONE","The patient's own bone.",""]];
+
+function render(t){
+  $("o-title").setAttribute("opacity",W(t,.2,4.2,.8));
+  const tr=P(t,.6,2);$("o-titleRule").setAttribute("width",520*tr);$("o-titleRule").setAttribute("x",960-260*tr);
+  $("o-world").setAttribute("opacity",W(t,3.8,55.4,1.2));
+  const zp=P(t,8.8,12.4)-P(t,50,54.4);
+  $("o-cam").setAttribute("transform",camT(zp,t));$("o-fcam").setAttribute("transform",camT(1,t));
+  $("o-others").setAttribute("opacity",1-.55*zp);$("o-skin").setAttribute("opacity",.5*(1-.85*zp));
+  $("o-ring").setAttribute("opacity",Math.max(W(t,5,8.8,.5),W(t,53.4,55.4,.5))*(.55+.45*Math.sin(t*4)));
+  $("o-fine").setAttribute("opacity",W(t,4.4,55,.6));
+
+  /* screws */
+  screws.forEach(s=>{const a=P(t,s.t0,s.t0+.35),out=P(t,s.t0+.35,s.t0+1.15);
+    const drvIn=1400*(1-a);
+    s.drv.setAttribute("opacity",t>s.t0-.05&&t<s.t0+1.2?1:0);
+    s.drv.setAttribute("transform",`translate(${-drvIn},0)`);
+    s.g.setAttribute("transform",`translate(${s.x-320*out},${s.y})`);
+    s.g.setAttribute("opacity",t<s.t0+1.2?1:0);
+    s.body.querySelectorAll("line").forEach((l,i)=>{});});
+
+  /* nail extraction with 3 slap-hammer jolts */
+  const ex=$("o-extr"),hm=$("o-hammer");
+  const exOn=t>17.6&&t<22.6;ex.setAttribute("opacity",exOn?1:0);hm.setAttribute("opacity",exOn?1:0);
+  let pull=0;[18.4,19.4,20.4].forEach((tt,i)=>{pull+=380*P(t,tt,tt+.22)});pull+=1400*P(t,21.0,22.2);
+  const hmY=(()=>{let ph=0;[18.0,19.0,20.0].forEach(tt=>{if(t>tt&&t<tt+.62)ph=t<tt+.4?-260*(1-(t-tt)/.4):0});return ph})();
+  hm.setAttribute("transform",`translate(0,${hmY})`);
+  $("o-nail").setAttribute("transform",`translate(0,${-pull})`);
+  $("o-nail").setAttribute("opacity",t<22.4?1:0);
+
+  /* canal: membrane then reamed and red */
+  const rm=P(t,23.2,26.4),cw=lerp(40,52,rm);
+  $("o-canal").setAttribute("x",500-cw/2);$("o-canal").setAttribute("width",cw);
+  const rc=`rgb(${Math.round(lerp(42,92,rm))},${Math.round(lerp(23,22,rm))},${Math.round(lerp(18,18,rm))})`;$("o-canal").setAttribute("fill",rc);
+  const memC=rm<.5?"#a3925a":"#b8453a";
+  ["o-memL","o-memR"].forEach((id,i)=>{const e=$(id);e.setAttribute("x",i?500+cw/2-4:500-cw/2);e.setAttribute("fill",rm>.4?"#b8453a":"#a3925a");e.setAttribute("opacity",1-P(t,43,47))});
+  /* reamer */
+  const rOn=t>22.8&&t<27.2;$("o-reamer").setAttribute("opacity",rOn?1:0);
+  const ry=t<26.2?lerp(-200,1450,P(t,23.0,26.2)):lerp(1450,-1400,P(t,26.2,27.1));
+  $("o-reamer").setAttribute("transform",`translate(0,${ry})`);
+  [...$("o-rflutes").children].forEach((l,i)=>{const y=((i*7+t*160)%49)-24;l.setAttribute("y1",y);l.setAttribute("y2",y+4)});
+  debris.forEach(d=>{const a=t-d.b;if(a<0||a>1){d.c.setAttribute("opacity",0);return}
+    const y0=lerp(-200,1450,P(d.b,23.0,26.2));d.c.setAttribute("cx",500+d.vx*a);d.c.setAttribute("cy",y0+d.vy*a);d.c.setAttribute("r",d.r);d.c.setAttribute("opacity",1-a)});
+  /* irrigation */
+  const wOn=W(t,26.8,28.6,.3);
+  water.forEach(w=>{const y=330+((w.ph+t*.9)%1)*1120;w.c.setAttribute("cx",w.x);w.c.setAttribute("cy",y);w.c.setAttribute("r",w.r);w.c.setAttribute("opacity",wOn*.75)});
+
+  /* back table */
+  $("o-table").setAttribute("opacity",W(t,28.2,36.0,.5));
+  $("o-tibia").setAttribute("opacity",1-.7*W(t,28.2,36.0,.5));
+  powder.forEach(p=>{const a=P(t,28.6+p.d*.6,29.2+p.d*.6);p.c.setAttribute("cx",p.x);p.c.setAttribute("cy",lerp(380,620,a));p.c.setAttribute("opacity",t<29.9?(a>0?1:0):0)});
+  drops.forEach(d=>{const a=P(t,29.3+d.d*.4,29.6+d.d*.4);d.c.setAttribute("cx",d.x);d.c.setAttribute("cy",lerp(380,620,a));d.c.setAttribute("opacity",a>0&&a<1?1:0)});
+  const pu=P(t,29.7,31.4);$("o-putty").setAttribute("rx",lerp(0,110,pu));$("o-putty").setAttribute("ry",lerp(0,26,pu));
+  $("o-putty").setAttribute("opacity",t<31.8?1:0);
+  const sp=t>29.8&&t<31.5;const ang=(t-29.8)*9;$("o-spat").setAttribute("transform",`translate(${670+70*Math.cos(ang)},${625+14*Math.sin(ang)}) rotate(${12*Math.cos(ang)})`);$("o-spat").setAttribute("opacity",sp?1:0);
+  const c30=cl((t-29.8)/1.6);$("o-cntA").setAttribute("stroke-dashoffset",340*(1-c30));$("o-cntT").textContent=Math.round(30*c30);
+  $("o-mPutty").setAttribute("width",500*P(t,31.8,32.5));$("o-mPutty").setAttribute("opacity",t<35.2?1:0);
+  const topY=lerp(-50,40,P(t,32.5,33.1))-lerp(0,200,P(t,34.9,35.3));$("o-mTop").setAttribute("transform",`translate(0,${topY})`);
+  [...document.querySelectorAll("#o-nuts .nut")].forEach((n,i)=>{const cx=[1028,1168,1348,1488][i];const r=P(t,33.1,33.7)*540;n.setAttribute("transform",`rotate(${r} ${cx} 526)`)});
+  const c3=cl((t-33.7)/1.2);$("o-tmA").setAttribute("stroke-dashoffset",340*(1-c3));$("o-tmT").textContent=Math.round(30*c3);
+  const rl=P(t,35.2,35.8);$("o-mRod").setAttribute("opacity",t>35.2?1:0);$("o-mRod").setAttribute("transform",`translate(0,${-90*rl})`);
+
+  /* rod insertion */
+  const rOn2=t>36.2;$("o-rod").setAttribute("opacity",rOn2?1:0);
+  const rodY=lerp(-1300,330,P(t,36.6,40.2));$("o-rod").setAttribute("transform",`translate(0,${rodY})`);
+  $("o-rod").querySelector("rect").setAttribute("opacity",1-P(t,40.4,41.2));
+  /* fluoro */
+  $("o-fluo").setAttribute("opacity",W(t,40.6,42.6,.25)*(t<40.9?(.6+.4*Math.sin(t*60)):1));
+  /* remodel */
+  const rmd=P(t,43,49);
+  $("o-newbone").setAttribute("opacity",rmd);
+  [...$("o-rod").querySelectorAll("rect")].slice(1).forEach(r=>r.setAttribute("opacity",1-.88*rmd));
+  const sw=W(t,42.6,49.6,1);sparks.forEach(s=>{s.c.setAttribute("cx",s.x);s.c.setAttribute("cy",s.y);s.c.setAttribute("opacity",sw*(.5+.5*Math.sin(t*5+s.ph)))});
+  $("o-prog").setAttribute("opacity",W(t,42.6,49.8,.5));$("o-progBar").setAttribute("width",600*rmd);
+
+  LB.forEach(l=>l.g.setAttribute("opacity",W(t,l.a,l.b,.4)));
+
+  let cur=null;CAPS.forEach(c=>{if(t>=c[0][0]&&t<c[0][1])cur=c});
+  if(cur){$("o-capK").textContent=cur[1];$("o-capH").textContent=cur[2];$("o-capS").textContent=cur[3];$("o-capg").setAttribute("opacity",Math.min(cl((t-cur[0][0])/.45),cl((cur[0][1]-t)/.45)))}
+  else $("o-capg").setAttribute("opacity",0);
+  $("o-end").setAttribute("opacity",cl((t-55.6)/.9));
+}
+render(0);
+return {render,DUR};
+})();
+
+</script>
+<script>
+/* ===== procedure player ===== */
+var OpProc=(function(){
+  var $=function(id){return document.getElementById(id)};
+  var PS=4.4,PE=54.6,LEN=PE-PS;
+  var box=$('opPlayer'),play=$('opPlay'),scrub=$('opScrub'),chap=[].slice.call(document.querySelectorAll('#opChap button')),pa=$('opAudio');
+  box.setAttribute('data-own-snd','1');
+  try{fetch(pa.getAttribute('src')).then(function(r){return r.ok?r.blob():null}).then(function(b){if(b&&pa.paused){pa.src=URL.createObjectURL(b);pa.load()}}).catch(function(){})}catch(e){}
+  var t=6.2,playing=false,last=null,raf=null,visible=false;
+  function syncAudio(){if(soundOn&&playing){try{pa.currentTime=Math.max(0,t-PS);var p=pa.play();if(p&&p.catch)p.catch(function(){})}catch(e){}}else{try{pa.pause()}catch(e){}}}
+  function ui(){play.textContent=playing?'❚❚ Pause':(t>=PE-.05?'↺ Play again':'▶ Play');scrub.value=Math.round((t-PS)/LEN*1000);
+    var k=0;chap.forEach(function(b,i){if(t>=+b.dataset.t-.01)k=i});chap.forEach(function(b,i){b.classList.toggle('on',i===k&&box.classList.contains('started'))})}
+  function frame(ts){
+    if(playing){if(soundOn&&!pa.paused&&!pa.ended&&pa.readyState>1){t=PS+pa.currentTime}else if(last!=null){t+=Math.min(.05,(ts-last)/1000)}
+      if(t>=PE){t=PE;playing=false;try{pa.pause()}catch(e){}}}
+    last=ts;OrFilm.render(t);ui();raf=visible?requestAnimationFrame(frame):null}
+  function kick(){if(!raf&&visible){last=null;raf=requestAnimationFrame(frame)}}
+  function start(){audio();box.classList.add('started');if(t>=PE-.05)t=PS;playing=true;syncAudio();kick()}
+  function pause(){playing=false;syncAudio();ui()}
+  function seek(nt){box.classList.add('started');t=Math.max(PS,Math.min(PE,nt));if(playing)syncAudio();OrFilm.render(t);ui()}
+  $('opBig').onclick=start;play.onclick=function(){playing?pause():start()};
+  $('opRe').onclick=function(){t=PS;start()};
+  chap.forEach(function(b){b.onclick=function(){snd('tick');seek(+b.dataset.t+.05);if(!playing)start()}});
+  function stepTo(dir){var ts=chap.map(function(b){return +b.dataset.t});var k=0;ts.forEach(function(x,i){if(t>=x-.01)k=i});
+    var n=dir>0?Math.min(ts.length-1,k+1):(t-ts[k]>1.2?k:Math.max(0,k-1));snd('tick');seek(ts[n]+.05);if(!playing)start()}
+  $('opFwd').onclick=function(){stepTo(1)};$('opBack').onclick=function(){stepTo(-1)};
+  scrub.oninput=function(){seek(PS+scrub.value/1000*LEN)};
+  box.addEventListener('keydown',function(e){e.stopPropagation()});
+  OrFilm.render(t);ui();
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){visible=e.isIntersecting;if(visible)kick();else if(playing)pause()})},{threshold:[.25]}).observe(box)}else{visible=true;kick()}
+  return{soundChanged:syncAudio};
+})();
+</script>
+<script>
+/* ===== new panels + per-panel sound ===== */
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var first=true;
+  function count(el,end,dec,u,dur,delay){var t0=null;el.textContent=(0).toFixed(dec)+u;function st(ts){if(!t0)t0=ts;var x=Math.min(1,(ts-t0-delay)/dur);if(x<0){requestAnimationFrame(st);return}el.textContent=(end*(1-Math.pow(1-x,3))).toFixed(dec)+u;if(x<1)requestAnimationFrame(st)}if(reduce){el.textContent=end.toFixed(dec)+u;return}requestAnimationFrame(st)}
+  /* why magnesium */
+  var bars=[].slice.call(document.querySelectorAll('#mgBars .tr i'));
+  function mgRun(){bars.forEach(function(i,k){i.style.transition='none';i.style.width='0';i.style.left=i.dataset.l+'%';void i.offsetWidth;i.style.transition='';setTimeout(function(){i.style.width=i.dataset.w+'%';snd(k===1?'rise':'tick')},400+k*500)});
+    var n=document.querySelector('#mgBars [data-n]');count(n,36,0,' MPa',1500,900)}
+  var props=[].slice.call(document.querySelectorAll('#mgProps .pr'));props.forEach(function(p){p.setAttribute('data-own-snd','1');p.onclick=function(){props.forEach(function(x){x.classList.toggle('on',x===p)});snd('pop')}});
+  /* evidence chart */
+  var line=document.getElementById('evLine'),pts=[].slice.call(document.querySelectorAll('#evPts circle')),vals=[].slice.call(document.querySelectorAll('#evVals text'));
+  function evRun(){line.style.transition='none';line.style.strokeDashoffset='520';pts.concat(vals).forEach(function(e){e.style.transition='none';e.style.opacity=0});void line.getBoundingClientRect();
+    line.style.transition='stroke-dashoffset 2.4s cubic-bezier(.4,0,.2,1)';setTimeout(function(){line.style.strokeDashoffset='0'},300);
+    pts.forEach(function(p,k){setTimeout(function(){p.style.transition='opacity .4s';p.style.opacity=1;vals[k].style.transition='opacity .4s';vals[k].style.opacity=1;snd(k===3?'level':'tick')},300+k*700)})}
+  /* vs PMMA */
+  var rows=[].slice.call(document.querySelectorAll('#vso .r')),vk=-1;
+  function vs(k){vk=k;rows.forEach(function(r,i){r.classList.toggle('on',i<=k);r.classList.toggle('cur',i===k)})}
+  ['vsoNext','vsoAll','vsoReset'].forEach(function(id){document.getElementById(id).setAttribute('data-own-snd','1')});
+  document.getElementById('vsoNext').onclick=function(){if(vk<rows.length-1){vs(vk+1);snd(vk===rows.length-1?'level':'click')}};
+  document.getElementById('vsoAll').onclick=function(){vs(rows.length-1);snd('swish')};
+  document.getElementById('vsoReset').onclick=function(){vs(-1);snd('pop')};
+  rows.forEach(function(r,i){r.onclick=function(){vs(i);snd('click')}});
+  window.OrEnter=function(p){
+    var n=p.getAttribute('data-name');
+    snd(n==='Mg OsteoRod'?'boom':(n==='Lotus Medical'?'chime':'whoosh'));
+    if(p.querySelector('[data-count]'))[].forEach.call(p.querySelectorAll('[data-count]'),function(el,k){setTimeout(function(){snd('tick')},300+k*120+1300)});
+    if(n==='Why magnesium')mgRun();
+    if(n==='The evidence')evRun();
+    if(n==='vs PMMA cement rod'){vs(-1);setTimeout(function(){vs(0);snd('click')},700)}
+  };
+})();
+</script>
+<script src="share.js?v=3" defer></script>
 </body>
 </html>
