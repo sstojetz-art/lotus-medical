@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shark Screw® · Scaphoid Non-Union</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+svg{width:100vw;height:100vh;height:100dvh;display:block}
+#back{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);left:16px;z-index:60;color:#D5B863;text-decoration:none;font:700 15px Inter,Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;background:rgba(0,0,0,.6);border:1px solid rgba(213,184,99,.5);padding:10px 14px}
+body.cap #back{display:none}
+text{font-family:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif}
+#ctrl{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);display:flex;gap:8px;z-index:2}
+#ctrl button{background:rgba(0,0,0,.65);color:#D5B863;border:1px solid #D5B863;border-radius:20px;padding:7px 16px;font:600 13px Inter,Helvetica,Arial,sans-serif;letter-spacing:.08em;cursor:pointer}
+body.cap #ctrl{display:none}
+</style>
+</head>
+<body>
+<svg id="s" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+    <stop offset="0" stop-color="#15130f"/><stop offset=".6" stop-color="#070706"/><stop offset="1" stop-color="#000"/>
+  </radialGradient>
+  <linearGradient id="boneG" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f4ead2"/><stop offset=".45" stop-color="#dcc79c"/><stop offset="1" stop-color="#a68c5e"/>
+  </linearGradient>
+  <pattern id="trab" width="26" height="22" patternUnits="userSpaceOnUse">
+    <ellipse cx="7" cy="6" rx="5" ry="3" fill="#8a7046" opacity=".22"/>
+    <ellipse cx="19" cy="16" rx="4" ry="2.5" fill="#8a7046" opacity=".18"/>
+    <circle cx="20" cy="4" r="1.6" fill="#fff" opacity=".25"/>
+  </pattern>
+  <linearGradient id="metalG" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f5f7f9"/><stop offset=".35" stop-color="#aab2bb"/><stop offset=".7" stop-color="#5a626b"/><stop offset="1" stop-color="#c3c9cf"/>
+  </linearGradient>
+  <linearGradient id="sharkG" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#fff7e4"/><stop offset=".4" stop-color="#ead9ae"/><stop offset=".75" stop-color="#b9995f"/><stop offset="1" stop-color="#e9d8ae"/>
+  </linearGradient>
+  <linearGradient id="goldG" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#b8973f"/><stop offset=".5" stop-color="#D5B863"/><stop offset="1" stop-color="#f0dc9a"/>
+  </linearGradient>
+  <filter id="glow" x="-20%" y="-60%" width="140%" height="220%">
+    <feGaussianBlur stdDeviation="9" result="b"/>
+    <feColorMatrix in="b" type="matrix" values="0 0 0 0 0.84  0 0 0 0 0.72  0 0 0 0 0.39  0 0 0 1 0" result="g"/>
+    <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <path id="boneShape" d="M 520 560 C 500 430, 640 355, 800 372 C 900 384, 980 412, 1080 394 C 1260 360, 1420 420, 1420 540 C 1420 650, 1300 702, 1140 684 C 1040 672, 960 704, 860 706 C 680 708, 540 684, 520 560 Z"/>
+  <clipPath id="boneClip"><use href="#boneShape"/></clipPath>
+  <clipPath id="proxClip"><polygon id="proxPoly"/></clipPath>
+  <clipPath id="distClip"><polygon id="distPoly"/></clipPath>
+  <clipPath id="screwClip"><path id="screwClipPath"/></clipPath>
+</defs>
+
+<rect width="1920" height="1080" fill="url(#bg)"/>
+
+<!-- ============ ANATOMY SCENE ============ -->
+<g id="boneScene" opacity="0">
+  <g clip-path="url(#proxClip)">
+    <use href="#boneShape" fill="url(#boneG)"/><use href="#boneShape" fill="url(#trab)"/>
+    <use href="#boneShape" fill="none" stroke="#fbf2dc" stroke-width="4" opacity=".55"/>
+  </g>
+  <g clip-path="url(#distClip)">
+    <use href="#boneShape" fill="url(#boneG)"/><use href="#boneShape" fill="url(#trab)"/>
+    <use href="#boneShape" fill="none" stroke="#fbf2dc" stroke-width="4" opacity=".55"/>
+  </g>
+  <g clip-path="url(#boneClip)">
+    <polygon id="gapFill" fill="#2a1712"/>
+    <polyline id="edgeP" fill="none" stroke-width="4" stroke-linejoin="round"/>
+    <polyline id="edgeD" fill="none" stroke-width="4" stroke-linejoin="round"/>
+    <rect id="tunnel" x="590" y="514" width="850" height="52" rx="24" fill="#1d120c"/>
+    <g id="graft"></g>
+    <g id="heal" opacity="0">
+      <polygon id="gapHeal" fill="url(#boneG)"/>
+      <rect x="590" y="512" width="850" height="56" rx="26" fill="url(#boneG)"/>
+      <rect x="590" y="512" width="850" height="56" rx="26" fill="url(#trab)"/>
+    </g>
+  </g>
+
+  <g id="metal">
+    <path id="metalBody" fill="url(#metalG)"/>
+    <g id="metalThreads" clip-path="url(#screwClip)" stroke="#3f464d" stroke-width="3"></g>
+    <rect id="metalSocket" x="0" y="-9" width="10" height="18" rx="2" fill="#2a2f35"/>
+  </g>
+
+  <g id="shark" opacity="0" filter="url(#glow)">
+    <path id="sharkBody" fill="url(#sharkG)"/>
+    <g id="sharkGrain" clip-path="url(#screwClip)" stroke="#a88a55" stroke-width="1" opacity=".55"></g>
+    <g id="sharkThreads" clip-path="url(#screwClip)" stroke="#8c6f3e" stroke-width="3"></g>
+  </g>
+
+  <g id="sparks"></g>
+
+  <g id="arrows" opacity="0" fill="#D5B863" stroke="#D5B863" stroke-width="5" stroke-linecap="round">
+    <line x1="820" y1="300" x2="910" y2="300"/><polygon points="930,300 905,286 905,314" stroke="none"/>
+    <line x1="1100" y1="300" x2="1010" y2="300"/><polygon points="990,300 1015,286 1015,314" stroke="none"/>
+  </g>
+
+  <g id="lbl1" opacity="0">
+    <line x1="975" y1="378" x2="1060" y2="300" stroke="#D5B863" stroke-width="2"/>
+    <circle cx="975" cy="378" r="6" fill="#D5B863"/>
+    <text x="1072" y="298" fill="#D5B863" font-size="28" font-weight="600">Persistent non-union gap</text>
+  </g>
+  <g id="lbl2" opacity="0">
+    <line x1="1200" y1="566" x2="1270" y2="790" stroke="#D5B863" stroke-width="2"/>
+    <circle cx="1200" cy="566" r="6" fill="#D5B863"/>
+    <text x="1282" y="800" fill="#D5B863" font-size="28" font-weight="600">Lucency around metal screw</text>
+  </g>
+
+  <g id="progress" opacity="0">
+    <text x="960" y="842" text-anchor="middle" fill="#bdbdbd" font-size="24" letter-spacing="4">CREEPING SUBSTITUTION · GRAFT BECOMES HOST BONE</text>
+    <rect x="660" y="866" width="600" height="10" rx="5" fill="#2b2b2b"/>
+    <rect id="progBar" x="660" y="866" width="0" height="10" rx="5" fill="url(#goldG)"/>
+  </g>
+</g>
+
+<!-- ============ CAPTIONS ============ -->
+<g id="cap" opacity="0">
+  <text id="capK" x="960" y="128" text-anchor="middle" fill="#D5B863" font-size="26" font-weight="700" letter-spacing="8"></text>
+  <text id="capH" x="960" y="196" text-anchor="middle" fill="#fff" font-size="54" font-weight="700"></text>
+  <text id="capS" x="960" y="248" text-anchor="middle" fill="#b9b9b9" font-size="30" font-weight="400"></text>
+</g>
+
+<!-- ============ TITLE ============ -->
+<g id="title" opacity="0">
+  <text x="960" y="470" text-anchor="middle" fill="url(#goldG)" font-size="150" font-weight="800" letter-spacing="10">SHARK SCREW®</text>
+  <rect id="titleRule" x="960" y="520" width="0" height="4" fill="#D5B863"/>
+  <text x="960" y="610" text-anchor="middle" fill="#fff" font-size="50" font-weight="300" letter-spacing="3">Revising the scaphoid non-union</text>
+  <text x="960" y="670" text-anchor="middle" fill="#9a9a9a" font-size="30" font-weight="400" letter-spacing="2">Human allogeneic cortical bone screw</text>
+</g>
+
+<!-- ============ DATA ============ -->
+<g id="data" opacity="0">
+  <text x="960" y="120" text-anchor="middle" fill="#D5B863" font-size="26" font-weight="700" letter-spacing="8">THE EVIDENCE</text>
+  <text x="960" y="186" text-anchor="middle" fill="#fff" font-size="50" font-weight="700">Upper-extremity non-unions: Shark Screw® vs. conventional metal</text>
+  <text x="960" y="234" text-anchor="middle" fill="#a9a9a9" font-size="26">Huber et al., Life (Basel) 2025 · retrospective, multicentre, Level III · 41 patients</text>
+  <g font-size="24" fill="#d8d8d8">
+    <rect x="520" y="284" width="26" height="26" rx="4" fill="#6b747e"/><text x="558" y="305">Conventional (metal ± graft), n = 11</text>
+    <rect x="1010" y="284" width="26" height="26" rx="4" fill="#D5B863"/><text x="1048" y="305">Shark Screw® (± graft), n = 30</text>
+  </g>
+  <g id="rows"></g>
+  <text x="960" y="1040" text-anchor="middle" fill="#7d7d7d" font-size="20">Mixed upper-extremity sites (shoulder, arm, wrist, fingers). Follow-up 10 months Shark Screw® vs. 18 months conventional. Groups not randomized.</text>
+</g>
+
+<!-- ============ SCAPHOID STAT ============ -->
+<g id="scaph" opacity="0">
+  <text x="960" y="160" text-anchor="middle" fill="#D5B863" font-size="26" font-weight="700" letter-spacing="8">SCAPHOID PSEUDARTHROSIS</text>
+  <text id="bigPct" x="960" y="520" text-anchor="middle" fill="url(#goldG)" font-size="300" font-weight="800">0%</text>
+  <text x="960" y="622" text-anchor="middle" fill="#fff" font-size="48" font-weight="600">union with Shark Screw® · 42 of 44 patients</text>
+  <text id="scaphCtx" x="960" y="720" text-anchor="middle" fill="#a9a9a9" font-size="32" opacity="0">Published union for proximal pole non-union with avascular necrosis: 12–50%</text>
+  <text x="960" y="1030" text-anchor="middle" fill="#7d7d7d" font-size="20">J Orthop Traumatol 2023 · retrospective, multicentre, Level III · doi:10.1186/s10195-023-00686-7</text>
+</g>
+
+<!-- ============ END CARD ============ -->
+<g id="endc" opacity="0">
+  <text x="960" y="360" text-anchor="middle" fill="url(#goldG)" font-size="130" font-weight="800" letter-spacing="10">SHARK SCREW®</text>
+  <text x="960" y="450" text-anchor="middle" fill="#fff" font-size="50" font-weight="600">Fixation and biology in one implant.</text>
+  <text x="960" y="512" text-anchor="middle" fill="#b9b9b9" font-size="34">No metal left behind. No hardware to remove.</text>
+  <rect x="860" y="600" width="200" height="3" fill="#D5B863"/>
+  <text x="960" y="680" text-anchor="middle" fill="#D5B863" font-size="40" font-weight="700" letter-spacing="14">LOTUS MEDICAL</text>
+  <text x="960" y="730" text-anchor="middle" fill="#fff" font-size="28" font-style="italic" font-weight="300">Healing Sooner. Wellness Longer.</text>
+  <text x="960" y="1000" text-anchor="middle" fill="#6f6f6f" font-size="18">Huber E, Jakob G, Palle W, Borchert GH, Pastl K. Life (Basel). 2025;15(9):1421. doi:10.3390/life15091421</text>
+  <text x="960" y="1028" text-anchor="middle" fill="#6f6f6f" font-size="18">Treatment of scaphoid fractures and pseudarthroses with the human allogeneic cortical bone screw. J Orthop Traumatol. 2023. doi:10.1186/s10195-023-00686-7</text>
+</g>
+</svg>
+<a id="back" href="../index.html">‹ All brochures</a>
+<div id="ctrl"><button id="bPlay">PAUSE</button><button id="bReplay">REPLAY</button></div>
+
+<script>
+(function(){
+const NS="http://www.w3.org/2000/svg";
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const P=(t,a,b)=>ease(cl((t-a)/(b-a)));
+const W=(t,a,b,f=.6)=>Math.min(cl((t-a)/f),cl((b-t)/f));
+const lerp=(a,b,k)=>a+(b-a)*k;
+const mk=(tag,attrs,parent)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e;};
+
+const DUR=60;
+/* timeline */
+const TL={title:[0,4.2],metal:[4,10.5],remove:[10.5,16],graft:[16,20.5],insert:[20.5,27],compress:[27,29.5],remodel:[29.5,36.5],data:[36.5,49.5],scaph:[49.5,54.5],end:[54.5,60]};
+
+/* jagged non-union line */
+const J=[[966,340],[958,400],[972,450],[952,500],[970,550],[950,600],[968,650],[954,700],[964,750]];
+function jx(y){ if(y<=J[0][1])return J[0][0]; for(let i=1;i<J.length;i++){ if(y<=J[i][1]){const a=J[i-1],b=J[i];return lerp(a[0],b[0],(y-a[1])/(b[1]-a[1]));}} return J[J.length-1][0]; }
+const pts=a=>a.map(p=>p[0].toFixed(1)+","+p[1].toFixed(1)).join(" ");
+
+/* screw geometry (local coords; tip at x=0, trailing end at x=L) */
+const L=720,R=21;
+const body=`M0,0 L36,-${R} L${L-6},-${R} Q${L+5},0 ${L-6},${R} L36,${R} Z`;
+$("metalBody").setAttribute("d",body); $("sharkBody").setAttribute("d",body); $("screwClipPath").setAttribute("d",body);
+$("metalSocket").setAttribute("x",L-14);
+const SP=17, NT=Math.ceil(L/SP)+3;
+function threads(g){const a=[];for(let i=0;i<NT;i++)a.push(mk("line",{y1:-R,y2:R},g));return a;}
+const mT=threads($("metalThreads")), sT=threads($("sharkThreads"));
+function setThreads(arr,phase){const ph=((phase%SP)+SP)%SP;arr.forEach((l,i)=>{const x=i*SP+ph-SP;l.setAttribute("x1",x);l.setAttribute("x2",x+9);});}
+// cortical grain on bone screw
+for(let i=0;i<7;i++){const y=-R+5+i*6;mk("line",{x1:0,x2:L,y1:y,y2:y+(i%2?1:-1)},$("sharkGrain"));}
+
+/* graft particles (seeded) */
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const graft=[];
+for(let i=0;i<46;i++){const y=360+rnd()*370,u=rnd()*2-1;graft.push({kind:"gap",y,u,r:3+rnd()*5,c:mk("circle",{fill:rnd()>.5?"#e6d3a6":"#c9ae78",stroke:"#7a5f35","stroke-width":1},$("graft")),d:rnd()});}
+for(let i=0;i<34;i++){const x=600+rnd()*820,y=520+rnd()*40;graft.push({kind:"tun",x,y,r:3+rnd()*4,c:mk("circle",{cx:x,cy:y,fill:rnd()>.5?"#e6d3a6":"#c9ae78",stroke:"#7a5f35","stroke-width":1},$("graft")),d:rnd()});}
+
+/* sparks */
+const sparks=[];for(let i=0;i<30;i++){sparks.push({x:600+rnd()*800,y:540+(rnd()*2-1)*34,ph:rnd()*6.28,c:mk("circle",{r:2+rnd()*3,fill:"#f3dd92"},$("sparks"))});}
+
+/* data rows */
+const rowsDef=[
+ {lab:"Union rate",sub:"higher is better",a:72.7,b:96.7,max:100,fmt:v=>v.toFixed(1)+"%"},
+ {lab:"Time to union",sub:"lower is better",a:38.8,b:10.8,max:42,fmt:v=>Math.round(v)+" weeks"},
+ {lab:"Complications",sub:"lower is better",a:36.4,b:3.4,max:100,fmt:v=>v.toFixed(1)+"%"},
+ {lab:"Hardware removal",sub:"lower is better",a:63.6,b:3.4,max:100,fmt:v=>v.toFixed(1)+"%"}];
+const BX=740,BW=900,rows=[];
+rowsDef.forEach((d,i)=>{const y=370+i*165,g=mk("g",{opacity:0},$("rows"));
+  const t1=mk("text",{x:160,y:y+40,fill:"#fff","font-size":36,"font-weight":700},g);t1.textContent=d.lab;
+  const t2=mk("text",{x:160,y:y+78,fill:"#8f8f8f","font-size":24},g);t2.textContent=d.sub;
+  const ra=mk("rect",{x:BX,y:y,height:40,rx:6,width:0,fill:"#6b747e"},g);
+  const rb=mk("rect",{x:BX,y:y+54,height:40,rx:6,width:0,fill:"url(#goldG)"},g);
+  const va=mk("text",{y:y+31,fill:"#c9c9c9","font-size":28,"font-weight":600},g);
+  const vb=mk("text",{y:y+85,fill:"#D5B863","font-size":30,"font-weight":800},g);
+  rows.push({d,g,ra,rb,va,vb});});
+
+/* captions */
+const CAPS=[
+ [TL.metal,"THE PROBLEM","Metal fixation. The scaphoid never united.",""],
+ [TL.remove,"STEP 1","Remove the failed metal screw.",""],
+ [TL.graft,"STEP 2","Debride to healthy, bleeding bone.","Graft as indicated."],
+ [TL.insert,"STEP 3","Fix with Shark Screw®.","A threaded screw machined from human cortical bone."],
+ [TL.compress,"STEP 3","Stable compression across the non-union.","The screw is itself a structural bone graft."],
+ [TL.remodel,"THE BIOLOGY","The screw remodels into the patient's own bone.","Nothing left behind to remove."]];
+
+function render(t){
+  /* title */
+  $("title").setAttribute("opacity",W(t,0.2,TL.title[1],.8));
+  $("titleRule").setAttribute("width",520*P(t,.6,2));$("titleRule").setAttribute("x",960-260*P(t,.6,2));
+
+  /* bone scene visibility */
+  $("boneScene").setAttribute("opacity",W(t,TL.metal[0],TL.remodel[1]+.2,1));
+
+  /* gap width */
+  let g=26; g=lerp(g,32,P(t,16.2,18)); g=lerp(g,7,P(t,27.2,29));
+  const prox=[[0,0],[J[0][0]-g/2,0],...J.map(p=>[p[0]-g/2,p[1]]),[J[J.length-1][0]-g/2,1080],[0,1080]];
+  const dist=[[1920,0],[J[0][0]+g/2,0],...J.map(p=>[p[0]+g/2,p[1]]),[J[J.length-1][0]+g/2,1080],[1920,1080]];
+  $("proxPoly").setAttribute("points",pts(prox));$("distPoly").setAttribute("points",pts(dist));
+  const L1=J.map(p=>[p[0]-g/2,p[1]]),L2=J.map(p=>[p[0]+g/2,p[1]]);
+  $("gapFill").setAttribute("points",pts([...L1,...L2.slice().reverse()]));
+  $("gapHeal").setAttribute("points",pts([...J.map(p=>[p[0]-g/2-2,p[1]]),...J.map(p=>[p[0]+g/2+2,p[1]]).reverse()]));
+  $("edgeP").setAttribute("points",pts(L1));$("edgeD").setAttribute("points",pts(L2));
+  // sclerotic (white) -> bleeding (red) after debridement
+  const db=P(t,16.4,18.2);
+  const ec=`rgb(${Math.round(lerp(250,190,db))},${Math.round(lerp(242,70,db))},${Math.round(lerp(222,55,db))})`;
+  $("edgeP").setAttribute("stroke",ec);$("edgeD").setAttribute("stroke",ec);
+  const edgeOp=(1-P(t,30,34))*.85;$("edgeP").setAttribute("opacity",edgeOp);$("edgeD").setAttribute("opacity",edgeOp);
+  $("gapFill").setAttribute("fill",db>0?`rgb(${Math.round(lerp(42,70,db))},${Math.round(lerp(23,22,db))},${Math.round(lerp(18,18,db))})`:"#2a1712");
+
+  /* metal screw: in place, then backs out to the right */
+  const mo=1300*P(t,TL.remove[0]+.6,TL.remove[1]-.6);
+  $("metal").setAttribute("transform",`translate(${590+mo},540)`);
+  setThreads(mT,-mo);
+  $("metal").setAttribute("opacity",t<TL.remove[1]?1:0);
+
+  /* tunnel: lucency halo with metal, open tunnel after removal; narrows when bone screw seats */
+  $("tunnel").setAttribute("opacity",1);
+  /* graft particles */
+  graft.forEach(p=>{const a=P(t,16.6+p.d*2.4,17.2+p.d*2.4);
+    if(p.kind==="gap"){const x=jx(p.y)+p.u*(g/2-2);p.c.setAttribute("cx",x);p.c.setAttribute("cy",p.y);p.c.setAttribute("r",p.r*Math.min(1,(g+6)/30));}
+    p.c.setAttribute("opacity",a*(1-P(t,30.5,34)));});
+
+  /* shark screw: drives in from the right */
+  const so=1300*(1-P(t,TL.insert[0]+.4,TL.insert[1]-.6));
+  $("shark").setAttribute("transform",`translate(${590+so},540)`);
+  setThreads(sT,-so);
+  const fade=1-.86*P(t,30.5,35.5);
+  $("shark").setAttribute("opacity",t>=TL.insert[0]?fade:0);
+
+  /* healing fill */
+  $("heal").setAttribute("opacity",P(t,30.5,35.5));
+
+  /* sparks */
+  const sw=W(t,30,36,1);
+  sparks.forEach(s=>{s.c.setAttribute("cx",s.x);s.c.setAttribute("cy",s.y);s.c.setAttribute("opacity",sw*(.5+.5*Math.sin(t*5+s.ph)));});
+
+  /* arrows + labels + progress */
+  $("arrows").setAttribute("opacity",W(t,27.1,30,.4));
+  $("lbl1").setAttribute("opacity",W(t,5.6,10.4,.5));
+  $("lbl2").setAttribute("opacity",W(t,6.4,10.4,.5));
+  $("progress").setAttribute("opacity",W(t,30,36.4,.5));
+  $("progBar").setAttribute("width",600*P(t,30.5,35.5));
+
+  /* captions */
+  let cur=null;CAPS.forEach(c=>{if(t>=c[0][0]&&t<c[0][1])cur=c;});
+  if(cur){$("capK").textContent=cur[1];$("capH").textContent=cur[2];$("capS").textContent=cur[3];
+    // soft fade only at scene edges where text actually changes
+    const fin=cur===CAPS[4]?1:cl((t-cur[0][0])/.5), fout=(cur===CAPS[3])?1:cl((cur[0][1]-t)/.5);
+    $("cap").setAttribute("opacity",Math.min(fin,fout));}
+  else $("cap").setAttribute("opacity",0);
+
+  /* data */
+  $("data").setAttribute("opacity",W(t,TL.data[0]+.2,TL.data[1],.7));
+  rows.forEach((r,i)=>{const t0=37.4+i*1.6,k=P(t,t0+.2,t0+1.6);
+    r.g.setAttribute("opacity",cl((t-t0)/.4));
+    const wa=BW*r.d.a/r.d.max*k,wb=BW*r.d.b/r.d.max*k;
+    r.ra.setAttribute("width",Math.max(0,wa));r.rb.setAttribute("width",Math.max(0,wb));
+    r.va.setAttribute("x",BX+wa+16);r.vb.setAttribute("x",BX+wb+16);
+    r.va.textContent=r.d.fmt(r.d.a*k);r.vb.textContent=r.d.fmt(r.d.b*k);});
+
+  /* scaphoid stat */
+  $("scaph").setAttribute("opacity",W(t,TL.scaph[0]+.2,TL.scaph[1],.6));
+  $("bigPct").textContent=Math.round(95*P(t,50,51.8))+"%";
+  $("scaphCtx").setAttribute("opacity",cl((t-52)/.6));
+
+  /* end */
+  $("endc").setAttribute("opacity",cl((t-TL.end[0]-.2)/.9));
+}
+window.renderAt=render; window.DURATION=DUR;
+
+if(location.search.indexOf("capture")>=0){document.body.classList.add("cap");render(0);return;}
+let start=performance.now(),paused=false,pt=0;
+function loop(now){ if(!paused){let t=(now-start)/1000; if(t>DUR+3){start=now;t=0;} render(Math.min(t,DUR));} requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+$("bReplay").onclick=()=>{start=performance.now();paused=false;$("bPlay").textContent="PAUSE";};
+$("bPlay").onclick=()=>{if(paused){start=performance.now()-pt*1000;paused=false;$("bPlay").textContent="PAUSE";}else{pt=(performance.now()-start)/1000;paused=true;$("bPlay").textContent="PLAY";}};
+})();
+</script>
+<script src="../share.js?v=3" defer></script>
+</body>
+</html>
