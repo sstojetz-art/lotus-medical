@@ -15,6 +15,7 @@ text{font-family:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif}
 #ctrl{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);display:flex;gap:8px;z-index:2}
 #ctrl button{background:rgba(0,0,0,.65);color:#D5B863;border:1px solid #D5B863;border-radius:20px;padding:7px 16px;font:600 13px Inter,Helvetica,Arial,sans-serif;letter-spacing:.08em;cursor:pointer}
 body.cap #ctrl{display:none}
+#ctrl button.hot{background:#D5B863;color:#000;font-weight:800}
 </style>
 </head>
 <body>
@@ -219,8 +220,9 @@ body.cap #ctrl{display:none}
   <text x="960" y="1028" text-anchor="middle" fill="#6f6f6f" font-size="18">Treatment of scaphoid fractures and pseudarthroses with the human allogeneic cortical bone screw. J Orthop Traumatol. 2023. doi:10.1186/s10195-023-00686-7</text>
 </g>
 </svg>
+<audio id="snd" src="sound.m4a?v=21" preload="auto" playsinline></audio>
 <a id="back" href="../index.html">‹ All brochures</a>
-<div id="ctrl"><button id="bPlay">PAUSE</button><button id="bReplay">REPLAY</button></div>
+<div id="ctrl"><button id="bSnd" class="hot">TAP FOR SOUND</button><button id="bPlay">PAUSE</button><button id="bReplay">REPLAY</button></div>
 
 <script>
 (function(){
@@ -467,11 +469,18 @@ function render(t){
 window.renderAt=render; window.DURATION=DUR;
 
 if(location.search.indexOf("capture")>=0){document.body.classList.add("cap");render(0);return;}
-let start=performance.now(),paused=false,pt=0;
-function loop(now){if(!paused){let t=(now-start)/1000;if(t>DUR+3){start=now;t=0;}render(Math.min(t,DUR));}requestAnimationFrame(loop);}
+let start=performance.now(),paused=false,pt=0,soundOn=false,curT=0;const snd=$("snd");
+try{fetch(snd.getAttribute("src")).then(r=>r.ok?r.blob():null).then(b=>{if(b&&snd.paused){snd.src=URL.createObjectURL(b);snd.load();}}).catch(()=>{});}catch(e){}
+function loop(now){if(!paused){let t;
+  if(soundOn&&!snd.paused&&!snd.ended){t=snd.currentTime;start=now-t*1000;}else{t=(now-start)/1000;}
+  if(t>DUR+3){start=now;t=0;if(soundOn){try{snd.currentTime=0;snd.play();}catch(e){}}}
+  curT=Math.min(t,DUR);render(curT);}requestAnimationFrame(loop);}
 requestAnimationFrame(loop);
-$("bReplay").onclick=()=>{start=performance.now();paused=false;$("bPlay").textContent="PAUSE";};
-$("bPlay").onclick=()=>{if(paused){start=performance.now()-pt*1000;paused=false;$("bPlay").textContent="PAUSE";}else{pt=(performance.now()-start)/1000;paused=true;$("bPlay").textContent="PLAY";}};
+function playSnd(){if(!soundOn||curT>=DUR)return;try{snd.currentTime=curT;const p=snd.play();if(p&&p.catch)p.catch(function(){});}catch(e){}}
+$("bSnd").onclick=()=>{soundOn=!soundOn;const b=$("bSnd");
+  if(soundOn){b.textContent="MUTE";b.classList.remove("hot");if(!paused)playSnd();}else{b.textContent="SOUND ON";snd.pause();}};
+$("bReplay").onclick=()=>{start=performance.now();curT=0;paused=false;$("bPlay").textContent="PAUSE";playSnd();};
+$("bPlay").onclick=()=>{if(paused){start=performance.now()-pt*1000;paused=false;$("bPlay").textContent="PAUSE";playSnd();}else{pt=curT;paused=true;snd.pause();$("bPlay").textContent="PLAY";}};
 })();
 </script>
 <script src="../share.js?v=3" defer></script>
