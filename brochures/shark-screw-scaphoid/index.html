@@ -21,107 +21,163 @@ body.cap #ctrl{display:none}
 <svg id="s" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 <defs>
   <radialGradient id="bg" cx="50%" cy="50%" r="70%">
-    <stop offset="0" stop-color="#15130f"/><stop offset=".6" stop-color="#070706"/><stop offset="1" stop-color="#000"/>
+    <stop offset="0" stop-color="#16130f"/><stop offset=".6" stop-color="#070706"/><stop offset="1" stop-color="#000"/>
+  </radialGradient>
+  <radialGradient id="vig" cx="50%" cy="50%" r="72%">
+    <stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/>
   </radialGradient>
   <linearGradient id="boneG" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#f4ead2"/><stop offset=".45" stop-color="#dcc79c"/><stop offset="1" stop-color="#a68c5e"/>
+    <stop offset="0" stop-color="#f4ead2"/><stop offset=".5" stop-color="#d9c398"/><stop offset="1" stop-color="#a68c5e"/>
   </linearGradient>
+  <radialGradient id="boneR" cx="40%" cy="35%" r="75%">
+    <stop offset="0" stop-color="#f6edd8"/><stop offset=".6" stop-color="#d6c095"/><stop offset="1" stop-color="#9c8256"/>
+  </radialGradient>
   <pattern id="trab" width="26" height="22" patternUnits="userSpaceOnUse">
     <ellipse cx="7" cy="6" rx="5" ry="3" fill="#8a7046" opacity=".22"/>
     <ellipse cx="19" cy="16" rx="4" ry="2.5" fill="#8a7046" opacity=".18"/>
     <circle cx="20" cy="4" r="1.6" fill="#fff" opacity=".25"/>
   </pattern>
+  <pattern id="trabW" width="5" height="4" patternUnits="userSpaceOnUse">
+    <ellipse cx="1.4" cy="1.1" rx="1" ry=".6" fill="#8a7046" opacity=".2"/>
+    <circle cx="3.8" cy="3" r=".35" fill="#fff" opacity=".22"/>
+  </pattern>
   <linearGradient id="metalG" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#f5f7f9"/><stop offset=".35" stop-color="#aab2bb"/><stop offset=".7" stop-color="#5a626b"/><stop offset="1" stop-color="#c3c9cf"/>
+  </linearGradient>
+  <linearGradient id="steelV" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#6b737c"/><stop offset=".4" stop-color="#eef1f4"/><stop offset="1" stop-color="#7d858e"/>
   </linearGradient>
   <linearGradient id="sharkG" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#fff7e4"/><stop offset=".4" stop-color="#ead9ae"/><stop offset=".75" stop-color="#b9995f"/><stop offset="1" stop-color="#e9d8ae"/>
   </linearGradient>
+  <linearGradient id="orangeG" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#ffb07a"/><stop offset=".35" stop-color="#f26b1d"/><stop offset=".8" stop-color="#b8460c"/><stop offset="1" stop-color="#f28a4a"/>
+  </linearGradient>
   <linearGradient id="goldG" x1="0" y1="0" x2="1" y2="0">
     <stop offset="0" stop-color="#b8973f"/><stop offset=".5" stop-color="#D5B863"/><stop offset="1" stop-color="#f0dc9a"/>
   </linearGradient>
-  <filter id="glow" x="-20%" y="-60%" width="140%" height="220%">
+  <filter id="glow" x="-20%" y="-80%" width="140%" height="260%">
     <feGaussianBlur stdDeviation="9" result="b"/>
     <feColorMatrix in="b" type="matrix" values="0 0 0 0 0.84  0 0 0 0 0.72  0 0 0 0 0.39  0 0 0 1 0" result="g"/>
     <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
   </filter>
-  <path id="boneShape" d="M 520 560 C 500 430, 640 355, 800 372 C 900 384, 980 412, 1080 394 C 1260 360, 1420 420, 1420 540 C 1420 650, 1300 702, 1140 684 C 1040 672, 960 704, 860 706 C 680 708, 540 684, 520 560 Z"/>
-  <clipPath id="boneClip"><use href="#boneShape"/></clipPath>
+  <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+
+  <!-- scaphoid, local coords: proximal pole at -x, distal pole and tubercle at +x, capitate facet at -y -->
+  <path id="scaShape" d="M -455 -40 C -455 -110, -400 -150, -330 -145 C -240 -138, -150 -80, -60 -48 C 20 -32, 110 -36, 190 -60 C 280 -90, 360 -160, 440 -150 C 500 -140, 512 -60, 500 10 C 492 70, 480 130, 450 175 C 420 215, 360 215, 320 190 C 260 170, 200 168, 120 172 C 0 178, -150 165, -270 130 C -380 98, -455 40, -455 -40 Z"/>
+  <clipPath id="scaClip"><use href="#scaShape"/></clipPath>
   <clipPath id="proxClip"><polygon id="proxPoly"/></clipPath>
   <clipPath id="distClip"><polygon id="distPoly"/></clipPath>
-  <clipPath id="screwClip"><path id="screwClipPath"/></clipPath>
+  <clipPath id="mClip"><path id="mClipPath"/></clipPath>
+  <clipPath id="sClip"><path id="sClipPath"/></clipPath>
+  <clipPath id="sMainClip"><rect x="-200" y="-200" width="1078" height="400"/></clipPath>
+  <clipPath id="sStubClip"><rect x="878" y="-200" width="600" height="400"/></clipPath>
 </defs>
 
 <rect width="1920" height="1080" fill="url(#bg)"/>
 
-<!-- ============ ANATOMY SCENE ============ -->
-<g id="boneScene" opacity="0">
-  <g clip-path="url(#proxClip)">
-    <use href="#boneShape" fill="url(#boneG)"/><use href="#boneShape" fill="url(#trab)"/>
-    <use href="#boneShape" fill="none" stroke="#fbf2dc" stroke-width="4" opacity=".55"/>
-  </g>
-  <g clip-path="url(#distClip)">
-    <use href="#boneShape" fill="url(#boneG)"/><use href="#boneShape" fill="url(#trab)"/>
-    <use href="#boneShape" fill="none" stroke="#fbf2dc" stroke-width="4" opacity=".55"/>
-  </g>
-  <g clip-path="url(#boneClip)">
-    <polygon id="gapFill" fill="#2a1712"/>
-    <polyline id="edgeP" fill="none" stroke-width="4" stroke-linejoin="round"/>
-    <polyline id="edgeD" fill="none" stroke-width="4" stroke-linejoin="round"/>
-    <rect id="tunnel" x="590" y="514" width="850" height="52" rx="24" fill="#1d120c"/>
-    <g id="graft"></g>
-    <g id="heal" opacity="0">
-      <polygon id="gapHeal" fill="url(#boneG)"/>
-      <rect x="590" y="512" width="850" height="56" rx="26" fill="url(#boneG)"/>
-      <rect x="590" y="512" width="850" height="56" rx="26" fill="url(#trab)"/>
+<!-- ================= CAMERA / WORLD ================= -->
+<g id="world" opacity="0">
+ <g id="cam">
+  <g id="skin" filter="url(#soft)" opacity=".55"></g>
+  <g id="others"></g>
+  <ellipse id="ring" cx="0" cy="0" rx="92" ry="52" fill="none" stroke="#D5B863" stroke-width="3" vector-effect="non-scaling-stroke" opacity="0"/>
+
+  <!-- the scaphoid -->
+  <g id="sca" transform="translate(412,810) rotate(43) scale(-0.13,0.13)">
+    <g clip-path="url(#proxClip)">
+      <use href="#scaShape" fill="url(#boneR)"/><use href="#scaShape" fill="url(#trab)"/>
+      <use href="#scaShape" fill="none" stroke="#fbf2dc" stroke-width="5" opacity=".6"/>
     </g>
-  </g>
+    <g clip-path="url(#distClip)">
+      <use href="#scaShape" fill="url(#boneR)"/><use href="#scaShape" fill="url(#trab)"/>
+      <use href="#scaShape" fill="none" stroke="#fbf2dc" stroke-width="5" opacity=".6"/>
+    </g>
+    <g clip-path="url(#scaClip)">
+      <polygon id="gapFill" fill="#2a1712"/>
+      <polyline id="edgeP" fill="none" stroke-width="5" stroke-linejoin="round"/>
+      <polyline id="edgeD" fill="none" stroke-width="5" stroke-linejoin="round"/>
+      <rect id="tunnel" x="-392" y="-3" width="960" height="56" rx="26" fill="#1d120c"/>
+      <g id="graft"></g>
+      <g id="heal" opacity="0">
+        <polygon id="gapHeal" fill="url(#boneR)"/>
+        <rect x="-394" y="-5" width="960" height="60" rx="28" fill="url(#boneR)"/>
+        <rect x="-394" y="-5" width="960" height="60" rx="28" fill="url(#trab)"/>
+      </g>
+    </g>
 
-  <g id="metal">
-    <path id="metalBody" fill="url(#metalG)"/>
-    <g id="metalThreads" clip-path="url(#screwClip)" stroke="#3f464d" stroke-width="3"></g>
-    <rect id="metalSocket" x="0" y="-9" width="10" height="18" rx="2" fill="#2a2f35"/>
-  </g>
+    <!-- metal screw + hex driver -->
+    <g id="metal">
+      <g id="mDriver">
+        <rect x="788" y="-13" width="2400" height="26" fill="url(#metalG)"/>
+        <rect x="1100" y="-17" width="40" height="34" rx="4" fill="#8f979f"/>
+      </g>
+      <path id="mBody" fill="url(#metalG)"/>
+      <g id="mThreads" clip-path="url(#mClip)" stroke="#3f464d" stroke-width="3"></g>
+    </g>
 
-  <g id="shark" opacity="0" filter="url(#glow)">
-    <path id="sharkBody" fill="url(#sharkG)"/>
-    <g id="sharkGrain" clip-path="url(#screwClip)" stroke="#a88a55" stroke-width="1" opacity=".55"></g>
-    <g id="sharkThreads" clip-path="url(#screwClip)" stroke="#8c6f3e" stroke-width="3"></g>
-  </g>
+    <!-- Shark Screw (main + stub) + orange driver -->
+    <g id="shark" opacity="0">
+      <g id="oDriver">
+        <rect x="868" y="-46" width="130" height="92" rx="12" fill="url(#orangeG)"/>
+        <rect x="990" y="-25" width="2400" height="50" fill="url(#orangeG)"/>
+        <rect x="1200" y="-31" width="34" height="62" rx="5" fill="#c4520f"/>
+        <rect x="1290" y="-31" width="34" height="62" rx="5" fill="#c4520f"/>
+        <rect x="1380" y="-31" width="34" height="62" rx="5" fill="#c4520f"/>
+      </g>
+      <g id="sMain" clip-path="url(#sMainClip)" filter="url(#glow)"></g>
+      <g id="sStub"><g clip-path="url(#sStubClip)"></g></g>
+      <ellipse id="cutFace" cx="878" cy="0" rx="7" ry="22" fill="#fff3d6" stroke="#b39561" stroke-width="2" opacity="0"/>
+    </g>
 
-  <g id="sparks"></g>
+    <!-- curette -->
+    <g id="curette" opacity="0">
+      <rect x="-11" y="-2400" width="22" height="2370" fill="url(#steelV)"/>
+      <rect x="-15" y="-700" width="30" height="80" rx="6" fill="#7b838c"/>
+      <ellipse cx="0" cy="-12" rx="17" ry="28" fill="#cfd5db" stroke="#5f666e" stroke-width="3"/>
+      <ellipse cx="0" cy="-8" rx="9" ry="16" fill="#7b838c"/>
+    </g>
+    <g id="debris"></g>
 
-  <g id="arrows" opacity="0" fill="#D5B863" stroke="#D5B863" stroke-width="5" stroke-linecap="round">
-    <line x1="820" y1="300" x2="910" y2="300"/><polygon points="930,300 905,286 905,314" stroke="none"/>
-    <line x1="1100" y1="300" x2="1010" y2="300"/><polygon points="990,300 1015,286 1015,314" stroke="none"/>
+    <!-- saw blade -->
+    <g id="saw" opacity="0">
+      <rect x="-5" y="-2400" width="10" height="2400" fill="url(#steelV)"/>
+      <rect x="-40" y="-2400" width="80" height="1700" fill="url(#steelV)"/>
+      <polygon points="-6,-4 -6,6 -2,0 2,6 6,0 6,-4" fill="#f2f4f6"/>
+    </g>
+    <g id="cutSparks"></g>
+    <g id="sparks"></g>
   </g>
+ </g>
+</g>
+<rect width="1920" height="1080" fill="url(#vig)" pointer-events="none"/>
 
-  <g id="lbl1" opacity="0">
-    <line x1="975" y1="378" x2="1060" y2="300" stroke="#D5B863" stroke-width="2"/>
-    <circle cx="975" cy="378" r="6" fill="#D5B863"/>
-    <text x="1072" y="298" fill="#D5B863" font-size="28" font-weight="600">Persistent non-union gap</text>
-  </g>
-  <g id="lbl2" opacity="0">
-    <line x1="1200" y1="566" x2="1270" y2="790" stroke="#D5B863" stroke-width="2"/>
-    <circle cx="1200" cy="566" r="6" fill="#D5B863"/>
-    <text x="1282" y="800" fill="#D5B863" font-size="28" font-weight="600">Lucency around metal screw</text>
-  </g>
-
-  <g id="progress" opacity="0">
-    <text x="960" y="842" text-anchor="middle" fill="#bdbdbd" font-size="24" letter-spacing="4">CREEPING SUBSTITUTION · GRAFT BECOMES HOST BONE</text>
-    <rect x="660" y="866" width="600" height="10" rx="5" fill="#2b2b2b"/>
-    <rect id="progBar" x="660" y="866" width="0" height="10" rx="5" fill="url(#goldG)"/>
-  </g>
+<!-- ================= SCREEN OVERLAYS ================= -->
+<g id="handLbl" opacity="0">
+  <line id="hlLine" stroke="#D5B863" stroke-width="2"/>
+  <text id="hlText" fill="#D5B863" font-size="30" font-weight="700">Scaphoid non-union</text>
+</g>
+<g id="zLbl" opacity="0" fill="#D5B863" font-size="30" font-weight="600">
+  <g id="zl1"><line stroke="#D5B863" stroke-width="2"/><circle r="7"/><text>Non-union</text></g>
+  <g id="zl2"><line stroke="#D5B863" stroke-width="2"/><circle r="7"/><text>Metal screw</text></g>
+  <g id="zl3"><line stroke="#D5B863" stroke-width="2"/><circle r="7"/><text>Lucency around the screw</text></g>
+</g>
+<g id="tLbl" opacity="0" fill="#F26B1D" font-size="28" font-weight="700">
+  <text id="tLblText" x="0" y="0"></text>
+</g>
+<g id="progress" opacity="0">
+  <text x="960" y="938" text-anchor="middle" fill="#bdbdbd" font-size="24" letter-spacing="4">CREEPING SUBSTITUTION · ALLOGRAFT BECOMES HOST BONE</text>
+  <rect x="660" y="962" width="600" height="10" rx="5" fill="#2b2b2b"/>
+  <rect id="progBar" x="660" y="962" width="0" height="10" rx="5" fill="url(#goldG)"/>
 </g>
 
-<!-- ============ CAPTIONS ============ -->
 <g id="cap" opacity="0">
-  <text id="capK" x="960" y="128" text-anchor="middle" fill="#D5B863" font-size="26" font-weight="700" letter-spacing="8"></text>
-  <text id="capH" x="960" y="196" text-anchor="middle" fill="#fff" font-size="54" font-weight="700"></text>
-  <text id="capS" x="960" y="248" text-anchor="middle" fill="#b9b9b9" font-size="30" font-weight="400"></text>
+  <text id="capK" x="960" y="96" text-anchor="middle" fill="#D5B863" font-size="26" font-weight="700" letter-spacing="8"></text>
+  <text id="capH" x="960" y="160" text-anchor="middle" fill="#fff" font-size="54" font-weight="700"></text>
+  <text id="capS" x="960" y="210" text-anchor="middle" fill="#b9b9b9" font-size="30" font-weight="400"></text>
 </g>
 
-<!-- ============ TITLE ============ -->
+<!-- ================= TITLE ================= -->
 <g id="title" opacity="0">
   <text x="960" y="470" text-anchor="middle" fill="url(#goldG)" font-size="150" font-weight="800" letter-spacing="10">SHARK SCREW®</text>
   <rect id="titleRule" x="960" y="520" width="0" height="4" fill="#D5B863"/>
@@ -129,7 +185,7 @@ body.cap #ctrl{display:none}
   <text x="960" y="670" text-anchor="middle" fill="#9a9a9a" font-size="30" font-weight="400" letter-spacing="2">Human allogeneic cortical bone screw</text>
 </g>
 
-<!-- ============ DATA ============ -->
+<!-- ================= DATA ================= -->
 <g id="data" opacity="0">
   <text x="960" y="120" text-anchor="middle" fill="#D5B863" font-size="26" font-weight="700" letter-spacing="8">THE EVIDENCE</text>
   <text x="960" y="186" text-anchor="middle" fill="#fff" font-size="50" font-weight="700">Upper-extremity non-unions: Shark Screw® vs. conventional metal</text>
@@ -142,7 +198,7 @@ body.cap #ctrl{display:none}
   <text x="960" y="1040" text-anchor="middle" fill="#7d7d7d" font-size="20">Mixed upper-extremity sites (shoulder, arm, wrist, fingers). Follow-up 10 months Shark Screw® vs. 18 months conventional. Groups not randomized.</text>
 </g>
 
-<!-- ============ SCAPHOID STAT ============ -->
+<!-- ================= SCAPHOID STAT ================= -->
 <g id="scaph" opacity="0">
   <text x="960" y="160" text-anchor="middle" fill="#D5B863" font-size="26" font-weight="700" letter-spacing="8">SCAPHOID PSEUDARTHROSIS</text>
   <text id="bigPct" x="960" y="520" text-anchor="middle" fill="url(#goldG)" font-size="300" font-weight="800">0%</text>
@@ -151,7 +207,7 @@ body.cap #ctrl{display:none}
   <text x="960" y="1030" text-anchor="middle" fill="#7d7d7d" font-size="20">J Orthop Traumatol 2023 · retrospective, multicentre, Level III · doi:10.1186/s10195-023-00686-7</text>
 </g>
 
-<!-- ============ END CARD ============ -->
+<!-- ================= END CARD ================= -->
 <g id="endc" opacity="0">
   <text x="960" y="360" text-anchor="middle" fill="url(#goldG)" font-size="130" font-weight="800" letter-spacing="10">SHARK SCREW®</text>
   <text x="960" y="450" text-anchor="middle" fill="#fff" font-size="50" font-weight="600">Fixation and biology in one implant.</text>
@@ -173,41 +229,87 @@ const $=id=>document.getElementById(id);
 const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
 const P=(t,a,b)=>ease(cl((t-a)/(b-a)));
+const Lin=(t,a,b)=>cl((t-a)/(b-a));
 const W=(t,a,b,f=.6)=>Math.min(cl((t-a)/f),cl((b-t)/f));
 const lerp=(a,b,k)=>a+(b-a)*k;
 const mk=(tag,attrs,parent)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e;};
+const DUR=78;
 
-const DUR=60;
-/* timeline */
-const TL={title:[0,4.2],metal:[4,10.5],remove:[10.5,16],graft:[16,20.5],insert:[20.5,27],compress:[27,29.5],remodel:[29.5,36.5],data:[36.5,49.5],scaph:[49.5,54.5],end:[54.5,60]};
+/* ---------------- hand skeleton (world coords) ---------------- */
+const others=$("others"), skin=$("skin");
+function longBone(x1,y1,x2,y2,wb,ws,wh){
+  const L=Math.hypot(x2-x1,y2-y1),a=Math.atan2(y2-y1,x2-x1)*180/Math.PI;
+  const d=`M0,${-wb/2} C${L*.25},${-ws/2} ${L*.75},${-ws/2} ${L},${-wh/2} A${wh/2},${wh/2} 0 0 1 ${L},${wh/2} C${L*.75},${ws/2} ${L*.25},${ws/2} 0,${wb/2} A${wb/2},${wb/2} 0 0 1 0,${-wb/2} Z`;
+  const g=mk("g",{transform:`translate(${x1},${y1}) rotate(${a})`},others);
+  mk("path",{d,fill:"url(#boneG)",stroke:"#f7eedb","stroke-width":1.4,"vector-effect":"non-scaling-stroke"},g);
+  mk("path",{d,fill:"url(#trabW)"},g);
+}
+function carpal(cx,cy,rx,ry,rot){
+  const g=mk("g",{transform:`translate(${cx},${cy}) rotate(${rot||0})`},others);
+  mk("ellipse",{rx,ry,fill:"url(#boneR)",stroke:"#f7eedb","stroke-width":1.4,"vector-effect":"non-scaling-stroke"},g);
+  mk("ellipse",{rx,ry,fill:"url(#trabW)"},g);
+}
+function path(d){mk("path",{d,fill:"url(#boneG)",stroke:"#f7eedb","stroke-width":1.4,"vector-effect":"non-scaling-stroke"},others);mk("path",{d,fill:"url(#trabW)"},others);}
+// skin silhouette
+const sk=(x1,y1,x2,y2,w)=>mk("line",{x1,y1,x2,y2,stroke:"#4a3a2b","stroke-width":w,"stroke-linecap":"round"},skin);
+sk(330,720,170,360,86);sk(425,700,411,110,80);sk(502,700,510,68,84);sk(578,705,600,118,78);sk(645,715,704,222,70);
+mk("polygon",{points:"300,760 330,600 400,470 690,470 720,620 720,900 330,900",fill:"#4a3a2b"},skin);
+mk("rect",{x:300,y:820,width:440,height:700,rx:60,fill:"#4a3a2b"},skin);
+// forearm
+path("M 330 1500 L 345 985 C 338 945, 318 908, 336 884 C 380 868, 470 880, 545 891 C 576 895, 600 907, 600 932 L 562 1005 L 545 1500 Z");
+path("M 618 1500 L 626 962 C 614 932, 626 906, 655 900 C 690 896, 706 916, 701 946 L 690 1005 L 692 1500 Z");
+// carpals
+path("M300 745 C 300 715, 330 700, 360 708 C 385 716, 392 740, 380 760 C 365 778, 330 785, 310 772 C 300 765, 300 755, 300 745 Z");
+path("M395 712 C 410 702, 438 704, 445 718 C 450 738, 440 752, 420 754 C 400 752, 390 735, 395 712 Z");
+path("M470 708 C 490 698, 520 700, 532 712 C 540 740, 536 770, 532 790 C 528 810, 510 812, 495 812 C 475 812, 458 805, 456 785 C 452 760, 456 728, 470 708 Z");
+path("M545 715 C 575 705, 610 712, 622 732 C 628 760, 610 788, 588 800 C 570 806, 548 800, 540 785 C 535 760, 535 730, 545 715 Z");
+path("M462 832 C 470 815, 515 812, 530 828 C 540 845, 535 868, 520 880 C 500 872, 480 872, 463 878 C 453 862, 454 845, 462 832 Z");
+path("M545 828 C 560 810, 595 813, 608 830 C 613 846, 598 862, 575 862 C 555 860, 542 848, 545 828 Z");
+carpal(614,852,17,15,0);
+// metacarpals
+longBone(335,705,250,560,40,22,36);longBone(425,705,418,440,44,24,40);longBone(500,700,505,425,46,25,42);
+longBone(572,705,585,450,40,21,36);longBone(640,715,670,490,40,21,36);
+// phalanges
+longBone(243,548,200,440,34,20,30);longBone(196,430,176,360,30,18,24);
+longBone(418,428,414,275,36,20,30);longBone(414,265,412,180,30,17,26);longBone(412,171,411,118,26,14,18);
+longBone(505,413,508,245,38,21,32);longBone(508,235,509,140,32,18,27);longBone(509,131,510,75,27,14,18);
+longBone(585,438,593,280,35,20,30);longBone(594,270,598,185,30,17,25);longBone(598,176,600,125,25,13,17);
+longBone(671,478,690,355,32,18,27);longBone(691,345,699,280,27,15,22);longBone(700,271,704,230,22,12,15);
+$("ring").setAttribute("transform","translate(412,810) rotate(43)");
 
-/* jagged non-union line */
-const J=[[966,340],[958,400],[972,450],[952,500],[970,550],[950,600],[968,650],[954,700],[964,750]];
-function jx(y){ if(y<=J[0][1])return J[0][0]; for(let i=1;i<J.length;i++){ if(y<=J[i][1]){const a=J[i-1],b=J[i];return lerp(a[0],b[0],(y-a[1])/(b[1]-a[1]));}} return J[J.length-1][0]; }
+/* ---------------- scaphoid internals (local coords) ---------------- */
+const J=[[76,-200],[64,-110],[80,-60],[60,-10],[78,40],[58,90],[76,140],[66,190],[74,260]];
+function jx(y){if(y<=J[0][1])return J[0][0];for(let i=1;i<J.length;i++){if(y<=J[i][1]){const a=J[i-1],b=J[i];return lerp(a[0],b[0],(y-a[1])/(b[1]-a[1]));}}return J[J.length-1][0];}
 const pts=a=>a.map(p=>p[0].toFixed(1)+","+p[1].toFixed(1)).join(" ");
-
-/* screw geometry (local coords; tip at x=0, trailing end at x=L) */
-const L=720,R=21;
-const body=`M0,0 L36,-${R} L${L-6},-${R} Q${L+5},0 ${L-6},${R} L36,${R} Z`;
-$("metalBody").setAttribute("d",body); $("sharkBody").setAttribute("d",body); $("screwClipPath").setAttribute("d",body);
-$("metalSocket").setAttribute("x",L-14);
-const SP=17, NT=Math.ceil(L/SP)+3;
-function threads(g){const a=[];for(let i=0;i<NT;i++)a.push(mk("line",{y1:-R,y2:R},g));return a;}
-const mT=threads($("metalThreads")), sT=threads($("sharkThreads"));
+const AX=25, TIP=-380, R=22;
+function bodyPath(L){return `M0,0 L38,-${R} L${L-6},-${R} Q${L+4},0 ${L-6},${R} L38,${R} Z`;}
+const LM=800, LS=980; // metal and Shark lengths (screw-local)
+$("mBody").setAttribute("d",bodyPath(LM));$("mClipPath").setAttribute("d",bodyPath(LM));
+$("sClipPath").setAttribute("d",bodyPath(LS));
+const SP=17;
+function threads(g,L){const a=[];for(let i=0;i<Math.ceil(L/SP)+3;i++)a.push(mk("line",{y1:-R,y2:R},g));return a;}
 function setThreads(arr,phase){const ph=((phase%SP)+SP)%SP;arr.forEach((l,i)=>{const x=i*SP+ph-SP;l.setAttribute("x1",x);l.setAttribute("x2",x+9);});}
-// cortical grain on bone screw
-for(let i=0;i<7;i++){const y=-R+5+i*6;mk("line",{x1:0,x2:L,y1:y,y2:y+(i%2?1:-1)},$("sharkGrain"));}
+const mT=threads($("mThreads"),LM);
+function sharkCopy(parent){
+  mk("path",{d:bodyPath(LS),fill:"url(#sharkG)"},parent);
+  const gr=mk("g",{"clip-path":"url(#sClip)",stroke:"#a88a55","stroke-width":1,opacity:.55},parent);
+  for(let i=0;i<7;i++){const y=-R+5+i*6;mk("line",{x1:0,x2:LS,y1:y,y2:y+(i%2?1:-1)},gr);}
+  const th=mk("g",{"clip-path":"url(#sClip)",stroke:"#8c6f3e","stroke-width":3},parent);
+  // square drive end of the graft
+  mk("rect",{x:LS-26,y:-R,width:26,height:2*R,fill:"#e2cf9f",opacity:.9},parent);
+  return threads(th,LS);
+}
+const sT1=sharkCopy($("sMain")), sT2=sharkCopy($("sStub").firstElementChild);
 
-/* graft particles (seeded) */
-let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+let seed=11;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
 const graft=[];
-for(let i=0;i<46;i++){const y=360+rnd()*370,u=rnd()*2-1;graft.push({kind:"gap",y,u,r:3+rnd()*5,c:mk("circle",{fill:rnd()>.5?"#e6d3a6":"#c9ae78",stroke:"#7a5f35","stroke-width":1},$("graft")),d:rnd()});}
-for(let i=0;i<34;i++){const x=600+rnd()*820,y=520+rnd()*40;graft.push({kind:"tun",x,y,r:3+rnd()*4,c:mk("circle",{cx:x,cy:y,fill:rnd()>.5?"#e6d3a6":"#c9ae78",stroke:"#7a5f35","stroke-width":1},$("graft")),d:rnd()});}
+for(let i=0;i<46;i++){const y=-30+rnd()*200,u=rnd()*2-1;graft.push({k:"gap",y,u,r:5+rnd()*8,d:rnd(),c:mk("circle",{fill:rnd()>.5?"#e6d3a6":"#c9ae78",stroke:"#7a5f35","stroke-width":2},$("graft"))});}
+for(let i=0;i<30;i++){const x=-370+rnd()*860,y=3+rnd()*44;graft.push({k:"tun",x,y,r:5+rnd()*6,d:rnd(),c:mk("circle",{cx:x,cy:y,fill:rnd()>.5?"#e6d3a6":"#c9ae78",stroke:"#7a5f35","stroke-width":2},$("graft"))});}
+const debris=[];for(let i=0;i<40;i++){debris.push({b:23.2+rnd()*3.1,y0:-30+rnd()*190,vx:(rnd()*2-1)*260,vy:-(500+rnd()*500),r:4+rnd()*7,c:mk("circle",{fill:rnd()>.4?"#5b281c":"#8a3a26"},$("debris"))});}
+const csp=[];for(let i=0;i<26;i++){csp.push({b:37+rnd()*1.3,vx:(rnd()*2-1)*500,vy:-(200+rnd()*500),c:mk("circle",{r:2+rnd()*3,fill:"#fff1c7"},$("cutSparks"))});}
+const sparks=[];for(let i=0;i<34;i++){sparks.push({x:-370+rnd()*820,y:AX+(rnd()*2-1)*40,ph:rnd()*6.28,c:mk("circle",{r:3+rnd()*4,fill:"#f3dd92"},$("sparks"))});}
 
-/* sparks */
-const sparks=[];for(let i=0;i<30;i++){sparks.push({x:600+rnd()*800,y:540+(rnd()*2-1)*34,ph:rnd()*6.28,c:mk("circle",{r:2+rnd()*3,fill:"#f3dd92"},$("sparks"))});}
-
-/* data rows */
+/* ---------------- data rows ---------------- */
 const rowsDef=[
  {lab:"Union rate",sub:"higher is better",a:72.7,b:96.7,max:100,fmt:v=>v.toFixed(1)+"%"},
  {lab:"Time to union",sub:"lower is better",a:38.8,b:10.8,max:42,fmt:v=>Math.round(v)+" weeks"},
@@ -215,111 +317,158 @@ const rowsDef=[
  {lab:"Hardware removal",sub:"lower is better",a:63.6,b:3.4,max:100,fmt:v=>v.toFixed(1)+"%"}];
 const BX=740,BW=900,rows=[];
 rowsDef.forEach((d,i)=>{const y=370+i*165,g=mk("g",{opacity:0},$("rows"));
-  const t1=mk("text",{x:160,y:y+40,fill:"#fff","font-size":36,"font-weight":700},g);t1.textContent=d.lab;
-  const t2=mk("text",{x:160,y:y+78,fill:"#8f8f8f","font-size":24},g);t2.textContent=d.sub;
-  const ra=mk("rect",{x:BX,y:y,height:40,rx:6,width:0,fill:"#6b747e"},g);
+  mk("text",{x:160,y:y+40,fill:"#fff","font-size":36,"font-weight":700},g).textContent=d.lab;
+  mk("text",{x:160,y:y+78,fill:"#8f8f8f","font-size":24},g).textContent=d.sub;
+  const ra=mk("rect",{x:BX,y,height:40,rx:6,width:0,fill:"#6b747e"},g);
   const rb=mk("rect",{x:BX,y:y+54,height:40,rx:6,width:0,fill:"url(#goldG)"},g);
   const va=mk("text",{y:y+31,fill:"#c9c9c9","font-size":28,"font-weight":600},g);
   const vb=mk("text",{y:y+85,fill:"#D5B863","font-size":30,"font-weight":800},g);
   rows.push({d,g,ra,rb,va,vb});});
 
-/* captions */
+/* ---------------- camera ---------------- */
+const CH={cx:470,cy:640,k:.7,r:0,sx:960,sy:640}, CZ={cx:412,cy:812,k:9,r:-55,sx:960,sy:600};
+function camAt(p,t){const k=CH.k*Math.pow(CZ.k/CH.k,p)*(1+.012*Math.sin(t*.35));
+  const cx=lerp(CH.cx,CZ.cx,p),cy=lerp(CH.cy,CZ.cy,p),r=lerp(CH.r,CZ.r,p),sx=lerp(CH.sx,CZ.sx,p),sy=lerp(CH.sy,CZ.sy,p);
+  return `translate(${sx},${sy}) rotate(${r}) scale(${k}) translate(${-cx},${-cy})`;}
+// screen position of a scaphoid-local point at full zoom (mirror + uniform scale)
+const rot=(a,x,y)=>{const c=Math.cos(a*Math.PI/180),s=Math.sin(a*Math.PI/180);return[c*x-s*y,s*x+c*y];};
+const zs=(lx,ly)=>{let [wx,wy]=rot(43,-0.13*lx,0.13*ly);wx+=412-CZ.cx;wy+=810-CZ.cy;const[a,b]=rot(CZ.r,wx,wy);return[CZ.sx+CZ.k*a,CZ.sy+CZ.k*b];};
+function placeLbl(id,lx,ly,tx,ty,anchor){const g=$(id),[x,y]=zs(lx,ly);const ln=g.querySelector("line"),c=g.querySelector("circle"),tt=g.querySelector("text");
+  ln.setAttribute("x1",x);ln.setAttribute("y1",y);ln.setAttribute("x2",tx);ln.setAttribute("y2",ty);c.setAttribute("cx",x);c.setAttribute("cy",y);
+  tt.setAttribute("x",anchor==="end"?tx-12:tx+12);tt.setAttribute("y",ty+10);tt.setAttribute("text-anchor",anchor||"start");}
+placeLbl("zl1",66,-36,1080,300);
+placeLbl("zl2",250,AX,560,880,"end");
+placeLbl("zl3",-250,AX+28,1320,900);
+
+/* ---------------- captions ---------------- */
 const CAPS=[
- [TL.metal,"THE PROBLEM","Metal fixation. The scaphoid never united.",""],
- [TL.remove,"STEP 1","Remove the failed metal screw.",""],
- [TL.graft,"STEP 2","Debride to healthy, bleeding bone.","Graft as indicated."],
- [TL.insert,"STEP 3","Fix with Shark Screw®.","A threaded screw machined from human cortical bone."],
- [TL.compress,"STEP 3","Stable compression across the non-union.","The screw is itself a structural bone graft."],
- [TL.remodel,"THE BIOLOGY","The screw remodels into the patient's own bone.","Nothing left behind to remove."]];
+ [[4.4,9.4],"SCAPHOID NON-UNION","Metal fixation. The scaphoid never united.",""],
+ [[13,16],"THE PROBLEM","Persistent non-union around a metal screw.",""],
+ [[16,22],"STEP 1","Back the metal screw out.","Hex driver seated in the screw."],
+ [[22,28.5],"STEP 2","Debride to healthy, bleeding bone.","Curette the fibrous non-union. Pack graft as indicated."],
+ [[28.5,36],"STEP 3","Drive Shark Screw® down the same tract.","Human cortical bone. Compression across the non-union."],
+ [[36,41],"STEP 4","Trim it flush with the bone.","No head. No prominent hardware."],
+ [[41,49],"THE BIOLOGY","The screw becomes the patient's own bone.","Incorporation and remodeling by creeping substitution."],
+ [[49,54],"HEALED","One surgery. Nothing left to remove.",""]];
 
+/* ---------------- render ---------------- */
 function render(t){
-  /* title */
-  $("title").setAttribute("opacity",W(t,0.2,TL.title[1],.8));
-  $("titleRule").setAttribute("width",520*P(t,.6,2));$("titleRule").setAttribute("x",960-260*P(t,.6,2));
+  $("title").setAttribute("opacity",W(t,0.2,4.2,.8));
+  const tr=P(t,.6,2);$("titleRule").setAttribute("width",520*tr);$("titleRule").setAttribute("x",960-260*tr);
 
-  /* bone scene visibility */
-  $("boneScene").setAttribute("opacity",W(t,TL.metal[0],TL.remodel[1]+.2,1));
+  $("world").setAttribute("opacity",W(t,3.8,54.2,1.2));
+  const zp=P(t,9.6,13.2)-P(t,49,53.4);
+  $("cam").setAttribute("transform",camAt(zp,t));
+  $("others").setAttribute("opacity",1-.72*zp);$("skin").setAttribute("opacity",.55*(1-.8*zp));
+  const ringOp=Math.max(W(t,5,9.8,.5),W(t,52.6,54.2,.5));
+  $("ring").setAttribute("opacity",ringOp*(.55+.45*Math.sin(t*4)));
+  // hand-view label
+  const hl=W(t,5.6,9.6,.5); $("handLbl").setAttribute("opacity",hl);
+  if(hl>0){const sx=CH.sx+(412-CH.cx)*CH.k, sy=CH.sy+(810-CH.cy)*CH.k;
+    $("hlLine").setAttribute("x1",sx-58);$("hlLine").setAttribute("y1",sy+8);$("hlLine").setAttribute("x2",sx-230);$("hlLine").setAttribute("y2",sy+120);
+    $("hlText").setAttribute("x",sx-240);$("hlText").setAttribute("y",sy+160);$("hlText").setAttribute("text-anchor","middle");}
 
-  /* gap width */
-  let g=26; g=lerp(g,32,P(t,16.2,18)); g=lerp(g,7,P(t,27.2,29));
-  const prox=[[0,0],[J[0][0]-g/2,0],...J.map(p=>[p[0]-g/2,p[1]]),[J[J.length-1][0]-g/2,1080],[0,1080]];
-  const dist=[[1920,0],[J[0][0]+g/2,0],...J.map(p=>[p[0]+g/2,p[1]]),[J[J.length-1][0]+g/2,1080],[1920,1080]];
-  $("proxPoly").setAttribute("points",pts(prox));$("distPoly").setAttribute("points",pts(dist));
+  /* gap */
+  let g=24; g=lerp(g,34,P(t,23,26)); g=lerp(g,6,P(t,33.4,34.6));
+  const BIG=3000;
   const L1=J.map(p=>[p[0]-g/2,p[1]]),L2=J.map(p=>[p[0]+g/2,p[1]]);
+  $("proxPoly").setAttribute("points",pts([[-BIG,-BIG],[J[0][0]-g/2,-BIG],...L1,[J[J.length-1][0]-g/2,BIG],[-BIG,BIG]]));
+  $("distPoly").setAttribute("points",pts([[BIG,-BIG],[J[0][0]+g/2,-BIG],...L2,[J[J.length-1][0]+g/2,BIG],[BIG,BIG]]));
   $("gapFill").setAttribute("points",pts([...L1,...L2.slice().reverse()]));
-  $("gapHeal").setAttribute("points",pts([...J.map(p=>[p[0]-g/2-2,p[1]]),...J.map(p=>[p[0]+g/2+2,p[1]]).reverse()]));
+  $("gapHeal").setAttribute("points",pts([...J.map(p=>[p[0]-g/2-3,p[1]]),...J.map(p=>[p[0]+g/2+3,p[1]]).reverse()]));
   $("edgeP").setAttribute("points",pts(L1));$("edgeD").setAttribute("points",pts(L2));
-  // sclerotic (white) -> bleeding (red) after debridement
-  const db=P(t,16.4,18.2);
-  const ec=`rgb(${Math.round(lerp(250,190,db))},${Math.round(lerp(242,70,db))},${Math.round(lerp(222,55,db))})`;
+  const db=P(t,23.2,26.2);
+  const ec=`rgb(${Math.round(lerp(250,196,db))},${Math.round(lerp(242,58,db))},${Math.round(lerp(222,44,db))})`;
   $("edgeP").setAttribute("stroke",ec);$("edgeD").setAttribute("stroke",ec);
-  const edgeOp=(1-P(t,30,34))*.85;$("edgeP").setAttribute("opacity",edgeOp);$("edgeD").setAttribute("opacity",edgeOp);
-  $("gapFill").setAttribute("fill",db>0?`rgb(${Math.round(lerp(42,70,db))},${Math.round(lerp(23,22,db))},${Math.round(lerp(18,18,db))})`:"#2a1712");
+  const edgeOp=(1-P(t,42,46))*.9;$("edgeP").setAttribute("opacity",edgeOp);$("edgeD").setAttribute("opacity",edgeOp);
+  $("gapFill").setAttribute("fill",`rgb(${Math.round(lerp(42,74,db))},${Math.round(lerp(23,20,db))},${Math.round(lerp(18,16,db))})`);
+  $("tunnel").setAttribute("opacity",1-.6*P(t,33.4,34.6));
 
-  /* metal screw: in place, then backs out to the right */
-  const mo=1300*P(t,TL.remove[0]+.6,TL.remove[1]-.6);
-  $("metal").setAttribute("transform",`translate(${590+mo},540)`);
+  /* metal screw + driver */
+  const dIn=1500*(1-P(t,16.1,17.4));          // driver approaches and seats
+  const mo=1500*P(t,17.6,21.6);               // screw backs out with driver
+  $("metal").setAttribute("transform",`translate(${TIP+mo},${AX})`);
+  $("mDriver").setAttribute("transform",`translate(${dIn},0)`);
+  $("mDriver").setAttribute("opacity",t>15.9&&t<21.8?1:0);
   setThreads(mT,-mo);
-  $("metal").setAttribute("opacity",t<TL.remove[1]?1:0);
+  $("metal").setAttribute("opacity",t<21.8?1:0);
 
-  /* tunnel: lucency halo with metal, open tunnel after removal; narrows when bone screw seats */
-  $("tunnel").setAttribute("opacity",1);
-  /* graft particles */
-  graft.forEach(p=>{const a=P(t,16.6+p.d*2.4,17.2+p.d*2.4);
-    if(p.kind==="gap"){const x=jx(p.y)+p.u*(g/2-2);p.c.setAttribute("cx",x);p.c.setAttribute("cy",p.y);p.c.setAttribute("r",p.r*Math.min(1,(g+6)/30));}
-    p.c.setAttribute("opacity",a*(1-P(t,30.5,34)));});
+  /* curette */
+  const cu=W(t,22.2,27,.3);$("curette").setAttribute("opacity",cu);
+  if(cu>0){const enter=P(t,22.2,23)*(1-P(t,26.4,27));
+    const cy=lerp(-1200,60+90*Math.sin((t-23)*7.5),enter), cx=jx(cy)+6*Math.sin(t*15);
+    $("curette").setAttribute("transform",`translate(${cx},${cy}) rotate(${8*Math.sin((t-23)*7.5)})`);}
+  debris.forEach(d=>{const a=t-d.b;if(a<0||a>1.2){d.c.setAttribute("opacity",0);return;}
+    d.c.setAttribute("cx",jx(d.y0)+d.vx*a);d.c.setAttribute("cy",d.y0+d.vy*a+700*a*a);d.c.setAttribute("r",d.r);d.c.setAttribute("opacity",1-a/1.2);});
 
-  /* shark screw: drives in from the right */
-  const so=1300*(1-P(t,TL.insert[0]+.4,TL.insert[1]-.6));
-  $("shark").setAttribute("transform",`translate(${590+so},540)`);
-  setThreads(sT,-so);
-  const fade=1-.86*P(t,30.5,35.5);
-  $("shark").setAttribute("opacity",t>=TL.insert[0]?fade:0);
+  /* graft */
+  graft.forEach(p=>{const a=P(t,26.6+p.d*1.4,27.1+p.d*1.4);
+    if(p.k==="gap"){p.c.setAttribute("cx",jx(p.y)+p.u*(g/2-3));p.c.setAttribute("cy",p.y);p.c.setAttribute("r",p.r*Math.min(1,(g+8)/34));}
+    p.c.setAttribute("opacity",a*(1-P(t,42,46)));});
 
-  /* healing fill */
-  $("heal").setAttribute("opacity",P(t,30.5,35.5));
+  /* Shark Screw + orange driver */
+  const so=1500*(1-P(t,28.8,33.4));
+  const spin=-so+ (t>33.4? (Math.min(t,34.6)-33.4)*40:0);
+  $("shark").setAttribute("transform",`translate(${TIP+so},${AX})`);
+  $("shark").setAttribute("opacity",t>=28.6?1:0);
+  setThreads(sT1,spin);setThreads(sT2,spin);
+  $("oDriver").setAttribute("transform",`translate(${1500*P(t,34.8,35.8)},0)`);
+  $("oDriver").setAttribute("opacity",t<35.9?1:0);
+  // trim
+  const q=P(t,38.3,39.8);
+  $("sStub").setAttribute("transform",`translate(${120*q},${700*q*q}) rotate(${50*q},${LS-50},0)`);
+  $("sStub").setAttribute("opacity",t<38.3?1:1-q);
+  $("cutFace").setAttribute("opacity",(t>38.3?1:0)*(1-P(t,42,46)));
+  const fade=1-.9*P(t,42,47.5);
+  $("sMain").setAttribute("opacity",fade);
+  // saw (cut plane at bone surface = screw-local 835 => scaphoid-local 455)
+  const sw=W(t,36.2,39.1,.3);$("saw").setAttribute("opacity",sw);
+  if(sw>0){const sy=lerp(-1400,-40,P(t,36.2,37))+ lerp(0,110,P(t,37,38.3)) - lerp(0,1400,P(t,38.4,39.1));
+    $("saw").setAttribute("transform",`translate(${498+4*Math.sin(t*90)},${AX+sy})`);}
+  csp.forEach(s=>{const a=t-s.b;if(a<0||a>.7){s.c.setAttribute("opacity",0);return;}
+    s.c.setAttribute("cx",498+s.vx*a);s.c.setAttribute("cy",AX-10+s.vy*a+900*a*a);s.c.setAttribute("opacity",1-a/.7);});
 
-  /* sparks */
-  const sw=W(t,30,36,1);
-  sparks.forEach(s=>{s.c.setAttribute("cx",s.x);s.c.setAttribute("cy",s.y);s.c.setAttribute("opacity",sw*(.5+.5*Math.sin(t*5+s.ph)));});
+  /* remodel */
+  $("heal").setAttribute("opacity",P(t,42,47.5));
+  const spw=W(t,41.5,48.5,1);
+  sparks.forEach(s=>{s.c.setAttribute("cx",s.x);s.c.setAttribute("cy",s.y);s.c.setAttribute("opacity",spw*(.5+.5*Math.sin(t*5+s.ph)));});
+  $("progress").setAttribute("opacity",W(t,41.4,48.8,.5));
+  $("progBar").setAttribute("width",600*P(t,42,47.5));
 
-  /* arrows + labels + progress */
-  $("arrows").setAttribute("opacity",W(t,27.1,30,.4));
-  $("lbl1").setAttribute("opacity",W(t,5.6,10.4,.5));
-  $("lbl2").setAttribute("opacity",W(t,6.4,10.4,.5));
-  $("progress").setAttribute("opacity",W(t,30,36.4,.5));
-  $("progBar").setAttribute("width",600*P(t,30.5,35.5));
+  /* overlays */
+  $("zLbl").setAttribute("opacity",W(t,13,16,.5));
+  const tl=$("tLbl");let tlTxt="",tlOp=0;
+  if(t>16.4&&t<21.4){tlTxt="Hex driver";tlOp=W(t,16.6,21.2,.4);tl.setAttribute("fill","#D5B863");}
+  else if(t>29&&t<35.6){tlTxt="Shark Screw® driver";tlOp=W(t,29.4,35.4,.4);tl.setAttribute("fill","#F26B1D");}
+  else if(t>22.6&&t<26.6){tlTxt="Curette";tlOp=W(t,23,26.4,.4);tl.setAttribute("fill","#D5B863");}
+  $("tLblText").textContent=tlTxt;tl.setAttribute("opacity",tlOp);
+  const[tx,ty]=t>22.6&&t<26.6?zs(-170,-230):zs(680,-80);
+  $("tLblText").setAttribute("x",tx);$("tLblText").setAttribute("y",ty);$("tLblText").setAttribute("text-anchor","middle");
 
   /* captions */
   let cur=null;CAPS.forEach(c=>{if(t>=c[0][0]&&t<c[0][1])cur=c;});
   if(cur){$("capK").textContent=cur[1];$("capH").textContent=cur[2];$("capS").textContent=cur[3];
-    // soft fade only at scene edges where text actually changes
-    const fin=cur===CAPS[4]?1:cl((t-cur[0][0])/.5), fout=(cur===CAPS[3])?1:cl((cur[0][1]-t)/.5);
-    $("cap").setAttribute("opacity",Math.min(fin,fout));}
+    $("cap").setAttribute("opacity",Math.min(cl((t-cur[0][0])/.45),cl((cur[0][1]-t)/.45)));}
   else $("cap").setAttribute("opacity",0);
 
   /* data */
-  $("data").setAttribute("opacity",W(t,TL.data[0]+.2,TL.data[1],.7));
-  rows.forEach((r,i)=>{const t0=37.4+i*1.6,k=P(t,t0+.2,t0+1.6);
+  $("data").setAttribute("opacity",W(t,54.2,67,.7));
+  rows.forEach((r,i)=>{const t0=55.2+i*1.6,k=P(t,t0+.2,t0+1.6);
     r.g.setAttribute("opacity",cl((t-t0)/.4));
     const wa=BW*r.d.a/r.d.max*k,wb=BW*r.d.b/r.d.max*k;
     r.ra.setAttribute("width",Math.max(0,wa));r.rb.setAttribute("width",Math.max(0,wb));
     r.va.setAttribute("x",BX+wa+16);r.vb.setAttribute("x",BX+wb+16);
     r.va.textContent=r.d.fmt(r.d.a*k);r.vb.textContent=r.d.fmt(r.d.b*k);});
-
-  /* scaphoid stat */
-  $("scaph").setAttribute("opacity",W(t,TL.scaph[0]+.2,TL.scaph[1],.6));
-  $("bigPct").textContent=Math.round(95*P(t,50,51.8))+"%";
-  $("scaphCtx").setAttribute("opacity",cl((t-52)/.6));
-
-  /* end */
-  $("endc").setAttribute("opacity",cl((t-TL.end[0]-.2)/.9));
+  $("scaph").setAttribute("opacity",W(t,67.2,72,.6));
+  $("bigPct").textContent=Math.round(95*P(t,67.6,69.4))+"%";
+  $("scaphCtx").setAttribute("opacity",cl((t-69.6)/.6));
+  $("endc").setAttribute("opacity",cl((t-72.2)/.9));
 }
 window.renderAt=render; window.DURATION=DUR;
 
 if(location.search.indexOf("capture")>=0){document.body.classList.add("cap");render(0);return;}
 let start=performance.now(),paused=false,pt=0;
-function loop(now){ if(!paused){let t=(now-start)/1000; if(t>DUR+3){start=now;t=0;} render(Math.min(t,DUR));} requestAnimationFrame(loop);}
+function loop(now){if(!paused){let t=(now-start)/1000;if(t>DUR+3){start=now;t=0;}render(Math.min(t,DUR));}requestAnimationFrame(loop);}
 requestAnimationFrame(loop);
 $("bReplay").onclick=()=>{start=performance.now();paused=false;$("bPlay").textContent="PAUSE";};
 $("bPlay").onclick=()=>{if(paused){start=performance.now()-pt*1000;paused=false;$("bPlay").textContent="PAUSE";}else{pt=(performance.now()-start)/1000;paused=true;$("bPlay").textContent="PLAY";}};
