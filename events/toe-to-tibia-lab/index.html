@@ -278,6 +278,7 @@ footer img{width:150px;margin:0 auto 14px;display:block}
 .shp .shgo{width:100%;justify-content:center;margin-top:18px}
 .sho{display:flex;gap:8px;margin-top:10px}.sho button{flex:1;padding:10px;background:transparent;border:1px solid rgba(255,255,255,.2);color:#ddd;font-family:var(--display);font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
 .shc{position:absolute;top:8px;right:12px;background:none;border:0;color:#aaa;font-size:28px;cursor:pointer}
+.shstep{color:#cfc6b4;font-size:14px;line-height:1.5;margin:10px 0 0}.shstep b{color:var(--gold-hi)}
 .shok{color:var(--gold-hi);font-size:14px;margin-top:10px;min-height:1.2em}
 @media (max-width:900px){.ft{grid-template-columns:1fr}.ft.flip .fim{order:0}.also{flex-direction:column;align-items:flex-start}}
 @media (max-width:900px){
@@ -558,31 +559,66 @@ footer img{width:150px;margin:0 auto 14px;display:block}
       'The full invitation and RSVP:',URL_,'',
       'Warmly,',rep.name,rep.title,rep.phone,rep.email,'Integrity First. Patient First. Always.'].join('\n');
     return {rep:rep,su:su,body:body};}
-  function gmailFrom(r,to){var m=inviteMail(r);return 'https://mail.google.com/mail/?authuser='+encodeURIComponent(m.rep.email)+'&view=cm&fs=1&to='+encodeURIComponent(to||'')+'&su='+encodeURIComponent(m.su)+'&body='+encodeURIComponent(m.body)}
+  /* formatted invitation (Gmail drops line breaks from a compose link, so the
+     email is copied as formatted text and pasted into Gmail with Ctrl+V) */
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  function inviteHtml(r){var m=inviteMail(r),F='font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#000000;';
+    var blocks=m.body.split('\n\n').map(function(b){return b.split('\n')}),out=[],seenDetails=false;
+    blocks.forEach(function(L,i){
+      if(L[0]==='Warmly,'){
+        out.push('<p style="'+F+'margin:22px 0 0 0">Warmly,</p>'+
+          '<p style="'+F+'margin:10px 0 0 0"><b>'+esc(L[1])+'</b><br>'+esc(L[2])+'<br>'+esc(L[3])+'<br>'+
+          '<a href="mailto:'+esc(L[4])+'" style="color:#000000">'+esc(L[4])+'</a></p>'+
+          '<p style="'+F+'margin:10px 0 0 0;color:#3A3A3A;font-style:italic">'+esc(L[5])+'</p>');return}
+      if(L.indexOf(URL_)>-1){
+        var label=L.filter(function(x){return x!==URL_}).join(' ');
+        if(label)out.push('<p style="'+F+'margin:0 0 12px 0">'+esc(label)+'</p>');
+        out.push('<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 8px 0"><tr>'+
+          '<td bgcolor="#D5B863" style="background-color:#D5B863;padding:12px 26px">'+
+          '<a href="'+URL_+'" style="font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;letter-spacing:1px;color:#000000;text-decoration:none">'+esc('VIEW INVITATION & RSVP')+'</a>'+
+          '</td></tr></table>'+
+          '<p style="'+F+'font-size:12px;color:#3A3A3A;margin:0 0 18px 0">Or open: <a href="'+URL_+'" style="color:#3A3A3A">'+URL_+'</a></p>');return}
+      if(L.length>1&&!seenDetails){seenDetails=true;
+        out.push('<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:4px 0 18px 0"><tr>'+
+          '<td style="border-left:3px solid #D5B863;padding:2px 0 2px 16px">'+
+          L.map(function(x,j){return '<div style="'+F+(j===0?'font-weight:bold;':'')+'">'+esc(x)+'</div>'}).join('')+
+          '</td></tr></table>');return}
+      out.push('<p style="'+F+'margin:0 0 16px 0">'+esc(L.join(' '))+'</p>');
+    });
+    return '<div style="'+F+'max-width:600px">'+out.join('')+'</div>';}
+  function copyRich(html,text){var ok=false;
+    function h(e){e.clipboardData.setData('text/html',html);e.clipboardData.setData('text/plain',text);e.preventDefault();ok=true}
+    document.addEventListener('copy',h);try{document.execCommand('copy')}catch(_){}document.removeEventListener('copy',h);
+    if(!ok&&navigator.clipboard&&window.ClipboardItem){try{navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})]);ok=true}catch(_){}}
+    return ok}
+  function gmailFrom(r,to){var m=inviteMail(r);return 'https://mail.google.com/mail/?authuser='+encodeURIComponent(m.rep.email)+'&view=cm&fs=1&to='+encodeURIComponent(to||'')+'&su='+encodeURIComponent(m.su)}
   var mob=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
-  function sendFrom(r){var m=inviteMail(r);
-    if(mob){location.href='mailto:?subject='+encodeURIComponent(m.su)+'&body='+encodeURIComponent(m.body)}
-    else{location.href=gmailFrom(r)}}
-  /* one-click from the Control Center: ?send=scott or ?send=john opens the ready-to-send Gmail */
-  var sp=(location.search.match(/[?&]send=(scott|john)/)||[])[1];
-  if(sp){sendFrom(sp)}
-  document.getElementById('share').addEventListener('click',function(){
+  function openShare(r0,fromCC){
     var x=document.createElement('div');x.className='shx';
-    x.innerHTML='<div class="shp" role="dialog" aria-label="Share this invitation"><button class="shc" aria-label="Close">&times;</button><h3>Share this invitation</h3>'+
-      '<label>Send from</label><div class="shf"><button data-r="scott" class="on">Scott</button><button data-r="john">John</button></div>'+
-      '<label>To (optional)</label><input id="shto" type="email" placeholder="name@elch.org">'+
-      '<button class="btn solid shgo">Email from Lotus Gmail</button>'+
+    x.innerHTML='<div class="shp" role="dialog" aria-label="Share this invitation"><button class="shc" aria-label="Close">&times;</button><h3>'+(fromCC?'Send this invitation':'Share this invitation')+'</h3>'+
+      '<label>Send from</label><div class="shf"><button data-r="scott">Scott</button><button data-r="john">John</button></div>'+
+      '<label>To</label><input id="shto" type="email" placeholder="name@elch.org">'+
+      '<button class="btn solid shgo">'+(mob?'Email from Lotus Gmail':'Copy invitation &amp; open Gmail')+'</button>'+
+      (mob?'':'<p class="shstep">Gmail opens in a new tab with the address and subject filled in. Click in the white message area, press <b>Ctrl+V</b>, then Send.</p>')+
       '<div class="sho"><button data-a="copy">Copy link</button><button data-a="text">Text message</button></div><div class="shok"></div></div>';
-    document.body.appendChild(x);var r='scott',ok=x.querySelector('.shok');
+    document.body.appendChild(x);var r=r0||'scott',ok=x.querySelector('.shok');
+    [].forEach.call(x.querySelectorAll('.shf button'),function(b){b.classList.toggle('on',b.getAttribute('data-r')===r)});
     x.querySelector('.shf').addEventListener('click',function(e){var v=e.target.getAttribute('data-r');if(!v)return;r=v;[].forEach.call(x.querySelectorAll('.shf button'),function(b){b.classList.toggle('on',b===e.target)})});
     x.addEventListener('click',function(e){if(e.target===x||e.target.classList.contains('shc'))x.remove()});
-    x.querySelector('.shgo').addEventListener('click',function(){var t=x.querySelector('#shto').value.trim();
-      if(mob){var m=inviteMail(r);location.href='mailto:'+encodeURIComponent(t)+'?subject='+encodeURIComponent(m.su)+'&body='+encodeURIComponent(m.body)}
-      else{window.open(gmailFrom(r,t),'lotusmail');ok.textContent='Gmail opened from '+REPS[r].email+'.'}});
+    x.querySelector('.shgo').addEventListener('click',function(){var t=x.querySelector('#shto').value.trim(),m=inviteMail(r);
+      if(mob){location.href='mailto:'+encodeURIComponent(t)+'?subject='+encodeURIComponent(m.su)+'&body='+encodeURIComponent(m.body);return}
+      var c=copyRich(inviteHtml(r),m.body);
+      window.open(gmailFrom(r,t),'lotusmail');
+      ok.innerHTML=c?'Invitation copied. In Gmail, click in the message area and press <b>Ctrl+V</b>.':'Gmail opened. Copying was blocked by the browser, so use Chrome or Edge and try again.'});
     x.querySelector('.sho').addEventListener('click',function(e){var a=e.target.getAttribute('data-a');
       if(a==='copy'){try{navigator.clipboard.writeText(URL_).then(function(){ok.textContent='Link copied.'})}catch(_){prompt('Copy this link',URL_)}}
       if(a==='text'){location.href='sms:'+(/iPhone|iPad/.test(navigator.userAgent)?'&':'?')+'body='+encodeURIComponent('You are invited: cadaveric skills lab with Lotus Medical and Fusion Orthopedics, Thu Dec 3, Vista Room at The Grand Resort, Warren. Small plates 5:00, lab 6–9 PM. Invitation and RSVP: '+URL_)}});
-  });
+    var to=x.querySelector('#shto');if(!mob)setTimeout(function(){to.focus()},50);
+  }
+  /* from the Control Center: ?send=scott or ?send=john opens the send panel */
+  var sp=(location.search.match(/[?&]send=(scott|john)/)||[])[1];
+  if(sp){if(mob){var m0=inviteMail(sp);location.href='mailto:?subject='+encodeURIComponent(m0.su)+'&body='+encodeURIComponent(m0.body)}else openShare(sp,true)}
+  document.getElementById('share').addEventListener('click',function(){openShare('scott',false)});
 
   /* reveals */
   var els=[].slice.call(document.querySelectorAll('.rv,.ttt,.st,.venue,.ft'));
