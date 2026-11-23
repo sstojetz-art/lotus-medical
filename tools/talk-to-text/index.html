@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Talk to Text</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000'/%3E%3Crect x='24' y='10' width='16' height='28' rx='8' fill='%23D5B863'/%3E%3Cpath d='M16 30a16 16 0 0 0 32 0M32 46v8M22 54h20' stroke='%23D5B863' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{--gold:#D5B863;--black:#000;--gray:#3A3A3A;--white:#fff;--soft:#9a9a9a;--red:#ff5a4f}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif}
+body{display:flex;flex-direction:column}
+header{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #222}
+header h1{font-size:15px;letter-spacing:.14em;margin:0;color:var(--gold);font-weight:700;text-transform:uppercase;flex:1}
+.ib{background:none;border:1px solid #333;color:#ddd;border-radius:8px;padding:6px 10px;font:13px Arial;cursor:pointer}
+.ib:hover{border-color:var(--gold);color:var(--gold)}
+main{flex:1;display:flex;flex-direction:column;padding:14px;gap:12px;min-height:0}
+.top{display:flex;align-items:center;gap:14px}
+#mic{width:74px;height:74px;border-radius:50%;border:2px solid var(--gold);background:#111;cursor:pointer;display:grid;place-items:center;flex:none;transition:.2s}
+#mic svg{width:34px;height:34px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round}
+#mic.on{background:var(--gold);box-shadow:0 0 0 0 rgba(213,184,99,.6);animation:pulse 1.6s infinite}
+#mic.on svg{stroke:#000}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(213,184,99,.55)}70%{box-shadow:0 0 0 16px rgba(213,184,99,0)}100%{box-shadow:0 0 0 0 rgba(213,184,99,0)}}
+.st{flex:1;min-width:0}
+#status{font-size:16px;font-weight:700}
+#status.on{color:var(--gold)} #status.err{color:var(--red)}
+#sub{font-size:13px;color:var(--soft);margin-top:4px}
+.meter{height:6px;background:#1a1a1a;border-radius:3px;margin-top:8px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--gold);transition:width .08s}
+#text{flex:1;min-height:120px;width:100%;resize:none;background:#0d0d0d;color:#fff;border:1px solid #2a2a2a;border-radius:10px;padding:14px;font:18px/1.55 Arial,Helvetica,sans-serif;outline:none}
+#text:focus{border-color:#5a4d28}
+#interim{min-height:22px;font-size:16px;color:var(--gold);opacity:.85;font-style:italic}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{flex:1;min-width:110px;padding:12px 10px;border-radius:10px;border:1px solid var(--gold);background:#000;color:var(--gold);font:700 14px Arial;cursor:pointer;letter-spacing:.04em}
+.btn.gold{background:var(--gold);color:#000}
+.btn:hover{filter:brightness(1.15)}
+.opts{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:#ccc;align-items:center}
+.opts label{display:flex;align-items:center;gap:6px;cursor:pointer}
+.opts input{accent-color:var(--gold)}
+select{background:#111;color:#fff;border:1px solid #333;border-radius:6px;padding:4px 6px;font:13px Arial}
+#toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--gold);color:#000;font:700 14px Arial;padding:10px 18px;border-radius:20px;opacity:0;transition:.25s;pointer-events:none}
+#toast.show{opacity:1}
+.panel{position:fixed;inset:0;background:rgba(0,0,0,.94);display:none;flex-direction:column;padding:18px;overflow:auto;z-index:5}
+.panel.show{display:flex}
+.panel h2{color:var(--gold);font-size:16px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 12px}
+.panel p,.panel li{font-size:14px;line-height:1.6;color:#ddd}
+.panel textarea{width:100%;min-height:160px;background:#0d0d0d;color:#fff;border:1px solid #333;border-radius:8px;padding:10px;font:14px/1.5 Arial}
+.hi{background:#0d0d0d;border:1px solid #262626;border-radius:10px;padding:12px;margin-bottom:10px}
+.hi .when{font-size:12px;color:var(--soft);margin-bottom:6px;display:flex;justify-content:space-between;gap:8px}
+.hi .tx{white-space:pre-wrap;font-size:14px;line-height:1.5;max-height:120px;overflow:auto}
+kbd{background:#222;border:1px solid #444;border-radius:4px;padding:1px 6px;font:12px Arial;color:#fff}
+.cmd{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px}
+.cmd b{color:var(--gold);font-weight:700}
+</style>
+</head>
+<body>
+<header>
+  <h1>Talk to Text</h1>
+  <button class="ib" id="bHist" type="button">History</button>
+  <button class="ib" id="bWords" type="button">Fix words</button>
+  <button class="ib" id="bHelp" type="button">Help</button>
+</header>
+<main>
+  <div class="top">
+    <button id="mic" type="button" title="Start or stop (Ctrl+Space)" aria-label="Start or stop listening"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8.5 21h7"/></svg></button>
+    <div class="st">
+      <div id="status">Starting…</div>
+      <div id="sub">Click the gold mic or press Ctrl+Space</div>
+      <div class="meter"><i id="lvl"></i></div>
+    </div>
+  </div>
+  <textarea id="text" spellcheck="true" placeholder="Speak, and your words appear here. You can also type and fix anything."></textarea>
+  <div id="interim" aria-live="polite"></div>
+  <div class="row">
+    <button class="btn gold" id="bCopy" type="button">COPY ALL</button>
+    <button class="btn" id="bUndo" type="button">DELETE LAST</button>
+    <button class="btn" id="bNew" type="button">NEW (SAVE + CLEAR)</button>
+  </div>
+  <div class="opts">
+    <label><input type="checkbox" id="oCopy" checked> Copy as I speak</label>
+    <label><input type="checkbox" id="oCmd" checked> Spoken punctuation</label>
+    <label>Language <select id="oLang">
+      <option value="en-US">English (US)</option><option value="en-GB">English (UK)</option><option value="es-US">Spanish (US)</option><option value="it-IT">Italian</option><option value="fr-FR">French</option><option value="de-DE">German</option>
+    </select></label>
+  </div>
+</main>
+
+<div class="panel" id="pHelp">
+  <h2>How to use it</h2>
+  <p><b>Open it any time:</b> press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> anywhere on your PC, or double-click <b>Talk to Text</b> on your desktop. It starts listening on its own.</p>
+  <p><b>Put your words anywhere:</b> talk, then click where you want the words (an email, Word, a website) and press <kbd>Ctrl</kbd> + <kbd>V</kbd>. With "Copy as I speak" on, everything you said is already copied.</p>
+  <p><b>Keys in this window:</b> <kbd>Ctrl</kbd>+<kbd>Space</kbd> start or stop. <kbd>Ctrl</kbd>+<kbd>Enter</kbd> copy all. <kbd>Esc</kbd> stop.</p>
+  <h2 style="margin-top:14px">Say these</h2>
+  <div class="cmd">
+    <b>period</b><span>.</span><b>comma</b><span>,</span><b>question mark</b><span>?</span><b>exclamation point</b><span>!</span>
+    <b>colon / semicolon</b><span>: ;</span><b>new line</b><span>starts the next line</span><b>new paragraph</b><span>blank line, then a new paragraph</span>
+    <b>open quote / close quote</b><span>" "</span><b>delete that</b><span>removes the last thing you said</span><b>stop listening</b><span>turns the mic off</span>
+  </div>
+  <p>Every sentence starts with a capital on its own. Nothing is lost: your words are saved as you go, and <b>New</b> keeps a copy in History.</p>
+  <p><b>If it says it can't hear you:</b> check the microphone in the Windows sound settings, or click the mic icon at the left of Chrome's address bar and choose Allow.</p>
+  <button class="btn gold" type="button" data-close>CLOSE</button>
+</div>
+
+<div class="panel" id="pWords">
+  <h2>Words it gets wrong</h2>
+  <p>One per line: what it hears, an equals sign, what you want written. It fixes these every time.</p>
+  <textarea id="words" spellcheck="false"></textarea>
+  <div class="row" style="margin-top:12px"><button class="btn gold" id="bWordsSave" type="button">SAVE</button><button class="btn" type="button" data-close>CANCEL</button></div>
+</div>
+
+<div class="panel" id="pHist">
+  <h2>History</h2>
+  <div id="hist"></div>
+  <button class="btn" type="button" data-close>CLOSE</button>
+</div>
+
+<div id="toast"></div>
+
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id)};
+var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+var ta=$('text'), mic=$('mic'), stEl=$('status'), sub=$('sub'), interimEl=$('interim');
+var K={draft:'ttt.draft',hist:'ttt.history',words:'ttt.words',opt:'ttt.opts'};
+function lsGet(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+
+/* ---------- options ---------- */
+var opt=lsGet(K.opt,{copy:true,cmd:true,lang:'en-US'});
+$('oCopy').checked=opt.copy!==false; $('oCmd').checked=opt.cmd!==false; $('oLang').value=opt.lang||'en-US';
+function saveOpt(){opt={copy:$('oCopy').checked,cmd:$('oCmd').checked,lang:$('oLang').value};lsSet(K.opt,opt)}
+['oCopy','oCmd'].forEach(function(id){$(id).addEventListener('change',saveOpt)});
+$('oLang').addEventListener('change',function(){saveOpt();if(want){hardRestart()}});
+
+/* ---------- word fixes ---------- */
+var DEFAULT_WORDS='scott = Scott\nstoitz = Stojetz\nstojets = Stojetz\nstoy ets = Stojetz\nlotus medical = Lotus Medical';
+var wordsTxt=lsGet(K.words,DEFAULT_WORDS), FIX=[];
+function parseWords(){FIX=[];String(wordsTxt).split('\n').forEach(function(l){var i=l.indexOf('=');if(i<1)return;var a=l.slice(0,i).trim(),b=l.slice(i+1).trim();if(!a)return;
+  FIX.push([new RegExp('\\b'+a.replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/\s+/g,'\\s+')+'\\b','gi'),b])})}
+parseWords();
+
+/* ---------- text handling ---------- */
+ta.value=lsGet(K.draft,'');
+var stack=[]; /* each committed chunk: {start,len} so "delete that" can remove it */
+var saveT; function saveDraft(){clearTimeout(saveT);saveT=setTimeout(function(){lsSet(K.draft,ta.value)},150)}
+ta.addEventListener('input',function(){stack=[];saveDraft()});
+
+var PUNCT=[
+  [/\s*\b(question mark)\b/gi,'?'],[/\s*\b(exclamation (point|mark))\b/gi,'!'],[/\s*\b(full stop|period)\b/gi,'.'],
+  [/\s*\bcomma\b/gi,','],[/\s*\bsemicolon\b/gi,';'],[/\s*\bcolon\b/gi,':'],
+  [/\s*\bnew paragraph\b\s*/gi,'\n\n'],[/\s*\bnew line\b\s*/gi,'\n'],
+  [/\bopen quote\s*/gi,'"'],[/\s*close quote\b/gi,'"']
+];
+function process(t){
+  t=String(t).replace(/\s+/g,' ').trim();
+  FIX.forEach(function(f){t=t.replace(f[0],f[1])});
+  if($('oCmd').checked){PUNCT.forEach(function(p){t=t.replace(p[0],p[1])});
+    t=t.replace(/([.,;:?!])(?=[^\s\n"'.,;:?!)])/g,'$1 ').replace(/ +\n/g,'\n').replace(/\n +/g,'\n');}
+  t=t.replace(/\bi\b/g,'I').replace(/\bi'(m|ll|ve|d)\b/gi,function(m,a){return "I'"+a});
+  return t;
+}
+function capAfter(prev,t){
+  var p=prev.replace(/[ \t]+$/,'');
+  var need=!p||/[.?!]["']?$/.test(p)||/\n$/.test(p);
+  if(need) t=t.replace(/^(["']?)([a-z])/,function(m,q,c){return q+c.toUpperCase()});
+  t=t.replace(/([.?!]["']?\s+|\n+)([a-z])/g,function(m,a,c){return a+c.toUpperCase()});
+  return t;
+}
+function commit(raw){
+  var low=raw.trim().toLowerCase();
+  if(/^(delete that|scratch that|undo that)\.?$/.test(low)){undoLast();return}
+  if(/^(stop listening|stop dictation)\.?$/.test(low)){stop();return}
+  var t=process(raw); if(!t)return;
+  var pos=(document.activeElement===ta)?ta.selectionStart:ta.value.length;
+  var before=ta.value.slice(0,pos), after=ta.value.slice(pos);
+  t=capAfter(before,t);
+  var glue=(!before||/[\s\n]$/.test(before)||/^[.,;:?!\n]/.test(t))?'':' ';
+  var ins=glue+t;
+  if(after&&!/^[\s.,;:?!]/.test(after)) ins+=' ';
+  ta.value=before+ins+after;
+  stack.push({start:before.length,len:ins.length});
+  var c=before.length+ins.length; if(document.activeElement===ta){ta.selectionStart=ta.selectionEnd=c}else{ta.scrollTop=ta.scrollHeight}
+  saveDraft(); if($('oCopy').checked) copyAll(true);
+}
+function undoLast(){var s=stack.pop();if(!s){toast('Nothing to delete');return}
+  ta.value=ta.value.slice(0,s.start)+ta.value.slice(s.start+s.len);saveDraft();if($('oCopy').checked)copyAll(true);toast('Deleted')}
+
+/* ---------- clipboard ---------- */
+/* No clipboard permission is ever requested: copying uses the plain copy command,
+   which Chrome allows without a pop-up. On a secure website (https) the quiet
+   copy-as-you-speak also works; opened as a file, it copies whenever you click or press a key here. */
+var SECURE=location.protocol==='https:';
+function copyAll(quiet){var v=ta.value.trim(); if(!v){if(!quiet)toast('Nothing to copy yet');return}
+  var ok=plainCopy(v);
+  if(!ok&&SECURE&&navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(v).then(function(){if(!quiet)toast('Copied. Press Ctrl+V where you want it.')},function(){});return}
+  if(!quiet)toast(ok?'Copied. Press Ctrl+V where you want it.':'Click Copy All to copy.')}
+function plainCopy(v){var sel=[ta.selectionStart,ta.selectionEnd],had=document.activeElement===ta;var x=document.createElement('textarea');x.value=v;x.setAttribute('readonly','');x.style.position='fixed';x.style.top='-1000px';x.style.opacity='0';document.body.appendChild(x);x.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(x);if(had){ta.focus();ta.selectionStart=sel[0];ta.selectionEnd=sel[1]}return ok}
+function fallbackCopy(v){plainCopy(v)}
+/* any click or key in this window refreshes the copy, so Ctrl+V elsewhere always has your latest words */
+['pointerdown','keyup'].forEach(function(ev){document.addEventListener(ev,function(){if($('oCopy').checked&&ta.value.trim())plainCopy(ta.value.trim())},true)});
+
+/* ---------- history ---------- */
+function addHist(v){v=v.trim();if(!v)return;var h=lsGet(K.hist,[]);if(h[0]&&h[0].t===v)return;h.unshift({t:v,at:Date.now()});lsSet(K.hist,h.slice(0,100))}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function renderHist(){var h=lsGet(K.hist,[]);$('hist').innerHTML=h.length?h.map(function(x,i){return '<div class="hi"><div class="when"><span>'+new Date(x.at).toLocaleString()+'</span><span><button class="ib" data-hc="'+i+'">Copy</button> <button class="ib" data-hr="'+i+'">Open</button></span></div><div class="tx">'+esc(x.t)+'</div></div>'}).join(''):'<p>Nothing saved yet. Press New to save what you said and start fresh.</p>'}
+$('hist').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var h=lsGet(K.hist,[]);
+  if(b.dataset.hc!=null){var v=h[+b.dataset.hc].t;plainCopy(v);toast('Copied')}
+  if(b.dataset.hr!=null){addHist(ta.value);ta.value=h[+b.dataset.hr].t;stack=[];saveDraft();closePanels()}});
+
+/* ---------- buttons, panels, keys ---------- */
+$('bCopy').onclick=function(){copyAll(false)};
+$('bUndo').onclick=undoLast;
+$('bNew').onclick=function(){if(!ta.value.trim()){toast('Already clear');return}addHist(ta.value);copyAll(true);ta.value='';stack=[];saveDraft();toast('Saved to History. Fresh page.')};
+function openPanel(id){closePanels();$(id).classList.add('show')}
+function closePanels(){[].forEach.call(document.querySelectorAll('.panel'),function(p){p.classList.remove('show')})}
+[].forEach.call(document.querySelectorAll('[data-close]'),function(b){b.onclick=closePanels});
+$('bHelp').onclick=function(){openPanel('pHelp')};
+$('bHist').onclick=function(){renderHist();openPanel('pHist')};
+$('bWords').onclick=function(){$('words').value=wordsTxt;openPanel('pWords')};
+$('bWordsSave').onclick=function(){wordsTxt=$('words').value;lsSet(K.words,wordsTxt);parseWords();closePanels();toast('Saved')};
+mic.onclick=function(){want?stop():start()};
+document.addEventListener('keydown',function(e){
+  if(e.ctrlKey&&(e.code==='Space'||e.key===' ')){e.preventDefault();want?stop():start()}
+  else if(e.ctrlKey&&e.key==='Enter'){e.preventDefault();copyAll(false)}
+  else if(e.key==='Escape'){if(document.querySelector('.panel.show'))closePanels();else if(want)stop()}
+});
+var toastT;function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('show')},2600)}
+
+/* ---------- status ---------- */
+function setStatus(txt,cls,s2){stEl.textContent=txt;stEl.className=cls||'';if(s2!=null)sub.textContent=s2}
+function setOn(on){mic.classList.toggle('on',on)}
+
+/* ---------- speech engine: keeps itself running ---------- */
+var rec=null, want=false, running=false, fails=0, lastHeard=0, restartT=null, interimTxt='';
+function makeRec(){
+  var r=new SR(); r.lang=$('oLang').value||'en-US'; r.continuous=true; r.interimResults=true; r.maxAlternatives=1;
+  r.onstart=function(){running=true;setOn(true);setStatus('Listening','on','Talk. Say "period", "comma" or "new line" for punctuation.');};
+  r.onresult=function(e){fails=0;lastHeard=Date.now();var it='';
+    for(var i=e.resultIndex;i<e.results.length;i++){var res=e.results[i];if(res.isFinal){commit(res[0].transcript)}else{it+=res[0].transcript}}
+    interimTxt=it; interimEl.textContent=it;};
+  r.onerror=function(e){
+    if(e.error==='no-speech'||e.error==='aborted')return;
+    if(e.error==='not-allowed'||e.error==='service-not-allowed'){want=false;setOn(false);setStatus('Microphone is blocked','err','Click the mic icon at the left of the address bar, choose Allow, then click the gold mic.');return}
+    if(e.error==='audio-capture'){fails++;setStatus('No microphone found','err','Plug in or turn on your microphone. Trying again…');return}
+    if(e.error==='network'){fails++;setStatus('Reconnecting…','err','Talk to Text needs the internet. Trying again…');return}
+    fails++;setStatus('Restarting…','err','('+e.error+')');
+  };
+  r.onend=function(){running=false;
+    if(interimTxt.trim()){commit(interimTxt);interimTxt='';} interimEl.textContent='';
+    if(want){var wait=Math.min(250*Math.pow(2,Math.max(0,fails-1)),8000);clearTimeout(restartT);restartT=setTimeout(go,wait)}
+    else{setOn(false);setStatus('Mic is off','', 'Click the gold mic or press Ctrl+Space to talk.')}};
+  return r;
+}
+function go(){if(!want)return;try{rec=makeRec();rec.start()}catch(e){clearTimeout(restartT);restartT=setTimeout(go,800)}}
+function start(){if(!SR){setStatus('This browser cannot do talk to text','err','Open Talk to Text from the desktop shortcut. It runs in Chrome.');return}
+  want=true;fails=0;lastHeard=Date.now();setStatus('Starting…','on','');go();}
+function stop(){want=false;clearTimeout(restartT);try{rec&&rec.stop()}catch(e){}setOn(false);setStatus('Mic is off','','Click the gold mic or press Ctrl+Space to talk.');}
+function hardRestart(){try{rec&&rec.abort()}catch(e){}}
+/* watchdog: if Chrome's speech service quietly stalls, kick it */
+setInterval(function(){if(want&&running&&Date.now()-lastHeard>45000){lastHeard=Date.now();hardRestart()}
+  if(want&&!running&&!restartT){go()}},5000);
+
+/* ---------- activity bar: lights up while your words come in (no second microphone request) ---------- */
+var lvlT=0;(function tick(){var bar=$('lvl');var age=Date.now()-lastHeard;bar.style.width=(want&&running&&age<1500?Math.max(8,100-age/15):0)+'%';requestAnimationFrame(tick)})();
+
+/* ---------- one window at a time: a new window takes over the old one ---------- */
+var bc=null;try{bc=new BroadcastChannel('talk-to-text')}catch(e){}
+if(bc){bc.onmessage=function(e){if(e.data==='hello'){lsSet(K.draft,ta.value);stop();try{bc.postMessage('bye')}catch(x){}setTimeout(function(){window.close()},100)}};
+  bc.postMessage('hello');}
+
+/* save before closing */
+window.addEventListener('beforeunload',function(){lsSet(K.draft,ta.value)});
+
+/* start listening on open (after an older window has handed over its words) */
+setTimeout(function(){ta.value=lsGet(K.draft,ta.value);ta.scrollTop=ta.scrollHeight;start()},bc?350:50);
+})();
+</script>
+</body>
+</html>
